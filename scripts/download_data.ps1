@@ -1,5 +1,5 @@
-$projectRoot = "$PSScriptRoot\.."
-$hskDir      = "$projectRoot\download-data\hsk-vocabulary"
+﻿$projectRoot = "$PSScriptRoot\.."
+$hskDir    = "$projectRoot\download-data\hsk-vocabulary"
 $cfdictDir   = "$projectRoot\download-data\CFDICT"
 $outputDir   = "$projectRoot\data"
 
