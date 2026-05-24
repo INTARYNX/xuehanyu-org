@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xuehanyu.org — Apprendre le chinois, un caractère à la fois</title>
+<meta name="description" content="Apprenez le chinois mandarin avec le vocabulaire HSK 1 à 6 : tracé des caractères, pinyin, traductions français et anglais, radicaux et classificateurs.">
+<meta name="keywords" content="apprendre chinois, HSK, caractères chinois, pinyin, mandarin, vocabulaire chinois, tracé hanzi">
+<meta name="author" content="xuehanyu.org">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.xuehanyu.org/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.xuehanyu.org/">
+<meta property="og:title" content="xuehanyu.org — Apprendre le chinois, un caractère à la fois">
+<meta property="og:description" content="Vocabulaire HSK 1-6 avec tracé des caractères, pinyin, traductions français/anglais, radicaux et classificateurs.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:image" content="https://www.xuehanyu.org/xuehanyu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xuehanyu.org — Apprendre le chinois">
+<meta name="twitter:description" content="Vocabulaire HSK 1-6 avec tracé des caractères, pinyin, traductions français/anglais.">
+<meta name="twitter:image" content="https://www.xuehanyu.org/xuehanyu.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="paper-bg"></canvas>
+
+<div class="app">
+  <header>
+    <div class="header-text">
+      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
+      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
+    </div>
+    <div class="lang-switch">
+      <button data-lang="fr" class="active">FR</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar">
+      <div class="levels" id="levels"></div>
+      <div class="search">
+        <input type="text" id="search" placeholder="Rechercher…" autocomplete="off">
+        <div class="filters" id="filters">
+          <button class="filter-chip active" data-filter="all">tout</button>
+          <button class="filter-chip" data-filter="char">caractère</button>
+          <button class="filter-chip" data-filter="pinyin">pinyin</button>
+          <button class="filter-chip" data-filter="meaning">sens</button>
+        </div>
+        <div class="results-count" id="resultsCount"></div>
+      </div>
+      <div class="char-list" id="charList"></div>
+    </aside>
+
+    <section class="detail" id="detail">
+      <div class="detail-empty" id="detailEmpty">
+        <span data-i18n="empty">Sélectionnez un caractère pour voir son tracé</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- POPUP (mobile) -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup" id="popup">
+      <div class="popup-header">
+        <span class="popup-title" id="popupTitle"></span>
+        <button class="btn" id="popupClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="popup-body" id="popupBody"></div>
+    </div>
+  </div>
+
+  <footer>
+    propulsé par <a href="https://hanziwriter.org" target="_blank" rel="noopener">Hanzi Writer</a> (MIT) ·
+    <a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener">CC-CEDICT</a>
+    (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>) ·
+    données <a href="https://github.com/drkameleon/complete-hsk-vocabulary" target="_blank" rel="noopener">complete-hsk-vocabulary</a> (MIT) ·
+    dictionnaire <a href="https://chine.in/mandarin/open/CFDICT/" target="_blank" rel="noopener">CFDICT</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>) ·
+    tracés <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noopener">Make Me a Hanzi</a> (GPL)
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+<script>
+window.PitchFinder = {
+  YIN: ({ sampleRate } = {}) => {
+    const sr = sampleRate || 44100;
+    return (float32Array) => {
+      // check signal level first
+      let rms = 0;
+      for (let i = 0; i < float32Array.length; i++) rms += float32Array[i] * float32Array[i];
+      rms = Math.sqrt(rms / float32Array.length);
+      if (rms < 0.01) return null; // silence
+
+      const N = float32Array.length;
+      const half = N >> 1;
+      const d = new Float32Array(half);
+      let sum = 0;
+      d[0] = 1;
+      for (let tau = 1; tau < half; tau++) {
+        let s = 0;
+        for (let i = 0; i < half; i++) {
+          const diff = float32Array[i] - float32Array[i + tau];
+          s += diff * diff;
+        }
+        d[tau] = s;
+        sum += s;
+        d[tau] = sum === 0 ? 0 : d[tau] * tau / sum;
+      }
+      const threshold = 0.15;
+      for (let tau = 2; tau < half; tau++) {
+        if (d[tau] < threshold) {
+          while (tau + 1 < half && d[tau + 1] < d[tau]) tau++;
+          const freq = sr / tau;
+          if (freq > 60 && freq < 800) return freq;
+        }
+      }
+      return null;
+    };
+  }
+};
+</script>
+<script src="app.js"></script>
+</body>
+</html>
