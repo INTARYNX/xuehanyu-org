@@ -32,7 +32,7 @@ Data sources:
 **1. Generate the data files** (requires PowerShell):
 
 ```powershell
-.\download-data\download_data.ps1
+.\scripts\download_data.ps1
 ```
 
 This downloads and processes the HSK vocabulary into `data/hsk1.json` … `data/hsk6.json`.
