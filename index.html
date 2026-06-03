@@ -103,11 +103,13 @@ html, body {
 .hero {
   position: relative;
   height: 100vh;
+  height: 100dvh;
   min-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: var(--paper-mid);
 }
 #paper-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 #hanzi-host { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
@@ -179,7 +181,9 @@ html, body {
 }
 .cta-btn:hover { background: #9a1c1a; transform: translateY(-1px); }
 .scroll-hint {
-  position: absolute; bottom: 1.75rem; left: 50%;
+  position: absolute;
+  bottom: calc(1.75rem + env(safe-area-inset-bottom));
+  left: 50%;
   z-index: 10; color: var(--ink-soft);
   display: flex; align-items: center; justify-content: center;
   width: 42px; height: 42px;
