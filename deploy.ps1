@@ -1,5 +1,5 @@
 # Deploy the entire repository root to $REMOTE_DIR
-# Excludes anything ignored by .gitignore and .webignore
+# Excludes ONLY patterns defined in .webignore (ignores .gitignore for deployment)
 # Also commits + pushes to Git before deploy
 
 # ── Load local config ─────────────────────────────────────────────────────────
@@ -72,35 +72,49 @@ try {
         Write-Host "No git changes to publish." -ForegroundColor Yellow
     }
 
-    # ── Collect tracked files (.gitignore filtered) ───────────────────────────
+    # ── Collect ALL physical files ────────────────────────────────────────────
 
     Write-Host ""
-    Write-Host "Collecting deployable files..." -ForegroundColor Cyan
+    Write-Host "Collecting all local files..." -ForegroundColor Cyan
 
-    $gitFiles = (& git ls-files) | Where-Object { $_.Trim() -ne '' }
-
-    if (-not $gitFiles -or $gitFiles.Count -eq 0) {
-        throw "No tracked files found."
+    # Récupère tous les fichiers du dossier sans distinction de statut Git
+    $allFiles = Get-ChildItem -Path $base -Recurse -File | ForEach-Object {
+        # Transforme le chemin absolu en chemin relatif par rapport à la racine
+        $_.FullName.Substring($base.Length + 1).Replace('\', '/')
     }
 
-    # ── Filter with .webignore ────────────────────────────────────────────────
+    if (-not $allFiles -or $allFiles.Count -eq 0) {
+        throw "No local files found."
+    }
+
+    # ── Filter ONLY with .webignore ───────────────────────────────────────────
 
     $webIgnoreFile = Join-Path $base '.webignore'
-    $ignoredPatterns = @('deploy.ps1', 'deploy.config.ps1', '.webignore', '.gitignore')
+    # On protège les outils de déploiement et les dossiers temporaires d'office
+    $ignoredPatterns = @('deploy.ps1', 'deploy.config.ps1', '.webignore', '.gitignore', '.git', '.deploy_stage')
 
     if (Test-Path $webIgnoreFile) {
         Write-Host "Applying .webignore filters..." -ForegroundColor Yellow
         $customIgnores = Get-Content $webIgnoreFile | ForEach-Object { $_.Trim() } | Where-Object { $_ -and -not $_.StartsWith('#') }
-        $ignoredPatterns += $customIgnores
+        foreach ($pattern in $customIgnores) {
+            # Standardisation des slashes sous Windows/Linux
+            $ignoredPatterns += $pattern.Replace('\', '/')
+        }
     }
 
-    $filesToDeploy = $gitFiles | Where-Object {
+    $filesToDeploy = $allFiles | Where-Object {
         $file = $_
         $keep = $true
         foreach ($pattern in $ignoredPatterns) {
             $wildcard = $pattern
-            if (-not $wildcard.StartsWith('*')) { $wildcard = "*$wildcard" }
-            if (-not $wildcard.EndsWith('*')) { $wildcard = "$wildcard*" }
+            # Si le pattern se termine par /, c'est un dossier entier à exclure
+            if ($wildcard.EndsWith('/')) {
+                $wildcard = "*$wildcard*"
+            }
+            else {
+                if (-not $wildcard.StartsWith('*')) { $wildcard = "*$wildcard" }
+                if (-not $wildcard.EndsWith('*')) { $wildcard = "$wildcard*" }
+            }
             
             if ($file -like $wildcard) {
                 $keep = $false
