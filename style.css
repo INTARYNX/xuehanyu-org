@@ -15,7 +15,7 @@ html, body {
   min-height: 100dvh;
   font-family: Georgia, "Times New Roman", serif;
   color: var(--ink);
-  background: #2a1f14;
+  background: #e3d2a8;
   -webkit-font-smoothing: antialiased;
 }
 #paper-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
