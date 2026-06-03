@@ -1,3 +1,5 @@
 data/
 download-data/
 web.cmd
+deploy.config.ps1
+.webignore

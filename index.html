@@ -4,131 +4,616 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>xuehanyu.org — Apprendre le chinois, un caractère à la fois</title>
-<meta name="description" content="Apprenez le chinois mandarin avec le vocabulaire HSK 1 à 6 : tracé des caractères, pinyin, traductions français et anglais, radicaux et classificateurs.">
-<meta name="keywords" content="apprendre chinois, HSK, caractères chinois, pinyin, mandarin, vocabulaire chinois, tracé hanzi">
-<meta name="author" content="xuehanyu.org">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.xuehanyu.org/">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.xuehanyu.org/">
-<meta property="og:title" content="xuehanyu.org — Apprendre le chinois, un caractère à la fois">
-<meta property="og:description" content="Vocabulaire HSK 1-6 avec tracé des caractères, pinyin, traductions français/anglais, radicaux et classificateurs.">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:locale:alternate" content="en_GB">
-<meta property="og:image" content="https://www.xuehanyu.org/xuehanyu.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xuehanyu.org — Apprendre le chinois">
-<meta name="twitter:description" content="Vocabulaire HSK 1-6 avec tracé des caractères, pinyin, traductions français/anglais.">
-<meta name="twitter:image" content="https://www.xuehanyu.org/xuehanyu.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --paper-light: #f0e4c5;
+  --paper-mid: #e3d2a8;
+  --paper-dark: #c9b582;
+  --ink: #1a1310;
+  --ink-soft: #3d2f24;
+  --accent: #b8211f;
+  --bg: #2a1f14;
+}
+html, body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#paper-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+#hanzi-host {
+  position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none;
+}
+.char-slot {
+  position: absolute; pointer-events: none;
+  filter: url(#brush-filter);
+}
+.char-slot canvas.rasterized { display: block; width: 100%; height: 100%; }
+.char-slot svg { overflow: visible; }
+.char-slot path, .char-slot circle { fill: var(--ink-color, #1a1310); stroke: var(--ink-color, #1a1310); }
+#central-seal {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; pointer-events: none;
+}
+#central-seal-hanzi { position: absolute; pointer-events: none; transition: opacity 0.5s ease; }
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+}
+.hero-brand {
+  background: rgba(240, 228, 197, 0.88);
+  border: 1px solid rgba(60,35,15,0.18);
+  border-radius: 16px;
+  padding: 1.5rem 2.5rem 1.25rem;
+  backdrop-filter: blur(8px);
+  max-width: 600px;
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+}
+.brand-title {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.brand-title .zh {
+  font-family: "STKaiti", "Kaiti SC", "Noto Serif CJK SC", serif;
+  color: var(--accent);
+  margin-right: 0.3em;
+}
+.lang-toggle {
+  display: inline-flex;
+  background: rgba(60,35,15,0.1);
+  border-radius: 999px; padding: 3px;
+  font-size: 0.8rem;
+}
+.lang-toggle button {
+  border: 0; background: transparent;
+  padding: 0.25rem 0.75rem; border-radius: 999px;
+  cursor: pointer; font-family: inherit;
+  color: var(--ink-soft); transition: all 0.2s;
+}
+.lang-toggle button.active { background: var(--ink); color: var(--paper-light); }
+.tagline {
+  font-style: italic; color: var(--ink-soft);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  line-height: 1.5;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 10px;
+  padding: 0.75rem 2rem;
+  font-family: inherit; font-size: 1rem;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+.cta-btn:hover { background: #9a1c1a; transform: translateY(-1px); }
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 10; color: rgba(240,228,197,0.6);
+  font-size: 0.75rem; font-style: italic;
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+.scroll-arrow { font-size: 1.2rem; opacity: 0.5; }
+
+/* CONTENT */
+.content {
+  background: var(--paper-light);
+  position: relative;
+}
+.content::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, transparent, rgba(184,33,31,0.5), transparent);
+}
+
+/* SECTION */
+.section {
+  max-width: 900px; margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem);
+}
+.section-label {
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.section h2 {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 600; line-height: 1.2;
+  color: var(--ink); margin-bottom: 1.25rem;
+}
+.section p {
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
+  line-height: 1.8; color: var(--ink-soft);
+  max-width: 65ch;
+}
+.section p + p { margin-top: 1rem; }
+
+/* FEATURES */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.feature-card {
+  background: rgba(255,250,235,0.7);
+  border: 1px solid rgba(60,35,15,0.15);
+  border-radius: 12px; padding: 1.25rem;
+}
+.feature-icon {
+  font-size: 1.75rem;
+  font-family: "STKaiti","Kaiti SC",serif;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.feature-card h3 {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 0.4rem;
+}
+.feature-card p {
+  font-size: 0.83rem; line-height: 1.6;
+  color: var(--ink-soft); max-width: none;
+}
+
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 1px solid rgba(60,35,15,0.12);
+  margin: 0 clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+.project-badge {
+  display: inline-block;
+  background: rgba(184,33,31,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(184,33,31,0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-style: italic;
+  margin-top: 1.5rem;
+}
+.project-badge a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.section a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.section a:hover { color: #9a1c1a; }
+
+/* HSK LEVELS */
+.levels-row {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.level-pill {
+  background: var(--ink); color: var(--paper-light);
+  padding: 0.3rem 0.75rem; border-radius: 999px;
+  font-size: 0.78rem; font-weight: 600;
+}
+.level-pill.soft { background: rgba(60,35,15,0.12); color: var(--ink-soft); }
+
+/* FOOTER */
+footer {
+  background: var(--bg);
+  color: rgba(240,228,197,0.45);
+  font-size: 0.72rem; font-style: italic;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  line-height: 1.9;
+}
+footer a { color: rgba(240,228,197,0.5); text-decoration: underline; text-underline-offset: 2px; }
+footer a:hover { color: var(--accent); }
+
+/* SVG filter */
+svg#filters-defs { position: absolute; width: 0; height: 0; }
+</style>
 </head>
 <body>
 
-<canvas id="paper-bg"></canvas>
+<svg id="filters-defs" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="brush-filter" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+      <feGaussianBlur in="displaced" stdDeviation="0.4" result="blurred"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="5" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0" result="grainAlpha"/>
+      <feComposite in="grainAlpha" in2="blurred" operator="in" result="texturedGrain"/>
+      <feComposite in="blurred" in2="texturedGrain" operator="out"/>
+    </filter>
+  </defs>
+</svg>
 
-<div class="app">
-  <header>
-    <div class="header-text">
-      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
-      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
-    </div>
-    <div class="lang-switch">
-      <button data-lang="fr" class="active">FR</button>
-      <button data-lang="en">EN</button>
-    </div>
-  </header>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="paper-bg"></canvas>
+  <div id="hanzi-host"></div>
+  <div id="central-seal">
+    <div id="central-seal-hanzi"></div>
+  </div>
 
-  <main>
-    <aside class="sidebar">
-      <div class="levels" id="levels"></div>
-      <div class="search">
-        <input type="text" id="search" placeholder="Rechercher…" autocomplete="off">
-        <div class="filters" id="filters">
-          <button class="filter-chip active" data-filter="all">tout</button>
-          <button class="filter-chip" data-filter="char">caractère</button>
-          <button class="filter-chip" data-filter="pinyin">pinyin</button>
-          <button class="filter-chip" data-filter="meaning">sens</button>
-        </div>
-        <div class="results-count" id="resultsCount"></div>
+  <div class="hero-content">
+    <div class="hero-brand">
+      <div class="lang-toggle" id="langToggle">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
       </div>
-      <div class="char-list" id="charList"></div>
-    </aside>
-
-    <section class="detail" id="detail">
-      <div class="detail-empty" id="detailEmpty">
-        <span data-i18n="empty">Sélectionnez un caractère pour voir son tracé</span>
-      </div>
-    </section>
-  </main>
-
-  <!-- POPUP (mobile) -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup" id="popup">
-      <div class="popup-header">
-        <span class="popup-title" id="popupTitle"></span>
-        <button class="btn" id="popupClose"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="popup-body" id="popupBody"></div>
+      <div class="brand-title"><span class="zh">学汉语</span>xuehanyu.org</div>
+      <div class="tagline" id="heroTagline">Apprendre le chinois mandarin,<br>un caractère à la fois.</div>
+      <a href="app.html" class="cta-btn" id="heroCta">Commencer →</a>
     </div>
   </div>
 
-  <footer>
-    propulsé par <a href="https://hanziwriter.org" target="_blank" rel="noopener">Hanzi Writer</a> (MIT) ·
-    <a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener">CC-CEDICT</a>
-    (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>) ·
-    données <a href="https://github.com/drkameleon/complete-hsk-vocabulary" target="_blank" rel="noopener">complete-hsk-vocabulary</a> (MIT) ·
-    dictionnaire <a href="https://chine.in/mandarin/open/CFDICT/" target="_blank" rel="noopener">CFDICT</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>) ·
-    tracés <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noopener">Make Me a Hanzi</a> (GPL)
-  </footer>
+  <div class="scroll-hint" id="scrollHint">
+    <span id="scrollText">Découvrir</span>
+    <span class="scroll-arrow">↓</span>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- WHAT -->
+  <div class="section">
+    <div class="section-label" id="label1">Le projet</div>
+    <h2 id="heading1">Un outil libre pour apprendre<br>les caractères chinois</h2>
+    <p id="para1a">xuehanyu.org est une application web gratuite et open source pour apprendre le vocabulaire du mandarin. Elle couvre les niveaux HSK 1 à 6 — soit plus de 5 000 caractères — avec leur tracé animé, leur pinyin, leur traduction en français et en anglais, leur radical, leurs classificateurs et leur catégorie grammaticale.</p>
+    <p id="para1b">Pensée pour les apprenants francophones et anglophones, l'interface est entièrement bilingue. Aucun compte, aucune publicité, aucun abonnement.</p>
+
+    <div class="levels-row">
+      <span class="level-pill">HSK 1</span>
+      <span class="level-pill">HSK 2</span>
+      <span class="level-pill">HSK 3</span>
+      <span class="level-pill soft">HSK 4</span>
+      <span class="level-pill soft">HSK 5</span>
+      <span class="level-pill soft">HSK 6</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FEATURES -->
+  <div class="section">
+    <div class="section-label" id="label2">Fonctionnalités</div>
+    <h2 id="heading2">Tout ce qu'il faut pour progresser</h2>
+
+    <div class="features">
+      <div class="feature-card">
+        <span class="feature-icon">筆</span>
+        <h3 id="f1title">Tracé animé</h3>
+        <p id="f1body">Chaque caractère s'anime trait par trait selon l'ordre de tracé correct. Mode quiz pour s'entraîner à le reproduire à la main.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">音</span>
+        <h3 id="f2title">Prononciation</h3>
+        <p id="f2body">Écoute la prononciation native grâce à la synthèse vocale. Entraîne-toi aux tons avec le détecteur de hauteur en temps réel.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">字</span>
+        <h3 id="f3title">Fiche complète</h3>
+        <p id="f3body">Pinyin avec tons, sens, forme traditionnelle, radical, catégorie grammaticale et classificateurs pour chaque entrée.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">搜</span>
+        <h3 id="f4title">Recherche rapide</h3>
+        <p id="f4body">Cherche par caractère, pinyin ou sens. Filtre par niveau HSK. Résultats instantanés parmi plus de 5 000 entrées.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <div class="section">
+    <div class="about-grid">
+      <div>
+        <div class="section-label" id="label3">À propos</div>
+        <h2 id="heading3">Un projet signé intraynx</h2>
+        <p id="para3a">xuehanyu.org est un projet personnel développé par <strong>intraynx</strong> — développeur passionné par les langues, la calligraphie et l'open source.</p>
+        <p id="para3b">Le site repose sur des données libres : <a href="https://hanziwriter.org" target="_blank" rel="noopener">Hanzi Writer</a> pour les tracés, <a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener">CC-CEDICT</a> et <a href="https://chine.in/mandarin/open/CFDICT/" target="_blank" rel="noopener">CFDICT</a> pour les dictionnaires, <a href="https://github.com/drkameleon/complete-hsk-vocabulary" target="_blank" rel="noopener">complete-hsk-vocabulary</a> pour le corpus HSK.</p>
+        <div class="project-badge">un projet <a href="https://github.com/intraynx" target="_blank" rel="noopener">intraynx</a></div>
+      </div>
+      <div>
+        <div class="section-label" id="label4" style="margin-top:0">Open source</div>
+        <h2 id="heading4" style="font-size:clamp(1.1rem,2.5vw,1.5rem)">Libre, gratuit, sans données personnelles</h2>
+        <p id="para4a">Pas de compte requis. Pas de cookies de suivi. Tout le code est disponible librement. Le projet est conçu pour durer et rester accessible.</p>
+        <p id="para4b">Contributions et retours bienvenus.</p>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
-<script>
-window.PitchFinder = {
-  YIN: ({ sampleRate } = {}) => {
-    const sr = sampleRate || 44100;
-    return (float32Array) => {
-      // check signal level first
-      let rms = 0;
-      for (let i = 0; i < float32Array.length; i++) rms += float32Array[i] * float32Array[i];
-      rms = Math.sqrt(rms / float32Array.length);
-      if (rms < 0.01) return null; // silence
+<!-- FOOTER -->
+<footer>
+  propulsé par <a href="https://hanziwriter.org" target="_blank" rel="noopener">Hanzi Writer</a> (MIT) ·
+  <a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener">CC-CEDICT</a>
+  (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>) ·
+  <a href="https://github.com/drkameleon/complete-hsk-vocabulary" target="_blank" rel="noopener">complete-hsk-vocabulary</a> (MIT) ·
+  <a href="https://chine.in/mandarin/open/CFDICT/" target="_blank" rel="noopener">CFDICT</a>
+  (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>) ·
+  tracés <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noopener">Make Me a Hanzi</a> (GPL)
+  <br>
+  © xuehanyu.org — un projet <a href="https://www.intarynx.com" target="_blank" rel="noopener">intarynx</a>
+</footer>
 
-      const N = float32Array.length;
-      const half = N >> 1;
-      const d = new Float32Array(half);
-      let sum = 0;
-      d[0] = 1;
-      for (let tau = 1; tau < half; tau++) {
-        let s = 0;
-        for (let i = 0; i < half; i++) {
-          const diff = float32Array[i] - float32Array[i + tau];
-          s += diff * diff;
-        }
-        d[tau] = s;
-        sum += s;
-        d[tau] = sum === 0 ? 0 : d[tau] * tau / sum;
-      }
-      const threshold = 0.15;
-      for (let tau = 2; tau < half; tau++) {
-        if (d[tau] < threshold) {
-          while (tau + 1 < half && d[tau + 1] < d[tau]) tau++;
-          const freq = sr / tau;
-          if (freq > 60 && freq < 800) return freq;
-        }
-      }
-      return null;
-    };
+<script>
+// ---- I18N ----
+const COPY = {
+  fr: {
+    tagline:  'Apprendre le chinois mandarin,<br>un caractère à la fois.',
+    cta:      'Commencer →',
+    scroll:   'Découvrir',
+    label1:   'Le projet',
+    h1:       'Un outil libre pour apprendre<br>les caractères chinois',
+    p1a:      'xuehanyu.org est une application web gratuite et open source pour apprendre le vocabulaire du mandarin. Elle couvre les niveaux HSK 1 à 6 — soit plus de 5 000 caractères — avec leur tracé animé, leur pinyin, leur traduction en français et en anglais, leur radical, leurs classificateurs et leur catégorie grammaticale.',
+    p1b:      'Pensée pour les apprenants francophones et anglophones, l\'interface est entièrement bilingue. Aucun compte, aucune publicité, aucun abonnement.',
+    label2:   'Fonctionnalités',
+    h2:       'Tout ce qu\'il faut pour progresser',
+    f1t:      'Tracé animé',
+    f1b:      'Chaque caractère s\'anime trait par trait selon l\'ordre de tracé correct. Mode quiz pour s\'entraîner à le reproduire à la main.',
+    f2t:      'Prononciation',
+    f2b:      'Écoute la prononciation native grâce à la synthèse vocale. Entraîne-toi aux tons avec le détecteur de hauteur en temps réel.',
+    f3t:      'Fiche complète',
+    f3b:      'Pinyin avec tons, sens, forme traditionnelle, radical, catégorie grammaticale et classificateurs pour chaque entrée.',
+    f4t:      'Recherche rapide',
+    f4b:      'Cherche par caractère, pinyin ou sens. Filtre par niveau HSK. Résultats instantanés parmi plus de 5 000 entrées.',
+    label3:   'À propos',
+    h3:       'Un projet signé intraynx',
+    p3a:      'xuehanyu.org est un projet personnel développé par <strong>intraynx</strong> — développeur passionné par les langues, la calligraphie et l\'open source.',
+    p3b:      'Le site repose sur des données libres : <a href="https://hanziwriter.org" target="_blank" rel="noopener">Hanzi Writer</a> pour les tracés, <a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener">CC-CEDICT</a> et <a href="https://chine.in/mandarin/open/CFDICT/" target="_blank" rel="noopener">CFDICT</a> pour les dictionnaires.',
+    label4:   'Open source',
+    h4:       'Libre, gratuit, sans données personnelles',
+    p4a:      'Pas de compte requis. Pas de cookies de suivi. Tout le code est disponible librement. Le projet est conçu pour durer et rester accessible.',
+    p4b:      'Contributions et retours bienvenus.',
+    bottomCta:'Ouvrir l\'application →',
+    badge:    'un projet'
+  },
+  en: {
+    tagline:  'Learn Mandarin Chinese,<br>one character at a time.',
+    cta:      'Get started →',
+    scroll:   'Discover',
+    label1:   'The project',
+    h1:       'A free tool to learn<br>Chinese characters',
+    p1a:      'xuehanyu.org is a free, open-source web app for learning Mandarin vocabulary. It covers HSK levels 1 through 6 — over 5,000 characters — with animated stroke order, pinyin, French and English translations, radicals, classifiers and grammatical categories.',
+    p1b:      'Designed for French and English learners, the interface is fully bilingual. No account, no ads, no subscription.',
+    label2:   'Features',
+    h2:       'Everything you need to make progress',
+    f1t:      'Animated strokes',
+    f1b:      'Every character animates stroke by stroke in the correct order. Quiz mode to practise writing it by hand.',
+    f2t:      'Pronunciation',
+    f2b:      'Listen to native pronunciation via speech synthesis. Practise tones with a real-time pitch detector.',
+    f3t:      'Full detail card',
+    f3b:      'Pinyin with tone marks, meaning, traditional form, radical, grammar category and classifiers for every entry.',
+    f4t:      'Fast search',
+    f4b:      'Search by character, pinyin, or meaning. Filter by HSK level. Instant results across 5,000+ entries.',
+    label3:   'About',
+    h3:       'A project by intraynx',
+    p3a:      'xuehanyu.org is a personal project built by <strong>intraynx</strong> — a developer passionate about languages, calligraphy and open source.',
+    p3b:      'The site is powered by open data: <a href="https://hanziwriter.org" target="_blank" rel="noopener">Hanzi Writer</a> for stroke data, <a href="https://www.mdbg.net/chinese/dictionary?page=cc-cedict" target="_blank" rel="noopener">CC-CEDICT</a> and <a href="https://chine.in/mandarin/open/CFDICT/" target="_blank" rel="noopener">CFDICT</a> for dictionaries.',
+    label4:   'Open source',
+    h4:       'Free, open, no personal data',
+    p4a:      'No account required. No tracking cookies. All code is freely available. Built to last and stay accessible.',
+    p4b:      'Contributions and feedback are welcome.',
+    bottomCta:'Open the app →',
+    badge:    'a project by'
   }
 };
+
+let lang = 'fr';
+function applyLang(l) {
+  lang = l;
+  const t = COPY[l];
+  document.getElementById('heroTagline').innerHTML = t.tagline;
+  document.getElementById('heroCta').textContent = t.cta;
+  document.getElementById('scrollText').textContent = t.scroll;
+  document.getElementById('label1').textContent = t.label1;
+  document.getElementById('heading1').innerHTML = t.h1;
+  document.getElementById('para1a').innerHTML = t.p1a;
+  document.getElementById('para1b').innerHTML = t.p1b;
+  document.getElementById('label2').textContent = t.label2;
+  document.getElementById('heading2').textContent = t.h2;
+  document.getElementById('f1title').textContent = t.f1t;
+  document.getElementById('f1body').textContent = t.f1b;
+  document.getElementById('f2title').textContent = t.f2t;
+  document.getElementById('f2body').textContent = t.f2b;
+  document.getElementById('f3title').textContent = t.f3t;
+  document.getElementById('f3body').textContent = t.f3b;
+  document.getElementById('f4title').textContent = t.f4t;
+  document.getElementById('f4body').textContent = t.f4b;
+  document.getElementById('label3').textContent = t.label3;
+  document.getElementById('heading3').textContent = t.h3;
+  document.getElementById('para3a').innerHTML = t.p3a;
+  document.getElementById('para3b').innerHTML = t.p3b;
+  document.getElementById('label4').textContent = t.label4;
+  document.getElementById('heading4').textContent = t.h4;
+  document.getElementById('para4a').innerHTML = t.p4a;
+  document.getElementById('para4b').innerHTML = t.p4b;
+  document.getElementById('bottomCta').textContent = t.bottomCta;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+}
+document.querySelectorAll('.lang-toggle button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
+// ---- PAPER BACKGROUND ----
+const paperCanvas = document.getElementById('paper-bg');
+const pctx = paperCanvas.getContext('2d');
+function buildPaper() {
+  const dpr = Math.min(window.devicePixelRatio||1,2);
+  const W = window.innerWidth, H = window.innerHeight;
+  paperCanvas.width = W*dpr; paperCanvas.height = H*dpr;
+  paperCanvas.style.width = W+'px'; paperCanvas.style.height = H+'px';
+  pctx.setTransform(dpr,0,0,dpr,0,0);
+  const grad = pctx.createRadialGradient(W*.45,H*.4,W*.1,W/2,H/2,Math.max(W,H)*.85);
+  grad.addColorStop(0,'#f0e4c5'); grad.addColorStop(0.6,'#e3d2a8'); grad.addColorStop(1,'#c9b582');
+  pctx.fillStyle=grad; pctx.fillRect(0,0,W,H);
+  const img = pctx.getImageData(0,0,W*dpr,H*dpr);
+  const d=img.data;
+  for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*8;d[i]=Math.max(0,Math.min(255,d[i]+n));d[i+1]=Math.max(0,Math.min(255,d[i+1]+n));d[i+2]=Math.max(0,Math.min(255,d[i+2]+n*.85));}
+  pctx.putImageData(img,0,0);
+  const diag=Math.sqrt(W*W+H*H);
+  for(const angle of[Math.PI/4,-Math.PI/4]){const sy=angle>0?-diag:diag;for(let dd=-diag;dd<diag;dd+=4){const j=(Math.random()-.5)*1.8;pctx.strokeStyle=`rgba(140,110,70,${0.03+Math.random()*0.05})`;pctx.lineWidth=0.4+Math.random()*.4;pctx.beginPath();pctx.moveTo(dd+j,sy);pctx.lineTo(dd+j+Math.cos(angle)*diag*2,sy+Math.sin(angle)*diag*2);pctx.stroke();}}
+  const bc=Math.floor(W*H/20);for(let i=0;i<bc;i++){const x=Math.random()*W,y=Math.random()*H,sz=0.4+Math.random()*1;pctx.fillStyle=`rgba(110,80,50,${0.04+Math.random()*.05})`;pctx.beginPath();pctx.arc(x+.3,y+.3,sz,0,Math.PI*2);pctx.fill();pctx.fillStyle=`rgba(255,240,200,${0.1+Math.random()*.1})`;pctx.beginPath();pctx.arc(x-.25,y-.25,sz*.85,0,Math.PI*2);pctx.fill();}
+  const vig=pctx.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.75);
+  vig.addColorStop(0,'rgba(80,50,20,0)');vig.addColorStop(1,'rgba(60,35,15,0.22)');
+  pctx.fillStyle=vig;pctx.fillRect(0,0,W,H);
+}
+buildPaper();
+
+// ---- HERO ANIMATION ----
+const hanziHost = document.getElementById('hanzi-host');
+const centralSealEl = document.getElementById('central-seal');
+const centralSealHanziHost = document.getElementById('central-seal-hanzi');
+
+const chineseChars=['福','禄','寿','喜','財','富','吉','祥','安','康','順','和','愛','美','德','貴','榮','恩','緣','心','夢','靜','禪','永','龍','鳳','春','光','道','茶'];
+const centralPool=['福','禄','寿','喜','財','吉','祥','安','康','富'];
+
+let W=window.innerWidth, H=window.innerHeight;
+let activeChars=[];
+let centralChar='福', centralCharAnimating=false, centralSealCurrentWriter=null;
+const DPR=Math.min(window.devicePixelRatio||1,2);
+
+const CHAR_LIFETIME_MS=4500;
+const CHAR_SPAWN_MIN_MS=900;
+const CHAR_SPAWN_MAX_MS=1600;
+const TARGET_VISIBLE=6;
+const CENTRAL_CHAR_CHANGE_MS=9000;
+const CENTRAL_EXCL_FRAC=0.31;
+
+function buildCentralSeal(){
+  const s=Math.min(W,H)*0.48;
+  centralSealEl.style.width=s+'px';
+  centralSealEl.style.height=s+'px';
+  const hwSize=s*0.6;
+  centralSealHanziHost.style.left=((s-hwSize)/2)+'px';
+  centralSealHanziHost.style.top=((s-hwSize)/2)+'px';
+  centralSealHanziHost.style.width=hwSize+'px';
+  centralSealHanziHost.style.height=hwSize+'px';
+  centralSealHanziHost.style.opacity='1';
+  drawCentralChar(centralChar);
+}
+
+function drawCentralChar(char){
+  centralSealHanziHost.innerHTML='';
+  centralCharAnimating=true;
+  const hwSize=parseFloat(centralSealHanziHost.style.width)||100;
+  try {
+    centralSealCurrentWriter=HanziWriter.create(centralSealHanziHost,char,{
+      width:hwSize,height:hwSize,padding:5,strokeColor:'#b03020',
+      strokeAnimationSpeed:0.5,delayBetweenStrokes:400,showOutline:false,showCharacter:false
+    });
+    centralSealCurrentWriter.animateCharacter({onComplete:()=>{centralCharAnimating=false;}});
+  } catch(e){ centralSealHanziHost.innerHTML=`<div style="font-size:${hwSize*.85}px;font-family:'STKaiti','Kaiti SC',serif;font-weight:bold;color:#b03020;text-align:center;line-height:${hwSize}px;">${char}</div>`;centralCharAnimating=false;}
+}
+
+function changeCentralChar(){
+  let nc;
+  do { nc=centralPool[Math.floor(Math.random()*centralPool.length)]; } while(nc===centralChar&&centralPool.length>1);
+  centralChar=nc;
+  centralSealHanziHost.style.opacity='0';
+  setTimeout(()=>{drawCentralChar(nc);centralSealHanziHost.style.opacity='1';},600);
+}
+
+function pickPos(size){
+  const cx=W/2,cy=H/2,excl=Math.min(W,H)*CENTRAL_EXCL_FRAC,margin=size*.55;
+  let best=null,bestScore=-Infinity;
+  for(let i=0;i<25;i++){
+    const x=margin+Math.random()*(W-margin*2);
+    const y=margin+Math.random()*(H-margin*2);
+    if(Math.hypot(x-cx,y-cy)-size*.5<excl)continue;
+    let minD=Infinity,conflict=false;
+    for(const c of activeChars){const d=Math.hypot(x-c.x,y-c.y)-(size+c.size)*.5;if(!c.fading&&d<size*.15){conflict=true;break;}if(d<minD)minD=d;}
+    if(conflict)continue;
+    const score=Math.min(minD,Math.min(x-margin,W-margin-x,y-margin,H-margin-y),Math.hypot(x-cx,y-cy)-excl-size*.5);
+    if(score>bestScore){bestScore=score;best={x,y};}
+  }
+  return best;
+}
+
+function spawnChar(now){
+  const char=chineseChars[Math.floor(Math.random()*chineseChars.length)];
+  const r=Math.random();
+  const size=r<0.4?Math.min(W,H)*(0.1+Math.random()*.06):r<0.8?Math.min(W,H)*(0.16+Math.random()*.1):Math.min(W,H)*(0.24+Math.random()*.12);
+  const pos=pickPos(size);
+  if(!pos)return null;
+  const inks=['#1a1310','#1f1815','#161210','#231a14','#1c1410'];
+  const ink=inks[Math.floor(Math.random()*inks.length)];
+  const slot=document.createElement('div');
+  slot.className='char-slot';
+  slot.style.cssText=`width:${size}px;height:${size}px;left:${pos.x-size/2}px;top:${pos.y-size/2}px;transform:rotate(${(Math.random()-.5)*.35}rad);opacity:${(0.75+Math.random()*.18).toFixed(2)};--ink-color:${ink};`;
+  hanziHost.appendChild(slot);
+  const obj={slotEl:slot,x:pos.x,y:pos.y,size,spawnTime:now,completed:false,completionTime:0,fading:false,rasterized:false};
+  try{
+    const wr=HanziWriter.create(slot,char,{width:size,height:size,padding:Math.max(2,size*.04),strokeColor:ink,strokeAnimationSpeed:100,delayBetweenStrokes:80+Math.random()*80,showOutline:false,showCharacter:false});
+    wr.animateCharacter({onComplete:()=>{obj.completed=true;obj.completionTime=performance.now();setTimeout(()=>rasterize(obj),1200);}});
+  }catch(e){slot.innerHTML=`<div style="font-size:${size*.85}px;font-family:'STKaiti','Kaiti SC',serif;color:${ink};text-align:center;line-height:${size}px;">${char}</div>`;obj.completed=true;obj.completionTime=now;}
+  activeChars.push(obj);
+  return obj;
+}
+
+function rasterize(obj){ obj.rasterized=true; }
+
+function fadeOut(obj){
+  if(obj.fading)return;
+  obj.fading=true;
+  const D=1600;
+  obj.slotEl.style.transition=`opacity ${D}ms ease`;
+  setTimeout(()=>{if(obj.slotEl)obj.slotEl.style.opacity='0';},50);
+  setTimeout(()=>{if(obj.slotEl?.parentNode)obj.slotEl.parentNode.removeChild(obj.slotEl);activeChars=activeChars.filter(c=>c!==obj);},D+150);
+}
+
+let lastSpawn=0,nextSpawnDelay=CHAR_SPAWN_MIN_MS,lastCharChange=0;
+function loop(now){
+  if(!centralCharAnimating&&now-lastCharChange>CENTRAL_CHAR_CHANGE_MS){changeCentralChar();lastCharChange=now;}
+  const anyFading=activeChars.some(c=>c.fading);
+  if(!anyFading){
+    let oldest=null;
+    for(const c of activeChars){if(!c.fading&&c.completed&&now-c.completionTime>CHAR_LIFETIME_MS){if(!oldest||c.completionTime<oldest.completionTime)oldest=c;}}
+    if(oldest)fadeOut(oldest);
+  }
+  const fresh=activeChars.filter(c=>!c.fading).length;
+  if(now-lastSpawn>nextSpawnDelay){
+    if(fresh<TARGET_VISIBLE){const r=spawnChar(now);nextSpawnDelay=r?CHAR_SPAWN_MIN_MS+Math.random()*(CHAR_SPAWN_MAX_MS-CHAR_SPAWN_MIN_MS):200;}
+    else{nextSpawnDelay=500;}
+    lastSpawn=now;
+  }
+  requestAnimationFrame(loop);
+}
+
+window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;buildPaper();buildCentralSeal();});
+buildCentralSeal();
+requestAnimationFrame(loop);
 </script>
-<script src="app.js"></script>
 </body>
 </html>
