@@ -1,4 +1,4 @@
-# Deploy the entire repository root to /opt/www/
+# Deploy the entire repository root to $REMOTE_DIR
 # Excludes anything ignored by .gitignore and .webignore
 # Also commits + pushes to Git before deploy
 
@@ -10,9 +10,10 @@ if (-not (Test-Path $configFile)) {
     Write-Error @"
 Missing deploy.config.ps1. Create one in the project root with:
 
-    `$SSH_USER = 'your-user'
-    `$SSH_HOST = 'your.host'
-    `$SSH_KEY  = "`$env:USERPROFILE\.ssh\id_rsa"
+    `$SSH_USER   = 'your-user'
+    `$SSH_HOST   = 'your.host'
+    `$SSH_KEY    = "`$env:USERPROFILE\.ssh\id_rsa"
+    `$REMOTE_DIR = '/opt/www/xuehanyu_org'
 
 This file should stay gitignored.
 "@
@@ -26,6 +27,11 @@ foreach ($v in @('SSH_USER', 'SSH_HOST', 'SSH_KEY')) {
         Write-Error "deploy.config.ps1 is missing required variable: `$$v"
         exit 1
     }
+}
+
+# Sécurité : Si $REMOTE_DIR n'est pas défini dans la config, on utilise ton dossier par défaut
+if (-not (Get-Variable -Name 'REMOTE_DIR' -ValueOnly -ErrorAction SilentlyContinue)) {
+    $REMOTE_DIR = '/opt/www/xuehanyu_org'
 }
 
 $base = $PSScriptRoot
@@ -127,8 +133,6 @@ try {
 
     # ── Deploy to remote root ─────────────────────────────────────────────────
 
-    $remotePath = "/opt/www"
-
     Write-Host ""
     Write-Host "Deploying root site to $SSH_USER@$SSH_HOST..." -ForegroundColor Cyan
 
@@ -136,23 +140,22 @@ try {
         -i $SSH_KEY `
         -o StrictHostKeyChecking=accept-new `
         "$SSH_USER@$SSH_HOST" `
-        "sudo mkdir -p $remotePath"
+        "sudo mkdir -p '$REMOTE_DIR'"
 
     if ($LASTEXITCODE -ne 0) { throw "SSH connection failed." }
 
-    Write-Host "Cleaning remote path: $remotePath" -ForegroundColor White
+    Write-Host "Cleaning remote path: $REMOTE_DIR" -ForegroundColor White
     & ssh `
         -i $SSH_KEY `
         -o StrictHostKeyChecking=accept-new `
         "$SSH_USER@$SSH_HOST" `
-        "sudo find '$remotePath' -mindepth 1 -delete"
+        "sudo find '$REMOTE_DIR' -mindepth 1 -delete"
 
-    if ($LASTEXITCODE -ne 0) { throw "Failed cleaning remote path: $remotePath" }
+    if ($LASTEXITCODE -ne 0) { throw "Failed cleaning remote path: $REMOTE_DIR" }
 
     Write-Host "Uploading files..." -ForegroundColor White
     
-    # Utilisation d'une variable propre pour éviter le conflit de syntaxe scp/PowerShell
-    $remoteTarget = "${SSH_USER}@${SSH_HOST}:$remotePath"
+    $remoteTarget = "${SSH_USER}@${SSH_HOST}:$REMOTE_DIR"
 
     & scp `
         -i $SSH_KEY `
@@ -168,7 +171,7 @@ try {
         -i $SSH_KEY `
         -o StrictHostKeyChecking=accept-new `
         "$SSH_USER@$SSH_HOST" `
-        "sudo chmod 755 '$remotePath' && sudo find '$remotePath' -type d -exec chmod 755 {} + && sudo find '$remotePath' -type f -exec chmod 644 {} + && sudo nginx -s reload"
+        "sudo chmod 755 '$REMOTE_DIR' && sudo find '$REMOTE_DIR' -type d -exec chmod 755 {} + && sudo find '$REMOTE_DIR' -type f -exec chmod 644 {} + && sudo nginx -s reload"
 
     if ($LASTEXITCODE -ne 0) { throw "Permission fix or nginx reload failed." }
 
