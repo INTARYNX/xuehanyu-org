@@ -1,0 +1,33 @@
+{
+  "name": "xuehanyu.org — Apprendre le chinois",
+  "short_name": "xuehanyu",
+  "description": "Apprendre le chinois mandarin HSK 1 à 6 : tracé animé, pinyin, prononciation, traductions FR/EN. Gratuit et open source.",
+  "lang": "fr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#2a1f14",
+  "theme_color": "#b8211f",
+  "categories": ["education", "books", "productivity"],
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
