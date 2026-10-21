@@ -424,6 +424,7 @@ main {
 }
 .tone-step.done.grade-perfect { background: rgba(34, 99, 10, 0.18); border-color: rgba(34, 99, 10, 0.35); color: #22630a; }
 .tone-step.done.grade-close   { background: rgba(217, 145, 30, 0.18); border-color: rgba(217, 145, 30, 0.35); color: #8a5a10; }
+.tone-step.done.grade-unclear { background: rgba(120, 110, 95, 0.14); border-color: rgba(120, 110, 95, 0.28); color: #6b6154; }
 .tone-step.done.grade-wrong   { background: rgba(184, 33, 31, 0.13); border-color: rgba(184, 33, 31, 0.3); color: var(--accent); }
 
 /* Big syllable display */
@@ -503,6 +504,25 @@ main {
 .tone-status.grade-perfect { color: #22630a; }
 .tone-status.grade-close   { color: #8a5a10; }
 .tone-status.grade-wrong   { color: var(--accent); }
+.tone-status.grade-unclear { color: #8a5a10; }
+
+/* Bandeau de mesures (F0 début → fin, variation, durée, confiance) */
+.tone-measure {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.75rem;
+  justify-content: center;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  opacity: 0.85;
+  margin-top: 0.1rem;
+  font-variant-numeric: tabular-nums;
+}
+.tone-measure em {
+  font-style: normal;
+  opacity: 0.55;
+  margin-right: 0.25rem;
+}
 
 /* Recording indicator (during capture) */
 .recording-indicator {
@@ -612,10 +632,12 @@ main {
 }
 .syl-result.grade-perfect { background: rgba(34, 99, 10, 0.15);  border-color: rgba(34, 99, 10, 0.3);    color: #22630a; }
 .syl-result.grade-close   { background: rgba(217, 145, 30, 0.15); border-color: rgba(217, 145, 30, 0.32); color: #8a5a10; }
+.syl-result.grade-unclear { background: rgba(120, 110, 95, 0.12); border-color: rgba(120, 110, 95, 0.26); color: #6b6154; }
 .syl-result.grade-wrong   { background: rgba(184, 33, 31, 0.1);   border-color: rgba(184, 33, 31, 0.25);  color: var(--accent); }
 .syl-pinyin { font-style: italic; font-weight: 600; }
 .sandhi-tag {
   font-size: 0.7rem;
+  white-space: nowrap;
   color: var(--accent);
   margin-left: -0.2rem;
   cursor: help;

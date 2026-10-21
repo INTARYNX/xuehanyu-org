@@ -90,45 +90,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
-<script>
-window.PitchFinder = {
-  YIN: ({ sampleRate } = {}) => {
-    const sr = sampleRate || 44100;
-    return (float32Array) => {
-      // check signal level first
-      let rms = 0;
-      for (let i = 0; i < float32Array.length; i++) rms += float32Array[i] * float32Array[i];
-      rms = Math.sqrt(rms / float32Array.length);
-      if (rms < 0.01) return null; // silence
-
-      const N = float32Array.length;
-      const half = N >> 1;
-      const d = new Float32Array(half);
-      let sum = 0;
-      d[0] = 1;
-      for (let tau = 1; tau < half; tau++) {
-        let s = 0;
-        for (let i = 0; i < half; i++) {
-          const diff = float32Array[i] - float32Array[i + tau];
-          s += diff * diff;
-        }
-        d[tau] = s;
-        sum += s;
-        d[tau] = sum === 0 ? 0 : d[tau] * tau / sum;
-      }
-      const threshold = 0.15;
-      for (let tau = 2; tau < half; tau++) {
-        if (d[tau] < threshold) {
-          while (tau + 1 < half && d[tau + 1] < d[tau]) tau++;
-          const freq = sr / tau;
-          if (freq > 60 && freq < 800) return freq;
-        }
-      }
-      return null;
-    };
-  }
-};
-</script>
+<script src="tone-dsp.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

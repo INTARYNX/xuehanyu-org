@@ -63,7 +63,13 @@ const I18N = {
     resultsCount: (n, t) => `${n} / ${t} caractères`,
     recording:    'Enregistrement…',
     sayWord:      'Prononcez',
-    analyzing:    'Analyse…'
+    analyzing:    'Analyse…',
+    toneStart:    'début',
+    toneEnd:      'fin',
+    toneDelta:    'variation',
+    toneDuration: 'durée',
+    toneConfidence: 'confiance',
+    toneInWord:   'en phrase'
   },
   en: {
     tagline:      'learn Chinese, one character at a time',
@@ -91,7 +97,13 @@ const I18N = {
     resultsCount: (n, t) => `${n} / ${t} characters`,
     recording:    'Recording…',
     sayWord:      'Say',
-    analyzing:    'Analyzing…'
+    analyzing:    'Analyzing…',
+    toneStart:    'start',
+    toneEnd:      'end',
+    toneDelta:    'change',
+    toneDuration: 'duration',
+    toneConfidence: 'confidence',
+    toneInWord:   'in the word'
   }
 };
 
@@ -323,6 +335,7 @@ function buildCharList() {
 }
 
 function selectChar(item) {
+  stopToneSession();                 // libère le micro si un essai était en cours
   currentChar = item;
   currentCharIndex = 0;
   buildCharList();
@@ -460,6 +473,7 @@ function closePopup() {
   popupOverlay.classList.remove('open');
   document.body.style.overflow = '';
   currentWriter = null;
+  stopToneSession();                 // ne pas laisser le micro ouvert
 }
 
 // =========================================================================
@@ -522,9 +536,15 @@ function speakChar() {
 // TONE DETECTION — sequential, syllable by syllable, real-time feedback
 // =========================================================================
 const TONE_FEEDBACK = {
-  novoice: { fr: 'Aucune voix détectée — réessayez', en: 'No voice detected — try again' },
-  noperm:  { fr: 'Microphone non autorisé',          en: 'Microphone not allowed' }
+  novoice:  { fr: 'Aucune voix détectée — parlez plus fort', en: 'No voice detected — speak louder' },
+  noperm:   { fr: 'Microphone non autorisé',               en: 'Microphone not allowed' },
+  nomic:    { fr: 'Micro indisponible sur ce navigateur',  en: 'Microphone unavailable in this browser' },
+  nosignal: { fr: 'Aucun signal — parlez plus près du micro', en: 'No signal — get closer to the mic' },
+  unclear:  { fr: 'Ton incertain — la forme n’est pas nette, réessayez', en: 'Unclear tone — the shape is not distinct, try again' }
 };
+
+/** En dessous de cette confiance, le résultat est « incertain » et non « faux ». */
+const TONE_MIN_CONFIDENCE = 0.45;
 
 const TONE_NAMES = {
   1: { fr: 'plat',    en: 'flat',    symbol: '¯' },
@@ -575,104 +595,52 @@ function applySandhi(expected) {
   return expected.map((e, i) => ({ syllable: e.syllable, tone: result[i], original: tones[i] }));
 }
 
-// Expected tone curve (normalized 0..1, x in 0..1)
-function expectedToneCurve(tone) {
-  // y is "height" 0=low, 1=high
-  switch (tone) {
-    case 1: return x => 0.85;                              // flat high
-    case 2: return x => 0.35 + x * 0.55;                   // rising
-    case 3: return x => 0.6 - 0.55 * (1 - (2*x - 1)**2);   // dip (V)
-    case 4: return x => 0.9 - x * 0.75;                    // falling
-    case 5: return x => 0.5;                               // neutral mid
-    default: return x => 0.5;
+// Canonical tone shapes, in semitones (control points [x, semitones]).
+// Drawn on the same scale as the measured contour so that the two are
+// directly comparable.
+const TONE_SHAPES = {
+  1: [[0, 0], [0.3, 0.12], [0.6, -0.08], [1, 0.04]],          // plat
+  2: [[0, 0], [0.2, 0.3], [0.5, 1.8], [0.8, 3.2], [1, 4]],    // montant
+  3: [[0, 1.5], [0.2, 0.2], [0.5, -2], [0.75, -1], [1, 0]],   // creusé
+  4: [[0, 3.5], [0.15, 3.2], [0.4, 1], [0.7, -1.5], [1, -3]], // tombant
+  5: [[0, 0], [0.5, 0.1], [1, 0]]                             // neutre
+};
+
+/** Interpolation linéaire d'une forme de ton. */
+function shapeAt(points, x) {
+  if (x <= points[0][0]) return points[0][1];
+  for (let i = 1; i < points.length; i++) {
+    const [x0, v0] = points[i - 1];
+    const [x1, v1] = points[i];
+    if (x <= x1) {
+      const k = (x - x0) / (x1 - x0 || 1);
+      return v0 + (v1 - v0) * k;
+    }
   }
+  return points[points.length - 1][1];
 }
 
-// Classify a recorded pitch sequence (array of frequencies, nulls allowed)
-function classifyPitches(pitches) {
-  const valid = pitches.filter(p => p !== null && p > 60 && p < 800);
-  if (valid.length < 5) return null;
-
-  // Octave correction
-  const sorted = [...valid].sort((a, b) => a - b);
-  const median = sorted[Math.floor(sorted.length / 2)];
-  let corrected = pitches.map(p => {
-    if (p === null) return null;
-    const r = p / median;
-    if (r > 1.7 && r < 2.3) return p / 2;
-    if (r > 0.4 && r < 0.6) return p * 2;
-    if (r > 2.3 || r < 0.4) return null;
-    return p;
-  });
-
-  // Keep only voiced frames (drop nulls)
-  let voiced = corrected.filter(p => p !== null);
-  if (voiced.length < 6) return null;
-
-  // Trim 10% from start and end — keep more of the informative part (esp. for tone 4)
-  const trim = Math.floor(voiced.length * 0.1);
-  voiced = voiced.slice(trim, voiced.length - trim);
-  if (voiced.length < 4) return null;
-
-  // Median smoothing on the trimmed pitches
-  const smoothed = voiced.map((v, i, a) => {
-    const w = 1, s = Math.max(0, i - w), e = Math.min(a.length - 1, i + w);
-    const win = a.slice(s, e + 1).sort((x, y) => x - y);
-    return win[Math.floor(win.length / 2)];
-  });
-
-  const log = smoothed.map(p => Math.log2(p));
-  const n = log.length;
-
-  // Use small edge windows (~15%) to capture the true start/end pitch,
-  // critical for tone 4 where the high onset is brief
-  const edgeW = Math.max(2, Math.floor(n * 0.15));
-  const start = log.slice(0, edgeW).reduce((a, b) => a + b, 0) / edgeW;
-  const end   = log.slice(-edgeW).reduce((a, b) => a + b, 0) / edgeW;
-  const min   = Math.min(...log);
-  const max   = Math.max(...log);
-  const range = max - min;
-  const slope = end - start;
-
-  const minIdx = log.indexOf(min);
-  const maxIdx = log.indexOf(max);
-  const minPos = minIdx / (n - 1);
-  const maxPos = maxIdx / (n - 1);
-
-  // TONE 4 — falling: strong negative slope + peak early + min late
-  if (slope < -0.18 && start > end && maxPos < 0.35 && minPos > 0.45) {
-    return 4;
-  }
-
-  // TONE 2 — rising: positive slope + min early
-  if (slope > 0.15 && end > start && minPos < 0.5) {
-    return 2;
-  }
-
-  // TONE 3 — dipping: min clearly in the middle, with at least one clear descent
-  // Real connected-speech tone 3 often has a small excursion (~0.08-0.12 octave),
-  // and the rise back up is often weak or absent ("half third tone")
-  if (
-    minPos > 0.20 && minPos < 0.80 &&
-    (start - min) > 0.06 &&
-    (end - min) > 0.03 &&
-    Math.abs(slope) < 0.18
-  ) {
-    return 3;
-  }
-
-  // TONE 1 — flat
-  if (range < 0.18 && Math.abs(slope) < 0.08) return 1;
-
-  // TONE 5 — neutral (very small range)
-  if (range < 0.12) return 5;
-
-  // Fallback
-  return slope > 0 ? 2 : 4;
+/**
+ * Échantillonne la forme canonique d'un ton, centrée sur sa propre médiane
+ * (comme le contour mesuré, relatif à la médiane F0 de la syllabe).
+ */
+function toneShapeSamples(tone, steps = 50) {
+  const points = TONE_SHAPES[tone] || TONE_SHAPES[1];
+  const raw = [];
+  for (let i = 0; i <= steps; i++) raw.push(shapeAt(points, i / steps));
+  const mid = ToneDSP.median(raw);
+  return raw.map(v => v - mid);
 }
 
-function gradeTone(detected, expectedTone) {
-  if (!detected) return 'wrong';
+
+/**
+ * Note la performance. Le grade « unclear » (incertain) est distinct de
+ * « wrong » : un contour non concluant ne doit pas être présenté à
+ * l'apprenant comme un ton faux — on lui demande de recommencer.
+ */
+function gradeTone(detected, expectedTone, confidence = 1) {
+  if (!detected) return 'unclear';
+  if (confidence < TONE_MIN_CONFIDENCE) return 'unclear';
   if (detected === expectedTone) return 'perfect';
   // Most tone confusions are "close" — be generous
   const closePairs = {
@@ -742,21 +710,47 @@ function getHint(detected, expected, lang) {
 // =========================================================================
 let toneSession = null;
 
-async function startToneDetection(pinyin) {
+/** Libère le micro et le contexte audio (fermeture, changement de caractère…). */
+function stopToneSession() {
+  if (!toneSession) return;
+  if (toneSession.stream) {
+    toneSession.stream.getTracks().forEach(tr => tr.stop());
+    toneSession.stream = null;
+  }
+  if (toneSession.audioCtx) {
+    try { toneSession.audioCtx.close(); } catch { /* déjà fermé */ }
+    toneSession.audioCtx = null;
+  }
+  toneSession.isRecording = false;
+}
+
+/**
+ * @param {string} pinyin
+ * @param {object} [opts]
+ * @param {boolean} [opts.force] Relance la session sans basculer (bouton « recommencer »).
+ */
+async function startToneDetection(pinyin, opts = {}) {
   const section = document.getElementById('toneSection');
   if (!section) return;
 
-  // Toggle: if already visible, hide and stop session
-  if (section.classList.contains('visible')) {
+  // Bascule : si l'outil est déjà visible, on le referme (et on libère le micro).
+  if (!opts.force && section.classList.contains('visible')) {
+    stopToneSession();
     section.classList.remove('visible');
     section.innerHTML = '';
     toneSession = null;
     return;
   }
 
-  const expected = applySandhi(getExpectedTones(pinyin));
-  if (expected.length === 0) return;
+  // Ton de RÉFÉRENCE = forme CITÉE : la syllabe est pratiquée isolément.
+  // Le sandhi du mot entier reste calculé, mais uniquement à titre informatif
+  // (l'attendu doit rester atteignable par l'apprenant).
+  const cited = getExpectedTones(pinyin);
+  if (cited.length === 0) return;
+  const sandhi = applySandhi(cited);
+  const expected = cited.map((e, i) => ({ ...e, sandhi: sandhi[i]?.tone ?? e.tone }));
 
+  stopToneSession();
   section.classList.add('visible');
 
   toneSession = {
@@ -764,7 +758,9 @@ async function startToneDetection(pinyin) {
     currentIdx: 0,
     results: [],
     isRecording: false,
-    autoStart: false
+    autoStart: false,
+    stream: null,
+    audioCtx: null
   };
 
   renderTonePractice();
@@ -826,7 +822,7 @@ function renderTonePractice() {
       <div class="tone-syllable-info">
         <span class="tone-symbol">${TONE_NAMES[cur.tone].symbol}</span>
         <span class="tone-name">${TONE_NAMES[cur.tone][currentLang]}</span>
-        ${cur.original !== cur.tone ? `<span class="sandhi-tag" title="sandhi: ${cur.original}→${cur.tone}">↩</span>` : ''}
+        ${cur.sandhi !== cur.tone ? `<span class="sandhi-tag" title="${I18N[currentLang].toneInWord} : ${cur.tone} → ${cur.sandhi}">↩${TONE_NAMES[cur.sandhi].symbol}</span>` : ''}
       </div>
     </div>
     <canvas id="tone-canvas-live" width="320" height="90"></canvas>
@@ -877,148 +873,289 @@ function renderToneActions(t) {
   });
 }
 
-function drawExpectedCurve(tone, livePitches = null, pitchRange = null) {
+/** Demi-tons affichés de part et d'autre du niveau médian. */
+const TONE_PLOT_RANGE = 5;
+
+/**
+ * Dessine la courbe attendue et le contour mesuré sur une MÊME échelle
+ * absolue en demi-tons : la comparaison est donc directe (l'ancienne
+ * version étirait chaque contour dans une fenêtre fixe, ce qui rendait
+ * toute performance indistinguable).
+ *
+ * @param {number|null} tone   Ton attendu (null = pas de courbe attendue)
+ * @param {number[]|null} rel  Contour mesuré, en semi-tons relatifs
+ */
+function drawExpectedCurve(tone, rel = null) {
   const canvas = document.getElementById('tone-canvas-live');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
   ctx.clearRect(0, 0, W, H);
 
-  const padX = 30, padY = 20;
+  const padX = 34, padY = 16;
   const xL = padX, xR = W - padX;
   const yT = padY, yB = H - padY;
+  const R = TONE_PLOT_RANGE;
+  const toY = st => yB - ((st + R) / (2 * R)) * (yB - yT);
 
-  // Grid lines (high / mid / low)
-  ctx.strokeStyle = 'rgba(60, 35, 15, 0.08)';
+  // Grille (une ligne par 2,5 demi-tons, la médiane mise en avant)
   ctx.lineWidth = 1;
   ctx.setLineDash([2, 4]);
-  for (let i = 0; i <= 4; i++) {
-    const y = yT + (yB - yT) * i / 4;
+  for (let st = -R; st <= R + 0.01; st += 2.5) {
+    const y = toY(st);
+    ctx.strokeStyle = st === 0 ? 'rgba(60, 35, 15, 0.22)' : 'rgba(60, 35, 15, 0.08)';
     ctx.beginPath(); ctx.moveTo(xL, y); ctx.lineTo(xR, y); ctx.stroke();
   }
   ctx.setLineDash([]);
 
-  // Expected tone curve
-  const curve = expectedToneCurve(tone);
-  ctx.strokeStyle = 'rgba(184, 33, 31, 0.35)';
-  ctx.lineWidth = 3;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.setLineDash([6, 4]);
-  ctx.beginPath();
-  const steps = 50;
-  for (let i = 0; i <= steps; i++) {
-    const x = i / steps;
-    const y = curve(x);
-    const px = xL + x * (xR - xL);
-    const py = yB - y * (yB - yT);
-    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-  }
-  ctx.stroke();
-  ctx.setLineDash([]);
-
-  // Labels
-  ctx.font = '10px Georgia, serif';
+  // Graduations
+  ctx.font = '9px Georgia, serif';
   ctx.fillStyle = 'rgba(60, 35, 15, 0.55)';
   ctx.textAlign = 'right';
-  ctx.fillText('5', xL - 6, yT + 10);
-  ctx.fillText('1', xL - 6, yB - 2);
+  ctx.fillText('+' + R, xL - 5, toY(R) + 3);
+  ctx.fillText('0', xL - 5, toY(0) + 3);
+  ctx.fillText('−' + R, xL - 5, toY(-R) + 3);
+  ctx.save();
+  ctx.translate(10, (yT + yB) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.fillText(currentLang === 'fr' ? 'demi-tons' : 'semitones', 0, 0);
+  ctx.restore();
 
-  // Live user pitch curve — stretch voiced frames across full width
-  if (livePitches && pitchRange) {
-    const { min: pMin, max: pMax } = pitchRange;
-    const logMin = Math.log2(pMin);
-    const logMax = Math.log2(pMax);
-    const span = logMax - logMin;
-
-    const voiced = livePitches.filter(p => p !== null);
-    if (voiced.length >= 2) {
-      ctx.strokeStyle = 'rgba(26, 19, 16, 0.85)';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      voiced.forEach((p, i) => {
-        const x = xL + (i / (voiced.length - 1)) * (xR - xL);
-        const norm = Math.min(1, Math.max(0, (Math.log2(p) - logMin) / span));
-        // Map into same 0.1..0.9 visual band as expected curves
-        const yNorm = 0.1 + norm * 0.8;
-        const y = yB - yNorm * (yB - yT);
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.stroke();
-    }
+  // Courbe attendue (forme canonique centrée sur sa médiane)
+  if (tone) {
+    const shape = toneShapeSamples(tone);
+    ctx.strokeStyle = 'rgba(184, 33, 31, 0.45)';
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    shape.forEach((st, i) => {
+      const x = xL + (i / (shape.length - 1)) * (xR - xL);
+      const y = toY(st);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
   }
+
+  // Contour mesuré
+  if (rel && rel.length >= 2) {
+    ctx.strokeStyle = 'rgba(26, 19, 16, 0.9)';
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    rel.forEach((st, i) => {
+      const x = xL + (i / (rel.length - 1)) * (xR - xL);
+      const y = toY(Math.max(-R, Math.min(R, st)));
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  }
+}
+
+/** RMS d'un bloc audio. */
+function rmsOfBuffer(buf) {
+  let s = 0;
+  for (let i = 0; i < buf.length; i++) s += buf[i] * buf[i];
+  return Math.sqrt(s / buf.length);
+}
+
+/** Aperçu temps réel : contour relatif à la médiane des fréquences vues. */
+function drawLiveCurve(frames, tone) {
+  // Seules les trames nettement périodiques : le bruit ne doit pas zébrer l'aperçu
+  const valid = frames.filter(f => f.freq && f.clarity >= 0.5);
+  if (valid.length < 3) return;
+  const med = ToneDSP.median(valid.map(f => f.freq));
+  if (!med) return;
+  const rel = valid.map(f => 12 * Math.log2(f.freq / med));
+  drawExpectedCurve(tone, rel);
+}
+
+/** Pas de temps nominal entre deux trames (boucle rAF ≈ 60 Hz). */
+const TONE_HOP_MS = 17;
+
+/** Durée maximale d'un essai (ms). */
+const TONE_RECORD_MS = 1600;
+
+/** Ferme un contexte audio sans lever d'erreur s'il l'est déjà. */
+function closeAudioCtx(ctx) {
+  if (!ctx || ctx.state === 'closed') return;
+  try { ctx.close(); } catch { /* déjà fermé */ }
+}
+
+/**
+ * Construit le graphe micro → analyseur → sortie muette.
+ * @returns {AnalyserNode}
+ */
+function buildToneGraph(audioCtx, stream) {
+  const analyser = audioCtx.createAnalyser();
+  // 1024 échantillons à 16 kHz (fenêtre 64 ms, intégration 32 ms) : c'est le
+  // profil le plus fiable ET le plus rapide mesuré par le banc d'essai
+  // (100 % de réussite, 4,5× moins de CPU que l'ancien 48 kHz/2048).
+  // Avec 512 échantillons, la fréquence minimale détectable remontait à
+  // 62,7 Hz — trop haut pour les voix masculines les plus graves.
+  analyser.fftSize = audioCtx.sampleRate <= 20000 ? 1024 : 2048;
+  analyser.smoothingTimeConstant = 0;
+
+  const source = audioCtx.createMediaStreamSource(stream);
+  source.connect(analyser);
+  // Raccordement au graphe de rendu : sans cela, certains navigateurs
+  // (iOS notamment) ne font pas tourner le noeud d'analyse.
+  const silent = audioCtx.createGain();
+  silent.gain.value = 0;
+  analyser.connect(silent);
+  silent.connect(audioCtx.destination);
+  return analyser;
 }
 
 async function recordCurrentSyllable() {
   if (!toneSession || toneSession.isRecording) return;
-  const { expected, currentIdx } = toneSession;
+  // La session est capturée : si l'utilisateur ferme ou relance l'outil
+  // pendant une attente, `toneSession` change et cet essai doit s'arrêter
+  // sans toucher à la nouvelle session.
+  const session = toneSession;
+  const { expected, currentIdx } = session;
   const cur = expected[currentIdx];
   const status = document.getElementById('toneStatus');
   const actionsEl = document.getElementById('toneActions');
+  if (!status || !actionsEl) return;
 
-  toneSession.isRecording = true;
+  session.isRecording = true;
 
-  let stream;
+  let audioCtx = null;
+  let stream = null;
+
+  /** Libère le micro et le contexte de CET essai. */
+  const release = () => {
+    if (stream) stream.getTracks().forEach(tr => tr.stop());
+    closeAudioCtx(audioCtx);
+    if (session.stream === stream) session.stream = null;
+    if (session.audioCtx === audioCtx) session.audioCtx = null;
+  };
+  /** Vrai si la session a été fermée ou remplacée entre-temps. */
+  const aborted = () => toneSession !== session || !session.isRecording;
+
+  // --- Contexte audio ----------------------------------------------------
+  // Il est créé AVANT toute attente : sur iOS, un AudioContext instancié
+  // hors du geste utilisateur reste « suspended » et ne reçoit aucun
+  // échantillon — la détection ne marchait alors jamais.
+  // 16 kHz suffit pour la F0 et divise le coût du YIN par ~9.
   try {
-    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    audioCtx = new AudioContext({ sampleRate: 16000 });
   } catch {
+    audioCtx = new AudioContext();
+  }
+  session.audioCtx = audioCtx;
+  if (audioCtx.state === 'suspended') {
+    try { await audioCtx.resume(); } catch { /* le navigateur refusera plus tard */ }
+  }
+  if (aborted()) { release(); return; }
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+    });
+  } catch {
+    release();
+    if (aborted()) return;
+    session.isRecording = false;
     status.innerHTML = `<i class="fa-solid fa-ban"></i> ${TONE_FEEDBACK.noperm[currentLang]}`;
     status.className = 'tone-status error';
-    toneSession.isRecording = false;
     return;
   }
+  if (aborted()) { release(); return; }
+  session.stream = stream;
 
-  const audioCtx = new AudioContext();
-  const source   = audioCtx.createMediaStreamSource(stream);
-  const analyser = audioCtx.createAnalyser();
-  analyser.fftSize = 2048;
-  source.connect(analyser);
+  // --- Graphe audio ------------------------------------------------------
+  // Firefox refuse de relier un micro à un contexte dont la fréquence
+  // diffère de celle du périphérique : on retombe alors sur la fréquence
+  // native du navigateur.
+  let analyser;
+  try {
+    analyser = buildToneGraph(audioCtx, stream);
+  } catch {
+    let ok = false;
+    if (audioCtx.sampleRate === 16000) {
+      closeAudioCtx(audioCtx);
+      try {
+        audioCtx = new AudioContext();
+        session.audioCtx = audioCtx;
+        if (audioCtx.state === 'suspended') {
+          try { await audioCtx.resume(); } catch { /* idem */ }
+        }
+        if (aborted()) { release(); return; }
+        analyser = buildToneGraph(audioCtx, stream);
+        ok = true;
+      } catch { /* échec définitif, traité ci-dessous */ }
+    }
+    if (!ok) {
+      release();
+      if (aborted()) return;
+      session.isRecording = false;
+      status.innerHTML = `<i class="fa-solid fa-ban"></i> ${TONE_FEEDBACK.nomic[currentLang]}`;
+      status.className = 'tone-status error';
+      return;
+    }
+  }
 
-  const detectPitch = PitchFinder.YIN({ sampleRate: audioCtx.sampleRate });
-  const pitches = [];
-  const buffer  = new Float32Array(analyser.fftSize);
+  const sampleRate = audioCtx.sampleRate;
+  const frames = [];
+  const buffer = new Float32Array(analyser.fftSize);
 
-  const RECORD_MS = 1500;
-  const start = Date.now();
+  const start = performance.now();
 
   // Visible countdown
   actionsEl.innerHTML = `<div class="recording-indicator"><span class="rec-dot"></span><span>0.0s</span></div>`;
   const countdownEl = actionsEl.querySelector('span:not(.rec-dot)');
 
   const tick = () => {
+    if (aborted()) { release(); return; }  // session arrêtée
+
     analyser.getFloatTimeDomainData(buffer);
-    const p = detectPitch(buffer);
-    pitches.push((p && p > 60 && p < 800) ? p : null);
+    const res = ToneDSP.yin(buffer, sampleRate);
+    const elapsed = performance.now() - start;
 
-    const elapsed = Date.now() - start;
-    if (countdownEl) countdownEl.textContent = ((RECORD_MS - elapsed) / 1000).toFixed(1) + 's';
+    frames.push({
+      t: elapsed,
+      freq: res ? res.frequency : null,
+      clarity: res ? res.clarity : 0,
+      rms: rmsOfBuffer(buffer)
+    });
 
-    // Fixed display range: ±0.3 octave around the running median (≈minor third)
-    const valid = pitches.filter(x => x !== null);
-    if (valid.length > 3) {
-      const sorted = [...valid].sort((a, b) => a - b);
-      const median = sorted[Math.floor(sorted.length / 2)];
-      const minP = median / Math.pow(2, 0.3);
-      const maxP = median * Math.pow(2, 0.3);
-      drawExpectedCurve(cur.tone, pitches, { min: minP, max: maxP });
-    }
+    if (countdownEl) countdownEl.textContent = ((TONE_RECORD_MS - elapsed) / 1000).toFixed(1) + 's';
 
-    if (elapsed < RECORD_MS) requestAnimationFrame(tick);
+    // Aperçu temps réel sur l'échelle en demi-tons
+    drawLiveCurve(frames, cur.tone);
+
+    if (elapsed < TONE_RECORD_MS) requestAnimationFrame(tick);
     else finish();
   };
-  tick();
+  requestAnimationFrame(tick);
 
   function finish() {
-    stream.getTracks().forEach(tr => tr.stop());
-    audioCtx.close();
-    toneSession.isRecording = false;
+    const wasAborted = aborted();
+    release();
+    if (wasAborted) return;                  // rien à écrire : session remplacée
+    session.isRecording = false;
 
-    const detected = classifyPitches(pitches);
-    const grade = gradeTone(detected, cur.tone);
-    const hint = (grade !== 'perfect' && detected) ? getHint(detected, cur.tone, currentLang) : '';
+    const result = ToneDSP.analyze(frames, { hopMs: TONE_HOP_MS });
+    const detected = result.tone;
+    const grade = gradeTone(detected, cur.tone, result.confidence);
+    const hint = (grade === 'close' || grade === 'wrong') && detected
+      ? getHint(detected, cur.tone, currentLang)
+      : '';
 
-    toneSession.results[currentIdx] = { detected, grade, hint, pitches };
+    session.results[currentIdx] = {
+      detected,
+      grade,
+      hint,
+      features: result.features,
+      confidence: result.confidence,
+      reason: result.reason
+    };
     renderTonePractice();
   }
 }
@@ -1026,20 +1163,53 @@ async function recordCurrentSyllable() {
 function showResultFeedback(result, cur, t) {
   const status = document.getElementById('toneStatus');
   if (!status) return;
-  const { detected, grade, hint } = result;
+  const { detected, grade, hint, features, confidence, reason } = result;
 
   const messages = {
     fr: {
       perfect: '🎉 Parfait !',
       close:   'Presque !',
-      wrong:   'Pas tout à fait'
+      wrong:   'Pas tout à fait',
+      unclear: 'Incertain'
     },
     en: {
       perfect: '🎉 Perfect!',
       close:   'Almost!',
-      wrong:   'Not quite'
+      wrong:   'Not quite',
+      unclear: 'Unclear'
     }
   };
+
+  // Bandeau de mesures : ce que le micro a réellement mesuré
+  let measure = '';
+  if (features) {
+    const l = I18N[currentLang];
+    const delta = features.slope;
+    const sign = delta > 0.05 ? '+' : (delta < -0.05 ? '−' : '±');
+    measure = `
+      <div class="tone-measure">
+        <span><em>${l.toneStart}</em> ${Math.round(features.fStartHz)} Hz</span>
+        <span><em>${l.toneEnd}</em> ${Math.round(features.fEndHz)} Hz</span>
+        <span><em>${l.toneDelta}</em> ${sign}${Math.abs(delta).toFixed(1)} st</span>
+        <span><em>${l.toneDuration}</em> ${Math.round(features.durationMs)} ms</span>
+        <span><em>${l.toneConfidence}</em> ${Math.round((confidence || 0) * 100)} %</span>
+      </div>`;
+  }
+
+  // Cas « incertain » : aucun ton forcé, on invite à recommencer
+  if (grade === 'unclear') {
+    const msg = (reason === 'no-voice' || reason === 'no-signal')
+      ? TONE_FEEDBACK.nosignal[currentLang]
+      : TONE_FEEDBACK.unclear[currentLang];
+    status.className = 'tone-status grade-unclear';
+    status.innerHTML = `
+      <span class="result-msg">${msg}</span>
+      ${measure}
+    `;
+    if (features && features.rel) drawExpectedCurve(cur.tone, features.rel);
+    return;
+  }
+
   const msg = messages[currentLang][grade] || messages[currentLang].wrong;
   const detSym = detected ? TONE_NAMES[detected].symbol : '?';
   const expSym = TONE_NAMES[cur.tone].symbol;
@@ -1052,19 +1222,11 @@ function showResultFeedback(result, cur, t) {
       <span class="result-tone-label">${t.yours}: <strong>${detSym}</strong></span>
     </span>
     ${hint ? `<span class="result-hint">${hint}</span>` : ''}
+    ${measure}
   `;
 
-  // Re-draw with the recorded pitches so user can see what they did
-  if (result.pitches) {
-    const valid = result.pitches.filter(x => x !== null);
-    if (valid.length > 3) {
-      const sorted = [...valid].sort((a, b) => a - b);
-      const median = sorted[Math.floor(sorted.length / 2)];
-      const minP = median / Math.pow(2, 0.3);
-      const maxP = median * Math.pow(2, 0.3);
-      drawExpectedCurve(cur.tone, result.pitches, { min: minP, max: maxP });
-    }
-  }
+  // Re-draw with the measured contour so the user can see what they did
+  if (features && features.rel) drawExpectedCurve(cur.tone, features.rel);
 }
 
 function renderSessionSummary() {
@@ -1121,7 +1283,8 @@ function renderSessionSummary() {
     </div>
   `;
   document.getElementById('btnRestart').addEventListener('click', () => {
-    startToneDetection(currentChar.pinyin);
+    // `force` : relance la session au lieu de basculer (fermer) l'outil.
+    startToneDetection(currentChar.pinyin, { force: true });
   });
 }
 
