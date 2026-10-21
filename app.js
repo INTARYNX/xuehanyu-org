@@ -601,7 +601,10 @@ function applySandhi(expected) {
 const TONE_SHAPES = {
   1: [[0, 0], [0.3, 0.12], [0.6, -0.08], [1, 0.04]],          // plat
   2: [[0, 0], [0.2, 0.3], [0.5, 1.8], [0.8, 3.2], [1, 4]],    // montant
-  3: [[0, 1.5], [0.2, 0.2], [0.5, -2], [0.75, -1], [1, 0]],   // creusé
+  // creusé (214) : chute rapide dès l'attaque, creux vers 45 %, retour
+  // à la hauteur de départ. Forme calquée sur le corpus de tests
+  // (`tests/fixtures/real-contours.mjs`).
+  3: [[0, 1.6], [0.2, 0.2], [0.45, -1.9], [0.7, -1.4], [1, 0.7]],
   4: [[0, 3.5], [0.15, 3.2], [0.4, 1], [0.7, -1.5], [1, -3]], // tombant
   5: [[0, 0], [0.5, 0.1], [1, 0]]                             // neutre
 };

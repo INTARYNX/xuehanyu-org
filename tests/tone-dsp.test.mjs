@@ -244,11 +244,24 @@ test('classifyTone : aucune feature → aucun ton', () => {
 // Confiance : features construites à la main (indépendantes de l'extraction)
 // ---------------------------------------------------------------------------
 
-/** Features neutres, à surcharger selon le cas testé. */
+/**
+ * Features neutres, à surcharger selon le cas testé.
+ *
+ * Les valeurs par défaut décrivent un contour « neutre » : plat, sans
+ * creux marqué, sans pente. Les champs absents de l'extracteur sont
+ *important : on les renseigne tous pour que le classifieur soit testé
+ * isolément de l'extraction.
+ */
 function features(over = {}) {
   return Object.assign({
-    slope: 0, endSlope: 0, endRise: 0, dipDepth: 0,
-    minPos: 0.5, maxPos: 0.5, range: 1, durationMs: 400
+    // structure
+    slope: 0, endSlope: 0, startSlope: 0, endRise: 0, dipDepth: 0,
+    minPos: 0.5, maxPos: 0.5, minReachPos: 0.5,
+    fMin: 0, fMax: 1, tailLevel: 0,
+    range: 1, durationMs: 400,
+    // creux
+    descentFraction: 0, onsetFallFraction: 0, fallRate: 0,
+    valleyDominance: Infinity, nValleys: 0
   }, over);
 }
 
@@ -269,10 +282,23 @@ test('classifyTone : un ton 5 plus court a une confiance plus haute', () => {
 });
 
 test('classifyTone : un demi-ton 3 au seuil atteint la confiance minimale', () => {
-  const res = ToneDSP.classifyTone(features({ dipDepth: 1.0, endRise: 0, endSlope: 0, slope: -0.5 }));
+  const res = ToneDSP.classifyTone(features({
+    dipDepth: 1.8, endRise: 0, endSlope: 0, slope: -0.5,
+    minReachPos: 0.4, onsetFallFraction: 0.9, fMin: -1.8, tailLevel: -1.7
+  }));
   assert.equal(res.tone, 3);
   assert.equal(res.reason, 'half-dipping');
   assert.ok(res.confidence >= 0.45, `confiance ${res.confidence}`);
+});
+
+test('classifyTone : un demi-ton 3 trop peu creusé reste un ton 1', () => {
+  // Le « demi-ton 3 » n'a pas la remontée finale du ton 3 complet : c'est
+  // son amplitude de creux qui le distingue d'un ton 1.
+  const res = ToneDSP.classifyTone(features({
+    dipDepth: 1.2, endRise: 0, endSlope: 0, slope: -0.5,
+    minReachPos: 0.4, onsetFallFraction: 0.9, fMin: -1.2, tailLevel: -1.1
+  }));
+  assert.notEqual(res.tone, 3, `un creux de 1,2 demi-ton a été pris pour un ton 3 (${res.reason})`);
 });
 
 // ===========================================================================

@@ -42,19 +42,51 @@ Data sources:
 | `extractFeatures(frames)` | Shape features in **semitones** relative to the syllable's median F0 |
 | `classifyTone(features)` | Tone 1–5 or `null` (ambiguous) with a confidence score |
 | `analyze(frames, opts)` | The full pipeline |
+| `TONE_PRESETS` / `toneOptions(preset, over)` | Sensitivity presets and threshold overrides |
 
-The classifier works in semitones relative to the speaker's own median pitch, so the thresholds are register-independent. Rules are applied in order: tone 4 → tone 2 → tone 3 (including the "half third tone") → tone 5 (short and flat) → tone 1 → *ambiguous*. **No tone is ever forced**: a contour that does not match any rule is reported as uncertain instead of being wrongly labelled.
+The classifier works in semitones relative to the speaker's own median pitch, so the thresholds are register-independent.
+
+### How the tones are told apart
+
+Rules are applied in order: **tone 3 → tone 4 → tone 2 → tone 5 → tone 1 → *ambiguous***. **No tone is ever forced**: a contour that does not match any rule is reported as uncertain instead of being wrongly labelled.
+
+The **dipping tone (3)** is the delicate one: it is not judged on its overall slope but on its *structure* — a real valley. A tone 3 is a *checked* tone: the pitch falls immediately from the onset, bottoms out, then either climbs back up (214) or stays at the bottom (211, the very frequent "half third tone"). Five conditions must hold:
+
+1. the valley is interior and reached early — the fall is over before the end of the syllable;
+2. the pitch is already falling in the first third (proportionally) — a flat contour that sags in the middle is *not* a tone 3;
+3. the valley dominates the other valleys of the contour — a wobbling contour is not a tone;
+4. the valley is deep enough (amplitude of the dip);
+5. the amplitude stays within the tone-3 range — a 4-level fall (8–10 semitones) is a tone 4.
+
+A tone 4, on the other hand, requires a *fast, sustained* fall whose low point is reached at the end of the syllable; a tone 1 is a flat contour with a slow drift; a tone 2 rises from its minimum.
+
+### Sensitivity
+
+Some contours are genuinely ambiguous (a soft tone 1 and a shallow tone 3 look alike; a "half third tone" that keeps sinking sounds like a tone 4). Every threshold lives in `DEFAULTS.tone` and can be overridden:
+
+```js
+ToneDSP.analyze(frames, { tone: ToneDSP.TONE_PRESETS.tolerant });
+ToneDSP.analyze(frames, { tone: ToneDSP.toneOptions('default', { dipMin: 0.8 }) });
+```
+
+Preset | Behaviour | Risk |
+--- | --- | --- |
+`strict` | only announces a tone 3 when the valley is unmistakable | a soft or short tone 3 is reported as "flat" |
+`default` | balanced (the values in `DEFAULTS.tone`) | — |
+`tolerant` | accepts shallow valleys | a poorly held tone 1 may be reported as a tone 3 |
 
 The app captures at **16 kHz** (`AudioContext({ sampleRate: 16000 })`) with a 1024-sample analyser window, which the benchmark identifies as one of the most accurate *and* the cheapest configurations (4.5× less CPU than the previous 48 kHz/2048 setup).
 
 ## Tests
 
 ```bash
-node --test tests/tone-dsp.test.mjs tests/app-tone.test.mjs   # 44 tests
+node --test tests/tone-dsp.test.mjs tests/app-tone.test.mjs tests/tone-3.test.mjs   # 73 tests
 node tests/tone-dsp.bench.mjs      # benchmark: 600 generated cases, confusion matrix
 ```
 
 `tests/app-tone.test.mjs` loads `app.js` in a simulated DOM and checks the UI logic: the reference tone is the *cited* form, the sandhi is only shown as information, the grading (`perfect` / `close` / `wrong` / `unclear`) and the measurement banner.
+
+`tests/tone-3.test.mjs` focuses on the dipping tone. It runs the **realistic contour corpus** (`tests/fixtures/real-contours.mjs`) — tone shapes as they are actually observed on a recording, with their accidents (low plateau, final rise, attack head) — through the classifier alone, then through the full audio chain, across registers, durations, noise levels, octave errors and capture windows. It also checks the regressions (a tone 3 with a late valley must not be reported as a tone 4, a half third tone that drifts must stay a tone 3, a flat tone with a mid-sag must not become a tone 3, …) and that the sensitivity presets really change the outcome.
 
 `tests/synth.mjs` synthesises Mandarin-like syllables (glottal source + formants, attack/release envelope, background noise) for the five tones across three vocal registers, two durations, two noise levels, and with injected octave errors. The benchmark prints a confusion matrix, the success rate per tone and the false-positive rate on pure noise, and exits non-zero if the acceptance criteria are not met.
 

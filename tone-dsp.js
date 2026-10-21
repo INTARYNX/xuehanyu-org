@@ -50,15 +50,37 @@
     smooth: {
       size: 3            // taille du filtre médian (trames)
     },
+    shape: {
+      valleySmooth: 3,   // taille de la médiane glissante du contour (trames)
+      valleyBand: 0.6,   // semi-tons : bande de tolérance autour du creux/sommet
+      valleyProminence: 0.3 // semi-tons : profondeur min d'un creux local « réel »
+    },
     tone: {
-      fallMin: 2.0,      // semi-tons : chute minimale pour un ton 4
-      riseMin: 2.0,      // semi-tons : montée minimale pour un ton 2
-      dipMin: 1.0,       // semi-tons : creux minimal sous les deux extrémités (ton 3)
+      // --- TON 4 : tombant -----------------------------------------------
+      fallMin: 2.5,      // semi-tons : chute nette (début → fin)
+      fallRateMin: 4.0,  // semi-tons/syllabe : la chute doit être franche
+      endRecovery: 0.8,  // semi-tons : la fin ne remonte pas au-dessus du creux
+      // --- TON 2 : montant ------------------------------------------------
+      riseMin: 2.0,      // semi-tons : montée nette
+      riseMaxPos: 0.40,  // position du minimum (la montée commence tôt)
+      // --- TON 3 : creusé -------------------------------------------------
+      // Un ton 3 (上声) se reconnaît à sa STRUCTURE : la hauteur tombe
+      // rapidement dès l'attaque (« ton checked »), atteint un creux, puis
+      // remonte (214) ou reste au fond (211).
+      dipMin: 1.1,       // semi-tons : profondeur minimale du creux
       dipRise: 0.5,      // semi-tons : remontée finale exigée (ton 3 « complet »)
-      halfDipMin: 1.0,   // semi-tons : creux du « demi-ton 3 » (sans remontée)
-      endFallMax: 0.8,   // semi-tons : la fin doit encore descendre (sépare ton 4 / demi-ton 3)
-      endFlatMax: 0.8,   // semi-tons : la fin doit être stable (détecte le « demi-ton 3 »)
-      flatSlope: 1.0,    // semi-tons : |pente| max pour un ton plat
+      dipDominance: 0.8, // semi-tons : le creux doit dominer les autres creux
+      onsetFall: 0.30,   // part de la chute accomplishue dès le 1er tiers
+      fallMax: 4.6,      // semi-tons : amplitude MAX du creux d'un ton 3
+      fallNetMax: 4.5,   // semi-tons : chute nette MAX d'un ton 3 (début → fin)
+      halfDipMin: 1.5,   // semi-tons : creux minimal du « demi-ton 3 »
+      halfTailFlat: 1.2, // semi-tons : la fin reste au niveau du creux
+      halfEndFall: -0.8, // semi-tons : la fin ne plonge pas
+      // --- position du creux ----------------------------------------------
+      valleyMinPos: 0.15,// le creux est atteint après le début de la syllabe
+      valleyMaxPos: 0.60,// ... et avant la fin : la chute est achevée à mi-syllabe
+      // --- tons plats ------------------------------------------------------
+      flatSlope: 2.0,    // semi-tons : |pente| max pour un ton plat
       flatRange: 2.5,    // semi-tons : étendue max pour un ton plat
       neutralDur: 280,   // ms : durée sous laquelle un ton plat est un ton 5
       neutralRange: 2.0, // semi-tons : étendue max pour un ton 5
@@ -84,9 +106,108 @@
     return v < lo ? lo : (v > hi ? hi : v);
   }
 
+
   /** Conversion Hz → semi-tons (relatifs à `refHz`). */
   function toSemitones(hz, refHz) {
     return 12 * Math.log2(hz / refHz);
+  }
+
+  /** Moyenne d'un tableau de nombres. */
+  function mean(values) {
+    if (!values || !values.length) return NaN;
+    let s = 0;
+    for (let i = 0; i < values.length; i++) s += values[i];
+    return s / values.length;
+  }
+
+  /**
+   * Médiane glissante centrée : supprime les pics isolés (erreurs ponctuelles
+   * de F0) tout en conservant la forme d'ensemble du contour.
+   *
+   * @param {number[]} values
+   * @param {number} size  taille de la fenêtre (trames), impaire de préférence
+   * @returns {number[]} Nouveau tableau (même longueur).
+   */
+  function smoothSeries(values, size) {
+    const w = Math.max(1, size | 0);
+    if (w < 2 || values.length < 2) return values.slice();
+    const half = w >> 1;
+    const out = new Array(values.length);
+    for (let i = 0; i < values.length; i++) {
+      // Fenêtre de taille CONSTANTE : aux bords, elle est décalée vers
+      // l'intérieur plutôt que tronquée. Une fenêtre tronquée n'aurait
+      // qu'un ou deux échantillons — et sa médiane laisserait passer un pic
+      // isolé (typiquement la trame d'attaque, très parasite).
+      let lo = i - half;
+      let hi = i + half;
+      if (lo < 0) { lo = 0; hi = w - 1; }
+      if (hi > values.length - 1) { lo = values.length - w; hi = values.length - 1; }
+      const win = [];
+      for (let j = lo; j <= hi; j++) win.push(values[j]);
+      out[i] = median(win);
+    }
+    return out;
+  }
+
+  /**
+   * Extrémum robuste d'un contour, avec sa POSITION.
+   *
+   * Deux positions sont renvoyées :
+   *   - `pos`     : le centre de la « bande » des indices qui atteignent
+   *                 l'extrême. Un creux large (palier bas) donne ainsi son
+   *                 MILIEU et non son bord ; un creux pointu donne son sommet.
+   *   - `reachPos`: la position du PREMIER indice qui atteint l'extrême.
+   *                 C'est la position à laquelle la hauteur a fini de
+   *                 descendre : elle distingue un creux médian (atteint
+   *                 tôt) d'une chute qui se poursuit jusqu'au bout.
+   *
+   * @param {number[]} series  contour lissé
+   * @param {string}  kind    'min' | 'max'
+   * @param {number}  band    tolérance (semi-tons) autour de l'extrême
+   */
+  function robustExtremum(series, kind, band) {
+    let idx = 0;
+    for (let i = 1; i < series.length; i++) {
+      if (kind === 'min' ? series[i] < series[idx] : series[i] > series[idx]) idx = i;
+    }
+    const value = series[idx];
+    const hit = [];
+    for (let i = 0; i < series.length; i++) {
+      if (Math.abs(series[i] - value) <= band) hit.push(i);
+    }
+    const last = Math.max(1, series.length - 1);
+    const center = hit.length ? hit[Math.floor((hit.length - 1) / 2)] : idx;
+    const first = hit.length ? hit[0] : idx;
+    return {
+      value,
+      index: idx,
+      pos: center / last,
+      reachPos: first / last
+    };
+  }
+
+  /**
+   * Creux locaux « réels » d'un contour, du plus profond au moins profond.
+   *
+   * Un creux ne compte que s'il descend d'au moins `minDepth` semi-tons
+   * sous ses deux voisins : un simple palier plat (profondeur nulle) et un
+   * tremblement de faible amplitude sont ainsi écartés.
+   *
+   * @param {number[]} series  contour lissé
+   * @param {number}   minDepth  profondeur minimale (semi-tons)
+   * @returns {Array<{index:number, value:number, depth:number}>}
+   */
+  function localMinima(series, minDepth) {
+    const out = [];
+    for (let i = 1; i < series.length - 1; i++) {
+      const v = series[i];
+      if (v > series[i - 1] || v > series[i + 1]) continue; // pas un minimum local
+      const depth = Math.min(series[i - 1], series[i + 1]) - v;
+      if (depth < minDepth) continue;
+      out.push({ index: i, value: v, depth });
+    }
+    out.sort((a, b) => a.value - b.value);
+    return out;
   }
 
   /**
@@ -383,7 +504,7 @@
    * @returns {object|null} Caractéristiques, ou null si segment trop court.
    */
   function extractFeatures(frames, opts) {
-    const o = opts || {};
+    const o = Object.assign({}, DEFAULTS.shape, opts || {});
     const voiced = frames.filter(f => f && f.freq);
     if (voiced.length < 3) return null;
 
@@ -392,27 +513,67 @@
     const level = median(abs);              // F0 médiane de la syllabe (semi-tons)
     const rel = abs.map(v => v - level);     // relatives à la médiane
 
+    // Contour lissé : la médiane glissante supprime les pics isolés (erreurs
+    // ponctuelles de F0) sans effacer la forme d'ensemble.
+    const smooth = smoothSeries(rel, o.valleySmooth);
+
     // Extrémités : médiane des 20 % extrêmes (robuste aux pics résiduels)
     const edge = Math.max(1, Math.round(n * 0.2));
-    const fStart = median(rel.slice(0, edge));
-    const fEnd = median(rel.slice(n - edge));
+    const fStart = median(smooth.slice(0, edge));
+    const fEnd = median(smooth.slice(n - edge));
 
-    let fMin = Infinity, fMax = -Infinity, minIdx = 0, maxIdx = 0;
-    for (let i = 0; i < n; i++) {
-      if (rel[i] < fMin) { fMin = rel[i]; minIdx = i; }
-      if (rel[i] > fMax) { fMax = rel[i]; maxIdx = i; }
-    }
-
-    const denom = n > 1 ? (n - 1) : 1;
-    const minPos = minIdx / denom;
-    const maxPos = maxIdx / denom;
+    // Creux et sommet : position par le CENTRE de la bande (un palier bas
+    // donne son milieu) et position d'ATTEINTE (le moment où la hauteur a
+    // fini de descendre).
+    const low = robustExtremum(smooth, 'min', o.valleyBand);
+    const high = robustExtremum(smooth, 'max', o.valleyBand);
+    const fMin = low.value;
+    const fMax = high.value;
+    const minPos = low.pos;
+    const maxPos = high.pos;
+    const minReachPos = low.reachPos;
 
     // Pentes des extrémités (30 % début / 30 % fin) : c'est ce qui distingue
     // un ton 4 (la chute continue jusqu'au bout) d'un « demi-ton 3 »
     // (creux médian puis palier final).
     const band = Math.max(2, Math.round(n * 0.3));
-    const startSlope = regressionSlope(rel, 0, Math.min(n - 1, band - 1));
-    const endSlope = regressionSlope(rel, Math.max(0, n - band), n - 1);
+    const startSlope = regressionSlope(smooth, 0, Math.min(n - 1, band - 1));
+    const endSlope = regressionSlope(smooth, Math.max(0, n - band), n - 1);
+
+    // Creux locaux : sert à distinguer un V réel d'un contour tremblant
+    // (plusieurs creux de profondeur comparable).
+    const valleys = localMinima(smooth, o.valleyProminence);
+    const deepest = valleys.length ? valleys[0].value : fMin;
+    const runnerUp = valleys.length > 1 ? valleys[1].value : null;
+    // Écart entre le creux dominant et le deuxième creux : un creux unique
+    // et franc donne un écart infini.
+    const valleyDominance = runnerUp === null ? Infinity : runnerUp - deepest;
+
+    // Fraction de la chute déjà accomplie au milieu de la syllabe.
+    // Un ton 3 est « checked » : la hauteur TOMBE vite et tôt. Un ton 4 est
+    // au contraire une glisse progressive : à mi-syllabe, la chute n'est
+    // qu'à moitié faite.
+    const midLo = Math.floor(n * 0.4);
+    const midHi = Math.max(midLo + 1, Math.ceil(n * 0.6));
+    const midLevel = median(smooth.slice(midLo, midHi));
+    const fall = fStart - fMin;
+    const descentFraction = fall > 0.25 ? clamp((fStart - midLevel) / fall, 0, 1) : 0;
+
+    // Même mesure, mais au premier tiers : c'est le signe d'un ton 3
+    // (« checked »). Un contour plat qui s'affaisse au milieu, lui, n'a
+    // encore rien perdu au premier tiers. La mesure est PROPORTIONNELLE :
+    // elle ne dépend pas de l'amplitude de la chute.
+    const onsetLevel = smooth[Math.min(n - 1, band - 1)];
+    const onsetFallFraction = fall > 0.25 ? clamp((fStart - onsetLevel) / fall, 0, 1) : 0;
+
+    // Vitesse de la chute, en demi-tons par syllabe : c'est la mesure qui
+    // sépare le ton 4 (glisse franche : 6 à 12 semi-tons par syllabe) d'un
+    // ton 1 mal tenu (dérive lente : 2 à 4).
+    const fallRate = fall / Math.max(0.10, low.reachPos);
+
+    // Niveau moyen du dernier quart : un « demi-ton 3 » se TERMINE au
+    // niveau de son creux, là où un ton 4 continue de descendre.
+    const tailLevel = mean(smooth.slice(Math.max(0, Math.floor(n * 0.75))));
 
     const hopMs = o.hopMs || 0;
     const durationMs = Math.max(0, (voiced[n - 1].t - voiced[0].t) + hopMs);
@@ -426,9 +587,13 @@
       fStartHz: Math.pow(2, (level + fStart) / 12),
       fEndHz: Math.pow(2, (level + fEnd) / 12),
       fMin, fMax,
-      minPos, maxPos,
+      minPos, maxPos,                         // centre du creux / du sommet
+      minReachPos,                            // moment où le niveau bas est atteint
       slope: fEnd - fStart,                   // tendance globale
-      range: fMax - fMin,                     // étendue totale
+      // Étendue du contour BRUT : elle rend compte des oscillations que le
+      // lissage amortirait. Les pics isolés, eux, ont déjà été écartés par
+      // le filtre médian de la chaîne de traitement.
+      range: Math.max.apply(null, rel) - Math.min.apply(null, rel),
       // Creux mesuré sous le point de DÉPART : c'est la seule définition qui
       // reste valable pour le « demi-ton 3 » (creux médian sans remontée,
       // où la fin est au niveau du creux).
@@ -436,6 +601,12 @@
       endRise: fEnd - fMin,                   // remontée finale au-dessus du creux
       startSlope,                            // pente sur le premier tiers
       endSlope,                              // pente sur le dernier tiers
+      descentFraction,                       // part de la chute accomplie à mi-syllabe
+      onsetFallFraction,                     // part de la chute accomplie au 1er tiers
+      fallRate,                              // vitesse de la chute (semi-tons/syllabe)
+      valleyDominance,                       // le creux domine-t-il les autres ?
+      nValleys: valleys.length,              // nombre de creux locaux significatifs
+      tailLevel,                             // niveau moyen du dernier quart
       durationMs,
       rel,                                   // contour relatif (semi-tons), 1 valeur / trame
       times: voiced.map(f => f.t)            // horodatage des trames (ms)
@@ -449,12 +620,17 @@
    * Classe le contour en ton 1/2/3/4/5 (ou `null` = ambigu).
    *
    * Règles ordonnées (seuils en demi-tons) :
-   *   4  chute nette, maximum tôt, minimum tard
+   *   3  creux intérieur franc : la hauteur TOMBE dès l'attaque, atteint un
+   *      creux, puis remonte (213) ou reste au fond (211 = « demi-ton 3 »)
+   *   4  chute nette dont le point bas est atteint à la fin, sans remontée
    *   2  montée nette, minimum tôt
-   *   3  creux médian (avec ou sans remontée finale : « demi-ton 3 »)
-   *   1  plat
    *   5  plat **et court** (< neutralDur ms)
+   *   1  plat
    *   →  aucune règle ne correspond : ambigu (pas de ton forcé)
+   *
+   * Le ton 3 est testé EN PREMIER : il se reconnaît à sa structure (un creux)
+   * et non à sa tendance globale, ce qui le rend compatible avec une fin de
+   * syllabe plus basse que le début (cas très fréquent du « demi-ton 3 »).
    *
    * @param {object} features  Sortie de `extractFeatures`.
    * @param {object} [opts]    Surcharge de DEFAULTS.tone.
@@ -470,35 +646,28 @@
     const f = features;
     const margin = (value, threshold) => clamp((Math.abs(value) - threshold) / threshold, 0, 1);
 
-    // --- TON 4 : tombant -------------------------------------------------
-    // Deux formulations : minimum très tard (chute franche) ou chute qui se
-    // poursuit jusqu'au bout (endSlope négatif). La seconde condition est ce
-    // qui empêche un « demi-ton 3 » d'être classé ton 4.
-    if (f.slope <= -o.fallMin) {
-      const lateMin = f.maxPos <= 0.40 && f.minPos >= 0.75;
-      const stillFalling = f.maxPos <= 0.35 && f.minPos >= 0.40 && f.endSlope <= -o.endFallMax;
-      if (lateMin || stillFalling) {
-        return {
-          tone: 4,
-          confidence: 0.5 + 0.5 * margin(f.slope, o.fallMin),
-          reason: 'falling',
-          features: f
-        };
-      }
-    }
-
-    // --- TON 2 : montant -------------------------------------------------
-    if (f.slope >= o.riseMin && f.minPos <= 0.40) {
-      return {
-        tone: 2,
-        confidence: 0.5 + 0.5 * margin(f.slope, o.riseMin),
-        reason: 'rising',
-        features: f
-      };
-    }
-
     // --- TON 3 : creusé --------------------------------------------------
-    if (f.minPos >= 0.20 && f.minPos <= 0.80 && f.dipDepth >= o.dipMin) {
+    // Un ton 3 (上声) est un ton « checked » : la hauteur décroît dès
+    // l'attaque, atteint un creux, puis remonte (214) ou reste au fond
+    // (211, le « demi-ton 3 »). On ne juge donc pas la tendance globale mais
+    // la STRUCTURE du contour. Les conditions ci-dessous :
+    //   1. le creux est intérieur et atteint tôt : la chute est achevée
+    //      avant la fin de la syllabe (un ton 4, lui, descend jusqu'au bout),
+    //   2. la hauteur descend dès l'attaque : ce n'est pas un contour plat
+    //      qui s'affaisse au milieu,
+    //   3. le creux est franc : il domine les autres creux du contour
+    //      (sinon c'est un tremblement, pas un ton),
+    //   4. le creux a une profondeur réelle (amplitude du ton 3),
+    //   5. l'amplitude reste celle d'un ton 3 : un « demi-ton 3 » descend
+    //      d'un ou deux degrés (2 à 4 demi-tons), un ton 4 de quatre degrés
+    //      (8 à 10 demi-tons). Au-delà, c'est un ton 4.
+    const interior = f.minReachPos >= o.valleyMinPos && f.minReachPos <= o.valleyMaxPos;
+    const onsetFall = f.onsetFallFraction >= o.onsetFall;
+    const cleanValley = f.valleyDominance >= o.dipDominance;
+    const deepEnough = f.dipDepth >= o.dipMin;
+    const modest = f.dipDepth <= o.fallMax && f.slope >= -o.fallNetMax;
+
+    if (interior && onsetFall && cleanValley && deepEnough && modest) {
       if (f.endRise >= o.dipRise) {
         // creusement complet : creux puis remontée
         return {
@@ -508,8 +677,12 @@
           features: f
         };
       }
-      // « demi-ton 3 » : creux médian, fin stable, pas de remontée
-      if (f.dipDepth >= o.halfDipMin && Math.abs(f.endSlope) <= o.endFlatMax) {
+      // « demi-ton 3 » (211) : le creux est atteint, la syllabe s'y achève
+      // sans remonter franchement. La fin doit rester AU NIVEAU du creux
+      // (et non plonger), sinon il s'agit d'un ton 4.
+      const flatTail = Math.abs(f.tailLevel - f.fMin) <= o.halfTailFlat;
+      const noPlunge = f.endSlope >= o.halfEndFall;
+      if (f.dipDepth >= o.halfDipMin && flatTail && noPlunge) {
         return {
           tone: 3,
           confidence: 0.45 + 0.3 * margin(f.dipDepth, o.halfDipMin),
@@ -517,6 +690,29 @@
           features: f
         };
       }
+    }
+
+    // --- TON 4 : tombant -------------------------------------------------
+    // Chute franche : la hauteur plonge et reste au fond. On exige une
+    // chute VITE (le ton 4 est une glisse, pas une dérive lente de ton 1)
+    // et une fin qui ne remonte pas.
+    if (f.slope <= -o.fallMin && f.fallRate >= o.fallRateMin && f.endRise <= o.endRecovery) {
+      return {
+        tone: 4,
+        confidence: 0.5 + 0.5 * margin(f.slope, o.fallMin),
+        reason: 'falling',
+        features: f
+      };
+    }
+
+    // --- TON 2 : montant -------------------------------------------------
+    if (f.slope >= o.riseMin && f.minReachPos <= o.riseMaxPos) {
+      return {
+        tone: 2,
+        confidence: 0.5 + 0.5 * margin(f.slope, o.riseMin),
+        reason: 'rising',
+        features: f
+      };
     }
 
     // --- TON 5 : neutre (plat ET court) ----------------------------------
@@ -571,7 +767,7 @@
     const repaired = repairOctaves(sliced, o.octave);
     const smoothed = smoothMedian(repaired, o.smooth);
 
-    const features = extractFeatures(smoothed, o);
+    const features = extractFeatures(smoothed, Object.assign({ hopMs: o.hopMs }, o.shape));
     if (!features) {
       return { tone: null, confidence: 0, reason: 'too-short', features: null, segment, frames: smoothed };
     }
@@ -583,13 +779,75 @@
   }
 
   // =========================================================================
+  // PRÉRÉGLAGES DE SENSIBILITÉ
+  // =========================================================================
+  /**
+   * Préréglages du classifieur, pour adapter le compromis
+   * « on préfère rater un ton 3 » ↔ « on préfère risquer un faux ton 3 ».
+   *
+   * Un logiciel d'apprentissage tolère qu'un ton ambigu soit signalé
+   * « incertain » ; en revanche, annoncer « ton 3 » à quelqu'un qui vient
+   * de produire un ton 1 est pénalisant. On part donc d'un réglage
+   * intermédiaire, et l'on laisse le choix à l'appelant.
+   *
+   *   strict    : on n'annonce un ton 3 que si le creux est net.
+   *               Risque : un ton 3 doux ou bref est rapporté « plat ».
+   *   default   : compromis (valeurs de `DEFAULTS.tone`).
+   *   tolerant  : on accepte des creux peu marqués.
+   *               Risque : un ton 1 mal tenu peut être pris pour un ton 3.
+   *
+   * Utilisation :
+   *   ToneDSP.analyze(frames, { tone: ToneDSP.TONE_PRESETS.tolerant })
+   */
+  const TONE_PRESETS = {
+    strict: {
+      dipMin: 1.8,
+      halfDipMin: 2.2,
+      dipDominance: 1.2,
+      onsetFall: 0.40,
+      valleyMaxPos: 0.55,
+      fallMax: 3.0,
+      endRecovery: 0.6
+    },
+    default: {},
+    tolerant: {
+      dipMin: 0.9,
+      halfDipMin: 1.2,
+      dipDominance: 0.4,
+      onsetFall: 0.20,
+      valleyMaxPos: 0.70,
+      fallMax: 4.5,
+      endRecovery: 1.0
+    }
+  };
+
+  /**
+   * Construit un jeu d'options de classification en combinant un
+   * préréglage et des surcharges ponctuelles.
+   *
+   * @param {string} [preset]  'strict' | 'default' | 'tolerant'
+   * @param {object} [over]    surcharges `{ ...préréglage, ...over }`
+   * @returns {object} options prêtes pour `analyze(frames, { tone })`.
+   */
+  function toneOptions(preset, over) {
+    const base = Object.assign({}, DEFAULTS.tone, TONE_PRESETS[preset] || TONE_PRESETS.default);
+    return Object.assign(base, over || {});
+  }
+
+  // =========================================================================
   // EXPORTS
   // =========================================================================
   return {
     DEFAULTS,
+    TONE_PRESETS,
+    toneOptions,
     median,
+    mean,
     clamp,
     toSemitones,
+    smoothSeries,
+    robustExtremum,
+    localMinima,
     yin,
     repairOctaves,
     smoothMedian,
