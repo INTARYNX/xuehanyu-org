@@ -7,6 +7,12 @@
 // -------------------------------------------------------------------------
 // I18N
 // -------------------------------------------------------------------------
+// Escapes a value before it is interpolated into an HTML template.
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 const I18N = {
   fr: {
     tagline: 'apprendre le chinois, un caractère à la fois',
@@ -185,7 +191,7 @@ function renderList() {
     const done = reviewed.has(l.id);
     return `<button class="lesson-item${i === currentLesson ? ' active' : ''}" data-i="${i}">
       <span class="lesson-item-num">${String(i + 1).padStart(2, '0')}</span>
-      <span class="lesson-item-title">${l.title[lang]}</span>
+      <span class="lesson-item-title">${esc(l.title[lang])}</span>
       <span class="lesson-item-meta">${l.exchanges.length} ${t('lines')}</span>
       ${done ? `<span class="lesson-item-done">✓</span>` : ''}
     </button>`;
@@ -203,13 +209,13 @@ function renderDialogue() {
 
   dialogue.innerHTML = l.exchanges.map((e, i) => `
     <div class="exchange ${e.who === 'B' ? 'b' : 'a'}" data-i="${i}">
-      <div class="exchange-who">${e.who}</div>
+      <div class="exchange-who">${esc(e.who)}</div>
       <div class="exchange-body">
-        <div class="exchange-hanzi">${e.hanzi}</div>
+        <div class="exchange-hanzi">${esc(e.hanzi)}</div>
         <div class="exchange-pinyin${showPinyin ? '' : ' hidden'}">${phrasePinyin(e.pinyin)}</div>
-        <div class="exchange-tr${showTrans ? '' : ' hidden'}">${e[lang]}</div>
+        <div class="exchange-tr${showTrans ? '' : ' hidden'}">${esc(e[lang])}</div>
         <div class="exchange-chips">${e.words.map(w =>
-          `<span class="chip" data-w="${w}">${w}</span>`).join('')}</div>
+          `<span class="chip" data-w="${esc(w)}">${esc(w)}</span>`).join('')}</div>
       </div>
       <button class="speak-btn" data-speak="${i}" title="${t('playAll')}">
         <i class="fa-solid fa-volume-high"></i>
@@ -236,9 +242,9 @@ function renderVocab() {
       seen.add(w);
       const v = VOCAB[w] || {};
       items.push(`<div class="vocab-item">
-        <span class="vocab-char">${w}</span>
-        <span class="vocab-pinyin">${v.p || ''}</span>
-        <span class="vocab-fr">${(v.fr || v.en || '').split(';')[0]}</span>
+        <span class="vocab-char">${esc(w)}</span>
+        <span class="vocab-pinyin">${esc(v.p)}</span>
+        <span class="vocab-fr">${esc((v.fr || v.en || '').split(';')[0])}</span>
       </div>`);
     }
   }
@@ -256,7 +262,7 @@ function showWordPop(ev, w, sticky = false) {
   pop = document.createElement('div');
   pop.className = 'word-pop';
   const meaning = (lang === 'fr' ? v.fr : v.en) || '';
-  pop.innerHTML = `<b>${w}</b> ${v.p ? '· ' + v.p : ''}${meaning ? '<br>' + meaning : ''}`;
+  pop.innerHTML = `<b>${esc(w)}</b> ${v.p ? '· ' + esc(v.p) : ''}${meaning ? '<br>' + esc(meaning) : ''}`;
   document.body.appendChild(pop);
   const r = pop.getBoundingClientRect();
   const x = Math.min(Math.max(8, ev.clientX - r.width / 2), window.innerWidth - r.width - 8);
