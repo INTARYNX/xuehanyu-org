@@ -1,6 +1,12 @@
 // =========================================================================
 // DATA
 // =========================================================================
+// Escapes a value before it is interpolated into an HTML template.
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 const HSK_LEVELS = [1, 2, 3, 4, 5, 6];
 const HSK_DATA = {};
 const loadingState = {};
@@ -326,10 +332,10 @@ function buildCharList() {
     const row = document.createElement('div');
     row.className = 'char-row' + (currentChar?.char === item.char ? ' active' : '');
     row.innerHTML = `
-      <div class="char-row-char">${item.char}</div>
+      <div class="char-row-char">${esc(item.char)}</div>
       <div class="char-row-meta">
-        <div class="char-row-pinyin">${item.pinyin}</div>
-        <div class="char-row-meaning">${item[currentLang]}</div>
+        <div class="char-row-pinyin">${esc(item.pinyin)}</div>
+        <div class="char-row-meaning">${esc(item[currentLang])}</div>
       </div>`;
     row.addEventListener('click', () => selectChar(item));
     frag.appendChild(row);
@@ -400,19 +406,19 @@ function buildControls(container) {
 
   const t2 = I18N[currentLang];
   const posBadges = (currentChar.pos || [])
-    .map(p => `<span class="pos-badge">${POS_LABELS[p] || p}</span>`).join('');
-  const classifiers = currentChar.classifiers?.length ? currentChar.classifiers.join(', ') : '—';
-  const trad = currentChar.traditional !== currentChar.char ? currentChar.traditional : '—';
+    .map(p => `<span class="pos-badge">${esc(POS_LABELS[p] || p)}</span>`).join('');
+  const classifiers = currentChar.classifiers?.length ? currentChar.classifiers.map(esc).join(', ') : '—';
+  const trad = currentChar.traditional !== currentChar.char ? esc(currentChar.traditional) : '—';
 
   container.innerHTML += `
     <div class="info">
-      <div class="info-row"><span class="info-label">${t2.pinyin}</span><span class="info-value pinyin">${currentChar.pinyin}</span></div>
-      <div class="info-row"><span class="info-label">${t2.meaning}</span><span class="info-value">${currentLang === 'fr' ? currentChar.fr : currentChar.en || '—'}</span></div>
+      <div class="info-row"><span class="info-label">${t2.pinyin}</span><span class="info-value pinyin">${esc(currentChar.pinyin)}</span></div>
+      <div class="info-row"><span class="info-label">${t2.meaning}</span><span class="info-value">${esc(currentLang === 'fr' ? currentChar.fr : currentChar.en || '—')}</span></div>
       <div class="info-row"><span class="info-label">${t2.traditional}</span><span class="info-value">${trad}</span></div>
-      <div class="info-row"><span class="info-label">${t2.radical}</span><span class="info-value">${currentChar.radical || '—'}</span></div>
+      <div class="info-row"><span class="info-label">${t2.radical}</span><span class="info-value">${esc(currentChar.radical || '—')}</span></div>
       <div class="info-row"><span class="info-label">${t2.pos}</span><span class="info-value">${posBadges || '—'}</span></div>
       <div class="info-row"><span class="info-label">${t2.classifiers}</span><span class="info-value">${classifiers}</span></div>
-      <div class="info-row"><span class="info-label">${t2.frequency}</span><span class="info-value">${currentChar.frequency ?? '—'}</span></div>
+      <div class="info-row"><span class="info-label">${t2.frequency}</span><span class="info-value">${esc(currentChar.frequency ?? '—')}</span></div>
       <div class="info-row"><span class="info-label">${t2.level}</span><span class="info-value"><span class="level-badge">HSK ${currentLevel}</span></span></div>
     </div>`;
 
@@ -450,7 +456,7 @@ function buildCharNav() {
       font-family:'STKaiti','Kaiti SC',serif;font-size:0.9rem;
       background:${i === currentCharIndex ? 'var(--ink)' : 'rgba(60,35,15,0.1)'};
       color:${i === currentCharIndex ? 'var(--paper-light)' : 'var(--ink-soft)'};
-      transition:all 0.15s;">${c}</span>`).join('');
+      transition:all 0.15s;">${esc(c)}</span>`).join('');
 
   dots.querySelectorAll('span').forEach(s =>
     s.addEventListener('click', () => { currentCharIndex = +s.dataset.idx; buildCharNav(); animateChar(); })
@@ -507,7 +513,7 @@ function animateChar() {
     });
     currentWriter.animateCharacter();
   } catch {
-    host.innerHTML = `<div style="font-size:${size*.65}px;font-family:'STKaiti','Kaiti SC',serif;color:#1a1310;text-align:center;line-height:${size}px">${ch}</div>`;
+    host.innerHTML = `<div style="font-size:${size*.65}px;font-family:'STKaiti','Kaiti SC',serif;color:#1a1310;text-align:center;line-height:${size}px">${esc(ch)}</div>`;
   }
 }
 
