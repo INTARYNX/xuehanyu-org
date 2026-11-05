@@ -1,7 +1,7 @@
 // =========================================================================
 // QUIZ D'IMAGES — vocabulaire HSK 1
 // Trois modes : flashcards, image → mot, mot → image.
-// Aucune dépendance, aucun build step. Données : assets/img/hsk1/manifest.json
+// Aucune dépendance, aucun build step. Données : assets/img/index.json + assets/img/hsk<n>/manifest.json
 // =========================================================================
 
 // -------------------------------------------------------------------------
@@ -11,6 +11,7 @@ const I18N = {
   fr: {
     tagline:       'apprendre le chinois, un caractère à la fois',
     back:          '← Retour à l’app',
+    lessonsLink:   'Leçons',
     home:          'Accueil',
     footerNote:    'Illustrations générées pour ce projet · vocabulaire HSK 1',
     modeCards:     'Cartes',
@@ -49,6 +50,7 @@ const I18N = {
   en: {
     tagline:       'learn Chinese, one character at a time',
     back:          '← Back to the app',
+    lessonsLink:   'Lessons',
     home:          'Home',
     footerNote:    'Illustrations generated for this project · HSK 1 vocabulary',
     modeCards:     'Cards',
@@ -349,7 +351,7 @@ function renderCards() {
   stage.innerHTML = `
     <div class="q-card card-flash">
       <div class="flash-image-wrap">
-        <img src="assets/img/hsk1/${w.image}" alt="${w.char}" class="q-image" loading="eager">
+        <img src="assets/img/hsk${w.level}/${w.image}" alt="${w.char}" class="q-image" loading="eager">
         ${speakButton(w)}
       </div>
       <div class="flash-body">
@@ -384,7 +386,7 @@ function renderImg2Word() {
     <p class="q-prompt">${t().pickWord}</p>
     <div class="q-card quiz-card">
       <div class="flash-image-wrap big">
-        <img src="assets/img/hsk1/${w.image}" alt="" class="q-image">
+        <img src="assets/img/hsk${w.level}/${w.image}" alt="" class="q-image">
         ${speakButton(w)}
       </div>
       <div class="choices choices-text" id="choices"></div>
@@ -421,7 +423,7 @@ function renderWord2Img() {
   choices.forEach(c => {
     const b = document.createElement('button');
     b.className = 'choice choice-img';
-    b.innerHTML = `<img src="assets/img/hsk1/${c.image}" alt="">`;
+    b.innerHTML = `<img src="assets/img/hsk${c.level}/${c.image}" alt="">`;
     b.addEventListener('click', () => answer(b, c.slug === w.slug, w, box));
     box.appendChild(b);
   });

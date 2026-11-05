@@ -1,0 +1,264 @@
+/* =========================================================================
+   LEÇONS DE CONVERSATION — mise en page
+   Reprend les variables et le chrome de style.css (papier, encre, rouge).
+   ========================================================================= */
+
+.lessons-app { gap: clamp(0.6rem, 1.6vw, 1.1rem); }
+
+/* ---------------------------------------------------------------- NAV */
+.lesson-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  padding: 0.45rem 0.7rem;
+  background: rgba(255, 250, 235, 0.5);
+  border: 1px solid rgba(60, 35, 15, 0.18);
+  border-radius: 8px;
+}
+.lesson-level {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--paper-light);
+  background: var(--ink);
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+}
+.lesson-nav-title { font-weight: 600; font-size: 0.95rem; }
+.lesson-nav-note { font-size: 0.78rem; font-style: italic; color: var(--ink-soft); }
+@media (max-width: 560px) { .lesson-nav-note { display: none; } }
+
+/* ------------------------------------------------------------- LAYOUT */
+.lessons-main {
+  display: grid;
+  grid-template-columns: minmax(210px, 250px) 1fr;
+  gap: clamp(0.6rem, 2vw, 1.2rem);
+  align-items: start;
+  flex: 1;
+}
+@media (max-width: 860px) {
+  .lessons-main { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------- LISTE DES LECONS */
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-height: calc(100dvh - 210px);
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+@media (max-width: 860px) {
+  .lesson-list {
+    flex-direction: row;
+    max-height: none;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+  }
+}
+.lesson-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.42rem 0.6rem;
+  border: 1px solid rgba(60, 35, 15, 0.18);
+  border-radius: 7px;
+  background: rgba(255, 250, 235, 0.55);
+  color: var(--ink);
+  transition: background .15s, border-color .15s;
+}
+.lesson-item:hover { background: rgba(255, 250, 235, 0.9); }
+.lesson-item.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper-light);
+}
+.lesson-item.active .lesson-item-meta { color: #f0c5a0; }
+.lesson-item-num {
+  font-size: 0.72rem;
+  opacity: .65;
+  font-variant-numeric: tabular-nums;
+  min-width: 1.1em;
+}
+.lesson-item-title { font-size: 0.9rem; flex: 1; }
+.lesson-item-meta { font-size: 0.7rem; opacity: .6; white-space: nowrap; }
+.lesson-item-done { color: #6a9a52; font-size: 0.78rem; }
+.lesson-item.active .lesson-item-done { color: #8fc47a; }
+
+/* ---------------------------------------------------------------- PANEL */
+.lesson-panel {
+  background: rgba(255, 250, 235, 0.72);
+  border: 1px solid rgba(60, 35, 15, 0.2);
+  border-radius: 10px;
+  padding: clamp(0.7rem, 2vw, 1.3rem);
+  box-shadow: 0 2px 10px var(--shadow);
+  min-width: 0;
+}
+
+.lesson-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(60, 35, 15, 0.15);
+}
+.lesson-title { margin: 0; font-size: clamp(1.15rem, 3vw, 1.5rem); }
+.lesson-sub { margin: 0.15rem 0 0; font-size: 0.82rem; color: var(--ink-soft); font-style: italic; }
+
+.lesson-tools { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.tool-btn {
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(60, 35, 15, 0.25);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  min-height: 32px;
+}
+.tool-btn:hover { background: #fff; border-color: var(--accent); color: var(--accent); }
+.tool-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tool-btn:disabled { opacity: .45; cursor: default; }
+
+/* ------------------------------------------------------------ DIALOGUE */
+.lesson-dialogue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.9rem 0 0.3rem;
+}
+.exchange {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: start;
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  transition: background .2s;
+}
+.exchange.speaking { background: var(--accent-soft); }
+.exchange-who {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.exchange.b .exchange-who { background: var(--accent); }
+.exchange-body { min-width: 0; }
+.exchange-hanzi {
+  font-family: "STKaiti", "Kaiti SC", "Noto Serif CJK SC", serif;
+  font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+  line-height: 1.35;
+}
+.exchange-pinyin {
+  font-size: 0.86rem;
+  color: #7a4526;
+  letter-spacing: 0.01em;
+}
+.exchange-pinyin.hidden, .exchange-tr.hidden { display: none; }
+.exchange-tr {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-top: 0.1rem;
+}
+.exchange-chips { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.3rem; }
+.chip {
+  font-size: 0.7rem;
+  padding: 0.08rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(60, 35, 15, 0.08);
+  border: 1px solid rgba(60, 35, 15, 0.14);
+  color: var(--ink-soft);
+  cursor: default;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.speak-btn {
+  font: inherit;
+  cursor: pointer;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(60, 35, 15, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+  display: grid; place-items: center;
+  flex: none;
+}
+.speak-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ------------------------------------------------------------- VOCAB */
+.lesson-vocab {
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(60, 35, 15, 0.15);
+}
+.lesson-vocab-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 0.45rem;
+}
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.4rem;
+}
+.vocab-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.3rem 0.45rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(60, 35, 15, 0.12);
+}
+.vocab-char {
+  font-family: "STKaiti", "Kaiti SC", "Noto Serif CJK SC", serif;
+  font-size: 1.05rem;
+}
+.vocab-pinyin { font-size: 0.76rem; color: #7a4526; }
+.vocab-fr { font-size: 0.72rem; color: var(--ink-soft); margin-left: auto; text-align: right; }
+
+/* ------------------------------------------------------------ FOOTER */
+.lessons-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(60, 35, 15, 0.2);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.lessons-footer a { color: var(--accent); }
+
+/* ------------------------------------------------------- POPUP MOT */
+.word-pop {
+  position: fixed;
+  z-index: 50;
+  max-width: 240px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 7px;
+  background: var(--ink);
+  color: var(--paper-light);
+  font-size: 0.78rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+  pointer-events: none;
+}
+.word-pop b { color: #f0c5a0; }
+.loading { padding: 1.5rem; text-align: center; font-style: italic; color: var(--ink-soft); }

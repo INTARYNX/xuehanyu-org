@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leçons de conversation HSK 1 — Dialogues | xuehanyu.org</title>
+<meta name="description" content="Dix leçons de conversation en chinois HSK 1 : des dialogues courts qui n'emploient que le vocabulaire HSK 1, avec pinyin, traduction et audio.">
+<meta name="author" content="xuehanyu.org">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.xuehanyu.org/lessons.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xuehanyu.org">
+<meta property="og:url" content="https://www.xuehanyu.org/lessons.html">
+<meta property="og:title" content="Leçons de conversation HSK 1 — Dialogues | xuehanyu.org">
+<meta property="og:description" content="Dix dialogues courts en chinois, restreints au vocabulaire HSK 1, avec pinyin, traduction et lecture audio.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leçons de conversation HSK 1 — Dialogues">
+<meta name="twitter:description" content="Dix dialogues courts en chinois, restreints au vocabulaire HSK 1.">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lessons.css">
+</head>
+<body class="lessons-body">
+
+<canvas id="paper-bg"></canvas>
+
+<div class="app lessons-app">
+
+  <header>
+    <div class="header-text">
+      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
+      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
+    </div>
+    <div class="header-right">
+      <a href="app.html" class="header-link" id="backLink" data-i18n="back">← Retour à l'app</a>
+      <div class="lang-switch">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="lesson-nav">
+    <span class="lesson-level">HSK 1</span>
+    <span class="lesson-nav-title" data-i18n="navTitle">Leçons de conversation</span>
+    <span class="lesson-nav-note" data-i18n="navNote">vocabulaire HSK 1 uniquement</span>
+  </nav>
+
+  <main class="lessons-main">
+
+    <aside class="lesson-list" id="lessonList"></aside>
+
+    <section class="lesson-panel">
+
+      <div class="lesson-head">
+        <div>
+          <h2 class="lesson-title" id="lessonTitle">—</h2>
+          <p class="lesson-sub" id="lessonSub">—</p>
+        </div>
+        <div class="lesson-tools">
+          <button class="tool-btn" id="btnPinyin"><i class="fa-solid fa-language"></i><span data-i18n="pinyin">Pinyin</span></button>
+          <button class="tool-btn" id="btnTrans"><i class="fa-solid fa-eye-slash"></i><span data-i18n="hideTrans">Masquer la traduction</span></button>
+          <button class="tool-btn" id="btnPlay"><i class="fa-solid fa-play"></i><span data-i18n="playAll">Écouter</span></button>
+          <button class="tool-btn" id="btnReview"><i class="fa-solid fa-check"></i><span data-i18n="markReviewed">Marquer comme revu</span></button>
+        </div>
+      </div>
+
+      <div class="lesson-dialogue" id="dialogue"></div>
+
+      <div class="lesson-vocab" id="vocab"></div>
+
+    </section>
+
+  </main>
+
+  <footer class="lessons-footer">
+    <span><span id="footerNote" data-i18n="footerNote">Dialogues restreints au vocabulaire HSK 1</span> · <span id="lessonVersion"></span></span>
+    <a href="index.html" data-i18n="home">Accueil</a>
+  </footer>
+
+</div>
+
+<script src="lessons-pinyin.js"></script>
+<script src="lessons.js"></script>
+</body>
+</html>

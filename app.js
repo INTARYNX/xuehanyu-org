@@ -5,6 +5,15 @@ const HSK_LEVELS = [1, 2, 3, 4, 5, 6];
 const HSK_DATA = {};
 const loadingState = {};
 
+// CFDICT contient quelques coquilles : « frêre aîné » (au lieu de
+// « frère aîné »). On les corrige à l'affichage.
+const FR_TYPOS = { 'frêre aîné': 'frère aîné' };
+function fixFrench(fr) {
+  let out = fr;
+  for (const [bad, good] of Object.entries(FR_TYPOS)) out = out.split(bad).join(good);
+  return out;
+}
+
 async function loadLevel(level) {
   if (HSK_DATA[level]) return HSK_DATA[level];
   if (loadingState[level] === 'loading') return null;
@@ -22,7 +31,7 @@ async function loadLevel(level) {
       pinyin:      e.pinyin,
       classifiers: e.classifiers || [],
       en:          Array.isArray(e.english) ? e.english.join('; ') : (e.english || ''),
-      fr:          Array.isArray(e.french)  ? e.french.join('; ')  : (e.french  || '')
+      fr:          fixFrench(Array.isArray(e.french) ? e.french.join('; ') : (e.french || ''))
     }));
     loadingState[level] = 'loaded';
   } catch (err) {
@@ -70,7 +79,8 @@ const I18N = {
     toneDuration: 'durée',
     toneConfidence: 'confiance',
     toneInWord:   'en phrase',
-    quizLink:     'Quiz d\'images'
+    quizLink:     'Quiz d\'images',
+    lessonsLink:  'Leçons'
   },
   en: {
     tagline:      'learn Chinese, one character at a time',
@@ -105,7 +115,8 @@ const I18N = {
     toneDuration: 'duration',
     toneConfidence: 'confidence',
     toneInWord:   'in the word',
-    quizLink:     'Image quiz'
+    quizLink:     'Image quiz',
+    lessonsLink:  'Lessons'
   }
 };
 

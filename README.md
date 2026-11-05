@@ -9,7 +9,8 @@ A static web app for studying Mandarin Chinese vocabulary from HSK levels 1–6.
 - **HSK 1–6 vocabulary** — 5,000+ characters with pinyin, French and English translations, radicals, classifiers, and part-of-speech tags
 - **Animated stroke order** via [Hanzi Writer](https://hanziwriter.org)
 - **Stroke quiz** — trace the character yourself
-- **Image quiz** — learn the 45 most concrete HSK 1 words from illustrations, with three modes (see below)
+- **Image quiz** — learn the 106 concrete HSK 1–2 words from illustrations, with three modes (see below)
+- **Conversation lessons** — 25 HSK 1 dialogues built with **HSK 1 words only**, with pinyin (sandhi applied), translation and audio
 - **Text-to-speech** — hear the pronunciation
 - **Tone detection** — record yourself and get real-time pitch feedback: measured breakdown (F0 start → end, pitch change in semitones, duration, confidence) and the target tone shape drawn on the same semitone scale
 - **Bilingual UI** — French / English
@@ -36,7 +37,7 @@ Data sources:
 
 The level selector at the top switches between HSK 1 and HSK 2. Each level has its own deck — a beginner never meets a word from a level they haven't reached — while the distractors are drawn from the current level **and the previous ones**, so the choices stay demanding even on a short level.
 
-> **Current state:** HSK 1 is complete (55 words). HSK 2 is partially illustrated (13 of 51) — the level selector shows the real count, and the remaining illustrations are produced by the command below as soon as image-generation credit is available.
+> **Current state:** HSK 1 is complete (55 words) and HSK 2 is complete (51 words) — 106 illustrations in all. The level selector shows the real count of each deck.
 
 Three modes, all bilingual and fully static:
 
@@ -52,7 +53,28 @@ A few design choices worth knowing:
 - **Indistinguishable pairs are never offered together.** Some words are impossible to tell apart from the picture alone — at HSK 1 level a beginner has no way to know a university hall from a primary school. `scripts/image_words.py` declares those pairs in `CONFUSABLE`, and the quiz refuses to put two of them in the same set of choices. Declaring a pair is a deliberate editorial decision: it means *the image cannot carry the distinction*, not that the two words are similar.
 - **No tone is ever forced** — the progress bar shows the position, the score is only counted for the two quiz modes.
 - **Progress is remembered locally** (`localStorage`): the words you marked as known are kept out of the *To review only* filter.
-- The illustrations are **versioned in the repository** (`assets/img/hsk1/*.webp`, ~20 kB each), so the page works offline and calls no external service.
+- The illustrations are **versioned in the repository** (`assets/img/hsk<n>/*.webp`, ~20 kB each), so the page works offline and calls no external service.
+
+### Lessons
+
+[`lessons.html`](lessons.html) is a page of short conversations — **25 dialogues, 363 lines**, on everyday topics: introducing yourself, at the restaurant, shopping, asking the way, work, family, weather, at the clinic, leisure, meeting someone, the rhythm of a day, at home, on the phone, at school, reading and writing, dates, numbers and money.
+
+Together they use **293 of the 294 HSK 1 words** — only 们 (the plural suffix, which only exists glued to a pronoun) is left out.
+
+The point is the **vocabulary constraint**: every line is written with HSK 1 words only. The constraint is checked at the *word* level, not the dictionary level — 「你好」 is fine because it splits into 你 + 好, both of them HSK 1. `scripts/build_lessons.py` segments each line by longest match against the HSK 1 vocabulary and refuses to write the file if a single word is out of scope.
+
+| File | Content |
+| --- | --- |
+| `lessons/source.json` | The authored content (hanzi + FR/EN translations) — the editable source of truth |
+| `lessons/hsk1.json` | The built lessons: title, exchanges (hanzi, pinyin, FR and EN translation, HSK 1 words used) |
+| `lessons/hsk1-vocab.json` | The 294 HSK 1 entries with pinyin and meaning — the reference the vocabulary check runs against |
+| `lessons-pinyin.js` | Tone sandhi (3+3 → 2+3, 不+4 → bú, 一 → yí/yì), shared by the page and the tests |
+
+```bash
+python3 scripts/build_lessons.py   # validates lessons/source.json and rebuilds lessons/hsk1.json
+```
+
+The page shows the pinyin *as it is pronounced* (sandhi applied, and never across a full stop), hides or shows the translation, reads the whole conversation aloud, and keeps the reviewed lessons in `localStorage`. Clicking a word chip shows its meaning.
 
 ### Mobile
 
@@ -142,13 +164,15 @@ The app captures at **16 kHz** (`AudioContext({ sampleRate: 16000 })`) with a 10
 ## Tests
 
 ```bash
-node --test tests/tone-dsp.test.mjs tests/app-tone.test.mjs tests/tone-3.test.mjs tests/quiz.test.mjs   # 82 tests
+node --test tests/tone-dsp.test.mjs tests/app-tone.test.mjs tests/tone-3.test.mjs tests/quiz.test.mjs tests/lessons.test.mjs   # 102 tests
 node tests/tone-dsp.bench.mjs      # benchmark: 600 generated cases, confusion matrix
 ```
 
 `tests/app-tone.test.mjs` loads `app.js` in a simulated DOM and checks the UI logic: the reference tone is the *cited* form, the sandhi is only shown as information, the grading (`perfect` / `close` / `wrong` / `unclear`) and the measurement banner.
 
 `tests/tone-3.test.mjs` focuses on the dipping tone. It runs the **realistic contour corpus** (`tests/fixtures/real-contours.mjs`) — tone shapes as they are actually observed on a recording, with their accidents (low plateau, final rise, attack head) — through the classifier alone, then through the full audio chain, across registers, durations, noise levels, octave errors and capture windows. It also checks the regressions (a tone 3 with a late valley must not be reported as a tone 4, a half third tone that drifts must stay a tone 3, a flat tone with a mid-sag must not become a tone 3, …) and that the sensitivity presets really change the outcome.
+
+`tests/lessons.test.mjs` checks the lessons: the data integrity (every line has a pinyin and both translations), and above all **the vocabulary constraint** — every line must segment into HSK 1 words only, and the word chips shown in the page must match that segmentation exactly. It also checks the tone sandhi (`3+3 → 2+3`, `不+4 → bú`, `一 → yí/yì`), that the sandhi never crosses a full stop, that no line contains a corrupted character (U+FFFD), that the lessons cover at least 95 % of the HSK 1 vocabulary, that the French uses a single register (tutoiement) and that the French/English glosses are not split character by character.
 
 `tests/quiz.test.mjs` checks the image quiz: manifest integrity (schema, uniqueness, every image file present, every word really in HSK 1) and the distractor logic — the four choices offered are always distinct, never include the answer, and preferentially come from the same semantic category so the test discriminates meaning rather than topic. It also asserts that **no two indistinguishable words are ever offered in the same set of choices**, and that the `CONFUSABLE` declarations are symmetric.
 
@@ -165,6 +189,17 @@ Real recordings can be plugged in the same way with `loadWav(path)` from `tests/
 ```
 
 This downloads and processes the HSK vocabulary into `data/hsk1.json` … `data/hsk6.json`.
+
+The live site serves the very same files, so on a machine without PowerShell they can be fetched directly:
+
+```bash
+mkdir -p data
+for i in 1 2 3 4 5 6; do
+  curl -sL -o "data/hsk$i.json" "https://www.xuehanyu.org/data/hsk$i.json"
+done
+```
+
+`data/` is git-ignored, so it never lands in a commit — but `scripts/build_lessons.py` needs `data/hsk1.json` to rebuild the lessons, while the page itself only reads the committed `lessons/` files.
 
 **2. Serve the site** — because the app fetches `data/hsk*.json` via `fetch()`, you need a local server to avoid CORS errors:
 

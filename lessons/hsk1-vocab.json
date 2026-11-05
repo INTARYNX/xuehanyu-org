@@ -1,0 +1,1476 @@
+{
+ "level": 1,
+ "source": "data/hsk1.json",
+ "words": {
+  "爱": {
+   "p": "ài",
+   "fr": "amour; aimer; affection; être fan de; adorer",
+   "en": "to love; to be fond of; to like; affection; to be inclined (to do sth); to tend to (happen)"
+  },
+  "八": {
+   "p": "bā",
+   "fr": "huit; 8",
+   "en": "eight; 8"
+  },
+  "爸爸": {
+   "p": "bà ba",
+   "fr": "papa",
+   "en": "(coll.) father; dad"
+  },
+  "吧": {
+   "p": "ba",
+   "fr": "bar; (utilisé à la fin d'une phrase pour marquer une suggestion, une requête ou ordre); ... pas vrai ?; ... d'accord ?",
+   "en": "bar (loanword) (serving drinks, or providing Internet access etc); to puff (on a pipe etc); (onom.) bang; abbr. for 贴吧"
+  },
+  "白天": {
+   "p": "bái tiān",
+   "fr": "le jour; en plein jour; pendant la journée; toute la sainte journée",
+   "en": "daytime; during the day; day"
+  },
+  "百": {
+   "p": "bǎi",
+   "fr": "cent; nombreux; beaucoup de; centaine",
+   "en": "surname Bai"
+  },
+  "半": {
+   "p": "bàn",
+   "fr": "demi; semi; moitié; au milieu de; partiel; presque",
+   "en": "half; semi-; incomplete; (after a number) and a half"
+  },
+  "包子": {
+   "p": "bāo zi",
+   "fr": "brioche à la vapeur; baozi",
+   "en": "bao (steamed stuffed bun)"
+  },
+  "杯子": {
+   "p": "bēi zi",
+   "fr": "verre (récipient)",
+   "en": "cup; glass"
+  },
+  "本": {
+   "p": "běn",
+   "fr": "racine; tige; fondation; origine; capital; principal; base; celui-ci; (classificateur pour les livres, cahier; carnet, etc.)",
+   "en": "root; stem; origin; source; this; the current; original; inherent; originally; classifier for books, periodicals, files etc"
+  },
+  "边": {
+   "p": "biān",
+   "fr": "(suffixe locatif); côté; bord; marge; frontière; en même temps; simultanément",
+   "en": "side; edge; margin; border; boundary; simultaneously"
+  },
+  "便宜": {
+   "p": "biàn yí",
+   "fr": "bon marché; pas cher; avantage; gain",
+   "en": "convenient"
+  },
+  "病": {
+   "p": "bìng",
+   "fr": "tomber malade; maladie; défaut; faute",
+   "en": "illness; disease; to fall ill; defect"
+  },
+  "不": {
+   "p": "bù",
+   "fr": "ne... pas; non; (pour former une question placé à la fin d'une phrase, pour indiquer l'indifférence avec shen me; pour indiquer une alternative avec jiu)",
+   "en": "no; not so; (bound form) not; un-"
+  },
+  "不客气": {
+   "p": "bù kè qi",
+   "fr": "impoli; rude; sans ménagement; de rien",
+   "en": "you're welcome; don't mention it; impolite; rude; blunt"
+  },
+  "不要": {
+   "p": "bù yào",
+   "fr": "ne... pas",
+   "en": "don't!; must not"
+  },
+  "菜": {
+   "p": "cài",
+   "fr": "légumes; plat; cuisine",
+   "en": "dish (type of food); vegetable; cuisine; (coll.) (one's) type; (of one's skills etc) weak; poor"
+  },
+  "茶": {
+   "p": "chá",
+   "fr": "thé; infusion de thé ou d'autre chose",
+   "en": "tea; tea plant"
+  },
+  "唱": {
+   "p": "chàng",
+   "fr": "chanter; crier",
+   "en": "to sing; to call loudly; to chant"
+  },
+  "超市": {
+   "p": "chāo shì",
+   "fr": "supermarché; supérette; hypermarché",
+   "en": "supermarket (abbr. for 超级市场)"
+  },
+  "车": {
+   "p": "chē",
+   "fr": "véhicule; voiture; machine; tourner; façonner; chariot (pièce dans le jeu d'échecs chinois Xiangqi)",
+   "en": "surname Che"
+  },
+  "吃": {
+   "p": "chī",
+   "fr": "manger; prendre; anéantir; absorber; s'imprégner de; bégaiement; balbutiement",
+   "en": "to eat; to consume; to eat at (a cafeteria etc); to eradicate; to destroy; to absorb; to suffer (shock, injury, defeat etc)"
+  },
+  "出租车": {
+   "p": "chū zū chē",
+   "fr": "taxi",
+   "en": "taxi; (Tw) rental car"
+  },
+  "穿": {
+   "p": "chuān",
+   "fr": "percer; pénétrer; passer par; traverser; s'habiller; vêtir; porter",
+   "en": "to wear; to put on; to dress; to bore through; to pierce; to perforate; to penetrate; to pass through; to thread"
+  },
+  "打电话": {
+   "p": "dǎ diàn huà",
+   "fr": "téléphoner",
+   "en": "to make a telephone call"
+  },
+  "大": {
+   "p": "dà",
+   "fr": "grand; massif; docteur; médecin",
+   "en": "big; large; great; older (than another person); eldest (as in 姐); greatly; freely; fully; (dialect) father; (dialect) uncle (father's brother)"
+  },
+  "大家": {
+   "p": "dà jiā",
+   "fr": "tous; tout le monde; chacun; grand maître; autorité",
+   "en": "everyone; influential family; great expert"
+  },
+  "大学": {
+   "p": "dà xué",
+   "fr": "université",
+   "en": "the Great Learning, one of the Four Books 四书 in Confucianism"
+  },
+  "大学生": {
+   "p": "dà xué shēng",
+   "fr": "étudiant",
+   "en": "university student; college student"
+  },
+  "到": {
+   "p": "dào",
+   "fr": "à; jusqu'à; arriver; parvenir; atteindre; aller à",
+   "en": "to reach; to arrive; to leave for; to go to; to (a place); until (a time); up to (a point); (verb complement indicating arriving at a place or reaching a point); considerate; thoughtful; thorough"
+  },
+  "的": {
+   "p": "de",
+   "fr": "de; (utilisé après un adjectif, un nom, un verbe pour indiquer la possession ou une relation); vrai; le centre de la cible; but; objectif",
+   "en": "of; ~'s (possessive particle); (used after an attribute); (used to form a nominal expression); (used at the end of a declarative sentence for emphasis); also pr. [dì] or [di] in poetry and songs"
+  },
+  "弟弟": {
+   "p": "dì di",
+   "fr": "frère cadet",
+   "en": "younger brother"
+  },
+  "第": {
+   "p": "dì",
+   "fr": "(préfixe formant les nombres ordinaux); numéro...",
+   "en": "(prefix indicating ordinal number, as in 六 \"sixth\"); (literary) grades in which successful candidates in the imperial examinations were placed; (old) residence of a high official; (literary) but; however; (literary) only; just"
+  },
+  "点": {
+   "p": "diǎn",
+   "fr": "un peu; un point; marquer; allumer; coup de l'horloge; faire un signe de la tête; commander",
+   "en": "point; dot; drop; speck; o'clock; point (in space or time); to draw a dot; to check on a list; to choose; to order (food in a restaurant); to touch briefly; to hint; to light; to ignite; to pour a liquid drop by drop; (old) one fifth of a two-hour watch 更; dot stroke in Chinese characters; classifier for items"
+  },
+  "电话": {
+   "p": "diàn huà",
+   "fr": "téléphone",
+   "en": "telephone; phone call; phone number"
+  },
+  "电脑": {
+   "p": "diàn nǎo",
+   "fr": "ordinateur",
+   "en": "computer"
+  },
+  "电视": {
+   "p": "diàn shì",
+   "fr": "télévision; télé; TV",
+   "en": "television; TV"
+  },
+  "电影": {
+   "p": "diàn yǐng",
+   "fr": "cinéma; film",
+   "en": "movie; film"
+  },
+  "电影院": {
+   "p": "diàn yǐng yuàn",
+   "fr": "salle de cinéma",
+   "en": "cinema; movie theater"
+  },
+  "店": {
+   "p": "diàn",
+   "fr": "boutique; magasin; auberge; hôtel",
+   "en": "inn; old-style hotel; (bound form) shop; store"
+  },
+  "东西": {
+   "p": "dōng xī",
+   "fr": "chose; quelque chose; objet; sujet; créature",
+   "en": "east and west"
+  },
+  "都": {
+   "p": "dōu",
+   "fr": "tous; tous les; déjà; capitale",
+   "en": "surname Du"
+  },
+  "读": {
+   "p": "dú",
+   "fr": "pause dans la lecture; virgule; lire; faire ses études",
+   "en": "comma; phrase marked by pause"
+  },
+  "读书": {
+   "p": "dú shū",
+   "fr": "lire; étudier",
+   "en": "to read a book; to study; to attend school"
+  },
+  "对": {
+   "p": "duì",
+   "fr": "correct; juste; paire; couple; à; contre; pour; envers; répondre; traiter; s'opposer à; braquer; convenir; confronter; vérifier; ajuster; régler",
+   "en": "right; correct; towards; at; for; concerning; regarding; to treat (sb a certain way); to face; (bound form) opposite; facing; matching; to match together; to adjust; to fit; to suit; to answer; to reply; to add; to pour in (a fluid); to check; to compare; classifier: couple; pair"
+  },
+  "对不起": {
+   "p": "duì bu qǐ",
+   "fr": "excusez-moi; pardon; désolé",
+   "en": "I'm sorry; excuse me; I beg your pardon; to let (sb) down; to disappoint"
+  },
+  "多": {
+   "p": "duō",
+   "fr": "beaucoup; nombreux; de plus; de trop; plus de",
+   "en": "many; much; too many; in excess; (after a numeral) ... odd; how (to what extent) (Taiwan pr. [duó]); (bound form) multi-; poly-"
+  },
+  "多少": {
+   "p": "duō shǎo",
+   "fr": "combien; autant que",
+   "en": "number; amount; somewhat"
+  },
+  "儿子": {
+   "p": "ér zi",
+   "fr": "fils (famille)",
+   "en": "son"
+  },
+  "二": {
+   "p": "èr",
+   "fr": "2; deux; stupide (dialecte pékinois)",
+   "en": "two; 2; (Beijing dialect) stupid"
+  },
+  "饭": {
+   "p": "fàn",
+   "fr": "riz cuit; repas",
+   "en": "cooked rice; meal; (loanword) fan; devotee"
+  },
+  "饭店": {
+   "p": "fàn diàn",
+   "fr": "restaurant; hôtel",
+   "en": "restaurant; hotel"
+  },
+  "房间": {
+   "p": "fáng jiān",
+   "fr": "salle; pièce (d'un appartement, d'une maison); chambre",
+   "en": "room"
+  },
+  "飞机": {
+   "p": "fēi jī",
+   "fr": "avion; (argot) branlette; masturbation (masculine)",
+   "en": "airplane"
+  },
+  "非常": {
+   "p": "fēi cháng",
+   "fr": "extraordinaire; exceptionnel; très; extrêmement",
+   "en": "very; really; unusual; extraordinary"
+  },
+  "分": {
+   "p": "fēn",
+   "fr": "diviser; partager; distinguer; partie; minute; dixième (de certaines unités); centième de yuan (monnaie); centième d'once; part afférente; dividende; office",
+   "en": "to divide; to separate; to distribute; to allocate; to distinguish (good and bad); (bound form) branch of (an organization); sub- (as in 局); fraction; one tenth (of certain units); unit of length equivalent to 0.33 cm; minute (unit of time); minute (angular measurement unit); a point (in sports or games); 0.01 yuan (unit of money)"
+  },
+  "分钟": {
+   "p": "fēn zhōng",
+   "fr": "minute",
+   "en": "minute"
+  },
+  "高兴": {
+   "p": "gāo xìng",
+   "fr": "gai; content; joyeux; heureux",
+   "en": "happy; glad; willing (to do sth); in a cheerful mood"
+  },
+  "哥哥": {
+   "p": "gē ge",
+   "fr": "frère aîné",
+   "en": "older brother"
+  },
+  "歌": {
+   "p": "gē",
+   "fr": "chanter; chant; chanson",
+   "en": "song; to sing"
+  },
+  "个": {
+   "p": "gè",
+   "fr": "individuel; un; (classificateur pour les personnes et de nombreuses choses); taille",
+   "en": "used in 自个儿"
+  },
+  "给": {
+   "p": "gěi",
+   "fr": "pour; donner; offrir; accorder; laisser; permettre; fournir; approvisionner; ample; bien pourvu de",
+   "en": "to; for; for the benefit of; to give; to allow; to do sth (for sb); (grammatical equivalent of 被); (grammatical equivalent of 把); (sentence intensifier)"
+  },
+  "工作": {
+   "p": "gōng zuò",
+   "fr": "travail; besogne",
+   "en": "to work; (of a machine) to operate; job; work; task"
+  },
+  "公司": {
+   "p": "gōng sī",
+   "fr": "société; compagnie",
+   "en": "company; firm; corporation"
+  },
+  "狗": {
+   "p": "gǒu",
+   "fr": "chien; maudit",
+   "en": "dog"
+  },
+  "贵": {
+   "p": "guì",
+   "fr": "cher; coûteux; précieux",
+   "en": "expensive; noble; precious; (honorific) your"
+  },
+  "国": {
+   "p": "guó",
+   "fr": "pays; royaume; État",
+   "en": "surname Guo"
+  },
+  "还": {
+   "p": "hái",
+   "fr": "encore; encore plus; plutôt; de plus; retourner; regagner; rétablir; rendre; rembourser",
+   "en": "surname Huan"
+  },
+  "孩子": {
+   "p": "hái zi",
+   "fr": "enfant",
+   "en": "child"
+  },
+  "汉语": {
+   "p": "hàn yǔ",
+   "fr": "langue chinoise; chinois (langue); mandarin",
+   "en": "Chinese language"
+  },
+  "汉字": {
+   "p": "hàn zì",
+   "fr": "sinogramme; caractère chinois; kanji; hanja",
+   "en": "Chinese character; Japanese: kanji; Korean: hanja; Vietnamese: hán tự"
+  },
+  "好": {
+   "p": "hǎo",
+   "fr": "bien; bon; agréable; très; beaucoup; (après un verbe, indique l'achèvement de l'action); se porter bien; aller bien; avoir une inclination pour",
+   "en": "good; appropriate; proper; all right!; (before a verb) easy to; (before a verb) good to; (before an adjective for exclamatory effect) so; (verb complement indicating completion); (of two people) close; on intimate terms; (after a personal pronoun) hello"
+  },
+  "好吃": {
+   "p": "hǎo chī",
+   "fr": "bon (à manger); agréable (au goût); succulent; délicieux",
+   "en": "tasty; delicious"
+  },
+  "好看": {
+   "p": "hǎo kàn",
+   "fr": "agréable à voir; beau; intéressant",
+   "en": "good-looking; nice-looking; good (of a movie, book, TV show etc); embarrassed; humiliated"
+  },
+  "好听": {
+   "p": "hǎo tīng",
+   "fr": "agréable à entendre",
+   "en": "pleasant to hear"
+  },
+  "好玩儿": {
+   "p": "hǎo wán r",
+   "fr": "drôle; amusant",
+   "en": "erhua variant of 好玩; amusing; fun; interesting"
+  },
+  "号": {
+   "p": "hào",
+   "fr": "hurler; numéro; nombre; jour du mois",
+   "en": "roar; cry"
+  },
+  "喝": {
+   "p": "hē",
+   "fr": "boire; crier fort",
+   "en": "to drink; variant of 嗬"
+  },
+  "和": {
+   "p": "hé",
+   "fr": "et; avec; harmonie; paix; union; poésie; doux; pétrir; mêler; compléter un ensemble au mahjong; compléter une suite aux cartes",
+   "en": "old variant of 和"
+  },
+  "很": {
+   "p": "hěn",
+   "fr": "très",
+   "en": "(adverb of degree); quite; very; awfully"
+  },
+  "后": {
+   "p": "hòu",
+   "fr": "arrière; descendant; reine; derrière; après; ensuite",
+   "en": "surname Hou"
+  },
+  "回": {
+   "p": "huí",
+   "fr": "fois; revenir; retourner; tourner; répondre",
+   "en": "to circle; to go back; to turn around; to answer; to return; to revolve; Hui ethnic group (Chinese Muslims); time; classifier for acts of a play; section or chapter (of a classic book)"
+  },
+  "会": {
+   "p": "huì",
+   "fr": "se réunir; rencontrer; voir; savoir; pouvoir; réunion; groupe; comptabilité",
+   "en": "can; to have the skill; to know how to; to be likely to; to be sure to; to meet; to get together; meeting; gathering; (suffix) union; group; association; (bound form) a moment (Taiwan pr. [huǐ])"
+  },
+  "火车": {
+   "p": "huǒ chē",
+   "fr": "train",
+   "en": "train"
+  },
+  "鸡蛋": {
+   "p": "jī dàn",
+   "fr": "oeuf",
+   "en": "(chicken) egg; hen's egg"
+  },
+  "几": {
+   "p": "jī",
+   "fr": "presque; combien; quelques; un peu; petite table",
+   "en": "small table"
+  },
+  "家": {
+   "p": "jiā",
+   "fr": "famille; foyer; maison; domicile; (mot de mesure pour les experts, spécialistes, ...)",
+   "en": "used in 家伙 and 家俱"
+  },
+  "家人": {
+   "p": "jiā rén",
+   "fr": "membres d'une famille",
+   "en": "family member; (old) servant"
+  },
+  "见": {
+   "p": "jiàn",
+   "fr": "voir; apercevoir; rencontrer; être au contact de; être exposé à; se référer à; apparaître; se montrer",
+   "en": "to see; to meet; to appear (to be sth); to interview; opinion; view"
+  },
+  "件": {
+   "p": "jiàn",
+   "fr": "pièce; lettre; document; (classificateur pour les vêtements, etc.)",
+   "en": "item; component; classifier for events, things, clothes etc"
+  },
+  "饺子": {
+   "p": "jiǎo zi",
+   "fr": "ravioli",
+   "en": "dumpling; pot-sticker"
+  },
+  "叫": {
+   "p": "jiào",
+   "fr": "crier; appeler; s'appeler; ordonner; par",
+   "en": "to shout; to call; to order; to ask; to be called; by (indicates agent in the passive mood)"
+  },
+  "姐姐": {
+   "p": "jiě jie",
+   "fr": "grande soeur",
+   "en": "older sister"
+  },
+  "今年": {
+   "p": "jīn nián",
+   "fr": "cette année",
+   "en": "this year"
+  },
+  "今天": {
+   "p": "jīn tiān",
+   "fr": "aujourd'hui",
+   "en": "today; at the present; now"
+  },
+  "九": {
+   "p": "jiǔ",
+   "fr": "neuf (chiffre); 9",
+   "en": "nine; 9"
+  },
+  "觉得": {
+   "p": "jué de",
+   "fr": "sentir; trouver; penser; éprouver",
+   "en": "to think that ...; to feel that ...; to feel (uncomfortable etc)"
+  },
+  "开": {
+   "p": "kāi",
+   "fr": "ouvrir; frayer; percer; s'épanouir; mettre en marche; démarrer; fonder; établir; commencer; débuter; tenir; organiser; bouillir",
+   "en": "to open (transitive or intransitive); (of ships, vehicles, troops etc) to start; to turn on; to put in operation; to operate; to run; to boil; to write out (a prescription, check, invoice etc); (directional complement) away; off; carat (gold); abbr. for Kelvin, 开尔文; abbr. for 开本, book format"
+  },
+  "开车": {
+   "p": "kāi chē",
+   "fr": "conduire (un véhicule); mettre en marche; démarrer",
+   "en": "to drive a car"
+  },
+  "看": {
+   "p": "kān",
+   "fr": "garder; soigner; surveiller; voir; regarder; lire; considérer comme; voir que; traiter en tant que; juger; considérer; estimer; traiter; soigner; guérir",
+   "en": "to look after; to take care of; to watch; to guard"
+  },
+  "看病": {
+   "p": "kàn bìng",
+   "fr": "consulter un médecin; voir un patient",
+   "en": "to visit a doctor; to see a patient"
+  },
+  "看见": {
+   "p": "kàn jiàn",
+   "fr": "voir; apercevoir",
+   "en": "to see; to catch sight of"
+  },
+  "可以": {
+   "p": "kě yǐ",
+   "fr": "pouvoir; passable; assez bien",
+   "en": "can; may; possible; able to; not bad; pretty good"
+  },
+  "课": {
+   "p": "kè",
+   "fr": "leçon; cours; classe",
+   "en": "subject; course; class; lesson; to levy; tax; form of divination"
+  },
+  "口": {
+   "p": "kǒu",
+   "fr": "bouche; ouverture; entrée; passe; trou",
+   "en": "mouth; classifier for things with mouths (people, domestic animals, cannons, wells etc); classifier for bites or mouthfuls"
+  },
+  "块": {
+   "p": "kuài",
+   "fr": "masse; pièce; motte de terre; morceau; (classificateur des briques, piastres etc.)",
+   "en": "lump; chunk; piece; classifier for pieces of cloth, cake, soap etc; (coll.) classifier for money and currency units"
+  },
+  "来": {
+   "p": "lái",
+   "fr": "venir; arriver; prochain; suivant; environ",
+   "en": "to come; (used as a substitute for a more specific verb); hither (directional complement for motion toward the speaker, as in 回来); ever since (as in 自古以来); for the past (amount of time); (prefix) the coming ...; the next ... (as in 来世); (between two verbs) in order to; (after a round number) approximately; (used after 得 to indicate possibility, as in 谈得来, or after 不 to indicate impossibility, as in 吃不来)"
+  },
+  "老师": {
+   "p": "lǎo shī",
+   "fr": "enseignant; professeur",
+   "en": "teacher"
+  },
+  "了": {
+   "p": "le",
+   "fr": "finir; (utilisé après un verbe ou un adjectif pour marquer l'accomplissement d'une action); (mis à la fin d'une phrase pour marquer un changement ou une évidence)",
+   "en": "(completed action marker); (modal particle indicating change of state, situation now); (modal particle intensifying preceding clause)"
+  },
+  "冷": {
+   "p": "lěng",
+   "fr": "froid; glacial; désert; silencieux",
+   "en": "surname Leng"
+  },
+  "里": {
+   "p": "lǐ",
+   "fr": "dans; intérieur; à l'intérieur",
+   "en": "variant of 里"
+  },
+  "两": {
+   "p": "liǎng",
+   "fr": "deux (unités); once; taël",
+   "en": "two; both; some; a few; tael, unit of weight equal to 50 grams (modern) or 1⁄16 of a catty 斤 (old)"
+  },
+  "零": {
+   "p": "líng",
+   "fr": "zéro; 0; nul; quantité fractionnaire; se flétrir; se faner; nombre en sus d'un chiffre rond; néant; zéro degré; rien",
+   "en": "zero; nought; zero sign; fractional; fragmentary; odd (of numbers); (placed between two numbers to indicate a smaller quantity followed by a larger one); fraction; (in mathematics) remainder (after division); extra; to wither and fall; to wither"
+  },
+  "六": {
+   "p": "liù",
+   "fr": "six; 6",
+   "en": "six; 6"
+  },
+  "妈妈": {
+   "p": "mā ma",
+   "fr": "maman; mère",
+   "en": "mama; mommy; mother"
+  },
+  "吗": {
+   "p": "ma",
+   "fr": "morphine; que; quoi; (placé à la fin d'une phrase pour marquer une interrogation)",
+   "en": "(coll.) what?"
+  },
+  "买": {
+   "p": "mǎi",
+   "fr": "acheter",
+   "en": "to buy; to purchase"
+  },
+  "卖": {
+   "p": "mài",
+   "fr": "vendre",
+   "en": "to sell; to betray; to spare no effort; to show off or flaunt"
+  },
+  "忙": {
+   "p": "máng",
+   "fr": "se presser; occupé",
+   "en": "busy; hurriedly; to hurry; to rush"
+  },
+  "猫": {
+   "p": "māo",
+   "fr": "chat",
+   "en": "cat; (dialect) to hide oneself; (coll.) modem"
+  },
+  "没关系": {
+   "p": "méi guān xi",
+   "fr": "(expr. idiom.) Pas de quoi; Cela n'a pas d'importance; De rien",
+   "en": "it doesn't matter"
+  },
+  "没有": {
+   "p": "méi yǒu",
+   "fr": "ne pas avoir; ne...pas",
+   "en": "haven't; hasn't; doesn't exist; to not have; to not be"
+  },
+  "妹妹": {
+   "p": "mèi mei",
+   "fr": "plus jeune soeur; petite soeur; jeune fille",
+   "en": "younger sister; young woman"
+  },
+  "们": {
+   "p": "men",
+   "fr": "(suffixe marquant le pluriel et employé avec les pronoms personnels et certains noms de personne)",
+   "en": "plural marker for pronouns, and nouns referring to individuals"
+  },
+  "米饭": {
+   "p": "mǐ fàn",
+   "fr": "riz (cuit)",
+   "en": "(cooked) rice"
+  },
+  "面包": {
+   "p": "miàn bāo",
+   "fr": "pain",
+   "en": "bread"
+  },
+  "面条儿": {
+   "p": "miàn tiáo r",
+   "fr": "nouilles",
+   "en": "erhua variant of 面条; noodles"
+  },
+  "名字": {
+   "p": "míng zi",
+   "fr": "nom",
+   "en": "name (of a person or thing)"
+  },
+  "明年": {
+   "p": "míng nián",
+   "fr": "l'année prochaine",
+   "en": "next year"
+  },
+  "明天": {
+   "p": "míng tiān",
+   "fr": "demain; lendemain",
+   "en": "tomorrow"
+  },
+  "哪": {
+   "p": "nǎ",
+   "fr": "quel; comment; (particule finale pour embellir la sonorité de certaines phrases); lequel ?; (particule interrogative suivie d'un classificateur ou d'un chiffre-classificateur)",
+   "en": "how; which"
+  },
+  "哪儿": {
+   "p": "nǎ r",
+   "fr": "où ?",
+   "en": "where?; wherever; anywhere; somewhere; (used in rhetorical questions) how can ...?; how could ...?"
+  },
+  "哪里": {
+   "p": "nǎ lǐ",
+   "fr": "où ?; pas du tout ! (réponse modeste à un compliment)",
+   "en": "where?; somewhere; anywhere; wherever; nowhere (negative answer to question); humble expression denying compliment; also written 哪里"
+  },
+  "哪些": {
+   "p": "nǎ xiē",
+   "fr": "quels; qui ou quel; quoi",
+   "en": "which ones?; who?; what?"
+  },
+  "那": {
+   "p": "nà",
+   "fr": "ce; cela; (nom de famille)",
+   "en": "surname Na"
+  },
+  "那边": {
+   "p": "nà bian",
+   "fr": "là; là-bas",
+   "en": "over there; yonder"
+  },
+  "那儿": {
+   "p": "nà r",
+   "fr": "là; là-bas",
+   "en": "there"
+  },
+  "那里": {
+   "p": "nà li",
+   "fr": "là-bas",
+   "en": "there; that place"
+  },
+  "那些": {
+   "p": "nà xiē",
+   "fr": "ces; ceux-là; celles-là; ces",
+   "en": "those"
+  },
+  "男": {
+   "p": "nán",
+   "fr": "masculin; homme (en opposition à femme)",
+   "en": "male; Baron, lowest of five orders of nobility 位"
+  },
+  "男朋友": {
+   "p": "nán péng you",
+   "fr": "ami masculin; petit-ami; flirt; amoureux",
+   "en": "boyfriend"
+  },
+  "呢": {
+   "p": "ne",
+   "fr": "(particule finale pour réitérer une question antérieure); (particule finale indiquant une affirmation); ce ou cet (cantonais); lainage",
+   "en": "particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\", \"And ...?\"); particle for inquiring about location (\"Where is ...?\"); particle signaling a pause, to emphasize the preceding words and allow the listener time to take them on board (\"ok?\", \"are you with me?\"); (at the end of a declarative sentence) particle indicating continuation of a state or action; particle indicating strong affirmation"
+  },
+  "能": {
+   "p": "néng",
+   "fr": "capacité; énergie; pouvoir; être capable de",
+   "en": "surname Neng"
+  },
+  "你": {
+   "p": "nǐ",
+   "fr": "tu; toi",
+   "en": "you (informal, as opposed to courteous 您)"
+  },
+  "你们": {
+   "p": "nǐ men",
+   "fr": "vous",
+   "en": "you (plural)"
+  },
+  "年": {
+   "p": "nián",
+   "fr": "année; récolte",
+   "en": "surname Nian"
+  },
+  "您": {
+   "p": "nín",
+   "fr": "vous (politesse : 2e personne)",
+   "en": "you (courteous, as opposed to informal 你)"
+  },
+  "牛奶": {
+   "p": "niú nǎi",
+   "fr": "lait",
+   "en": "cow's milk"
+  },
+  "女": {
+   "p": "nǚ",
+   "fr": "femme; dame; fille; féminin",
+   "en": "female; woman; daughter"
+  },
+  "女儿": {
+   "p": "nǚ ér",
+   "fr": "fille (parenté)",
+   "en": "daughter"
+  },
+  "女朋友": {
+   "p": "nǚ péng you",
+   "fr": "copine; petite amie",
+   "en": "girlfriend"
+  },
+  "女士": {
+   "p": "nǚ shì",
+   "fr": "madame",
+   "en": "lady; madam; Miss; Ms"
+  },
+  "朋友": {
+   "p": "péng you",
+   "fr": "ami; copain",
+   "en": "friend"
+  },
+  "漂亮": {
+   "p": "piào liang",
+   "fr": "joli; jolie; beau; belle",
+   "en": "pretty; beautiful"
+  },
+  "苹果": {
+   "p": "píng guǒ",
+   "fr": "pomme; Apple",
+   "en": "apple"
+  },
+  "七": {
+   "p": "qī",
+   "fr": "sept; 7",
+   "en": "seven; 7"
+  },
+  "起床": {
+   "p": "qǐ chuáng",
+   "fr": "se lever",
+   "en": "to get out of bed; to get up"
+  },
+  "千": {
+   "p": "qiān",
+   "fr": "mille; un grand nombre de",
+   "en": "thousand"
+  },
+  "前": {
+   "p": "qián",
+   "fr": "avant; devant; précédent; ancien; pré-",
+   "en": "front; forward; ahead; first; top (followed by a number); future; ago; before; BC (e.g. 前293年); former; formerly"
+  },
+  "钱": {
+   "p": "qián",
+   "fr": "argent; somme; richesse",
+   "en": "surname Qian"
+  },
+  "请": {
+   "p": "qǐng",
+   "fr": "prier; solliciter; inviter; s'il vous plaît; je vous en prie",
+   "en": "to ask; to invite; please (do sth); to treat (to a meal etc); to request"
+  },
+  "请问": {
+   "p": "qǐng wèn",
+   "fr": "voudriez-vous me dire",
+   "en": "Excuse me, may I ask...?"
+  },
+  "去": {
+   "p": "qù",
+   "fr": "aller; quitter; enlever; (placé après un verbe pour marquer la direction ou la destination) vers; dans la direction de; pour",
+   "en": "to go; to go to (a place); (of a time etc) last; just passed; to send; to remove; to get rid of; to reduce; to be apart from in space or time; to die (euphemism); to play (a part); (when used either before or after a verb) to go in order to do sth; (after a verb of motion indicates movement away from the speaker); (used after certain verbs to indicate detachment or separation)"
+  },
+  "去年": {
+   "p": "qù nián",
+   "fr": "l'année dernière",
+   "en": "last year"
+  },
+  "热": {
+   "p": "rè",
+   "fr": "chaud; ardent; affectionné",
+   "en": "to warm up; to heat up; hot (of weather); heat; fervent"
+  },
+  "人": {
+   "p": "rén",
+   "fr": "une personne; homme; être humain; homo sapiens",
+   "en": "person; people"
+  },
+  "认识": {
+   "p": "rèn shi",
+   "fr": "connaître; savoir; connaissance",
+   "en": "to know; to recognize; to be familiar with; to get acquainted with sb; knowledge; understanding; awareness; cognition"
+  },
+  "日": {
+   "p": "rì",
+   "fr": "soleil; jour; 72e radical",
+   "en": "abbr. for 本, Japan"
+  },
+  "三": {
+   "p": "sān",
+   "fr": "trois; 3",
+   "en": "surname San"
+  },
+  "商店": {
+   "p": "shāng diàn",
+   "fr": "magasin",
+   "en": "store; shop"
+  },
+  "上": {
+   "p": "shàng",
+   "fr": "monter; grimper; partir pour; mettre; fixer; appliquer (un remède); supérieur; haut; premier; précédent",
+   "en": "used in 上声"
+  },
+  "上班": {
+   "p": "shàng bān",
+   "fr": "aller au travail",
+   "en": "to go to work; to be on duty; to start work; to go to the office"
+  },
+  "上课": {
+   "p": "shàng kè",
+   "fr": "suivre un cours; aller en cours; donner un cours",
+   "en": "to go to class; to attend class; to go to teach a class"
+  },
+  "上午": {
+   "p": "shàng wǔ",
+   "fr": "matinée",
+   "en": "morning"
+  },
+  "上学": {
+   "p": "shàng xué",
+   "fr": "aller à l'école",
+   "en": "to go to school; to attend school"
+  },
+  "少": {
+   "p": "shǎo",
+   "fr": "peu; manquer; perdre; jeune",
+   "en": "few; less; to lack; to be missing; to stop (doing sth); seldom"
+  },
+  "什么": {
+   "p": "shén me",
+   "fr": "que; quoi; quel; tout; n'importe quel; quelconque",
+   "en": "what?; something; anything"
+  },
+  "生病": {
+   "p": "shēng bìng",
+   "fr": "tomber malade",
+   "en": "to fall ill"
+  },
+  "十": {
+   "p": "shí",
+   "fr": "dix; 10",
+   "en": "ten; 10"
+  },
+  "时候": {
+   "p": "shí hou",
+   "fr": "temps; moment",
+   "en": "time; length of time; moment; period"
+  },
+  "时间": {
+   "p": "shí jiān",
+   "fr": "durée; temps",
+   "en": "time; period"
+  },
+  "事": {
+   "p": "shì",
+   "fr": "être occupé; être engagé dans; affaire; chose; accident; trouble; travail; responsabilité; implication; empêtrement",
+   "en": "matter; thing; item; work; affair"
+  },
+  "是": {
+   "p": "shì",
+   "fr": "être; oui; correct",
+   "en": "to be (followed by substantives only); correct; right; true; (respectful acknowledgement of a command) very well; (adverb for emphatic assertion)"
+  },
+  "手机": {
+   "p": "shǒu jī",
+   "fr": "téléphone portable",
+   "en": "cell phone; mobile phone"
+  },
+  "书": {
+   "p": "shū",
+   "fr": "livre; bouquin; document; lettre; calligraphie; écrire; calligraphier",
+   "en": "abbr. for 书经"
+  },
+  "书店": {
+   "p": "shū diàn",
+   "fr": "librairie",
+   "en": "bookstore"
+  },
+  "谁": {
+   "p": "shéi",
+   "fr": "qui; quiconque; qui; quiconque",
+   "en": "who; also pr. [shuí]"
+  },
+  "水": {
+   "p": "shuǐ",
+   "fr": "eau; liquide; 85e radical",
+   "en": "surname Shui"
+  },
+  "水果": {
+   "p": "shuǐ guǒ",
+   "fr": "fruit",
+   "en": "fruit"
+  },
+  "睡": {
+   "p": "shuì",
+   "fr": "dormir; se coucher",
+   "en": "to sleep; to lie down"
+  },
+  "睡觉": {
+   "p": "shuì jiào",
+   "fr": "dormir; se coucher",
+   "en": "to go to bed; to sleep"
+  },
+  "说": {
+   "p": "shuō",
+   "fr": "persuader; parler; dire; expliquer; gronder; reprocher",
+   "en": "to persuade"
+  },
+  "说话": {
+   "p": "shuō huà",
+   "fr": "parler; dire; bavarder",
+   "en": "to speak; to say; to talk; to gossip; to tell stories; talk; word"
+  },
+  "四": {
+   "p": "sì",
+   "fr": "quatre; 4",
+   "en": "four; 4"
+  },
+  "岁": {
+   "p": "suì",
+   "fr": "an; ans; année; âge",
+   "en": "variant of 岁, year; years old"
+  },
+  "他": {
+   "p": "tā",
+   "fr": "il; lui",
+   "en": "he; him (used for either sex when the sex is unknown or unimportant); (used before sb's name for emphasis); (used as a meaningless mock object); (literary) other"
+  },
+  "他们": {
+   "p": "tā men",
+   "fr": "ils; eux",
+   "en": "they"
+  },
+  "它": {
+   "p": "tā",
+   "fr": "(genre neutre) il; elle; lui",
+   "en": "it"
+  },
+  "它们": {
+   "p": "tā men",
+   "fr": "ils; elles; eux",
+   "en": "they (for inanimate objects)"
+  },
+  "她": {
+   "p": "tā",
+   "fr": "elle",
+   "en": "she"
+  },
+  "她们": {
+   "p": "tā men",
+   "fr": "elles",
+   "en": "they; them (for females)"
+  },
+  "太": {
+   "p": "tài",
+   "fr": "trop; très; extrêmement",
+   "en": "highest; greatest; too (much); very; extremely"
+  },
+  "天": {
+   "p": "tiān",
+   "fr": "ciel; jour; journée; temps; saison; nature; univers",
+   "en": "day; sky; heaven"
+  },
+  "天气": {
+   "p": "tiān qì",
+   "fr": "temps (météorologie); météo",
+   "en": "weather"
+  },
+  "听": {
+   "p": "tīng",
+   "fr": "permettre; laisser la liberté de; suivre; se conformer à; écouter; suivre; obéir à; sourire (arch.)",
+   "en": "smile (archaic)"
+  },
+  "听见": {
+   "p": "tīng jiàn",
+   "fr": "entendre; entendu",
+   "en": "to hear"
+  },
+  "同学": {
+   "p": "tóng xué",
+   "fr": "camarade (de classe); condisciple",
+   "en": "to study at the same school; fellow student; classmate"
+  },
+  "外": {
+   "p": "wài",
+   "fr": "extérieur; étranger",
+   "en": "outside; in addition; foreign; external"
+  },
+  "外边": {
+   "p": "wài bian",
+   "fr": "extérieur; surface extérieure; à l'étranger; lieu autre que son domicile",
+   "en": "outside; outer surface; abroad; place other than one's home"
+  },
+  "玩": {
+   "p": "wán",
+   "fr": "jouer; s'amuser; se divertir",
+   "en": "to play; to have fun; to trifle with; toy; sth used for amusement; curio or antique (Taiwan pr. [wàn]); to keep sth for entertainment"
+  },
+  "晚": {
+   "p": "wǎn",
+   "fr": "tard; soir; nuit",
+   "en": "evening; night; late"
+  },
+  "晚饭": {
+   "p": "wǎn fàn",
+   "fr": "dîner",
+   "en": "evening meal; dinner; supper"
+  },
+  "晚上": {
+   "p": "wǎn shang",
+   "fr": "nuit; soir",
+   "en": "evening; night; in the evening"
+  },
+  "喂": {
+   "p": "wéi",
+   "fr": "nourrir; faire manger; élever; hé!; allô !; Allô !",
+   "en": "hello (when answering the phone)"
+  },
+  "问": {
+   "p": "wèn",
+   "fr": "demander; se renseigner; questionner; interroger",
+   "en": "to ask; to inquire"
+  },
+  "问题": {
+   "p": "wèn tí",
+   "fr": "question; problème",
+   "en": "question; problem; issue; topic"
+  },
+  "我": {
+   "p": "wǒ",
+   "fr": "je; moi",
+   "en": "I; me; my"
+  },
+  "我们": {
+   "p": "wǒ men",
+   "fr": "nous",
+   "en": "we; us; ourselves; our"
+  },
+  "五": {
+   "p": "wǔ",
+   "fr": "cinq; 5",
+   "en": "five; 5"
+  },
+  "午饭": {
+   "p": "wǔ fàn",
+   "fr": "déjeuner; repas du midi",
+   "en": "lunch"
+  },
+  "喜欢": {
+   "p": "xǐ huan",
+   "fr": "aimer; se plaire",
+   "en": "to like; to be fond of"
+  },
+  "下": {
+   "p": "xià",
+   "fr": "sous; suivant; prochain; bas; en bas; diminuer; descendre; arriver à (une décision, une conclusion)",
+   "en": "down; downwards; below; lower; later; next (week etc); second (of two parts); to decline; to go down; to arrive at (a decision, conclusion etc); measure word to show the frequency of an action"
+  },
+  "下班": {
+   "p": "xià bān",
+   "fr": "sortir du travail",
+   "en": "to finish work; to get off work"
+  },
+  "下课": {
+   "p": "xià kè",
+   "fr": "sortir de classe",
+   "en": "to finish class; to get out of class; (fig.) (esp. of a sports coach) to be dismissed; to be fired"
+  },
+  "下午": {
+   "p": "xià wǔ",
+   "fr": "après-midi",
+   "en": "afternoon; p.m."
+  },
+  "下雨": {
+   "p": "xià yǔ",
+   "fr": "pleuvoir",
+   "en": "to rain"
+  },
+  "先生": {
+   "p": "xiān sheng",
+   "fr": "Monsieur; Mr.",
+   "en": "teacher; gentleman; sir; mister (Mr.); husband; (dialect) doctor"
+  },
+  "现在": {
+   "p": "xiàn zài",
+   "fr": "maintenant; actuellement",
+   "en": "now; at present; at the moment; modern; current; nowadays"
+  },
+  "想": {
+   "p": "xiǎng",
+   "fr": "penser; songer; supposer; estimer; vouloir; désirer; penser à",
+   "en": "to think (about); to think of; to devise; to think (that); to believe (that); to desire; to want (to); to miss (feel wistful about the absence of)"
+  },
+  "小": {
+   "p": "xiǎo",
+   "fr": "petit; jeune",
+   "en": "small; tiny; few; young"
+  },
+  "小朋友": {
+   "p": "xiǎo péng yǒu",
+   "fr": "enfant; gamin; marmaille",
+   "en": "child"
+  },
+  "小时": {
+   "p": "xiǎo shí",
+   "fr": "heure (durée)",
+   "en": "hour"
+  },
+  "小学": {
+   "p": "xiǎo xué",
+   "fr": "école élémentaire",
+   "en": "elementary school; primary school"
+  },
+  "小学生": {
+   "p": "xiǎo xué shēng",
+   "fr": "écolier",
+   "en": "primary school student; schoolchild; (fig.) beginner"
+  },
+  "些": {
+   "p": "xiē",
+   "fr": "certains; quelques; plusieurs; un peu",
+   "en": "classifier indicating a small amount or small number greater than 1: some, a few, several"
+  },
+  "写": {
+   "p": "xiě",
+   "fr": "écrire; composer",
+   "en": "to write"
+  },
+  "谢谢": {
+   "p": "xiè xie",
+   "fr": "merci; remercier",
+   "en": "to thank; thanks; thank you"
+  },
+  "新": {
+   "p": "xīn",
+   "fr": "nouveau; neuf; récent; actuel; nouvellement; récemment",
+   "en": "abbr. for Xinjiang 疆 or Singapore 坡; surname Xin"
+  },
+  "星期": {
+   "p": "xīng qī",
+   "fr": "semaine",
+   "en": "week; day of the week; Sunday"
+  },
+  "星期日": {
+   "p": "xīng qī rì",
+   "fr": "dimanche",
+   "en": "Sunday"
+  },
+  "星期天": {
+   "p": "xīng qī tiān",
+   "fr": "dimanche",
+   "en": "Sunday"
+  },
+  "休息": {
+   "p": "xiū xi",
+   "fr": "se reposer",
+   "en": "rest; to rest"
+  },
+  "学": {
+   "p": "xué",
+   "fr": "étudier; apprendre; science; -ologie",
+   "en": "to learn; to study; to imitate; science; -ology"
+  },
+  "学生": {
+   "p": "xué sheng",
+   "fr": "étudiant",
+   "en": "student; schoolchild"
+  },
+  "学习": {
+   "p": "xué xí",
+   "fr": "étudier; apprendre",
+   "en": "to learn; to study"
+  },
+  "学校": {
+   "p": "xué xiào",
+   "fr": "école",
+   "en": "school"
+  },
+  "雪": {
+   "p": "xuě",
+   "fr": "Neige",
+   "en": "surname Xue"
+  },
+  "要": {
+   "p": "yào",
+   "fr": "demander; exiger; forcer; contraindre; avoir besoin de; demander; réclamer; désirer; vouloir; devoir; il faut; essentiel; substance; si; supposé que; soit... soit...",
+   "en": "(bound form) to demand; to coerce"
+  },
+  "也": {
+   "p": "yě",
+   "fr": "également; aussi; à la fois; même; voire",
+   "en": "surname Ye"
+  },
+  "一": {
+   "p": "yī",
+   "fr": "1 (nombre); un",
+   "en": "one; single; a (article); as soon as; entire; whole; all; throughout; \"one\" radical in Chinese characters (Kangxi radical 1); also pr. [yāo] for greater clarity when spelling out numbers digit by digit"
+  },
+  "一半": {
+   "p": "yī bàn",
+   "fr": "un demi",
+   "en": "half"
+  },
+  "一点儿": {
+   "p": "yī diǎn r",
+   "fr": "un peu",
+   "en": "erhua variant of 一点; a bit; a little bit; (used in negative expressions) (not) the least bit; (after an adjective, used to form the comparative) a bit more"
+  },
+  "一些": {
+   "p": "yī xiē",
+   "fr": "un certain nombre de",
+   "en": "some; a few; a little; (following an adjective) slightly ...er"
+  },
+  "衣服": {
+   "p": "yī fu",
+   "fr": "vêtement",
+   "en": "clothes"
+  },
+  "医生": {
+   "p": "yī shēng",
+   "fr": "médecin",
+   "en": "doctor"
+  },
+  "医院": {
+   "p": "yī yuàn",
+   "fr": "hôpital",
+   "en": "hospital"
+  },
+  "椅子": {
+   "p": "yǐ zi",
+   "fr": "chaise",
+   "en": "chair"
+  },
+  "有": {
+   "p": "yǒu",
+   "fr": "avoir; posséder; il y a; exister",
+   "en": "to have; there is; (bound form) having; with; -ful; -ed; -al (as in 意 intentional)"
+  },
+  "有的": {
+   "p": "yǒu de",
+   "fr": "certains; quelques-uns; il y en a qui",
+   "en": "(there are) some (who are...); some (exist)"
+  },
+  "有点儿": {
+   "p": "yǒu diǎn r",
+   "fr": "un peu; quelque peu",
+   "en": "slightly; a little; somewhat"
+  },
+  "有些": {
+   "p": "yǒu xiē",
+   "fr": "un peu; certains; des",
+   "en": "some; somewhat"
+  },
+  "雨": {
+   "p": "yǔ",
+   "fr": "pluie; 173e radical; pleuvoir; tomber (neige, pluie, etc.); mouiller",
+   "en": "rain"
+  },
+  "元": {
+   "p": "yuán",
+   "fr": "yuan; (dollar, yen); premier principe; originel; (nom de famille)",
+   "en": "surname Yuan; the Yuan or Mongol dynasty (1279-1368)"
+  },
+  "月": {
+   "p": "yuè",
+   "fr": "Lune; mois; 74e radical",
+   "en": "moon; month; monthly"
+  },
+  "再": {
+   "p": "zài",
+   "fr": "à nouveau; de nouveau; encore une fois; plus; puis; continuer; revenir; re-",
+   "en": "again; once more; re-; second; another; then (after sth, and not until then); no matter how ... (followed by an adjective or verb, and then (usually) 也 or 都 for emphasis)"
+  },
+  "再见": {
+   "p": "zài jiàn",
+   "fr": "Au revoir !; Adieu !",
+   "en": "goodbye; see you again later"
+  },
+  "在": {
+   "p": "zài",
+   "fr": "en train de; à; dans; en; exister; vivre",
+   "en": "to exist; to be alive; (of sb or sth) to be (located) at; (used before a verb to indicate an action in progress)"
+  },
+  "早": {
+   "p": "zǎo",
+   "fr": "matin; matinée; tôt; depuis longtemps",
+   "en": "early; morning; Good morning!; long ago; prematurely"
+  },
+  "早饭": {
+   "p": "zǎo fàn",
+   "fr": "petit déjeuner",
+   "en": "breakfast"
+  },
+  "早上": {
+   "p": "zǎo shang",
+   "fr": "matin; matinée",
+   "en": "early morning"
+  },
+  "怎么": {
+   "p": "zěn me",
+   "fr": "comment; pourquoi",
+   "en": "how?; what?; why?"
+  },
+  "怎么样": {
+   "p": "zěn me yàng",
+   "fr": "comment",
+   "en": "how?; how about?; how was it?; how are things?"
+  },
+  "找": {
+   "p": "zhǎo",
+   "fr": "chercher; rechercher; rendre la monnaie",
+   "en": "to try to find; to look for; to call on sb; to find; to seek; to return; to give change"
+  },
+  "这": {
+   "p": "zhè",
+   "fr": "ce; ceci",
+   "en": "(pronoun) this; these; (bound form) this; the (followed by a noun); (bound form) this; these (followed by a classifier) (in this sense, commonly pr. [zhèi], esp. in Beijing)"
+  },
+  "这边": {
+   "p": "zhè biān",
+   "fr": "par ici; par là; de ce côté",
+   "en": "this side; here"
+  },
+  "这儿": {
+   "p": "zhè r",
+   "fr": "ici; alors; en ce moment",
+   "en": "here"
+  },
+  "这里": {
+   "p": "zhè lǐ",
+   "fr": "ici",
+   "en": "variant of 这里"
+  },
+  "这些": {
+   "p": "zhè xiē",
+   "fr": "ces; ceux-ci; celles-ci",
+   "en": "these"
+  },
+  "真": {
+   "p": "zhēn",
+   "fr": "vraiment; réellement; vrai; véritable",
+   "en": "really; truly; indeed; real; true; genuine"
+  },
+  "正在": {
+   "p": "zhèng zài",
+   "fr": "en train de; en cours de",
+   "en": "just at (that time); right in (that place); right in the middle of (doing sth)"
+  },
+  "知道": {
+   "p": "zhī dào",
+   "fr": "savoir; connaître",
+   "en": "to know; to become aware of; also pr. [zhī dao]"
+  },
+  "只": {
+   "p": "zhī",
+   "fr": "(mot de mesure pour les oiseaux et certains animaux); seul; unique; seulement; seulement; simplement; uniquement; mais",
+   "en": "only; merely; just; but"
+  },
+  "中国": {
+   "p": "zhōng guó",
+   "fr": "Chine; Empire du Milieu",
+   "en": "China"
+  },
+  "中文": {
+   "p": "zhōng wén",
+   "fr": "chinois; langue chinoise",
+   "en": "Chinese language"
+  },
+  "中午": {
+   "p": "zhōng wǔ",
+   "fr": "midi; zénith",
+   "en": "noon; midday"
+  },
+  "中学": {
+   "p": "zhōng xué",
+   "fr": "école secondaire; collège",
+   "en": "middle school"
+  },
+  "中学生": {
+   "p": "zhōng xué shēng",
+   "fr": "lycéen; élève d'une école secondaire",
+   "en": "middle-school student; high school student"
+  },
+  "住": {
+   "p": "zhù",
+   "fr": "habiter; loger; cesser; arrêter",
+   "en": "to live; to dwell; to stay; to reside; to stop; (suffix indicating firmness, steadiness, or coming to a halt)"
+  },
+  "桌子": {
+   "p": "zhuō zi",
+   "fr": "table; bureau",
+   "en": "table; desk"
+  },
+  "字": {
+   "p": "zì",
+   "fr": "caractère; mot",
+   "en": "letter; symbol; character; word; courtesy or style name traditionally given to males aged 20 in dynastic China"
+  },
+  "昨天": {
+   "p": "zuó tiān",
+   "fr": "hier",
+   "en": "yesterday"
+  },
+  "坐": {
+   "p": "zuò",
+   "fr": "s'asseoir; prendre (le bus, l'avion); se situer; se trouver; siège; place assise",
+   "en": "surname Zuo"
+  },
+  "做": {
+   "p": "zuò",
+   "fr": "faire; effectuer; fabriquer; confectionner; réaliser; être; devenir; servir de",
+   "en": "to make; to produce; to write; to compose; to do; to engage in; to hold (a party etc); (of a person) to be (an intermediary, a good student etc); to become (husband and wife, friends etc); (of a thing) to serve as; to be used for; to assume (an air or manner)"
+  },
+  "做饭": {
+   "p": "zuò fàn",
+   "fr": "faire la cuisine",
+   "en": "to prepare a meal; to cook"
+  }
+ }
+}

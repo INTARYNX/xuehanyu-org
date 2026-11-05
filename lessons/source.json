@@ -1,0 +1,2226 @@
+{
+  "version": 1,
+  "level": 1,
+  "lessons": [
+    {
+      "id": "presentation",
+      "title": {
+        "fr": "Se présenter",
+        "en": "Introducing yourself"
+      },
+      "focus": [
+        "名字",
+        "认识",
+        "高兴",
+        "学习"
+      ],
+      "lines": [
+        {
+          "hanzi": "您好！很高兴见到你。",
+          "fr": "Bonjour ! Ravi de te rencontrer.",
+          "en": "Hello! Nice to meet you."
+        },
+        {
+          "hanzi": "我也很高兴。你叫什么名字？",
+          "fr": "Moi aussi, je suis content. Comment tu t'appelles ?",
+          "en": "I'm also happy. What's your name?"
+        },
+        {
+          "hanzi": "我是老师。你呢？",
+          "fr": "Je suis professeur. Et toi ?",
+          "en": "I'm a teacher. And you?"
+        },
+        {
+          "hanzi": "我是学生。我在大学学习中文。",
+          "fr": "Je suis étudiant. J'étudie le chinois à l'université.",
+          "en": "I'm a student. I study Chinese at university."
+        },
+        {
+          "hanzi": "你学中文几年了？",
+          "fr": "Depuis combien de temps tu étudies le chinois ?",
+          "en": "How many years have you studied Chinese?"
+        },
+        {
+          "hanzi": "三年了。",
+          "fr": "Depuis trois ans.",
+          "en": "For three years."
+        },
+        {
+          "hanzi": "很好。",
+          "fr": "Très bien.",
+          "en": "Very good."
+        },
+        {
+          "hanzi": "你也是学生吗？",
+          "fr": "Tu es étudiant aussi ?",
+          "en": "Are you a student too?"
+        },
+        {
+          "hanzi": "是。我学习一个小时。",
+          "fr": "Oui. J'étudie une heure.",
+          "en": "Yes. I study for one hour."
+        },
+        {
+          "hanzi": "好。我们学习。",
+          "fr": "Bien. Apprenons.",
+          "en": "Good. Let's study."
+        }
+      ]
+    },
+    {
+      "id": "restaurant",
+      "title": {
+        "fr": "Au restaurant",
+        "en": "At the restaurant"
+      },
+      "focus": [
+        "饭店",
+        "要",
+        "米饭",
+        "多少钱",
+        "便宜"
+      ],
+      "lines": [
+        {
+          "hanzi": "您要吃什么？",
+          "fr": "Tu veux manger quoi ?",
+          "en": "What would you like to eat?"
+        },
+        {
+          "hanzi": "我要米饭和鸡蛋。",
+          "fr": "Je veux du riz et un œuf.",
+          "en": "I want rice and an egg."
+        },
+        {
+          "hanzi": "要面条儿吗？",
+          "fr": "Tu veux des nouilles ?",
+          "en": "Do you want noodles?"
+        },
+        {
+          "hanzi": "不要米饭。要面条儿。",
+          "fr": "Pas de riz. Je veux des nouilles.",
+          "en": "No rice. I want noodles."
+        },
+        {
+          "hanzi": "您也喝茶吗？",
+          "fr": "Tu veux aussi du thé ?",
+          "en": "Do you want tea as well?"
+        },
+        {
+          "hanzi": "要茶。",
+          "fr": "Oui, je veux du thé.",
+          "en": "Yes, I want tea."
+        },
+        {
+          "hanzi": "多少钱？",
+          "fr": "C'est combien ?",
+          "en": "How much is it?"
+        },
+        {
+          "hanzi": "二十块。",
+          "fr": "Vingt yuans.",
+          "en": "Twenty yuan."
+        },
+        {
+          "hanzi": "太贵了！",
+          "fr": "C'est trop cher !",
+          "en": "That's too expensive!"
+        },
+        {
+          "hanzi": "不贵。便宜。",
+          "fr": "Ce n'est pas cher. C'est bon marché.",
+          "en": "It's not expensive. It's cheap."
+        },
+        {
+          "hanzi": "好。给你钱。",
+          "fr": "D'accord. Voici l'argent.",
+          "en": "Okay. Here's the money."
+        }
+      ]
+    },
+    {
+      "id": "shopping",
+      "title": {
+        "fr": "Faire des courses",
+        "en": "Going shopping"
+      },
+      "focus": [
+        "超市",
+        "买",
+        "水果",
+        "钱",
+        "便宜"
+      ],
+      "lines": [
+        {
+          "hanzi": "我想去超市。你去吗？",
+          "fr": "Je veux aller au supermarché. Tu y vas ?",
+          "en": "I want to go to the supermarket. Are you going?"
+        },
+        {
+          "hanzi": "好。我现在去。",
+          "fr": "D'accord. J'y vais maintenant.",
+          "en": "Okay. I'm going now."
+        },
+        {
+          "hanzi": "你买什么？",
+          "fr": "Tu achètes quoi ?",
+          "en": "What are you buying?"
+        },
+        {
+          "hanzi": "我买水果和牛奶。",
+          "fr": "J'achète des fruits et du lait.",
+          "en": "I'm buying fruit and milk."
+        },
+        {
+          "hanzi": "好。我买苹果。",
+          "fr": "Bien. J'achète des pommes.",
+          "en": "Okay. I'm buying apples."
+        },
+        {
+          "hanzi": "苹果多少钱？",
+          "fr": "Les pommes, c'est combien ?",
+          "en": "How much are the apples?"
+        },
+        {
+          "hanzi": "五块。",
+          "fr": "Cinq yuans.",
+          "en": "Five yuan."
+        },
+        {
+          "hanzi": "太贵了！有便宜的吗？",
+          "fr": "Trop cher ! Il y a moins cher ?",
+          "en": "Too expensive! Is there something cheaper?"
+        },
+        {
+          "hanzi": "有。这个两块。",
+          "fr": "Oui. Celui-ci, deux yuans.",
+          "en": "Yes. This one is two yuan."
+        },
+        {
+          "hanzi": "好。我要两个。",
+          "fr": "D'accord. J'en veux deux.",
+          "en": "Okay. I want two."
+        },
+        {
+          "hanzi": "给您。",
+          "fr": "Tiens.",
+          "en": "Here you are."
+        },
+        {
+          "hanzi": "谢谢！不客气。",
+          "fr": "Merci ! De rien.",
+          "en": "Thank you! You're welcome."
+        }
+      ]
+    },
+    {
+      "id": "street",
+      "title": {
+        "fr": "Demander son chemin",
+        "en": "Asking the way"
+      },
+      "focus": [
+        "请问",
+        "电影院",
+        "那边",
+        "出租车"
+      ],
+      "lines": [
+        {
+          "hanzi": "请问，电影院在哪儿？",
+          "fr": "Excusez-moi, où est le cinéma ?",
+          "en": "Excuse me, where is the cinema?"
+        },
+        {
+          "hanzi": "在那边。",
+          "fr": "Par là-bas.",
+          "en": "Over there."
+        },
+        {
+          "hanzi": "怎么去？",
+          "fr": "Comment y aller ?",
+          "en": "How do I get there?"
+        },
+        {
+          "hanzi": "坐出租车去。",
+          "fr": "Prends un taxi.",
+          "en": "Take a taxi."
+        },
+        {
+          "hanzi": "出租车在哪儿？",
+          "fr": "Où est le taxi ?",
+          "en": "Where is the taxi?"
+        },
+        {
+          "hanzi": "在那边。",
+          "fr": "Là-bas.",
+          "en": "Over there."
+        },
+        {
+          "hanzi": "我也要去医院。",
+          "fr": "Je veux aussi aller à l'hôpital.",
+          "en": "I also need to go to the hospital."
+        },
+        {
+          "hanzi": "好。我们去医院。",
+          "fr": "D'accord. Allons à l'hôpital.",
+          "en": "Okay. Let's go to the hospital."
+        },
+        {
+          "hanzi": "谢谢！再见。",
+          "fr": "Merci ! Au revoir.",
+          "en": "Thank you! Goodbye."
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "title": {
+        "fr": "Le travail",
+        "en": "Work"
+      },
+      "focus": [
+        "工作",
+        "公司",
+        "上班",
+        "下班",
+        "忙"
+      ],
+      "lines": [
+        {
+          "hanzi": "你现在在哪儿工作？",
+          "fr": "Où travailles-tu maintenant ?",
+          "en": "Where do you work now?"
+        },
+        {
+          "hanzi": "我在一家公司工作。",
+          "fr": "Je travaille dans une entreprise.",
+          "en": "I work at a company."
+        },
+        {
+          "hanzi": "你早上几点去上班？",
+          "fr": "À quelle heure commences-tu le travail le matin ?",
+          "en": "What time do you go to work in the morning?"
+        },
+        {
+          "hanzi": "八点。我八点上班。",
+          "fr": "Huit heures. Je commence à huit heures.",
+          "en": "Eight o'clock. I start at eight."
+        },
+        {
+          "hanzi": "下午呢？",
+          "fr": "Et l'après-midi ?",
+          "en": "And in the afternoon?"
+        },
+        {
+          "hanzi": "下午五点下班。",
+          "fr": "Je finis à cinq heures de l'après-midi.",
+          "en": "I finish at five in the afternoon."
+        },
+        {
+          "hanzi": "你喜欢你的工作吗？",
+          "fr": "Aimes-tu ton travail ?",
+          "en": "Do you like your work?"
+        },
+        {
+          "hanzi": "喜欢。我工作很忙。",
+          "fr": "Oui. Je suis très occupé au travail.",
+          "en": "Yes. I'm very busy at work."
+        },
+        {
+          "hanzi": "我也很忙。我要休息了。",
+          "fr": "Moi aussi, je suis très occupé. Je vais me reposer.",
+          "en": "I'm busy too. I need to rest."
+        },
+        {
+          "hanzi": "明天见！",
+          "fr": "À demain !",
+          "en": "See you tomorrow!"
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "title": {
+        "fr": "La famille",
+        "en": "Family"
+      },
+      "focus": [
+        "家人",
+        "哥哥",
+        "姐姐",
+        "妈妈",
+        "爸爸"
+      ],
+      "lines": [
+        {
+          "hanzi": "你家人多吗？",
+          "fr": "Ta famille est nombreuse ?",
+          "en": "Is your family big?"
+        },
+        {
+          "hanzi": "不多。三口人。",
+          "fr": "Non. Trois personnes.",
+          "en": "No. Three people."
+        },
+        {
+          "hanzi": "你有哥哥和姐姐吗？",
+          "fr": "Tu as un frère aîné et une sœur aînée ?",
+          "en": "Do you have a brother and a sister?"
+        },
+        {
+          "hanzi": "我有一个哥哥，一个姐姐。",
+          "fr": "J'ai un frère aîné, une sœur aînée.",
+          "en": "I have a brother and a sister."
+        },
+        {
+          "hanzi": "他们也学习中文吗？",
+          "fr": "Ils apprennent aussi le chinois ?",
+          "en": "Do they study Chinese too?"
+        },
+        {
+          "hanzi": "我哥哥学习中文，我姐姐是老师。",
+          "fr": "Mon frère aîné apprend le chinois, ma sœur aînée est professeur.",
+          "en": "My brother studies Chinese, my sister is a teacher."
+        },
+        {
+          "hanzi": "你妈妈也工作吗？",
+          "fr": "Ta mère travaille aussi ?",
+          "en": "Does your mother work too?"
+        },
+        {
+          "hanzi": "不。她在家。",
+          "fr": "Non. Elle est à la maison.",
+          "en": "No. She is at home."
+        },
+        {
+          "hanzi": "你爸爸呢？",
+          "fr": "Et ton père ?",
+          "en": "And your father?"
+        },
+        {
+          "hanzi": "我爸爸是医生。他很忙。",
+          "fr": "Mon père est médecin. Il est très occupé.",
+          "en": "My father is a doctor. He's very busy."
+        },
+        {
+          "hanzi": "很好。你们家人都好吗？",
+          "fr": "Très bien. Ta famille va bien ?",
+          "en": "Very good. Is your family well?"
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "title": {
+        "fr": "Le temps et les jours",
+        "en": "Weather and days"
+      },
+      "focus": [
+        "天气",
+        "下雨",
+        "星期天",
+        "晚上"
+      ],
+      "lines": [
+        {
+          "hanzi": "今天天气怎么样？",
+          "fr": "Quel temps fait-il aujourd'hui ?",
+          "en": "What's the weather like today?"
+        },
+        {
+          "hanzi": "很好。没有下雨。",
+          "fr": "Très beau. Il ne pleut pas.",
+          "en": "Very nice. It's not raining."
+        },
+        {
+          "hanzi": "明天呢？",
+          "fr": "Et demain ?",
+          "en": "And tomorrow?"
+        },
+        {
+          "hanzi": "明天要下雨。",
+          "fr": "Il va pleuvoir demain.",
+          "en": "It's going to rain tomorrow."
+        },
+        {
+          "hanzi": "星期天你做什么？",
+          "fr": "Que fais-tu le dimanche ?",
+          "en": "What do you do on Sunday?"
+        },
+        {
+          "hanzi": "我和朋友去看电影。",
+          "fr": "Je vais au cinéma avec un ami.",
+          "en": "I go to the cinema with a friend."
+        },
+        {
+          "hanzi": "好玩儿吗？",
+          "fr": "C'est amusant ?",
+          "en": "Is it fun?"
+        },
+        {
+          "hanzi": "好。我也想看电影。",
+          "fr": "Bien. Je veux aussi voir un film.",
+          "en": "Good. I also want to see a movie."
+        },
+        {
+          "hanzi": "我们几点去？",
+          "fr": "À quelle heure y allons-nous ?",
+          "en": "What time shall we go?"
+        },
+        {
+          "hanzi": "晚上七点。",
+          "fr": "À sept heures du soir.",
+          "en": "At seven in the evening."
+        },
+        {
+          "hanzi": "好！晚上见！",
+          "fr": "D'accord ! À ce soir !",
+          "en": "Okay! See you tonight!"
+        }
+      ]
+    },
+    {
+      "id": "health",
+      "title": {
+        "fr": "À la clinique",
+        "en": "At the clinic"
+      },
+      "focus": [
+        "生病",
+        "看病",
+        "医生",
+        "医院",
+        "休息"
+      ],
+      "lines": [
+        {
+          "hanzi": "你怎么了？",
+          "fr": "Qu'est-ce que tu as ?",
+          "en": "What's wrong?"
+        },
+        {
+          "hanzi": "我生病了。",
+          "fr": "Je suis malade.",
+          "en": "I'm ill."
+        },
+        {
+          "hanzi": "你要去看病吗？",
+          "fr": "Tu vas chez le médecin ?",
+          "en": "Are you going to see a doctor?"
+        },
+        {
+          "hanzi": "是的。我要看医生。",
+          "fr": "Oui. Je dois voir un médecin.",
+          "en": "Yes. I need to see a doctor."
+        },
+        {
+          "hanzi": "我们去医院。",
+          "fr": "Allons à l'hôpital.",
+          "en": "Let's go to the hospital."
+        },
+        {
+          "hanzi": "谢谢！我们现在去。",
+          "fr": "Merci ! Allons-y maintenant.",
+          "en": "Thanks! Let's go now."
+        },
+        {
+          "hanzi": "你好一些了吗？",
+          "fr": "Tu vas mieux ?",
+          "en": "Are you feeling better?"
+        },
+        {
+          "hanzi": "好多了。谢谢你！",
+          "fr": "Beaucoup mieux. Merci !",
+          "en": "Much better. Thank you!"
+        },
+        {
+          "hanzi": "不客气。你要好好休息。",
+          "fr": "De rien. Tu dois bien te reposer.",
+          "en": "You're welcome. You need to rest well."
+        },
+        {
+          "hanzi": "好。再见！",
+          "fr": "D'accord. Au revoir !",
+          "en": "Okay. Goodbye!"
+        }
+      ]
+    },
+    {
+      "id": "leisure",
+      "title": {
+        "fr": "Les loisirs",
+        "en": "Leisure"
+      },
+      "focus": [
+        "唱歌",
+        "听歌",
+        "电影",
+        "漂亮",
+        "喜欢"
+      ],
+      "lines": [
+        {
+          "hanzi": "你喜欢做什么？",
+          "fr": "Qu'est-ce que tu aimes faire ?",
+          "en": "What do you like to do?"
+        },
+        {
+          "hanzi": "我喜欢唱歌。",
+          "fr": "J'aime chanter.",
+          "en": "I like singing."
+        },
+        {
+          "hanzi": "我喜欢看电影和听歌。",
+          "fr": "J'aime regarder des films et écouter des chansons.",
+          "en": "I like watching films and listening to songs."
+        },
+        {
+          "hanzi": "你去电影院吗？",
+          "fr": "Tu vas au cinéma ?",
+          "en": "Do you go to the cinema?"
+        },
+        {
+          "hanzi": "明天去。",
+          "fr": "Demain.",
+          "en": "Tomorrow."
+        },
+        {
+          "hanzi": "我们几点去？",
+          "fr": "À quelle heure y allons-nous ?",
+          "en": "What time shall we go?"
+        },
+        {
+          "hanzi": "下午三点。",
+          "fr": "À trois heures de l'après-midi.",
+          "en": "At three in the afternoon."
+        },
+        {
+          "hanzi": "好。电影很漂亮。",
+          "fr": "Bien. Le film est très beau.",
+          "en": "Good. The film is beautiful."
+        },
+        {
+          "hanzi": "对！非常好。",
+          "fr": "Oui ! Très bien.",
+          "en": "Yes! Very good."
+        },
+        {
+          "hanzi": "我朋友也喜欢看电影。",
+          "fr": "Mon ami aime aussi regarder des films.",
+          "en": "My friend also likes watching films."
+        }
+      ]
+    },
+    {
+      "id": "meeting",
+      "title": {
+        "fr": "Rencontrer quelqu'un",
+        "en": "Meeting someone"
+      },
+      "focus": [
+        "你好",
+        "认识",
+        "朋友",
+        "谢谢",
+        "对不起"
+      ],
+      "lines": [
+        {
+          "hanzi": "你好！",
+          "fr": "Bonjour !",
+          "en": "Hello!"
+        },
+        {
+          "hanzi": "你好！很高兴见到你。",
+          "fr": "Bonjour ! Ravi de te rencontrer.",
+          "en": "Hello! Nice to meet you."
+        },
+        {
+          "hanzi": "你是新学生吗？",
+          "fr": "Tu es un nouvel étudiant ?",
+          "en": "Are you a new student?"
+        },
+        {
+          "hanzi": "是的。我是新学生。",
+          "fr": "Oui. Je suis un nouvel étudiant.",
+          "en": "Yes. I'm a new student."
+        },
+        {
+          "hanzi": "你认识这里的同学吗？",
+          "fr": "Tu connais des élèves ici ?",
+          "en": "Do you know the students here?"
+        },
+        {
+          "hanzi": "认识。这是我的朋友。",
+          "fr": "Oui. C'est mon ami.",
+          "en": "Yes. This is my friend."
+        },
+        {
+          "hanzi": "他会中文吗？",
+          "fr": "Il parle chinois ?",
+          "en": "Does he speak Chinese?"
+        },
+        {
+          "hanzi": "是。他是老师。",
+          "fr": "Oui. Il est professeur.",
+          "en": "Yes. He's a teacher."
+        },
+        {
+          "hanzi": "他们认识吗？",
+          "fr": "Ils se connaissent ?",
+          "en": "Do they know each other?"
+        },
+        {
+          "hanzi": "认识。我们是朋友。",
+          "fr": "Oui. Nous sommes amis.",
+          "en": "Yes. We're friends."
+        },
+        {
+          "hanzi": "很好。很高兴认识你们！",
+          "fr": "Très bien. C'est un plaisir !",
+          "en": "Nice to meet you!"
+        },
+        {
+          "hanzi": "对不起，我来晚了一点儿。",
+          "fr": "Pardon, je suis en retard.",
+          "en": "Sorry, I'm a little late."
+        },
+        {
+          "hanzi": "没关系。",
+          "fr": "Ce n'est rien.",
+          "en": "No problem."
+        }
+      ]
+    },
+    {
+      "id": "day-rhythm",
+      "title": {
+        "fr": "Le rythme d'une journée",
+        "en": "The rhythm of a day"
+      },
+      "focus": [
+        "起床",
+        "早饭",
+        "上课",
+        "午饭",
+        "晚饭",
+        "正在"
+      ],
+      "lines": [
+        {
+          "hanzi": "你早上几点起床？",
+          "fr": "À quelle heure te lèves-tu le matin ?",
+          "en": "What time do you get up in the morning?"
+        },
+        {
+          "hanzi": "我七点起床。",
+          "fr": "Je me lève à sept heures.",
+          "en": "I get up at seven."
+        },
+        {
+          "hanzi": "你吃早饭吗？",
+          "fr": "Tu manges le petit-déjeuner ?",
+          "en": "Do you eat breakfast?"
+        },
+        {
+          "hanzi": "我吃一个包子。",
+          "fr": "Je mange un petit pain à la vapeur.",
+          "en": "I eat a steamed bun."
+        },
+        {
+          "hanzi": "我现在正在吃早饭。",
+          "fr": "Je suis en train de manger le petit-déjeuner.",
+          "en": "I am eating breakfast right now."
+        },
+        {
+          "hanzi": "上午有课吗？",
+          "fr": "Tu as cours le matin ?",
+          "en": "Do you have classes in the morning?"
+        },
+        {
+          "hanzi": "有。我上午上课。",
+          "fr": "Oui. J'ai cours le matin.",
+          "en": "Yes. I have classes in the morning."
+        },
+        {
+          "hanzi": "中午吃午饭吗？",
+          "fr": "Tu manges le déjeuner à midi ?",
+          "en": "Do you have lunch at noon?"
+        },
+        {
+          "hanzi": "是。我十二点吃午饭。",
+          "fr": "Oui. Je déjeune à midi.",
+          "en": "Yes. I have lunch at twelve."
+        },
+        {
+          "hanzi": "下午呢？",
+          "fr": "Et l'après-midi ?",
+          "en": "And in the afternoon?"
+        },
+        {
+          "hanzi": "下午五点吃晚饭。",
+          "fr": "Je dîne à cinq heures de l'après-midi.",
+          "en": "I have dinner at five in the afternoon."
+        },
+        {
+          "hanzi": "晚上做什么？",
+          "fr": "Que fais-tu le soir ?",
+          "en": "What do you do in the evening?"
+        },
+        {
+          "hanzi": "我晚上读书、写字。",
+          "fr": "Le soir, je lis et j'écris.",
+          "en": "In the evening I read and write."
+        },
+        {
+          "hanzi": "我晚上睡觉。",
+          "fr": "Le soir, je vais dormir.",
+          "en": "In the evening I go to bed."
+        },
+        {
+          "hanzi": "白天忙吗？",
+          "fr": "Es-tu occupé la journée ?",
+          "en": "Are you busy during the day?"
+        },
+        {
+          "hanzi": "白天很忙。晚上九点睡觉。",
+          "fr": "La journée est très chargée. Je dors à neuf heures du soir.",
+          "en": "The day is very busy. I sleep at nine in the evening."
+        }
+      ]
+    },
+    {
+      "id": "family-numbers",
+      "title": {
+        "fr": "La famille et les nombres",
+        "en": "Family and numbers"
+      },
+      "focus": [
+        "几",
+        "四",
+        "弟弟",
+        "妹妹",
+        "男朋友",
+        "大家"
+      ],
+      "lines": [
+        {
+          "hanzi": "你家有几口人？",
+          "fr": "Combien de personnes y a-t-il chez toi ?",
+          "en": "How many people are there in your family?"
+        },
+        {
+          "hanzi": "我们家四口人。",
+          "fr": "Nous sommes quatre à la maison.",
+          "en": "There are four of us at home."
+        },
+        {
+          "hanzi": "家里都有谁？",
+          "fr": "Avec qui habites-tu ?",
+          "en": "Who do you live with?"
+        },
+        {
+          "hanzi": "我爸爸妈妈、一个哥哥、一个妹妹。",
+          "fr": "Mon père, ma mère, un frère aîné, une petite sœur.",
+          "en": "My father, my mother, a brother, a sister."
+        },
+        {
+          "hanzi": "你有弟弟吗？",
+          "fr": "As-tu un petit frère ?",
+          "en": "Do you have a younger brother?"
+        },
+        {
+          "hanzi": "我没有弟弟。我有妹妹。",
+          "fr": "Non. J'ai une petite sœur.",
+          "en": "No. I have a younger sister."
+        },
+        {
+          "hanzi": "你哥哥有女朋友吗？",
+          "fr": "Ton frère a une copine ?",
+          "en": "Does your brother have a girlfriend?"
+        },
+        {
+          "hanzi": "有。他们很好。",
+          "fr": "Oui. Ils sont très bien.",
+          "en": "Yes. They are very nice."
+        },
+        {
+          "hanzi": "你姐姐是老师吗？",
+          "fr": "Ta sœur est professeur ?",
+          "en": "Is your sister a teacher?"
+        },
+        {
+          "hanzi": "是。她工作很忙。",
+          "fr": "Oui. Elle travaille beaucoup.",
+          "en": "Yes. She is very busy at work."
+        },
+        {
+          "hanzi": "大家都有孩子吗？",
+          "fr": "Est-ce que tout le monde a des enfants ?",
+          "en": "Does everyone have children?"
+        },
+        {
+          "hanzi": "我有一个弟弟和一个妹妹。他们是孩子。",
+          "fr": "J'ai un petit frère et une petite sœur. Ce sont des enfants.",
+          "en": "I have a younger brother and a younger sister. They are children."
+        },
+        {
+          "hanzi": "你男朋友是中国人吗？",
+          "fr": "Ton copain est chinois ?",
+          "en": "Is your boyfriend Chinese?"
+        },
+        {
+          "hanzi": "不是。他会中文。",
+          "fr": "Non. Il parle chinois.",
+          "en": "No. He speaks Chinese."
+        },
+        {
+          "hanzi": "家里有多少人？",
+          "fr": "Combien de personnes à la maison ?",
+          "en": "How many people are at home?"
+        },
+        {
+          "hanzi": "家里五个人。",
+          "fr": "Il y a cinq personnes à la maison.",
+          "en": "There are five people at home."
+        },
+        {
+          "hanzi": "你的房间大吗？",
+          "fr": "Ta chambre est grande ?",
+          "en": "Is your room big?"
+        },
+        {
+          "hanzi": "不大。不冷。",
+          "fr": "Pas très. Mais il n'y fait pas froid.",
+          "en": "Not really. But it isn't cold."
+        }
+      ]
+    },
+    {
+      "id": "at-home",
+      "title": {
+        "fr": "À la maison",
+        "en": "At home"
+      },
+      "focus": [
+        "东西",
+        "房间",
+        "桌子",
+        "椅子",
+        "外面",
+        "找"
+      ],
+      "lines": [
+        {
+          "hanzi": "你房间里有什么东西？",
+          "fr": "Qu'y a-t-il dans ta chambre ?",
+          "en": "What is in your room?"
+        },
+        {
+          "hanzi": "有桌子，有椅子，有书。",
+          "fr": "Une table, une chaise, des livres.",
+          "en": "A table, a chair, some books."
+        },
+        {
+          "hanzi": "杯子在哪儿？",
+          "fr": "Où est le verre ?",
+          "en": "Where is the cup?"
+        },
+        {
+          "hanzi": "杯子在这儿。",
+          "fr": "Le verre est ici.",
+          "en": "The cup is here."
+        },
+        {
+          "hanzi": "衣服在那边吗？",
+          "fr": "Les vêtements sont là-bas ?",
+          "en": "Are the clothes over there?"
+        },
+        {
+          "hanzi": "不在这儿。在外边。",
+          "fr": "Pas ici. Dehors.",
+          "en": "Not here. Outside."
+        },
+        {
+          "hanzi": "我找我的手机。",
+          "fr": "Je cherche mon téléphone.",
+          "en": "I am looking for my phone."
+        },
+        {
+          "hanzi": "你看见了吗？",
+          "fr": "L'as-tu vu ?",
+          "en": "Did you see it?"
+        },
+        {
+          "hanzi": "没有。我看不见。",
+          "fr": "Non. Je ne le vois pas.",
+          "en": "No. I can't see it."
+        },
+        {
+          "hanzi": "在桌子上。",
+          "fr": "Il est sur la table.",
+          "en": "It's on the table."
+        },
+        {
+          "hanzi": "谢谢！我去开电视。",
+          "fr": "Merci ! Je vais allumer la télévision.",
+          "en": "Thanks! I'm going to turn on the TV."
+        },
+        {
+          "hanzi": "好。回来坐吧。",
+          "fr": "D'accord. Reviens t'asseoir.",
+          "en": "Okay. Come back and sit down."
+        },
+        {
+          "hanzi": "我坐在这儿看电视。",
+          "fr": "Je m'assieds ici pour regarder la télévision.",
+          "en": "I sit here to watch TV."
+        }
+      ]
+    },
+    {
+      "id": "phone",
+      "title": {
+        "fr": "Au téléphone",
+        "en": "On the phone"
+      },
+      "focus": [
+        "打电话",
+        "给",
+        "喂",
+        "能",
+        "电脑"
+      ],
+      "lines": [
+        {
+          "hanzi": "喂，你好？",
+          "fr": "Allô, bonjour ?",
+          "en": "Hello, are you there?"
+        },
+        {
+          "hanzi": "你好。你要打电话吗？",
+          "fr": "Bonjour. Tu veux appeler ?",
+          "en": "Hello. Do you want to make a call?"
+        },
+        {
+          "hanzi": "是的。我给老师打电话。",
+          "fr": "Oui. Je vais appeler le professeur.",
+          "en": "Yes. I'm going to call the teacher."
+        },
+        {
+          "hanzi": "他现在上课。",
+          "fr": "Il est en cours.",
+          "en": "He is in class."
+        },
+        {
+          "hanzi": "那我晚一点儿打电话。",
+          "fr": "Alors j'appellerai un peu plus tard.",
+          "en": "Then I'll call a little later."
+        },
+        {
+          "hanzi": "好。什么事？",
+          "fr": "D'accord. De quoi s'agit-il ?",
+          "en": "Okay. What is it?"
+        },
+        {
+          "hanzi": "我想找一个人。",
+          "fr": "Je veux trouver quelqu'un.",
+          "en": "I want to find someone."
+        },
+        {
+          "hanzi": "谁？",
+          "fr": "Qui ?",
+          "en": "Who?"
+        },
+        {
+          "hanzi": "我姐姐。她在看电视。",
+          "fr": "Ma sœur. Elle regarde la télévision.",
+          "en": "My sister. She's watching TV."
+        },
+        {
+          "hanzi": "她在电脑那边。",
+          "fr": "Elle est de l'autre côté de l'ordinateur.",
+          "en": "She's on the other side of the computer."
+        },
+        {
+          "hanzi": "好。谢谢你！再见。",
+          "fr": "D'accord. Merci ! Au revoir.",
+          "en": "Okay. Thank you! Goodbye."
+        },
+        {
+          "hanzi": "不客气。",
+          "fr": "De rien.",
+          "en": "You're welcome."
+        }
+      ]
+    },
+    {
+      "id": "weather-talk",
+      "title": {
+        "fr": "Il fait quel temps",
+        "en": "What's the weather like"
+      },
+      "focus": [
+        "冷",
+        "热",
+        "雨",
+        "真",
+        "觉得"
+      ],
+      "lines": [
+        {
+          "hanzi": "今天天气怎么样？",
+          "fr": "Quel temps fait-il aujourd'hui ?",
+          "en": "What's the weather like today?"
+        },
+        {
+          "hanzi": "有点儿冷。",
+          "fr": "Il fait un peu froid.",
+          "en": "It's a little cold."
+        },
+        {
+          "hanzi": "真的？",
+          "fr": "Vraiment ?",
+          "en": "Really?"
+        },
+        {
+          "hanzi": "真的。今天下雨了。",
+          "fr": "Vraiment. Il pleut aujourd'hui.",
+          "en": "Really. It's raining today."
+        },
+        {
+          "hanzi": "下雨了。太冷了。",
+          "fr": "Il pleut. Il fait trop froid.",
+          "en": "It's raining. It's too cold."
+        },
+        {
+          "hanzi": "是。明天也冷。",
+          "fr": "Oui. Demain aussi il fait froid.",
+          "en": "Yes. It's cold tomorrow too."
+        },
+        {
+          "hanzi": "我觉得很冷。",
+          "fr": "Je trouve qu'il fait très froid.",
+          "en": "I feel very cold."
+        },
+        {
+          "hanzi": "我想喝热的水。",
+          "fr": "Je veux boire de l'eau chaude.",
+          "en": "I want to drink hot water."
+        },
+        {
+          "hanzi": "好。我给你水。",
+          "fr": "D'accord. Je te donne de l'eau.",
+          "en": "Okay. I'll give you water."
+        },
+        {
+          "hanzi": "谢谢。今天很热吗？",
+          "fr": "Merci. Fait-il très chaud aujourd'hui ?",
+          "en": "Thanks. Is it very hot today?"
+        },
+        {
+          "hanzi": "是。很热。",
+          "fr": "Oui. Il fait très chaud.",
+          "en": "Yes. It's very hot."
+        },
+        {
+          "hanzi": "好。",
+          "fr": "D'accord.",
+          "en": "Okay."
+        }
+      ]
+    },
+    {
+      "id": "writing",
+      "title": {
+        "fr": "Lire et écrire",
+        "en": "Reading and writing"
+      },
+      "focus": [
+        "汉字",
+        "写",
+        "百",
+        "爱",
+        "好听"
+      ],
+      "lines": [
+        {
+          "hanzi": "你喜欢读什么书？",
+          "fr": "Quel genre de livre aimes-tu lire ?",
+          "en": "What kind of book do you like to read?"
+        },
+        {
+          "hanzi": "我喜欢读汉字。",
+          "fr": "J'aime lire les caractères.",
+          "en": "I like reading characters."
+        },
+        {
+          "hanzi": "你会写汉字吗？",
+          "fr": "Sais-tu écrire les caractères ?",
+          "en": "Can you write characters?"
+        },
+        {
+          "hanzi": "会一点。",
+          "fr": "Un peu.",
+          "en": "A little."
+        },
+        {
+          "hanzi": "你写几个字？",
+          "fr": "Tu écris combien de caractères ?",
+          "en": "How many characters do you write?"
+        },
+        {
+          "hanzi": "我写十个字。",
+          "fr": "J'en écris dix.",
+          "en": "I write ten."
+        },
+        {
+          "hanzi": "真多！",
+          "fr": "Beaucoup !",
+          "en": "That's a lot!"
+        },
+        {
+          "hanzi": "我写一百个。",
+          "fr": "J'en écris cent.",
+          "en": "I write a hundred."
+        },
+        {
+          "hanzi": "你写字很好看。",
+          "fr": "Tu écris bien !",
+          "en": "You write well!"
+        },
+        {
+          "hanzi": "我喜欢写字。",
+          "fr": "J'aime écrire.",
+          "en": "I like writing."
+        },
+        {
+          "hanzi": "我也喜欢听歌。",
+          "fr": "J'aime aussi écouter des chansons.",
+          "en": "I also like listening to songs."
+        },
+        {
+          "hanzi": "我的歌好听。",
+          "fr": "Mes chansons sont agréables.",
+          "en": "My songs are pleasant."
+        },
+        {
+          "hanzi": "包子好吃。苹果好吃。",
+          "fr": "Les petits pains sont bons. Les pommes sont bonnes.",
+          "en": "The buns are tasty. The apples are tasty."
+        },
+        {
+          "hanzi": "我爱中文。我爱看电影。",
+          "fr": "J'aime le chinois. J'aime voir des films.",
+          "en": "I love Chinese. I love watching films."
+        },
+        {
+          "hanzi": "电影好看。",
+          "fr": "Les films sont beaux.",
+          "en": "The films are beautiful."
+        }
+      ]
+    },
+    {
+      "id": "dates",
+      "title": {
+        "fr": "Les dates et les quantités",
+        "en": "Dates and quantities"
+      },
+      "focus": [
+        "第",
+        "星期日",
+        "几",
+        "百",
+        "一些"
+      ],
+      "lines": [
+        {
+          "hanzi": "现在是几月？",
+          "fr": "On est quel mois ?",
+          "en": "What month is it?"
+        },
+        {
+          "hanzi": "九月。",
+          "fr": "Septembre.",
+          "en": "September."
+        },
+        {
+          "hanzi": "今天几号？",
+          "fr": "C'est quel jour du mois ?",
+          "en": "What day of the month is it?"
+        },
+        {
+          "hanzi": "二十号。",
+          "fr": "Le vingt.",
+          "en": "The twentieth."
+        },
+        {
+          "hanzi": "你星期天做什么？",
+          "fr": "Que fais-tu le dimanche ?",
+          "en": "What do you do on Sunday?"
+        },
+        {
+          "hanzi": "我和家人去看电影。",
+          "fr": "Je vais au cinéma avec ma famille.",
+          "en": "I go to the cinema with my family."
+        },
+        {
+          "hanzi": "几点？",
+          "fr": "À quelle heure ?",
+          "en": "What time?"
+        },
+        {
+          "hanzi": "上午十点。",
+          "fr": "À dix heures du matin.",
+          "en": "At ten in the morning."
+        },
+        {
+          "hanzi": "好。我买一些水果。",
+          "fr": "D'accord. J'achète des fruits.",
+          "en": "Okay. I'll buy some fruit."
+        },
+        {
+          "hanzi": "我买两个苹果。",
+          "fr": "J'achète deux pommes.",
+          "en": "I'll buy two apples."
+        },
+        {
+          "hanzi": "多少钱？",
+          "fr": "C'est combien ?",
+          "en": "How much?"
+        },
+        {
+          "hanzi": "三十块。",
+          "fr": "Trente yuans.",
+          "en": "Thirty yuan."
+        },
+        {
+          "hanzi": "我给你钱。",
+          "fr": "Je te donne l'argent.",
+          "en": "I'll give you the money."
+        },
+        {
+          "hanzi": "去年我不看电影，今年我很喜欢。",
+          "fr": "L'an dernier je ne voyais pas de films, cette année j'aime beaucoup.",
+          "en": "Last year I didn't watch films, this year I like it a lot."
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "title": {
+        "fr": "En route",
+        "en": "On the way"
+      },
+      "focus": [
+        "火车",
+        "飞机",
+        "车",
+        "分钟",
+        "请问"
+      ],
+      "lines": [
+        {
+          "hanzi": "请问，火车在哪儿？",
+          "fr": "Excusez-moi, où est le train ?",
+          "en": "Excuse me, where is the train?"
+        },
+        {
+          "hanzi": "火车在那边。",
+          "fr": "Le train est là-bas.",
+          "en": "The train is over there."
+        },
+        {
+          "hanzi": "那儿有什么？",
+          "fr": "Qu'y a-t-il là-bas ?",
+          "en": "What is over there?"
+        },
+        {
+          "hanzi": "那儿有很多车。",
+          "fr": "Il y a beaucoup de voitures là-bas.",
+          "en": "There are many cars over there."
+        },
+        {
+          "hanzi": "飞机也在那儿吗？",
+          "fr": "L'avion est aussi là-bas ?",
+          "en": "Is the plane there too?"
+        },
+        {
+          "hanzi": "现在几点？",
+          "fr": "Quelle heure est-il ?",
+          "en": "What time is it?"
+        },
+        {
+          "hanzi": "三点十分。",
+          "fr": "Trois heures dix.",
+          "en": "Three ten."
+        },
+        {
+          "hanzi": "火车三点前到吗？",
+          "fr": "Le train arrive-t-il avant trois heures ?",
+          "en": "Does the train arrive before three?"
+        },
+        {
+          "hanzi": "三点后到。",
+          "fr": "Il arrive après trois heures.",
+          "en": "It arrives after three."
+        },
+        {
+          "hanzi": "坐火车要多少分钟？",
+          "fr": "Combien de minutes pour prendre le train ?",
+          "en": "How many minutes to take the train?"
+        },
+        {
+          "hanzi": "二十分钟。",
+          "fr": "Vingt minutes.",
+          "en": "Twenty minutes."
+        },
+        {
+          "hanzi": "我坐出租车去，可以吗？",
+          "fr": "Je prends un taxi, ça va ?",
+          "en": "I'll take a taxi, is that alright?"
+        },
+        {
+          "hanzi": "可以。车在外边。",
+          "fr": "Ça va. La voiture est dehors.",
+          "en": "That's fine. The car is outside."
+        },
+        {
+          "hanzi": "好。我给朋友打电话。",
+          "fr": "D'accord. J'appelle un ami.",
+          "en": "Okay. I'm calling a friend."
+        },
+        {
+          "hanzi": "哪个朋友？",
+          "fr": "Quel ami ?",
+          "en": "Which friend?"
+        },
+        {
+          "hanzi": "我的朋友。他在那边。",
+          "fr": "Mon ami. Il est là-bas.",
+          "en": "My friend. He's over there."
+        },
+        {
+          "hanzi": "那你去吧。",
+          "fr": "Alors vas-y.",
+          "en": "Then go ahead."
+        },
+        {
+          "hanzi": "好。再见！",
+          "fr": "D'accord. Au revoir !",
+          "en": "Okay. Goodbye!"
+        }
+      ]
+    },
+    {
+      "id": "school",
+      "title": {
+        "fr": "À l'école",
+        "en": "At school"
+      },
+      "focus": [
+        "小学生",
+        "中学生",
+        "大学生",
+        "上学",
+        "下课",
+        "问题"
+      ],
+      "lines": [
+        {
+          "hanzi": "你是小学生吗？",
+          "fr": "Tu es élève de primaire ?",
+          "en": "Are you a primary school student?"
+        },
+        {
+          "hanzi": "不是。我是中学生。",
+          "fr": "Non. Je suis au collège.",
+          "en": "No. I'm a middle school student."
+        },
+        {
+          "hanzi": "你在哪里上学？",
+          "fr": "Où fais-tu tes études ?",
+          "en": "Where do you go to school?"
+        },
+        {
+          "hanzi": "我在中学上学。",
+          "fr": "Je vais au collège.",
+          "en": "I go to middle school."
+        },
+        {
+          "hanzi": "你家的小朋友呢？",
+          "fr": "Et ton enfant ?",
+          "en": "And your child?"
+        },
+        {
+          "hanzi": "他上小学。",
+          "fr": "Il va au primaire.",
+          "en": "He goes to primary school."
+        },
+        {
+          "hanzi": "他在哪个学校？",
+          "fr": "Dans quelle école est-il ?",
+          "en": "Which school is he at?"
+        },
+        {
+          "hanzi": "在学校那边。",
+          "fr": "De l'autre côté de l'école.",
+          "en": "Over by the school."
+        },
+        {
+          "hanzi": "你们在一个学校吗？",
+          "fr": "Tu es dans la même école ?",
+          "en": "Are you at the same school?"
+        },
+        {
+          "hanzi": "不。他不在我们学校。",
+          "fr": "Non. Il n'est pas dans notre école.",
+          "en": "No. He's not at our school."
+        },
+        {
+          "hanzi": "下课你做什么？",
+          "fr": "Que fais-tu à la fin des cours ?",
+          "en": "What do you do after class?"
+        },
+        {
+          "hanzi": "我和朋友玩。",
+          "fr": "Je joue avec un ami.",
+          "en": "I play with a friend."
+        },
+        {
+          "hanzi": "你会问老师问题吗？",
+          "fr": "Sais-tu poser une question au professeur ?",
+          "en": "Can you ask the teacher questions?"
+        },
+        {
+          "hanzi": "会。我喜欢问问题。",
+          "fr": "Oui. J'aime poser des questions.",
+          "en": "Yes. I like asking questions."
+        },
+        {
+          "hanzi": "你听见老师说话吗？",
+          "fr": "Entends-tu le professeur parler ?",
+          "en": "Do you hear the teacher speaking?"
+        },
+        {
+          "hanzi": "听见。我会说一点中文。",
+          "fr": "Oui. Je parle un peu chinois.",
+          "en": "Yes. I speak a little Chinese."
+        },
+        {
+          "hanzi": "很好。",
+          "fr": "Très bien.",
+          "en": "Very good."
+        },
+        {
+          "hanzi": "谢谢。",
+          "fr": "Merci.",
+          "en": "Thank you."
+        }
+      ]
+    },
+    {
+      "id": "home-shop",
+      "title": {
+        "fr": "À la maison et au magasin",
+        "en": "At home and at the shop"
+      },
+      "focus": [
+        "猫",
+        "狗",
+        "穿",
+        "衣服",
+        "商店",
+        "一半"
+      ],
+      "lines": [
+        {
+          "hanzi": "你家有猫吗？",
+          "fr": "Tu as un chat ?",
+          "en": "Do you have a cat?"
+        },
+        {
+          "hanzi": "没有。我家有狗。",
+          "fr": "Non. J'ai un chien.",
+          "en": "No. I have a dog."
+        },
+        {
+          "hanzi": "你穿什么衣服？",
+          "fr": "Tu portes quoi ?",
+          "en": "What are you wearing?"
+        },
+        {
+          "hanzi": "我穿一件新衣服。",
+          "fr": "Je porte un nouveau vêtement.",
+          "en": "I'm wearing a new piece of clothing."
+        },
+        {
+          "hanzi": "真好看。",
+          "fr": "C'est très beau.",
+          "en": "It looks great."
+        },
+        {
+          "hanzi": "我去商店买一件。",
+          "fr": "Je vais au magasin en acheter un.",
+          "en": "I'm going to the shop to buy one."
+        },
+        {
+          "hanzi": "商店在哪儿？",
+          "fr": "Où est le magasin ?",
+          "en": "Where is the shop?"
+        },
+        {
+          "hanzi": "在学校那边。",
+          "fr": "De l'autre côté de l'école.",
+          "en": "Over by the school."
+        },
+        {
+          "hanzi": "好的。我买一些面包。",
+          "fr": "D'accord. J'achète du pain.",
+          "en": "Okay. I'll buy some bread."
+        },
+        {
+          "hanzi": "面包多少钱？",
+          "fr": "Le pain, c'est combien ?",
+          "en": "How much is the bread?"
+        },
+        {
+          "hanzi": "十块。",
+          "fr": "Dix yuans.",
+          "en": "Ten yuan."
+        },
+        {
+          "hanzi": "我也想要一些菜。",
+          "fr": "Je veux aussi des légumes.",
+          "en": "I want some vegetables too."
+        },
+        {
+          "hanzi": "好。饭店有菜吗？",
+          "fr": "D'accord. Le restaurant a des légumes ?",
+          "en": "Okay. Does the restaurant have vegetables?"
+        },
+        {
+          "hanzi": "有。很多。",
+          "fr": "Oui. Beaucoup.",
+          "en": "Yes. Plenty."
+        },
+        {
+          "hanzi": "这个店卖什么？",
+          "fr": "Que vend ce magasin ?",
+          "en": "What does this shop sell?"
+        },
+        {
+          "hanzi": "卖一些水果和一些面包。",
+          "fr": "Des fruits et du pain.",
+          "en": "Some fruit and some bread."
+        },
+        {
+          "hanzi": "有的面包很贵。",
+          "fr": "Du pain, c'est parfois cher.",
+          "en": "Some bread is expensive."
+        },
+        {
+          "hanzi": "有些便宜。",
+          "fr": "D'autres sont moins chers.",
+          "en": "Some are cheaper."
+        },
+        {
+          "hanzi": "我吃一半。",
+          "fr": "Je mange la moitié.",
+          "en": "I'll eat half."
+        },
+        {
+          "hanzi": "我吃一些饭。",
+          "fr": "Je mange du riz.",
+          "en": "I'll eat some rice."
+        }
+      ]
+    },
+    {
+      "id": "numbers-money",
+      "title": {
+        "fr": "Les nombres et l'argent",
+        "en": "Numbers and money"
+      },
+      "focus": [
+        "零",
+        "六",
+        "千",
+        "第",
+        "元",
+        "只"
+      ],
+      "lines": [
+        {
+          "hanzi": "你要几个苹果？",
+          "fr": "Combien de pommes veux-tu ?",
+          "en": "How many apples do you want?"
+        },
+        {
+          "hanzi": "六个。",
+          "fr": "Six.",
+          "en": "Six."
+        },
+        {
+          "hanzi": "多少钱？",
+          "fr": "C'est combien ?",
+          "en": "How much?"
+        },
+        {
+          "hanzi": "二十元。",
+          "fr": "Vingt yuans.",
+          "en": "Twenty yuan."
+        },
+        {
+          "hanzi": "我只有零钱。",
+          "fr": "Je n'ai que de la monnaie.",
+          "en": "I only have change."
+        },
+        {
+          "hanzi": "没有零钱？我有。",
+          "fr": "Pas de monnaie ? Moi, j'en ai.",
+          "en": "No change? I have some."
+        },
+        {
+          "hanzi": "给我一半。",
+          "fr": "Donne-moi la moitié.",
+          "en": "Give me half."
+        },
+        {
+          "hanzi": "好。这是你的。",
+          "fr": "D'accord. Le voilà.",
+          "en": "Okay. Here it is."
+        },
+        {
+          "hanzi": "谢谢。还有这些呢？",
+          "fr": "Merci. Et ceux-là ?",
+          "en": "Thanks. And these?"
+        },
+        {
+          "hanzi": "那些是他们的。",
+          "fr": "Ceux-là sont à eux.",
+          "en": "Those are theirs."
+        },
+        {
+          "hanzi": "这是我的第十本书。",
+          "fr": "Voici mon dixième livre.",
+          "en": "This is my tenth book."
+        },
+        {
+          "hanzi": "一千本？！",
+          "fr": "Mille livres ?!",
+          "en": "A thousand books?!"
+        },
+        {
+          "hanzi": "我有一百本书。",
+          "fr": "J'ai cent livres.",
+          "en": "I have a hundred books."
+        },
+        {
+          "hanzi": "真多！",
+          "fr": "Beaucoup !",
+          "en": "That's a lot!"
+        },
+        {
+          "hanzi": "我想再买一些。",
+          "fr": "Je veux en acheter encore.",
+          "en": "I want to buy some more."
+        }
+      ]
+    },
+    {
+      "id": "people",
+      "title": {
+        "fr": "Les gens",
+        "en": "People"
+      },
+      "focus": [
+        "儿子",
+        "女儿",
+        "男",
+        "女",
+        "女士",
+        "它们"
+      ],
+      "lines": [
+        {
+          "hanzi": "你有儿子吗？",
+          "fr": "Tu as un fils ?",
+          "en": "Do you have a son?"
+        },
+        {
+          "hanzi": "我有一个儿子和一个女儿。",
+          "fr": "J'ai un fils et une fille.",
+          "en": "I have a son and a daughter."
+        },
+        {
+          "hanzi": "那个男人是谁？",
+          "fr": "Qui est cet homme ?",
+          "en": "Who is that man?"
+        },
+        {
+          "hanzi": "他是我爸爸的朋友。",
+          "fr": "C'est un ami de mon père.",
+          "en": "He's a friend of my father."
+        },
+        {
+          "hanzi": "那个女的呢？",
+          "fr": "Et cette femme ?",
+          "en": "And that woman?"
+        },
+        {
+          "hanzi": "她是我姐姐。",
+          "fr": "C'est ma sœur.",
+          "en": "She's my sister."
+        },
+        {
+          "hanzi": "她们是谁？",
+          "fr": "Qui sont-elles ?",
+          "en": "Who are they?"
+        },
+        {
+          "hanzi": "她们是我同学。",
+          "fr": "Ce sont mes condisciples.",
+          "en": "They are my classmates."
+        },
+        {
+          "hanzi": "女士，您好。",
+          "fr": "Madame, bonjour.",
+          "en": "Hello, madam."
+        },
+        {
+          "hanzi": "你好，先生。",
+          "fr": "Bonjour, monsieur.",
+          "en": "Hello, sir."
+        },
+        {
+          "hanzi": "它是什么？",
+          "fr": "Qu'est-ce que c'est ?",
+          "en": "What is it?"
+        },
+        {
+          "hanzi": "它是猫。",
+          "fr": "C'est un chat.",
+          "en": "It's a cat."
+        },
+        {
+          "hanzi": "它们在哪儿？",
+          "fr": "Où sont-ils ?",
+          "en": "Where are they?"
+        },
+        {
+          "hanzi": "它们在那边。",
+          "fr": "Ils sont là-bas.",
+          "en": "They're over there."
+        },
+        {
+          "hanzi": "你是哪国人？",
+          "fr": "De quel pays es-tu ?",
+          "en": "Which country are you from?"
+        },
+        {
+          "hanzi": "我是中国人。",
+          "fr": "Je suis chinois.",
+          "en": "I'm Chinese."
+        },
+        {
+          "hanzi": "哪些人会说汉语？",
+          "fr": "Qui parle chinois ?",
+          "en": "Who speaks Chinese?"
+        },
+        {
+          "hanzi": "他们会说。",
+          "fr": "Eux parlent.",
+          "en": "They do."
+        },
+        {
+          "hanzi": "今天是六月一日吗？",
+          "fr": "C'est le premier juin aujourd'hui ?",
+          "en": "Is today June first?"
+        },
+        {
+          "hanzi": "是。今天很热。",
+          "fr": "Oui. Il fait très chaud aujourd'hui.",
+          "en": "Yes. It's very hot today."
+        },
+        {
+          "hanzi": "天上下雪吗？",
+          "fr": "Est-ce qu'il neige ?",
+          "en": "Is it snowing?"
+        },
+        {
+          "hanzi": "不下雪。下雨。",
+          "fr": "Non, il ne neige pas. Il pleut.",
+          "en": "It's not snowing. It's raining."
+        },
+        {
+          "hanzi": "你住在哪里？",
+          "fr": "Où habites-tu ?",
+          "en": "Where do you live?"
+        },
+        {
+          "hanzi": "我住在学校那边。",
+          "fr": "J'habite de l'autre côté de l'école.",
+          "en": "I live over by the school."
+        },
+        {
+          "hanzi": "你会做饭吗？",
+          "fr": "Sais-tu cuisiner ?",
+          "en": "Can you cook?"
+        },
+        {
+          "hanzi": "会。我会做饺子。",
+          "fr": "Oui. Je sais faire des raviolis chinois.",
+          "en": "Yes. I can make dumplings."
+        },
+        {
+          "hanzi": "很好吃吗？",
+          "fr": "C'est bon ?",
+          "en": "Are they good?"
+        },
+        {
+          "hanzi": "很好吃。",
+          "fr": "C'est très bon.",
+          "en": "They're very good."
+        },
+        {
+          "hanzi": "好。再见！",
+          "fr": "D'accord. Au revoir !",
+          "en": "Okay. Goodbye!"
+        }
+      ]
+    },
+    {
+      "id": "week",
+      "title": {
+        "fr": "La semaine",
+        "en": "The week"
+      },
+      "focus": [
+        "时间",
+        "星期",
+        "星期日",
+        "昨天",
+        "明天",
+        "早"
+      ],
+      "lines": [
+        {
+          "hanzi": "现在几点？",
+          "fr": "Quelle heure est-il ?",
+          "en": "What time is it?"
+        },
+        {
+          "hanzi": "八点。",
+          "fr": "Huit heures.",
+          "en": "Eight o'clock."
+        },
+        {
+          "hanzi": "明天几点？",
+          "fr": "Et demain à quelle heure ?",
+          "en": "And tomorrow?"
+        },
+        {
+          "hanzi": "明天七点。",
+          "fr": "Demain à sept heures.",
+          "en": "Tomorrow at seven."
+        },
+        {
+          "hanzi": "星期日你去哪儿？",
+          "fr": "Où vas-tu le dimanche ?",
+          "en": "Where do you go on Sunday?"
+        },
+        {
+          "hanzi": "我去书店。",
+          "fr": "Je vais à la librairie.",
+          "en": "I'm going to the bookstore."
+        },
+        {
+          "hanzi": "那个大学生呢？",
+          "fr": "Et l'étudiant ?",
+          "en": "And the university student?"
+        },
+        {
+          "hanzi": "他在那边。",
+          "fr": "Il est là-bas.",
+          "en": "He's over there."
+        },
+        {
+          "hanzi": "你在外吗？",
+          "fr": "Es-tu dehors ?",
+          "en": "Are you outside?"
+        },
+        {
+          "hanzi": "不。我在家里。",
+          "fr": "Non. Je suis à la maison.",
+          "en": "No. I'm at home."
+        },
+        {
+          "hanzi": "昨天你去哪儿了？",
+          "fr": "Où étais-tu hier ?",
+          "en": "Where were you yesterday?"
+        },
+        {
+          "hanzi": "我在家里看书。",
+          "fr": "J'étais à la maison, je lisais.",
+          "en": "I was at home reading."
+        },
+        {
+          "hanzi": "你知道时间吗？",
+          "fr": "Tu sais l'heure ?",
+          "en": "Do you know the time?"
+        },
+        {
+          "hanzi": "知道。现在八点。",
+          "fr": "Oui. Il est huit heures.",
+          "en": "Yes. It's eight o'clock."
+        },
+        {
+          "hanzi": "我很早起床。",
+          "fr": "Je me lève très tôt.",
+          "en": "I get up very early."
+        },
+        {
+          "hanzi": "我也很早。",
+          "fr": "Moi aussi, très tôt.",
+          "en": "Me too, very early."
+        }
+      ]
+    },
+    {
+      "id": "politeness",
+      "title": {
+        "fr": "Poliresse et chiffres",
+        "en": "Politeness and numbers"
+      },
+      "focus": [
+        "请",
+        "能",
+        "半",
+        "些",
+        "岁"
+      ],
+      "lines": [
+        {
+          "hanzi": "你三十岁吗？",
+          "fr": "Tu as trente ans ?",
+          "en": "Are you thirty?"
+        },
+        {
+          "hanzi": "是。我三十岁。",
+          "fr": "Oui. J'ai trente ans.",
+          "en": "Yes. I'm thirty."
+        },
+        {
+          "hanzi": "你小吗？",
+          "fr": "Tu es jeune ?",
+          "en": "Are you young?"
+        },
+        {
+          "hanzi": "不。我不小。",
+          "fr": "Non. Je ne suis plus jeune.",
+          "en": "No. I'm not young."
+        },
+        {
+          "hanzi": "你的病好了吗？",
+          "fr": "Tu vas mieux ?",
+          "en": "Is your illness better?"
+        },
+        {
+          "hanzi": "好了。谢谢。",
+          "fr": "Oui. Merci.",
+          "en": "Yes. Thank you."
+        },
+        {
+          "hanzi": "请给我一个苹果。",
+          "fr": "S'il te plaît, donne-moi une pomme.",
+          "en": "Please give me an apple."
+        },
+        {
+          "hanzi": "好。",
+          "fr": "D'accord.",
+          "en": "Okay."
+        },
+        {
+          "hanzi": "我能给朋友打电话吗？",
+          "fr": "Puis-je appeler un ami ?",
+          "en": "Can I call a friend?"
+        },
+        {
+          "hanzi": "能。",
+          "fr": "Oui.",
+          "en": "Yes."
+        },
+        {
+          "hanzi": "谢谢。",
+          "fr": "Merci.",
+          "en": "Thank you."
+        },
+        {
+          "hanzi": "不客气。",
+          "fr": "De rien.",
+          "en": "You're welcome."
+        },
+        {
+          "hanzi": "你会开车吗？",
+          "fr": "Sais-tu conduire ?",
+          "en": "Can you drive?"
+        },
+        {
+          "hanzi": "会。我开车上班。",
+          "fr": "Oui. Je conduis pour aller travailler.",
+          "en": "Yes. I drive to work."
+        },
+        {
+          "hanzi": "今天有雨吗？",
+          "fr": "Est-ce qu'il pleut aujourd'hui ?",
+          "en": "Is it raining today?"
+        },
+        {
+          "hanzi": "有。下午下雨。",
+          "fr": "Oui. Il pleut l'après-midi.",
+          "en": "Yes. It rains in the afternoon."
+        },
+        {
+          "hanzi": "我买些苹果。",
+          "fr": "J'achète des pommes.",
+          "en": "I'll buy some apples."
+        },
+        {
+          "hanzi": "多少钱？",
+          "fr": "C'est combien ?",
+          "en": "How much?"
+        },
+        {
+          "hanzi": "二十块。",
+          "fr": "Vingt yuans.",
+          "en": "Twenty yuan."
+        },
+        {
+          "hanzi": "我要一半。",
+          "fr": "J'en veux la moitié.",
+          "en": "I want half."
+        },
+        {
+          "hanzi": "好。给你。",
+          "fr": "D'accord. Tiens.",
+          "en": "Okay. Here you are."
+        },
+        {
+          "hanzi": "谢谢。再见。",
+          "fr": "Merci. Au revoir.",
+          "en": "Thanks. Goodbye."
+        },
+        {
+          "hanzi": "好。你去睡吧。",
+          "fr": "D'accord. Va dormir.",
+          "en": "Okay. Go and sleep."
+        },
+        {
+          "hanzi": "明天见。",
+          "fr": "À demain.",
+          "en": "See you tomorrow."
+        }
+      ]
+    },
+    {
+      "id": "misc",
+      "title": {
+        "fr": "Quelques questions",
+        "en": "A few questions"
+      },
+      "focus": [
+        "星期",
+        "时候",
+        "电话",
+        "半",
+        "少"
+      ],
+      "lines": [
+        {
+          "hanzi": "星期几？",
+          "fr": "Quel jour de la semaine ?",
+          "en": "Which day of the week?"
+        },
+        {
+          "hanzi": "星期日。",
+          "fr": "Dimanche.",
+          "en": "Sunday."
+        },
+        {
+          "hanzi": "你什么时候来？",
+          "fr": "Quand viens-tu ?",
+          "en": "When are you coming?"
+        },
+        {
+          "hanzi": "下午。",
+          "fr": "L'après-midi.",
+          "en": "In the afternoon."
+        },
+        {
+          "hanzi": "你的电话几号？",
+          "fr": "Quel est ton numéro de téléphone ?",
+          "en": "What is your phone number?"
+        },
+        {
+          "hanzi": "八一二。",
+          "fr": "Huit-deux-un.",
+          "en": "Eight-two-one."
+        },
+        {
+          "hanzi": "你住那里？",
+          "fr": "Tu habites là-bas ?",
+          "en": "Do you live there?"
+        },
+        {
+          "hanzi": "我住那里。",
+          "fr": "J'habite là-bas.",
+          "en": "I live there."
+        },
+        {
+          "hanzi": "你坐这边吗？",
+          "fr": "Tu t'assieds par là ?",
+          "en": "Are you sitting over here?"
+        },
+        {
+          "hanzi": "坐。请你坐在桌子边。",
+          "fr": "Assieds-toi. S'il te plaît, assieds-toi au bord de la table.",
+          "en": "Sit down. Please sit at the side of the table."
+        },
+        {
+          "hanzi": "明年你来吗？",
+          "fr": "Tu viens l'année prochaine ?",
+          "en": "Are you coming next year?"
+        },
+        {
+          "hanzi": "来。",
+          "fr": "Oui, je viens.",
+          "en": "Yes, I'm coming."
+        },
+        {
+          "hanzi": "我学了半年。",
+          "fr": "J'ai étudié pendant un demi-an.",
+          "en": "I've studied for half a year."
+        },
+        {
+          "hanzi": "我学了一年。",
+          "fr": "J'ai étudié pendant un an.",
+          "en": "I've studied for a year."
+        },
+        {
+          "hanzi": "今天学生少。",
+          "fr": "Il y a peu d'étudiants aujourd'hui.",
+          "en": "There are few students today."
+        },
+        {
+          "hanzi": "是。明天学生多。",
+          "fr": "Oui. Demain il y en a beaucoup.",
+          "en": "Yes. Tomorrow there are a lot."
+        }
+      ]
+    }
+  ]
+}

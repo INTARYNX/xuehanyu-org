@@ -1,0 +1,5227 @@
+{
+ "version": 1,
+ "level": 1,
+ "lessons": [
+  {
+   "id": "presentation",
+   "title": {
+    "fr": "Se présenter",
+    "en": "Introducing yourself"
+   },
+   "level": 1,
+   "focus": [
+    "名字",
+    "认识",
+    "高兴",
+    "学习"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "您好！很高兴见到你。",
+     "pinyin": "nín hǎo! hěn gāo xìng jiàn dào nǐ.",
+     "fr": "Bonjour ! Ravi de te rencontrer.",
+     "en": "Hello! Nice to meet you.",
+     "words": [
+      "您",
+      "好",
+      "很",
+      "高兴",
+      "见",
+      "到",
+      "你"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我也很高兴。你叫什么名字？",
+     "pinyin": "wǒ yě hěn gāo xìng. nǐ jiào shén me míng zi?",
+     "fr": "Moi aussi, je suis content. Comment tu t'appelles ?",
+     "en": "I'm also happy. What's your name?",
+     "words": [
+      "我",
+      "也",
+      "很",
+      "高兴",
+      "你",
+      "叫",
+      "什么",
+      "名字"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我是老师。你呢？",
+     "pinyin": "wǒ shì lǎo shī. nǐ ne?",
+     "fr": "Je suis professeur. Et toi ?",
+     "en": "I'm a teacher. And you?",
+     "words": [
+      "我",
+      "是",
+      "老师",
+      "你",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我是学生。我在大学学习中文。",
+     "pinyin": "wǒ shì xué sheng. wǒ zài dà xué xué xí zhōng wén.",
+     "fr": "Je suis étudiant. J'étudie le chinois à l'université.",
+     "en": "I'm a student. I study Chinese at university.",
+     "words": [
+      "我",
+      "是",
+      "学生",
+      "我",
+      "在",
+      "大学",
+      "学习",
+      "中文"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你学中文几年了？",
+     "pinyin": "nǐ xué zhōng wén jī nián le?",
+     "fr": "Depuis combien de temps tu étudies le chinois ?",
+     "en": "How many years have you studied Chinese?",
+     "words": [
+      "你",
+      "学",
+      "中文",
+      "几",
+      "年",
+      "了"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "三年了。",
+     "pinyin": "sān nián le.",
+     "fr": "Depuis trois ans.",
+     "en": "For three years.",
+     "words": [
+      "三",
+      "年",
+      "了"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "很好。",
+     "pinyin": "hěn hǎo.",
+     "fr": "Très bien.",
+     "en": "Very good.",
+     "words": [
+      "很",
+      "好"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "你也是学生吗？",
+     "pinyin": "nǐ yě shì xué sheng ma?",
+     "fr": "Tu es étudiant aussi ?",
+     "en": "Are you a student too?",
+     "words": [
+      "你",
+      "也",
+      "是",
+      "学生",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "是。我学习一个小时。",
+     "pinyin": "shì. wǒ xué xí yī gè xiǎo shí.",
+     "fr": "Oui. J'étudie une heure.",
+     "en": "Yes. I study for one hour.",
+     "words": [
+      "是",
+      "我",
+      "学习",
+      "一",
+      "个",
+      "小时"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。我们学习。",
+     "pinyin": "hǎo. wǒ men xué xí.",
+     "fr": "Bien. Apprenons.",
+     "en": "Good. Let's study.",
+     "words": [
+      "好",
+      "我们",
+      "学习"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "restaurant",
+   "title": {
+    "fr": "Au restaurant",
+    "en": "At the restaurant"
+   },
+   "level": 1,
+   "focus": [
+    "饭店",
+    "要",
+    "米饭",
+    "多少钱",
+    "便宜"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "您要吃什么？",
+     "pinyin": "nín yào chī shén me?",
+     "fr": "Tu veux manger quoi ?",
+     "en": "What would you like to eat?",
+     "words": [
+      "您",
+      "要",
+      "吃",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我要米饭和鸡蛋。",
+     "pinyin": "wǒ yào mǐ fàn hé jī dàn.",
+     "fr": "Je veux du riz et un œuf.",
+     "en": "I want rice and an egg.",
+     "words": [
+      "我",
+      "要",
+      "米饭",
+      "和",
+      "鸡蛋"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "要面条儿吗？",
+     "pinyin": "yào miàn tiáo r ma?",
+     "fr": "Tu veux des nouilles ?",
+     "en": "Do you want noodles?",
+     "words": [
+      "要",
+      "面条儿",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不要米饭。要面条儿。",
+     "pinyin": "bù yào mǐ fàn. yào miàn tiáo r.",
+     "fr": "Pas de riz. Je veux des nouilles.",
+     "en": "No rice. I want noodles.",
+     "words": [
+      "不要",
+      "米饭",
+      "要",
+      "面条儿"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "您也喝茶吗？",
+     "pinyin": "nín yě hē chá ma?",
+     "fr": "Tu veux aussi du thé ?",
+     "en": "Do you want tea as well?",
+     "words": [
+      "您",
+      "也",
+      "喝",
+      "茶",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "要茶。",
+     "pinyin": "yào chá.",
+     "fr": "Oui, je veux du thé.",
+     "en": "Yes, I want tea.",
+     "words": [
+      "要",
+      "茶"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "多少钱？",
+     "pinyin": "duō shǎo qián?",
+     "fr": "C'est combien ?",
+     "en": "How much is it?",
+     "words": [
+      "多少",
+      "钱"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "二十块。",
+     "pinyin": "èr shí kuài.",
+     "fr": "Vingt yuans.",
+     "en": "Twenty yuan.",
+     "words": [
+      "二",
+      "十",
+      "块"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "太贵了！",
+     "pinyin": "tài guì le!",
+     "fr": "C'est trop cher !",
+     "en": "That's too expensive!",
+     "words": [
+      "太",
+      "贵",
+      "了"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不贵。便宜。",
+     "pinyin": "bù guì. biàn yí.",
+     "fr": "Ce n'est pas cher. C'est bon marché.",
+     "en": "It's not expensive. It's cheap.",
+     "words": [
+      "不",
+      "贵",
+      "便宜"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。给你钱。",
+     "pinyin": "hǎo. gěi nǐ qián.",
+     "fr": "D'accord. Voici l'argent.",
+     "en": "Okay. Here's the money.",
+     "words": [
+      "好",
+      "给",
+      "你",
+      "钱"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shopping",
+   "title": {
+    "fr": "Faire des courses",
+    "en": "Going shopping"
+   },
+   "level": 1,
+   "focus": [
+    "超市",
+    "买",
+    "水果",
+    "钱",
+    "便宜"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "我想去超市。你去吗？",
+     "pinyin": "wǒ xiǎng qù chāo shì. nǐ qù ma?",
+     "fr": "Je veux aller au supermarché. Tu y vas ?",
+     "en": "I want to go to the supermarket. Are you going?",
+     "words": [
+      "我",
+      "想",
+      "去",
+      "超市",
+      "你",
+      "去",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。我现在去。",
+     "pinyin": "hǎo. wǒ xiàn zài qù.",
+     "fr": "D'accord. J'y vais maintenant.",
+     "en": "Okay. I'm going now.",
+     "words": [
+      "好",
+      "我",
+      "现在",
+      "去"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你买什么？",
+     "pinyin": "nǐ mǎi shén me?",
+     "fr": "Tu achètes quoi ?",
+     "en": "What are you buying?",
+     "words": [
+      "你",
+      "买",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我买水果和牛奶。",
+     "pinyin": "wǒ mǎi shuǐ guǒ hé niú nǎi.",
+     "fr": "J'achète des fruits et du lait.",
+     "en": "I'm buying fruit and milk.",
+     "words": [
+      "我",
+      "买",
+      "水果",
+      "和",
+      "牛奶"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。我买苹果。",
+     "pinyin": "hǎo. wǒ mǎi píng guǒ.",
+     "fr": "Bien. J'achète des pommes.",
+     "en": "Okay. I'm buying apples.",
+     "words": [
+      "好",
+      "我",
+      "买",
+      "苹果"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "苹果多少钱？",
+     "pinyin": "píng guǒ duō shǎo qián?",
+     "fr": "Les pommes, c'est combien ?",
+     "en": "How much are the apples?",
+     "words": [
+      "苹果",
+      "多少",
+      "钱"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "五块。",
+     "pinyin": "wǔ kuài.",
+     "fr": "Cinq yuans.",
+     "en": "Five yuan.",
+     "words": [
+      "五",
+      "块"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "太贵了！有便宜的吗？",
+     "pinyin": "tài guì le! yǒu biàn yí de ma?",
+     "fr": "Trop cher ! Il y a moins cher ?",
+     "en": "Too expensive! Is there something cheaper?",
+     "words": [
+      "太",
+      "贵",
+      "了",
+      "有",
+      "便宜",
+      "的",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "有。这个两块。",
+     "pinyin": "yǒu. zhè gè liǎng kuài.",
+     "fr": "Oui. Celui-ci, deux yuans.",
+     "en": "Yes. This one is two yuan.",
+     "words": [
+      "有",
+      "这",
+      "个",
+      "两",
+      "块"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。我要两个。",
+     "pinyin": "hǎo. wǒ yào liǎng gè.",
+     "fr": "D'accord. J'en veux deux.",
+     "en": "Okay. I want two.",
+     "words": [
+      "好",
+      "我",
+      "要",
+      "两",
+      "个"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "给您。",
+     "pinyin": "gěi nín.",
+     "fr": "Tiens.",
+     "en": "Here you are.",
+     "words": [
+      "给",
+      "您"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "谢谢！不客气。",
+     "pinyin": "xiè xie! bù kè qi.",
+     "fr": "Merci ! De rien.",
+     "en": "Thank you! You're welcome.",
+     "words": [
+      "谢谢",
+      "不客气"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "street",
+   "title": {
+    "fr": "Demander son chemin",
+    "en": "Asking the way"
+   },
+   "level": 1,
+   "focus": [
+    "请问",
+    "电影院",
+    "那边",
+    "出租车"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "请问，电影院在哪儿？",
+     "pinyin": "qǐng wèn, diàn yǐng yuàn zài nǎ r?",
+     "fr": "Excusez-moi, où est le cinéma ?",
+     "en": "Excuse me, where is the cinema?",
+     "words": [
+      "请问",
+      "电影院",
+      "在",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "在那边。",
+     "pinyin": "zài nà bian.",
+     "fr": "Par là-bas.",
+     "en": "Over there.",
+     "words": [
+      "在",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "怎么去？",
+     "pinyin": "zěn me qù?",
+     "fr": "Comment y aller ?",
+     "en": "How do I get there?",
+     "words": [
+      "怎么",
+      "去"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "坐出租车去。",
+     "pinyin": "zuò chū zū chē qù.",
+     "fr": "Prends un taxi.",
+     "en": "Take a taxi.",
+     "words": [
+      "坐",
+      "出租车",
+      "去"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "出租车在哪儿？",
+     "pinyin": "chū zū chē zài nǎ r?",
+     "fr": "Où est le taxi ?",
+     "en": "Where is the taxi?",
+     "words": [
+      "出租车",
+      "在",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "在那边。",
+     "pinyin": "zài nà bian.",
+     "fr": "Là-bas.",
+     "en": "Over there.",
+     "words": [
+      "在",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我也要去医院。",
+     "pinyin": "wǒ yě yào qù yī yuàn.",
+     "fr": "Je veux aussi aller à l'hôpital.",
+     "en": "I also need to go to the hospital.",
+     "words": [
+      "我",
+      "也",
+      "要",
+      "去",
+      "医院"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。我们去医院。",
+     "pinyin": "hǎo. wǒ men qù yī yuàn.",
+     "fr": "D'accord. Allons à l'hôpital.",
+     "en": "Okay. Let's go to the hospital.",
+     "words": [
+      "好",
+      "我们",
+      "去",
+      "医院"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "谢谢！再见。",
+     "pinyin": "xiè xie! zài jiàn.",
+     "fr": "Merci ! Au revoir.",
+     "en": "Thank you! Goodbye.",
+     "words": [
+      "谢谢",
+      "再见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "work",
+   "title": {
+    "fr": "Le travail",
+    "en": "Work"
+   },
+   "level": 1,
+   "focus": [
+    "工作",
+    "公司",
+    "上班",
+    "下班",
+    "忙"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你现在在哪儿工作？",
+     "pinyin": "nǐ xiàn zài zài nǎ r gōng zuò?",
+     "fr": "Où travailles-tu maintenant ?",
+     "en": "Where do you work now?",
+     "words": [
+      "你",
+      "现在",
+      "在",
+      "哪儿",
+      "工作"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我在一家公司工作。",
+     "pinyin": "wǒ zài yī jiā gōng sī gōng zuò.",
+     "fr": "Je travaille dans une entreprise.",
+     "en": "I work at a company.",
+     "words": [
+      "我",
+      "在",
+      "一",
+      "家",
+      "公司",
+      "工作"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你早上几点去上班？",
+     "pinyin": "nǐ zǎo shang jī diǎn qù shàng bān?",
+     "fr": "À quelle heure commences-tu le travail le matin ?",
+     "en": "What time do you go to work in the morning?",
+     "words": [
+      "你",
+      "早上",
+      "几",
+      "点",
+      "去",
+      "上班"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "八点。我八点上班。",
+     "pinyin": "bā diǎn. wǒ bā diǎn shàng bān.",
+     "fr": "Huit heures. Je commence à huit heures.",
+     "en": "Eight o'clock. I start at eight.",
+     "words": [
+      "八",
+      "点",
+      "我",
+      "八",
+      "点",
+      "上班"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "下午呢？",
+     "pinyin": "xià wǔ ne?",
+     "fr": "Et l'après-midi ?",
+     "en": "And in the afternoon?",
+     "words": [
+      "下午",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "下午五点下班。",
+     "pinyin": "xià wǔ wǔ diǎn xià bān.",
+     "fr": "Je finis à cinq heures de l'après-midi.",
+     "en": "I finish at five in the afternoon.",
+     "words": [
+      "下午",
+      "五",
+      "点",
+      "下班"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你喜欢你的工作吗？",
+     "pinyin": "nǐ xǐ huan nǐ de gōng zuò ma?",
+     "fr": "Aimes-tu ton travail ?",
+     "en": "Do you like your work?",
+     "words": [
+      "你",
+      "喜欢",
+      "你",
+      "的",
+      "工作",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "喜欢。我工作很忙。",
+     "pinyin": "xǐ huan. wǒ gōng zuò hěn máng.",
+     "fr": "Oui. Je suis très occupé au travail.",
+     "en": "Yes. I'm very busy at work.",
+     "words": [
+      "喜欢",
+      "我",
+      "工作",
+      "很",
+      "忙"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我也很忙。我要休息了。",
+     "pinyin": "wǒ yě hěn máng. wǒ yào xiū xi le.",
+     "fr": "Moi aussi, je suis très occupé. Je vais me reposer.",
+     "en": "I'm busy too. I need to rest.",
+     "words": [
+      "我",
+      "也",
+      "很",
+      "忙",
+      "我",
+      "要",
+      "休息",
+      "了"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "明天见！",
+     "pinyin": "míng tiān jiàn!",
+     "fr": "À demain !",
+     "en": "See you tomorrow!",
+     "words": [
+      "明天",
+      "见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": {
+    "fr": "La famille",
+    "en": "Family"
+   },
+   "level": 1,
+   "focus": [
+    "家人",
+    "哥哥",
+    "姐姐",
+    "妈妈",
+    "爸爸"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你家人多吗？",
+     "pinyin": "nǐ jiā rén duō ma?",
+     "fr": "Ta famille est nombreuse ?",
+     "en": "Is your family big?",
+     "words": [
+      "你",
+      "家人",
+      "多",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不多。三口人。",
+     "pinyin": "bù duō. sān kǒu rén.",
+     "fr": "Non. Trois personnes.",
+     "en": "No. Three people.",
+     "words": [
+      "不",
+      "多",
+      "三",
+      "口",
+      "人"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你有哥哥和姐姐吗？",
+     "pinyin": "nǐ yǒu gē ge hé jiě jie ma?",
+     "fr": "Tu as un frère aîné et une sœur aînée ?",
+     "en": "Do you have a brother and a sister?",
+     "words": [
+      "你",
+      "有",
+      "哥哥",
+      "和",
+      "姐姐",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我有一个哥哥，一个姐姐。",
+     "pinyin": "wǒ yǒu yī gè gē ge, yī gè jiě jie.",
+     "fr": "J'ai un frère aîné, une sœur aînée.",
+     "en": "I have a brother and a sister.",
+     "words": [
+      "我",
+      "有",
+      "一",
+      "个",
+      "哥哥",
+      "一",
+      "个",
+      "姐姐"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "他们也学习中文吗？",
+     "pinyin": "tā men yě xué xí zhōng wén ma?",
+     "fr": "Ils apprennent aussi le chinois ?",
+     "en": "Do they study Chinese too?",
+     "words": [
+      "他们",
+      "也",
+      "学习",
+      "中文",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我哥哥学习中文，我姐姐是老师。",
+     "pinyin": "wǒ gē ge xué xí zhōng wén, wǒ jiě jie shì lǎo shī.",
+     "fr": "Mon frère aîné apprend le chinois, ma sœur aînée est professeur.",
+     "en": "My brother studies Chinese, my sister is a teacher.",
+     "words": [
+      "我",
+      "哥哥",
+      "学习",
+      "中文",
+      "我",
+      "姐姐",
+      "是",
+      "老师"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你妈妈也工作吗？",
+     "pinyin": "nǐ mā ma yě gōng zuò ma?",
+     "fr": "Ta mère travaille aussi ?",
+     "en": "Does your mother work too?",
+     "words": [
+      "你",
+      "妈妈",
+      "也",
+      "工作",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不。她在家。",
+     "pinyin": "bù. tā zài jiā.",
+     "fr": "Non. Elle est à la maison.",
+     "en": "No. She is at home.",
+     "words": [
+      "不",
+      "她",
+      "在",
+      "家"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你爸爸呢？",
+     "pinyin": "nǐ bà ba ne?",
+     "fr": "Et ton père ?",
+     "en": "And your father?",
+     "words": [
+      "你",
+      "爸爸",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我爸爸是医生。他很忙。",
+     "pinyin": "wǒ bà ba shì yī shēng. tā hěn máng.",
+     "fr": "Mon père est médecin. Il est très occupé.",
+     "en": "My father is a doctor. He's very busy.",
+     "words": [
+      "我",
+      "爸爸",
+      "是",
+      "医生",
+      "他",
+      "很",
+      "忙"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "很好。你们家人都好吗？",
+     "pinyin": "hěn hǎo. nǐ men jiā rén dōu hǎo ma?",
+     "fr": "Très bien. Ta famille va bien ?",
+     "en": "Very good. Is your family well?",
+     "words": [
+      "很",
+      "好",
+      "你们",
+      "家人",
+      "都",
+      "好",
+      "吗"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "weather",
+   "title": {
+    "fr": "Le temps et les jours",
+    "en": "Weather and days"
+   },
+   "level": 1,
+   "focus": [
+    "天气",
+    "下雨",
+    "星期天",
+    "晚上"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "今天天气怎么样？",
+     "pinyin": "jīn tiān tiān qì zěn me yàng?",
+     "fr": "Quel temps fait-il aujourd'hui ?",
+     "en": "What's the weather like today?",
+     "words": [
+      "今天",
+      "天气",
+      "怎么样"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "很好。没有下雨。",
+     "pinyin": "hěn hǎo. méi yǒu xià yǔ.",
+     "fr": "Très beau. Il ne pleut pas.",
+     "en": "Very nice. It's not raining.",
+     "words": [
+      "很",
+      "好",
+      "没有",
+      "下雨"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "明天呢？",
+     "pinyin": "míng tiān ne?",
+     "fr": "Et demain ?",
+     "en": "And tomorrow?",
+     "words": [
+      "明天",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "明天要下雨。",
+     "pinyin": "míng tiān yào xià yǔ.",
+     "fr": "Il va pleuvoir demain.",
+     "en": "It's going to rain tomorrow.",
+     "words": [
+      "明天",
+      "要",
+      "下雨"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "星期天你做什么？",
+     "pinyin": "xīng qī tiān nǐ zuò shén me?",
+     "fr": "Que fais-tu le dimanche ?",
+     "en": "What do you do on Sunday?",
+     "words": [
+      "星期天",
+      "你",
+      "做",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我和朋友去看电影。",
+     "pinyin": "wǒ hé péng you qù kān diàn yǐng.",
+     "fr": "Je vais au cinéma avec un ami.",
+     "en": "I go to the cinema with a friend.",
+     "words": [
+      "我",
+      "和",
+      "朋友",
+      "去",
+      "看",
+      "电影"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好玩儿吗？",
+     "pinyin": "hǎo wán r ma?",
+     "fr": "C'est amusant ?",
+     "en": "Is it fun?",
+     "words": [
+      "好玩儿",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。我也想看电影。",
+     "pinyin": "hǎo. wǒ yě xiǎng kān diàn yǐng.",
+     "fr": "Bien. Je veux aussi voir un film.",
+     "en": "Good. I also want to see a movie.",
+     "words": [
+      "好",
+      "我",
+      "也",
+      "想",
+      "看",
+      "电影"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我们几点去？",
+     "pinyin": "wǒ men jī diǎn qù?",
+     "fr": "À quelle heure y allons-nous ?",
+     "en": "What time shall we go?",
+     "words": [
+      "我们",
+      "几",
+      "点",
+      "去"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "晚上七点。",
+     "pinyin": "wǎn shang qī diǎn.",
+     "fr": "À sept heures du soir.",
+     "en": "At seven in the evening.",
+     "words": [
+      "晚上",
+      "七",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好！晚上见！",
+     "pinyin": "hǎo! wǎn shang jiàn!",
+     "fr": "D'accord ! À ce soir !",
+     "en": "Okay! See you tonight!",
+     "words": [
+      "好",
+      "晚上",
+      "见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "health",
+   "title": {
+    "fr": "À la clinique",
+    "en": "At the clinic"
+   },
+   "level": 1,
+   "focus": [
+    "生病",
+    "看病",
+    "医生",
+    "医院",
+    "休息"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你怎么了？",
+     "pinyin": "nǐ zěn me le?",
+     "fr": "Qu'est-ce que tu as ?",
+     "en": "What's wrong?",
+     "words": [
+      "你",
+      "怎么",
+      "了"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我生病了。",
+     "pinyin": "wǒ shēng bìng le.",
+     "fr": "Je suis malade.",
+     "en": "I'm ill.",
+     "words": [
+      "我",
+      "生病",
+      "了"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你要去看病吗？",
+     "pinyin": "nǐ yào qù kàn bìng ma?",
+     "fr": "Tu vas chez le médecin ?",
+     "en": "Are you going to see a doctor?",
+     "words": [
+      "你",
+      "要",
+      "去",
+      "看病",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是的。我要看医生。",
+     "pinyin": "shì de. wǒ yào kān yī shēng.",
+     "fr": "Oui. Je dois voir un médecin.",
+     "en": "Yes. I need to see a doctor.",
+     "words": [
+      "是",
+      "的",
+      "我",
+      "要",
+      "看",
+      "医生"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我们去医院。",
+     "pinyin": "wǒ men qù yī yuàn.",
+     "fr": "Allons à l'hôpital.",
+     "en": "Let's go to the hospital.",
+     "words": [
+      "我们",
+      "去",
+      "医院"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "谢谢！我们现在去。",
+     "pinyin": "xiè xie! wǒ men xiàn zài qù.",
+     "fr": "Merci ! Allons-y maintenant.",
+     "en": "Thanks! Let's go now.",
+     "words": [
+      "谢谢",
+      "我们",
+      "现在",
+      "去"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你好一些了吗？",
+     "pinyin": "nǐ hǎo yī xiē le ma?",
+     "fr": "Tu vas mieux ?",
+     "en": "Are you feeling better?",
+     "words": [
+      "你",
+      "好",
+      "一些",
+      "了",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好多了。谢谢你！",
+     "pinyin": "hǎo duō le. xiè xie nǐ!",
+     "fr": "Beaucoup mieux. Merci !",
+     "en": "Much better. Thank you!",
+     "words": [
+      "好",
+      "多",
+      "了",
+      "谢谢",
+      "你"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "不客气。你要好好休息。",
+     "pinyin": "bù kè qi. nǐ yào hǎo hǎo xiū xi.",
+     "fr": "De rien. Tu dois bien te reposer.",
+     "en": "You're welcome. You need to rest well.",
+     "words": [
+      "不客气",
+      "你",
+      "要",
+      "好",
+      "好",
+      "休息"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。再见！",
+     "pinyin": "hǎo. zài jiàn!",
+     "fr": "D'accord. Au revoir !",
+     "en": "Okay. Goodbye!",
+     "words": [
+      "好",
+      "再见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "leisure",
+   "title": {
+    "fr": "Les loisirs",
+    "en": "Leisure"
+   },
+   "level": 1,
+   "focus": [
+    "唱歌",
+    "听歌",
+    "电影",
+    "漂亮",
+    "喜欢"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你喜欢做什么？",
+     "pinyin": "nǐ xǐ huan zuò shén me?",
+     "fr": "Qu'est-ce que tu aimes faire ?",
+     "en": "What do you like to do?",
+     "words": [
+      "你",
+      "喜欢",
+      "做",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我喜欢唱歌。",
+     "pinyin": "wǒ xǐ huan chàng gē.",
+     "fr": "J'aime chanter.",
+     "en": "I like singing.",
+     "words": [
+      "我",
+      "喜欢",
+      "唱",
+      "歌"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我喜欢看电影和听歌。",
+     "pinyin": "wǒ xǐ huan kān diàn yǐng hé tīng gē.",
+     "fr": "J'aime regarder des films et écouter des chansons.",
+     "en": "I like watching films and listening to songs.",
+     "words": [
+      "我",
+      "喜欢",
+      "看",
+      "电影",
+      "和",
+      "听",
+      "歌"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "你去电影院吗？",
+     "pinyin": "nǐ qù diàn yǐng yuàn ma?",
+     "fr": "Tu vas au cinéma ?",
+     "en": "Do you go to the cinema?",
+     "words": [
+      "你",
+      "去",
+      "电影院",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "明天去。",
+     "pinyin": "míng tiān qù.",
+     "fr": "Demain.",
+     "en": "Tomorrow.",
+     "words": [
+      "明天",
+      "去"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我们几点去？",
+     "pinyin": "wǒ men jī diǎn qù?",
+     "fr": "À quelle heure y allons-nous ?",
+     "en": "What time shall we go?",
+     "words": [
+      "我们",
+      "几",
+      "点",
+      "去"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "下午三点。",
+     "pinyin": "xià wǔ sān diǎn.",
+     "fr": "À trois heures de l'après-midi.",
+     "en": "At three in the afternoon.",
+     "words": [
+      "下午",
+      "三",
+      "点"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。电影很漂亮。",
+     "pinyin": "hǎo. diàn yǐng hěn piào liang.",
+     "fr": "Bien. Le film est très beau.",
+     "en": "Good. The film is beautiful.",
+     "words": [
+      "好",
+      "电影",
+      "很",
+      "漂亮"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "对！非常好。",
+     "pinyin": "duì! fēi cháng hǎo.",
+     "fr": "Oui ! Très bien.",
+     "en": "Yes! Very good.",
+     "words": [
+      "对",
+      "非常",
+      "好"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我朋友也喜欢看电影。",
+     "pinyin": "wǒ péng you yě xǐ huan kān diàn yǐng.",
+     "fr": "Mon ami aime aussi regarder des films.",
+     "en": "My friend also likes watching films.",
+     "words": [
+      "我",
+      "朋友",
+      "也",
+      "喜欢",
+      "看",
+      "电影"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "meeting",
+   "title": {
+    "fr": "Rencontrer quelqu'un",
+    "en": "Meeting someone"
+   },
+   "level": 1,
+   "focus": [
+    "你好",
+    "认识",
+    "朋友",
+    "谢谢",
+    "对不起"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你好！",
+     "pinyin": "nǐ hǎo!",
+     "fr": "Bonjour !",
+     "en": "Hello!",
+     "words": [
+      "你",
+      "好"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "你好！很高兴见到你。",
+     "pinyin": "nǐ hǎo! hěn gāo xìng jiàn dào nǐ.",
+     "fr": "Bonjour ! Ravi de te rencontrer.",
+     "en": "Hello! Nice to meet you.",
+     "words": [
+      "你",
+      "好",
+      "很",
+      "高兴",
+      "见",
+      "到",
+      "你"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你是新学生吗？",
+     "pinyin": "nǐ shì xīn xué sheng ma?",
+     "fr": "Tu es un nouvel étudiant ?",
+     "en": "Are you a new student?",
+     "words": [
+      "你",
+      "是",
+      "新",
+      "学生",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是的。我是新学生。",
+     "pinyin": "shì de. wǒ shì xīn xué sheng.",
+     "fr": "Oui. Je suis un nouvel étudiant.",
+     "en": "Yes. I'm a new student.",
+     "words": [
+      "是",
+      "的",
+      "我",
+      "是",
+      "新",
+      "学生"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你认识这里的同学吗？",
+     "pinyin": "nǐ rèn shi zhè lǐ de tóng xué ma?",
+     "fr": "Tu connais des élèves ici ?",
+     "en": "Do you know the students here?",
+     "words": [
+      "你",
+      "认识",
+      "这里",
+      "的",
+      "同学",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "认识。这是我的朋友。",
+     "pinyin": "rèn shi. zhè shì wǒ de péng you.",
+     "fr": "Oui. C'est mon ami.",
+     "en": "Yes. This is my friend.",
+     "words": [
+      "认识",
+      "这",
+      "是",
+      "我",
+      "的",
+      "朋友"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "他会中文吗？",
+     "pinyin": "tā huì zhōng wén ma?",
+     "fr": "Il parle chinois ?",
+     "en": "Does he speak Chinese?",
+     "words": [
+      "他",
+      "会",
+      "中文",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是。他是老师。",
+     "pinyin": "shì. tā shì lǎo shī.",
+     "fr": "Oui. Il est professeur.",
+     "en": "Yes. He's a teacher.",
+     "words": [
+      "是",
+      "他",
+      "是",
+      "老师"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "他们认识吗？",
+     "pinyin": "tā men rèn shi ma?",
+     "fr": "Ils se connaissent ?",
+     "en": "Do they know each other?",
+     "words": [
+      "他们",
+      "认识",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "认识。我们是朋友。",
+     "pinyin": "rèn shi. wǒ men shì péng you.",
+     "fr": "Oui. Nous sommes amis.",
+     "en": "Yes. We're friends.",
+     "words": [
+      "认识",
+      "我们",
+      "是",
+      "朋友"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "很好。很高兴认识你们！",
+     "pinyin": "hěn hǎo. hěn gāo xìng rèn shi nǐ men!",
+     "fr": "Très bien. C'est un plaisir !",
+     "en": "Nice to meet you!",
+     "words": [
+      "很",
+      "好",
+      "很",
+      "高兴",
+      "认识",
+      "你们"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "对不起，我来晚了一点儿。",
+     "pinyin": "duì bu qǐ, wǒ lái wǎn le yī diǎn r.",
+     "fr": "Pardon, je suis en retard.",
+     "en": "Sorry, I'm a little late.",
+     "words": [
+      "对不起",
+      "我",
+      "来",
+      "晚",
+      "了",
+      "一点儿"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "没关系。",
+     "pinyin": "méi guān xi.",
+     "fr": "Ce n'est rien.",
+     "en": "No problem.",
+     "words": [
+      "没关系"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "day-rhythm",
+   "title": {
+    "fr": "Le rythme d'une journée",
+    "en": "The rhythm of a day"
+   },
+   "level": 1,
+   "focus": [
+    "起床",
+    "早饭",
+    "上课",
+    "午饭",
+    "晚饭",
+    "正在"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你早上几点起床？",
+     "pinyin": "nǐ zǎo shang jī diǎn qǐ chuáng?",
+     "fr": "À quelle heure te lèves-tu le matin ?",
+     "en": "What time do you get up in the morning?",
+     "words": [
+      "你",
+      "早上",
+      "几",
+      "点",
+      "起床"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我七点起床。",
+     "pinyin": "wǒ qī diǎn qǐ chuáng.",
+     "fr": "Je me lève à sept heures.",
+     "en": "I get up at seven.",
+     "words": [
+      "我",
+      "七",
+      "点",
+      "起床"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你吃早饭吗？",
+     "pinyin": "nǐ chī zǎo fàn ma?",
+     "fr": "Tu manges le petit-déjeuner ?",
+     "en": "Do you eat breakfast?",
+     "words": [
+      "你",
+      "吃",
+      "早饭",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我吃一个包子。",
+     "pinyin": "wǒ chī yī gè bāo zi.",
+     "fr": "Je mange un petit pain à la vapeur.",
+     "en": "I eat a steamed bun.",
+     "words": [
+      "我",
+      "吃",
+      "一",
+      "个",
+      "包子"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我现在正在吃早饭。",
+     "pinyin": "wǒ xiàn zài zhèng zài chī zǎo fàn.",
+     "fr": "Je suis en train de manger le petit-déjeuner.",
+     "en": "I am eating breakfast right now.",
+     "words": [
+      "我",
+      "现在",
+      "正在",
+      "吃",
+      "早饭"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "上午有课吗？",
+     "pinyin": "shàng wǔ yǒu kè ma?",
+     "fr": "Tu as cours le matin ?",
+     "en": "Do you have classes in the morning?",
+     "words": [
+      "上午",
+      "有",
+      "课",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "有。我上午上课。",
+     "pinyin": "yǒu. wǒ shàng wǔ shàng kè.",
+     "fr": "Oui. J'ai cours le matin.",
+     "en": "Yes. I have classes in the morning.",
+     "words": [
+      "有",
+      "我",
+      "上午",
+      "上课"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "中午吃午饭吗？",
+     "pinyin": "zhōng wǔ chī wǔ fàn ma?",
+     "fr": "Tu manges le déjeuner à midi ?",
+     "en": "Do you have lunch at noon?",
+     "words": [
+      "中午",
+      "吃",
+      "午饭",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "是。我十二点吃午饭。",
+     "pinyin": "shì. wǒ shí èr diǎn chī wǔ fàn.",
+     "fr": "Oui. Je déjeune à midi.",
+     "en": "Yes. I have lunch at twelve.",
+     "words": [
+      "是",
+      "我",
+      "十",
+      "二",
+      "点",
+      "吃",
+      "午饭"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "下午呢？",
+     "pinyin": "xià wǔ ne?",
+     "fr": "Et l'après-midi ?",
+     "en": "And in the afternoon?",
+     "words": [
+      "下午",
+      "呢"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "下午五点吃晚饭。",
+     "pinyin": "xià wǔ wǔ diǎn chī wǎn fàn.",
+     "fr": "Je dîne à cinq heures de l'après-midi.",
+     "en": "I have dinner at five in the afternoon.",
+     "words": [
+      "下午",
+      "五",
+      "点",
+      "吃",
+      "晚饭"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "晚上做什么？",
+     "pinyin": "wǎn shang zuò shén me?",
+     "fr": "Que fais-tu le soir ?",
+     "en": "What do you do in the evening?",
+     "words": [
+      "晚上",
+      "做",
+      "什么"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我晚上读书、写字。",
+     "pinyin": "wǒ wǎn shang dú shū, xiě zì.",
+     "fr": "Le soir, je lis et j'écris.",
+     "en": "In the evening I read and write.",
+     "words": [
+      "我",
+      "晚上",
+      "读书",
+      "写",
+      "字"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我晚上睡觉。",
+     "pinyin": "wǒ wǎn shang shuì jiào.",
+     "fr": "Le soir, je vais dormir.",
+     "en": "In the evening I go to bed.",
+     "words": [
+      "我",
+      "晚上",
+      "睡觉"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "白天忙吗？",
+     "pinyin": "bái tiān máng ma?",
+     "fr": "Es-tu occupé la journée ?",
+     "en": "Are you busy during the day?",
+     "words": [
+      "白天",
+      "忙",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "白天很忙。晚上九点睡觉。",
+     "pinyin": "bái tiān hěn máng. wǎn shang jiǔ diǎn shuì jiào.",
+     "fr": "La journée est très chargée. Je dors à neuf heures du soir.",
+     "en": "The day is very busy. I sleep at nine in the evening.",
+     "words": [
+      "白天",
+      "很",
+      "忙",
+      "晚上",
+      "九",
+      "点",
+      "睡觉"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "family-numbers",
+   "title": {
+    "fr": "La famille et les nombres",
+    "en": "Family and numbers"
+   },
+   "level": 1,
+   "focus": [
+    "几",
+    "四",
+    "弟弟",
+    "妹妹",
+    "男朋友",
+    "大家"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你家有几口人？",
+     "pinyin": "nǐ jiā yǒu jī kǒu rén?",
+     "fr": "Combien de personnes y a-t-il chez toi ?",
+     "en": "How many people are there in your family?",
+     "words": [
+      "你",
+      "家",
+      "有",
+      "几",
+      "口",
+      "人"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我们家四口人。",
+     "pinyin": "wǒ men jiā sì kǒu rén.",
+     "fr": "Nous sommes quatre à la maison.",
+     "en": "There are four of us at home.",
+     "words": [
+      "我们",
+      "家",
+      "四",
+      "口",
+      "人"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "家里都有谁？",
+     "pinyin": "jiā lǐ dōu yǒu shéi?",
+     "fr": "Avec qui habites-tu ?",
+     "en": "Who do you live with?",
+     "words": [
+      "家",
+      "里",
+      "都",
+      "有",
+      "谁"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我爸爸妈妈、一个哥哥、一个妹妹。",
+     "pinyin": "wǒ bà ba mā ma, yī gè gē ge, yī gè mèi mei.",
+     "fr": "Mon père, ma mère, un frère aîné, une petite sœur.",
+     "en": "My father, my mother, a brother, a sister.",
+     "words": [
+      "我",
+      "爸爸",
+      "妈妈",
+      "一",
+      "个",
+      "哥哥",
+      "一",
+      "个",
+      "妹妹"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你有弟弟吗？",
+     "pinyin": "nǐ yǒu dì di ma?",
+     "fr": "As-tu un petit frère ?",
+     "en": "Do you have a younger brother?",
+     "words": [
+      "你",
+      "有",
+      "弟弟",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我没有弟弟。我有妹妹。",
+     "pinyin": "wǒ méi yǒu dì di. wǒ yǒu mèi mei.",
+     "fr": "Non. J'ai une petite sœur.",
+     "en": "No. I have a younger sister.",
+     "words": [
+      "我",
+      "没有",
+      "弟弟",
+      "我",
+      "有",
+      "妹妹"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你哥哥有女朋友吗？",
+     "pinyin": "nǐ gē ge yǒu nǚ péng you ma?",
+     "fr": "Ton frère a une copine ?",
+     "en": "Does your brother have a girlfriend?",
+     "words": [
+      "你",
+      "哥哥",
+      "有",
+      "女朋友",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "有。他们很好。",
+     "pinyin": "yǒu. tā men hěn hǎo.",
+     "fr": "Oui. Ils sont très bien.",
+     "en": "Yes. They are very nice.",
+     "words": [
+      "有",
+      "他们",
+      "很",
+      "好"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你姐姐是老师吗？",
+     "pinyin": "nǐ jiě jie shì lǎo shī ma?",
+     "fr": "Ta sœur est professeur ?",
+     "en": "Is your sister a teacher?",
+     "words": [
+      "你",
+      "姐姐",
+      "是",
+      "老师",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是。她工作很忙。",
+     "pinyin": "shì. tā gōng zuò hěn máng.",
+     "fr": "Oui. Elle travaille beaucoup.",
+     "en": "Yes. She is very busy at work.",
+     "words": [
+      "是",
+      "她",
+      "工作",
+      "很",
+      "忙"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "大家都有孩子吗？",
+     "pinyin": "dà jiā dōu yǒu hái zi ma?",
+     "fr": "Est-ce que tout le monde a des enfants ?",
+     "en": "Does everyone have children?",
+     "words": [
+      "大家",
+      "都",
+      "有",
+      "孩子",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我有一个弟弟和一个妹妹。他们是孩子。",
+     "pinyin": "wǒ yǒu yī gè dì di hé yī gè mèi mei. tā men shì hái zi.",
+     "fr": "J'ai un petit frère et une petite sœur. Ce sont des enfants.",
+     "en": "I have a younger brother and a younger sister. They are children.",
+     "words": [
+      "我",
+      "有",
+      "一",
+      "个",
+      "弟弟",
+      "和",
+      "一",
+      "个",
+      "妹妹",
+      "他们",
+      "是",
+      "孩子"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你男朋友是中国人吗？",
+     "pinyin": "nǐ nán péng you shì zhōng guó rén ma?",
+     "fr": "Ton copain est chinois ?",
+     "en": "Is your boyfriend Chinese?",
+     "words": [
+      "你",
+      "男朋友",
+      "是",
+      "中国",
+      "人",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不是。他会中文。",
+     "pinyin": "bù shì. tā huì zhōng wén.",
+     "fr": "Non. Il parle chinois.",
+     "en": "No. He speaks Chinese.",
+     "words": [
+      "不",
+      "是",
+      "他",
+      "会",
+      "中文"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "家里有多少人？",
+     "pinyin": "jiā lǐ yǒu duō shǎo rén?",
+     "fr": "Combien de personnes à la maison ?",
+     "en": "How many people are at home?",
+     "words": [
+      "家",
+      "里",
+      "有",
+      "多少",
+      "人"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "家里五个人。",
+     "pinyin": "jiā lǐ wǔ gè rén.",
+     "fr": "Il y a cinq personnes à la maison.",
+     "en": "There are five people at home.",
+     "words": [
+      "家",
+      "里",
+      "五",
+      "个",
+      "人"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你的房间大吗？",
+     "pinyin": "nǐ de fáng jiān dà ma?",
+     "fr": "Ta chambre est grande ?",
+     "en": "Is your room big?",
+     "words": [
+      "你",
+      "的",
+      "房间",
+      "大",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不大。不冷。",
+     "pinyin": "bù dà. bù lěng.",
+     "fr": "Pas très. Mais il n'y fait pas froid.",
+     "en": "Not really. But it isn't cold.",
+     "words": [
+      "不",
+      "大",
+      "不",
+      "冷"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "at-home",
+   "title": {
+    "fr": "À la maison",
+    "en": "At home"
+   },
+   "level": 1,
+   "focus": [
+    "东西",
+    "房间",
+    "桌子",
+    "椅子",
+    "外面",
+    "找"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你房间里有什么东西？",
+     "pinyin": "nǐ fáng jiān lǐ yǒu shén me dōng xī?",
+     "fr": "Qu'y a-t-il dans ta chambre ?",
+     "en": "What is in your room?",
+     "words": [
+      "你",
+      "房间",
+      "里",
+      "有",
+      "什么",
+      "东西"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "有桌子，有椅子，有书。",
+     "pinyin": "yǒu zhuō zi, yǒu yǐ zi, yǒu shū.",
+     "fr": "Une table, une chaise, des livres.",
+     "en": "A table, a chair, some books.",
+     "words": [
+      "有",
+      "桌子",
+      "有",
+      "椅子",
+      "有",
+      "书"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "杯子在哪儿？",
+     "pinyin": "bēi zi zài nǎ r?",
+     "fr": "Où est le verre ?",
+     "en": "Where is the cup?",
+     "words": [
+      "杯子",
+      "在",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "杯子在这儿。",
+     "pinyin": "bēi zi zài zhè r.",
+     "fr": "Le verre est ici.",
+     "en": "The cup is here.",
+     "words": [
+      "杯子",
+      "在",
+      "这儿"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "衣服在那边吗？",
+     "pinyin": "yī fu zài nà bian ma?",
+     "fr": "Les vêtements sont là-bas ?",
+     "en": "Are the clothes over there?",
+     "words": [
+      "衣服",
+      "在",
+      "那边",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不在这儿。在外边。",
+     "pinyin": "bù zài zhè r. zài wài bian.",
+     "fr": "Pas ici. Dehors.",
+     "en": "Not here. Outside.",
+     "words": [
+      "不",
+      "在",
+      "这儿",
+      "在",
+      "外边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我找我的手机。",
+     "pinyin": "wǒ zhǎo wǒ de shǒu jī.",
+     "fr": "Je cherche mon téléphone.",
+     "en": "I am looking for my phone.",
+     "words": [
+      "我",
+      "找",
+      "我",
+      "的",
+      "手机"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "你看见了吗？",
+     "pinyin": "nǐ kàn jiàn le ma?",
+     "fr": "L'as-tu vu ?",
+     "en": "Did you see it?",
+     "words": [
+      "你",
+      "看见",
+      "了",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "没有。我看不见。",
+     "pinyin": "méi yǒu. wǒ kān bù jiàn.",
+     "fr": "Non. Je ne le vois pas.",
+     "en": "No. I can't see it.",
+     "words": [
+      "没有",
+      "我",
+      "看",
+      "不",
+      "见"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "在桌子上。",
+     "pinyin": "zài zhuō zi shàng.",
+     "fr": "Il est sur la table.",
+     "en": "It's on the table.",
+     "words": [
+      "在",
+      "桌子",
+      "上"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "谢谢！我去开电视。",
+     "pinyin": "xiè xie! wǒ qù kāi diàn shì.",
+     "fr": "Merci ! Je vais allumer la télévision.",
+     "en": "Thanks! I'm going to turn on the TV.",
+     "words": [
+      "谢谢",
+      "我",
+      "去",
+      "开",
+      "电视"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。回来坐吧。",
+     "pinyin": "hǎo. huí lái zuò ba.",
+     "fr": "D'accord. Reviens t'asseoir.",
+     "en": "Okay. Come back and sit down.",
+     "words": [
+      "好",
+      "回",
+      "来",
+      "坐",
+      "吧"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我坐在这儿看电视。",
+     "pinyin": "wǒ zuò zài zhè r kān diàn shì.",
+     "fr": "Je m'assieds ici pour regarder la télévision.",
+     "en": "I sit here to watch TV.",
+     "words": [
+      "我",
+      "坐",
+      "在",
+      "这儿",
+      "看",
+      "电视"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "phone",
+   "title": {
+    "fr": "Au téléphone",
+    "en": "On the phone"
+   },
+   "level": 1,
+   "focus": [
+    "打电话",
+    "给",
+    "喂",
+    "能",
+    "电脑"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "喂，你好？",
+     "pinyin": "wéi, nǐ hǎo?",
+     "fr": "Allô, bonjour ?",
+     "en": "Hello, are you there?",
+     "words": [
+      "喂",
+      "你",
+      "好"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "你好。你要打电话吗？",
+     "pinyin": "nǐ hǎo. nǐ yào dǎ diàn huà ma?",
+     "fr": "Bonjour. Tu veux appeler ?",
+     "en": "Hello. Do you want to make a call?",
+     "words": [
+      "你",
+      "好",
+      "你",
+      "要",
+      "打电话",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "是的。我给老师打电话。",
+     "pinyin": "shì de. wǒ gěi lǎo shī dǎ diàn huà.",
+     "fr": "Oui. Je vais appeler le professeur.",
+     "en": "Yes. I'm going to call the teacher.",
+     "words": [
+      "是",
+      "的",
+      "我",
+      "给",
+      "老师",
+      "打电话"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "他现在上课。",
+     "pinyin": "tā xiàn zài shàng kè.",
+     "fr": "Il est en cours.",
+     "en": "He is in class.",
+     "words": [
+      "他",
+      "现在",
+      "上课"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "那我晚一点儿打电话。",
+     "pinyin": "nà wǒ wǎn yī diǎn r dǎ diàn huà.",
+     "fr": "Alors j'appellerai un peu plus tard.",
+     "en": "Then I'll call a little later.",
+     "words": [
+      "那",
+      "我",
+      "晚",
+      "一点儿",
+      "打电话"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。什么事？",
+     "pinyin": "hǎo. shén me shì?",
+     "fr": "D'accord. De quoi s'agit-il ?",
+     "en": "Okay. What is it?",
+     "words": [
+      "好",
+      "什么",
+      "事"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我想找一个人。",
+     "pinyin": "wǒ xiǎng zhǎo yī gè rén.",
+     "fr": "Je veux trouver quelqu'un.",
+     "en": "I want to find someone.",
+     "words": [
+      "我",
+      "想",
+      "找",
+      "一",
+      "个",
+      "人"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "谁？",
+     "pinyin": "shéi?",
+     "fr": "Qui ?",
+     "en": "Who?",
+     "words": [
+      "谁"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我姐姐。她在看电视。",
+     "pinyin": "wǒ jiě jie. tā zài kān diàn shì.",
+     "fr": "Ma sœur. Elle regarde la télévision.",
+     "en": "My sister. She's watching TV.",
+     "words": [
+      "我",
+      "姐姐",
+      "她",
+      "在",
+      "看",
+      "电视"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "她在电脑那边。",
+     "pinyin": "tā zài diàn nǎo nà bian.",
+     "fr": "Elle est de l'autre côté de l'ordinateur.",
+     "en": "She's on the other side of the computer.",
+     "words": [
+      "她",
+      "在",
+      "电脑",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。谢谢你！再见。",
+     "pinyin": "hǎo. xiè xie nǐ! zài jiàn.",
+     "fr": "D'accord. Merci ! Au revoir.",
+     "en": "Okay. Thank you! Goodbye.",
+     "words": [
+      "好",
+      "谢谢",
+      "你",
+      "再见"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不客气。",
+     "pinyin": "bù kè qi.",
+     "fr": "De rien.",
+     "en": "You're welcome.",
+     "words": [
+      "不客气"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "weather-talk",
+   "title": {
+    "fr": "Il fait quel temps",
+    "en": "What's the weather like"
+   },
+   "level": 1,
+   "focus": [
+    "冷",
+    "热",
+    "雨",
+    "真",
+    "觉得"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "今天天气怎么样？",
+     "pinyin": "jīn tiān tiān qì zěn me yàng?",
+     "fr": "Quel temps fait-il aujourd'hui ?",
+     "en": "What's the weather like today?",
+     "words": [
+      "今天",
+      "天气",
+      "怎么样"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "有点儿冷。",
+     "pinyin": "yǒu diǎn r lěng.",
+     "fr": "Il fait un peu froid.",
+     "en": "It's a little cold.",
+     "words": [
+      "有点儿",
+      "冷"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "真的？",
+     "pinyin": "zhēn de?",
+     "fr": "Vraiment ?",
+     "en": "Really?",
+     "words": [
+      "真",
+      "的"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "真的。今天下雨了。",
+     "pinyin": "zhēn de. jīn tiān xià yǔ le.",
+     "fr": "Vraiment. Il pleut aujourd'hui.",
+     "en": "Really. It's raining today.",
+     "words": [
+      "真",
+      "的",
+      "今天",
+      "下雨",
+      "了"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "下雨了。太冷了。",
+     "pinyin": "xià yǔ le. tài lěng le.",
+     "fr": "Il pleut. Il fait trop froid.",
+     "en": "It's raining. It's too cold.",
+     "words": [
+      "下雨",
+      "了",
+      "太",
+      "冷",
+      "了"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是。明天也冷。",
+     "pinyin": "shì. míng tiān yě lěng.",
+     "fr": "Oui. Demain aussi il fait froid.",
+     "en": "Yes. It's cold tomorrow too.",
+     "words": [
+      "是",
+      "明天",
+      "也",
+      "冷"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我觉得很冷。",
+     "pinyin": "wǒ jué de hěn lěng.",
+     "fr": "Je trouve qu'il fait très froid.",
+     "en": "I feel very cold.",
+     "words": [
+      "我",
+      "觉得",
+      "很",
+      "冷"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我想喝热的水。",
+     "pinyin": "wǒ xiǎng hē rè de shuǐ.",
+     "fr": "Je veux boire de l'eau chaude.",
+     "en": "I want to drink hot water.",
+     "words": [
+      "我",
+      "想",
+      "喝",
+      "热",
+      "的",
+      "水"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。我给你水。",
+     "pinyin": "hǎo. wǒ gěi nǐ shuǐ.",
+     "fr": "D'accord. Je te donne de l'eau.",
+     "en": "Okay. I'll give you water.",
+     "words": [
+      "好",
+      "我",
+      "给",
+      "你",
+      "水"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "谢谢。今天很热吗？",
+     "pinyin": "xiè xie. jīn tiān hěn rè ma?",
+     "fr": "Merci. Fait-il très chaud aujourd'hui ?",
+     "en": "Thanks. Is it very hot today?",
+     "words": [
+      "谢谢",
+      "今天",
+      "很",
+      "热",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "是。很热。",
+     "pinyin": "shì. hěn rè.",
+     "fr": "Oui. Il fait très chaud.",
+     "en": "Yes. It's very hot.",
+     "words": [
+      "是",
+      "很",
+      "热"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。",
+     "pinyin": "hǎo.",
+     "fr": "D'accord.",
+     "en": "Okay.",
+     "words": [
+      "好"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "writing",
+   "title": {
+    "fr": "Lire et écrire",
+    "en": "Reading and writing"
+   },
+   "level": 1,
+   "focus": [
+    "汉字",
+    "写",
+    "百",
+    "爱",
+    "好听"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你喜欢读什么书？",
+     "pinyin": "nǐ xǐ huan dú shén me shū?",
+     "fr": "Quel genre de livre aimes-tu lire ?",
+     "en": "What kind of book do you like to read?",
+     "words": [
+      "你",
+      "喜欢",
+      "读",
+      "什么",
+      "书"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我喜欢读汉字。",
+     "pinyin": "wǒ xǐ huan dú hàn zì.",
+     "fr": "J'aime lire les caractères.",
+     "en": "I like reading characters.",
+     "words": [
+      "我",
+      "喜欢",
+      "读",
+      "汉字"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你会写汉字吗？",
+     "pinyin": "nǐ huì xiě hàn zì ma?",
+     "fr": "Sais-tu écrire les caractères ?",
+     "en": "Can you write characters?",
+     "words": [
+      "你",
+      "会",
+      "写",
+      "汉字",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "会一点。",
+     "pinyin": "huì yī diǎn.",
+     "fr": "Un peu.",
+     "en": "A little.",
+     "words": [
+      "会",
+      "一",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你写几个字？",
+     "pinyin": "nǐ xiě jī gè zì?",
+     "fr": "Tu écris combien de caractères ?",
+     "en": "How many characters do you write?",
+     "words": [
+      "你",
+      "写",
+      "几",
+      "个",
+      "字"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我写十个字。",
+     "pinyin": "wǒ xiě shí gè zì.",
+     "fr": "J'en écris dix.",
+     "en": "I write ten.",
+     "words": [
+      "我",
+      "写",
+      "十",
+      "个",
+      "字"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "真多！",
+     "pinyin": "zhēn duō!",
+     "fr": "Beaucoup !",
+     "en": "That's a lot!",
+     "words": [
+      "真",
+      "多"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我写一百个。",
+     "pinyin": "wǒ xiě yī bǎi gè.",
+     "fr": "J'en écris cent.",
+     "en": "I write a hundred.",
+     "words": [
+      "我",
+      "写",
+      "一",
+      "百",
+      "个"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你写字很好看。",
+     "pinyin": "nǐ xiě zì hěn hǎo kàn.",
+     "fr": "Tu écris bien !",
+     "en": "You write well!",
+     "words": [
+      "你",
+      "写",
+      "字",
+      "很",
+      "好看"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我喜欢写字。",
+     "pinyin": "wǒ xǐ huan xiě zì.",
+     "fr": "J'aime écrire.",
+     "en": "I like writing.",
+     "words": [
+      "我",
+      "喜欢",
+      "写",
+      "字"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我也喜欢听歌。",
+     "pinyin": "wǒ yě xǐ huan tīng gē.",
+     "fr": "J'aime aussi écouter des chansons.",
+     "en": "I also like listening to songs.",
+     "words": [
+      "我",
+      "也",
+      "喜欢",
+      "听",
+      "歌"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我的歌好听。",
+     "pinyin": "wǒ de gē hǎo tīng.",
+     "fr": "Mes chansons sont agréables.",
+     "en": "My songs are pleasant.",
+     "words": [
+      "我",
+      "的",
+      "歌",
+      "好听"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "包子好吃。苹果好吃。",
+     "pinyin": "bāo zi hǎo chī. píng guǒ hǎo chī.",
+     "fr": "Les petits pains sont bons. Les pommes sont bonnes.",
+     "en": "The buns are tasty. The apples are tasty.",
+     "words": [
+      "包子",
+      "好吃",
+      "苹果",
+      "好吃"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我爱中文。我爱看电影。",
+     "pinyin": "wǒ ài zhōng wén. wǒ ài kān diàn yǐng.",
+     "fr": "J'aime le chinois. J'aime voir des films.",
+     "en": "I love Chinese. I love watching films.",
+     "words": [
+      "我",
+      "爱",
+      "中文",
+      "我",
+      "爱",
+      "看",
+      "电影"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "电影好看。",
+     "pinyin": "diàn yǐng hǎo kàn.",
+     "fr": "Les films sont beaux.",
+     "en": "The films are beautiful.",
+     "words": [
+      "电影",
+      "好看"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dates",
+   "title": {
+    "fr": "Les dates et les quantités",
+    "en": "Dates and quantities"
+   },
+   "level": 1,
+   "focus": [
+    "第",
+    "星期日",
+    "几",
+    "百",
+    "一些"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "现在是几月？",
+     "pinyin": "xiàn zài shì jī yuè?",
+     "fr": "On est quel mois ?",
+     "en": "What month is it?",
+     "words": [
+      "现在",
+      "是",
+      "几",
+      "月"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "九月。",
+     "pinyin": "jiǔ yuè.",
+     "fr": "Septembre.",
+     "en": "September.",
+     "words": [
+      "九",
+      "月"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "今天几号？",
+     "pinyin": "jīn tiān jī hào?",
+     "fr": "C'est quel jour du mois ?",
+     "en": "What day of the month is it?",
+     "words": [
+      "今天",
+      "几",
+      "号"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "二十号。",
+     "pinyin": "èr shí hào.",
+     "fr": "Le vingt.",
+     "en": "The twentieth.",
+     "words": [
+      "二",
+      "十",
+      "号"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你星期天做什么？",
+     "pinyin": "nǐ xīng qī tiān zuò shén me?",
+     "fr": "Que fais-tu le dimanche ?",
+     "en": "What do you do on Sunday?",
+     "words": [
+      "你",
+      "星期天",
+      "做",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我和家人去看电影。",
+     "pinyin": "wǒ hé jiā rén qù kān diàn yǐng.",
+     "fr": "Je vais au cinéma avec ma famille.",
+     "en": "I go to the cinema with my family.",
+     "words": [
+      "我",
+      "和",
+      "家人",
+      "去",
+      "看",
+      "电影"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "几点？",
+     "pinyin": "jī diǎn?",
+     "fr": "À quelle heure ?",
+     "en": "What time?",
+     "words": [
+      "几",
+      "点"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "上午十点。",
+     "pinyin": "shàng wǔ shí diǎn.",
+     "fr": "À dix heures du matin.",
+     "en": "At ten in the morning.",
+     "words": [
+      "上午",
+      "十",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。我买一些水果。",
+     "pinyin": "hǎo. wǒ mǎi yī xiē shuǐ guǒ.",
+     "fr": "D'accord. J'achète des fruits.",
+     "en": "Okay. I'll buy some fruit.",
+     "words": [
+      "好",
+      "我",
+      "买",
+      "一些",
+      "水果"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我买两个苹果。",
+     "pinyin": "wǒ mǎi liǎng gè píng guǒ.",
+     "fr": "J'achète deux pommes.",
+     "en": "I'll buy two apples.",
+     "words": [
+      "我",
+      "买",
+      "两",
+      "个",
+      "苹果"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "多少钱？",
+     "pinyin": "duō shǎo qián?",
+     "fr": "C'est combien ?",
+     "en": "How much?",
+     "words": [
+      "多少",
+      "钱"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "三十块。",
+     "pinyin": "sān shí kuài.",
+     "fr": "Trente yuans.",
+     "en": "Thirty yuan.",
+     "words": [
+      "三",
+      "十",
+      "块"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我给你钱。",
+     "pinyin": "wǒ gěi nǐ qián.",
+     "fr": "Je te donne l'argent.",
+     "en": "I'll give you the money.",
+     "words": [
+      "我",
+      "给",
+      "你",
+      "钱"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "去年我不看电影，今年我很喜欢。",
+     "pinyin": "qù nián wǒ bù kān diàn yǐng, jīn nián wǒ hěn xǐ huan.",
+     "fr": "L'an dernier je ne voyais pas de films, cette année j'aime beaucoup.",
+     "en": "Last year I didn't watch films, this year I like it a lot.",
+     "words": [
+      "去年",
+      "我",
+      "不",
+      "看",
+      "电影",
+      "今年",
+      "我",
+      "很",
+      "喜欢"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "travel",
+   "title": {
+    "fr": "En route",
+    "en": "On the way"
+   },
+   "level": 1,
+   "focus": [
+    "火车",
+    "飞机",
+    "车",
+    "分钟",
+    "请问"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "请问，火车在哪儿？",
+     "pinyin": "qǐng wèn, huǒ chē zài nǎ r?",
+     "fr": "Excusez-moi, où est le train ?",
+     "en": "Excuse me, where is the train?",
+     "words": [
+      "请问",
+      "火车",
+      "在",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "火车在那边。",
+     "pinyin": "huǒ chē zài nà bian.",
+     "fr": "Le train est là-bas.",
+     "en": "The train is over there.",
+     "words": [
+      "火车",
+      "在",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "那儿有什么？",
+     "pinyin": "nà r yǒu shén me?",
+     "fr": "Qu'y a-t-il là-bas ?",
+     "en": "What is over there?",
+     "words": [
+      "那儿",
+      "有",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "那儿有很多车。",
+     "pinyin": "nà r yǒu hěn duō chē.",
+     "fr": "Il y a beaucoup de voitures là-bas.",
+     "en": "There are many cars over there.",
+     "words": [
+      "那儿",
+      "有",
+      "很",
+      "多",
+      "车"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "飞机也在那儿吗？",
+     "pinyin": "fēi jī yě zài nà r ma?",
+     "fr": "L'avion est aussi là-bas ?",
+     "en": "Is the plane there too?",
+     "words": [
+      "飞机",
+      "也",
+      "在",
+      "那儿",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "现在几点？",
+     "pinyin": "xiàn zài jī diǎn?",
+     "fr": "Quelle heure est-il ?",
+     "en": "What time is it?",
+     "words": [
+      "现在",
+      "几",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "三点十分。",
+     "pinyin": "sān diǎn shí fēn.",
+     "fr": "Trois heures dix.",
+     "en": "Three ten.",
+     "words": [
+      "三",
+      "点",
+      "十",
+      "分"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "火车三点前到吗？",
+     "pinyin": "huǒ chē sān diǎn qián dào ma?",
+     "fr": "Le train arrive-t-il avant trois heures ?",
+     "en": "Does the train arrive before three?",
+     "words": [
+      "火车",
+      "三",
+      "点",
+      "前",
+      "到",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "三点后到。",
+     "pinyin": "sān diǎn hòu dào.",
+     "fr": "Il arrive après trois heures.",
+     "en": "It arrives after three.",
+     "words": [
+      "三",
+      "点",
+      "后",
+      "到"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "坐火车要多少分钟？",
+     "pinyin": "zuò huǒ chē yào duō shǎo fēn zhōng?",
+     "fr": "Combien de minutes pour prendre le train ?",
+     "en": "How many minutes to take the train?",
+     "words": [
+      "坐",
+      "火车",
+      "要",
+      "多少",
+      "分钟"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "二十分钟。",
+     "pinyin": "èr shí fēn zhōng.",
+     "fr": "Vingt minutes.",
+     "en": "Twenty minutes.",
+     "words": [
+      "二",
+      "十",
+      "分钟"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我坐出租车去，可以吗？",
+     "pinyin": "wǒ zuò chū zū chē qù, kě yǐ ma?",
+     "fr": "Je prends un taxi, ça va ?",
+     "en": "I'll take a taxi, is that alright?",
+     "words": [
+      "我",
+      "坐",
+      "出租车",
+      "去",
+      "可以",
+      "吗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "可以。车在外边。",
+     "pinyin": "kě yǐ. chē zài wài bian.",
+     "fr": "Ça va. La voiture est dehors.",
+     "en": "That's fine. The car is outside.",
+     "words": [
+      "可以",
+      "车",
+      "在",
+      "外边"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。我给朋友打电话。",
+     "pinyin": "hǎo. wǒ gěi péng you dǎ diàn huà.",
+     "fr": "D'accord. J'appelle un ami.",
+     "en": "Okay. I'm calling a friend.",
+     "words": [
+      "好",
+      "我",
+      "给",
+      "朋友",
+      "打电话"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "哪个朋友？",
+     "pinyin": "nǎ gè péng you?",
+     "fr": "Quel ami ?",
+     "en": "Which friend?",
+     "words": [
+      "哪",
+      "个",
+      "朋友"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我的朋友。他在那边。",
+     "pinyin": "wǒ de péng you. tā zài nà bian.",
+     "fr": "Mon ami. Il est là-bas.",
+     "en": "My friend. He's over there.",
+     "words": [
+      "我",
+      "的",
+      "朋友",
+      "他",
+      "在",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "那你去吧。",
+     "pinyin": "nà nǐ qù ba.",
+     "fr": "Alors vas-y.",
+     "en": "Then go ahead.",
+     "words": [
+      "那",
+      "你",
+      "去",
+      "吧"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。再见！",
+     "pinyin": "hǎo. zài jiàn!",
+     "fr": "D'accord. Au revoir !",
+     "en": "Okay. Goodbye!",
+     "words": [
+      "好",
+      "再见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "school",
+   "title": {
+    "fr": "À l'école",
+    "en": "At school"
+   },
+   "level": 1,
+   "focus": [
+    "小学生",
+    "中学生",
+    "大学生",
+    "上学",
+    "下课",
+    "问题"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你是小学生吗？",
+     "pinyin": "nǐ shì xiǎo xué shēng ma?",
+     "fr": "Tu es élève de primaire ?",
+     "en": "Are you a primary school student?",
+     "words": [
+      "你",
+      "是",
+      "小学生",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不是。我是中学生。",
+     "pinyin": "bù shì. wǒ shì zhōng xué shēng.",
+     "fr": "Non. Je suis au collège.",
+     "en": "No. I'm a middle school student.",
+     "words": [
+      "不",
+      "是",
+      "我",
+      "是",
+      "中学生"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你在哪里上学？",
+     "pinyin": "nǐ zài nǎ lǐ shàng xué?",
+     "fr": "Où fais-tu tes études ?",
+     "en": "Where do you go to school?",
+     "words": [
+      "你",
+      "在",
+      "哪里",
+      "上学"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我在中学上学。",
+     "pinyin": "wǒ zài zhōng xué shàng xué.",
+     "fr": "Je vais au collège.",
+     "en": "I go to middle school.",
+     "words": [
+      "我",
+      "在",
+      "中学",
+      "上学"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你家的小朋友呢？",
+     "pinyin": "nǐ jiā de xiǎo péng yǒu ne?",
+     "fr": "Et ton enfant ?",
+     "en": "And your child?",
+     "words": [
+      "你",
+      "家",
+      "的",
+      "小朋友",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "他上小学。",
+     "pinyin": "tā shàng xiǎo xué.",
+     "fr": "Il va au primaire.",
+     "en": "He goes to primary school.",
+     "words": [
+      "他",
+      "上",
+      "小学"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "他在哪个学校？",
+     "pinyin": "tā zài nǎ gè xué xiào?",
+     "fr": "Dans quelle école est-il ?",
+     "en": "Which school is he at?",
+     "words": [
+      "他",
+      "在",
+      "哪",
+      "个",
+      "学校"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "在学校那边。",
+     "pinyin": "zài xué xiào nà bian.",
+     "fr": "De l'autre côté de l'école.",
+     "en": "Over by the school.",
+     "words": [
+      "在",
+      "学校",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你们在一个学校吗？",
+     "pinyin": "nǐ men zài yī gè xué xiào ma?",
+     "fr": "Tu es dans la même école ?",
+     "en": "Are you at the same school?",
+     "words": [
+      "你们",
+      "在",
+      "一",
+      "个",
+      "学校",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不。他不在我们学校。",
+     "pinyin": "bù. tā bù zài wǒ men xué xiào.",
+     "fr": "Non. Il n'est pas dans notre école.",
+     "en": "No. He's not at our school.",
+     "words": [
+      "不",
+      "他",
+      "不",
+      "在",
+      "我们",
+      "学校"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "下课你做什么？",
+     "pinyin": "xià kè nǐ zuò shén me?",
+     "fr": "Que fais-tu à la fin des cours ?",
+     "en": "What do you do after class?",
+     "words": [
+      "下课",
+      "你",
+      "做",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我和朋友玩。",
+     "pinyin": "wǒ hé péng you wán.",
+     "fr": "Je joue avec un ami.",
+     "en": "I play with a friend.",
+     "words": [
+      "我",
+      "和",
+      "朋友",
+      "玩"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你会问老师问题吗？",
+     "pinyin": "nǐ huì wèn lǎo shī wèn tí ma?",
+     "fr": "Sais-tu poser une question au professeur ?",
+     "en": "Can you ask the teacher questions?",
+     "words": [
+      "你",
+      "会",
+      "问",
+      "老师",
+      "问题",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "会。我喜欢问问题。",
+     "pinyin": "huì. wǒ xǐ huan wèn wèn tí.",
+     "fr": "Oui. J'aime poser des questions.",
+     "en": "Yes. I like asking questions.",
+     "words": [
+      "会",
+      "我",
+      "喜欢",
+      "问",
+      "问题"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你听见老师说话吗？",
+     "pinyin": "nǐ tīng jiàn lǎo shī shuō huà ma?",
+     "fr": "Entends-tu le professeur parler ?",
+     "en": "Do you hear the teacher speaking?",
+     "words": [
+      "你",
+      "听见",
+      "老师",
+      "说话",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "听见。我会说一点中文。",
+     "pinyin": "tīng jiàn. wǒ huì shuō yī diǎn zhōng wén.",
+     "fr": "Oui. Je parle un peu chinois.",
+     "en": "Yes. I speak a little Chinese.",
+     "words": [
+      "听见",
+      "我",
+      "会",
+      "说",
+      "一",
+      "点",
+      "中文"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "很好。",
+     "pinyin": "hěn hǎo.",
+     "fr": "Très bien.",
+     "en": "Very good.",
+     "words": [
+      "很",
+      "好"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "谢谢。",
+     "pinyin": "xiè xie.",
+     "fr": "Merci.",
+     "en": "Thank you.",
+     "words": [
+      "谢谢"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "home-shop",
+   "title": {
+    "fr": "À la maison et au magasin",
+    "en": "At home and at the shop"
+   },
+   "level": 1,
+   "focus": [
+    "猫",
+    "狗",
+    "穿",
+    "衣服",
+    "商店",
+    "一半"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你家有猫吗？",
+     "pinyin": "nǐ jiā yǒu māo ma?",
+     "fr": "Tu as un chat ?",
+     "en": "Do you have a cat?",
+     "words": [
+      "你",
+      "家",
+      "有",
+      "猫",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "没有。我家有狗。",
+     "pinyin": "méi yǒu. wǒ jiā yǒu gǒu.",
+     "fr": "Non. J'ai un chien.",
+     "en": "No. I have a dog.",
+     "words": [
+      "没有",
+      "我",
+      "家",
+      "有",
+      "狗"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你穿什么衣服？",
+     "pinyin": "nǐ chuān shén me yī fu?",
+     "fr": "Tu portes quoi ?",
+     "en": "What are you wearing?",
+     "words": [
+      "你",
+      "穿",
+      "什么",
+      "衣服"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我穿一件新衣服。",
+     "pinyin": "wǒ chuān yī jiàn xīn yī fu.",
+     "fr": "Je porte un nouveau vêtement.",
+     "en": "I'm wearing a new piece of clothing.",
+     "words": [
+      "我",
+      "穿",
+      "一",
+      "件",
+      "新",
+      "衣服"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "真好看。",
+     "pinyin": "zhēn hǎo kàn.",
+     "fr": "C'est très beau.",
+     "en": "It looks great.",
+     "words": [
+      "真",
+      "好看"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我去商店买一件。",
+     "pinyin": "wǒ qù shāng diàn mǎi yī jiàn.",
+     "fr": "Je vais au magasin en acheter un.",
+     "en": "I'm going to the shop to buy one.",
+     "words": [
+      "我",
+      "去",
+      "商店",
+      "买",
+      "一",
+      "件"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "商店在哪儿？",
+     "pinyin": "shāng diàn zài nǎ r?",
+     "fr": "Où est le magasin ?",
+     "en": "Where is the shop?",
+     "words": [
+      "商店",
+      "在",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "在学校那边。",
+     "pinyin": "zài xué xiào nà bian.",
+     "fr": "De l'autre côté de l'école.",
+     "en": "Over by the school.",
+     "words": [
+      "在",
+      "学校",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好的。我买一些面包。",
+     "pinyin": "hǎo de. wǒ mǎi yī xiē miàn bāo.",
+     "fr": "D'accord. J'achète du pain.",
+     "en": "Okay. I'll buy some bread.",
+     "words": [
+      "好",
+      "的",
+      "我",
+      "买",
+      "一些",
+      "面包"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "面包多少钱？",
+     "pinyin": "miàn bāo duō shǎo qián?",
+     "fr": "Le pain, c'est combien ?",
+     "en": "How much is the bread?",
+     "words": [
+      "面包",
+      "多少",
+      "钱"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "十块。",
+     "pinyin": "shí kuài.",
+     "fr": "Dix yuans.",
+     "en": "Ten yuan.",
+     "words": [
+      "十",
+      "块"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我也想要一些菜。",
+     "pinyin": "wǒ yě xiǎng yào yī xiē cài.",
+     "fr": "Je veux aussi des légumes.",
+     "en": "I want some vegetables too.",
+     "words": [
+      "我",
+      "也",
+      "想",
+      "要",
+      "一些",
+      "菜"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。饭店有菜吗？",
+     "pinyin": "hǎo. fàn diàn yǒu cài ma?",
+     "fr": "D'accord. Le restaurant a des légumes ?",
+     "en": "Okay. Does the restaurant have vegetables?",
+     "words": [
+      "好",
+      "饭店",
+      "有",
+      "菜",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "有。很多。",
+     "pinyin": "yǒu. hěn duō.",
+     "fr": "Oui. Beaucoup.",
+     "en": "Yes. Plenty.",
+     "words": [
+      "有",
+      "很",
+      "多"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "这个店卖什么？",
+     "pinyin": "zhè gè diàn mài shén me?",
+     "fr": "Que vend ce magasin ?",
+     "en": "What does this shop sell?",
+     "words": [
+      "这",
+      "个",
+      "店",
+      "卖",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "卖一些水果和一些面包。",
+     "pinyin": "mài yī xiē shuǐ guǒ hé yī xiē miàn bāo.",
+     "fr": "Des fruits et du pain.",
+     "en": "Some fruit and some bread.",
+     "words": [
+      "卖",
+      "一些",
+      "水果",
+      "和",
+      "一些",
+      "面包"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "有的面包很贵。",
+     "pinyin": "yǒu de miàn bāo hěn guì.",
+     "fr": "Du pain, c'est parfois cher.",
+     "en": "Some bread is expensive.",
+     "words": [
+      "有的",
+      "面包",
+      "很",
+      "贵"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "有些便宜。",
+     "pinyin": "yǒu xiē biàn yí.",
+     "fr": "D'autres sont moins chers.",
+     "en": "Some are cheaper.",
+     "words": [
+      "有些",
+      "便宜"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我吃一半。",
+     "pinyin": "wǒ chī yī bàn.",
+     "fr": "Je mange la moitié.",
+     "en": "I'll eat half.",
+     "words": [
+      "我",
+      "吃",
+      "一半"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我吃一些饭。",
+     "pinyin": "wǒ chī yī xiē fàn.",
+     "fr": "Je mange du riz.",
+     "en": "I'll eat some rice.",
+     "words": [
+      "我",
+      "吃",
+      "一些",
+      "饭"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "numbers-money",
+   "title": {
+    "fr": "Les nombres et l'argent",
+    "en": "Numbers and money"
+   },
+   "level": 1,
+   "focus": [
+    "零",
+    "六",
+    "千",
+    "第",
+    "元",
+    "只"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你要几个苹果？",
+     "pinyin": "nǐ yào jī gè píng guǒ?",
+     "fr": "Combien de pommes veux-tu ?",
+     "en": "How many apples do you want?",
+     "words": [
+      "你",
+      "要",
+      "几",
+      "个",
+      "苹果"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "六个。",
+     "pinyin": "liù gè.",
+     "fr": "Six.",
+     "en": "Six.",
+     "words": [
+      "六",
+      "个"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "多少钱？",
+     "pinyin": "duō shǎo qián?",
+     "fr": "C'est combien ?",
+     "en": "How much?",
+     "words": [
+      "多少",
+      "钱"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "二十元。",
+     "pinyin": "èr shí yuán.",
+     "fr": "Vingt yuans.",
+     "en": "Twenty yuan.",
+     "words": [
+      "二",
+      "十",
+      "元"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我只有零钱。",
+     "pinyin": "wǒ zhī yǒu líng qián.",
+     "fr": "Je n'ai que de la monnaie.",
+     "en": "I only have change.",
+     "words": [
+      "我",
+      "只",
+      "有",
+      "零",
+      "钱"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "没有零钱？我有。",
+     "pinyin": "méi yǒu líng qián? wǒ yǒu.",
+     "fr": "Pas de monnaie ? Moi, j'en ai.",
+     "en": "No change? I have some.",
+     "words": [
+      "没有",
+      "零",
+      "钱",
+      "我",
+      "有"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "给我一半。",
+     "pinyin": "gěi wǒ yī bàn.",
+     "fr": "Donne-moi la moitié.",
+     "en": "Give me half.",
+     "words": [
+      "给",
+      "我",
+      "一半"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。这是你的。",
+     "pinyin": "hǎo. zhè shì nǐ de.",
+     "fr": "D'accord. Le voilà.",
+     "en": "Okay. Here it is.",
+     "words": [
+      "好",
+      "这",
+      "是",
+      "你",
+      "的"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "谢谢。还有这些呢？",
+     "pinyin": "xiè xie. hái yǒu zhè xiē ne?",
+     "fr": "Merci. Et ceux-là ?",
+     "en": "Thanks. And these?",
+     "words": [
+      "谢谢",
+      "还",
+      "有",
+      "这些",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "那些是他们的。",
+     "pinyin": "nà xiē shì tā men de.",
+     "fr": "Ceux-là sont à eux.",
+     "en": "Those are theirs.",
+     "words": [
+      "那些",
+      "是",
+      "他们",
+      "的"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "这是我的第十本书。",
+     "pinyin": "zhè shì wǒ de dì shí běn shū.",
+     "fr": "Voici mon dixième livre.",
+     "en": "This is my tenth book.",
+     "words": [
+      "这",
+      "是",
+      "我",
+      "的",
+      "第",
+      "十",
+      "本",
+      "书"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "一千本？！",
+     "pinyin": "yī qiān běn?!",
+     "fr": "Mille livres ?!",
+     "en": "A thousand books?!",
+     "words": [
+      "一",
+      "千",
+      "本"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我有一百本书。",
+     "pinyin": "wǒ yǒu yī bǎi běn shū.",
+     "fr": "J'ai cent livres.",
+     "en": "I have a hundred books.",
+     "words": [
+      "我",
+      "有",
+      "一",
+      "百",
+      "本",
+      "书"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "真多！",
+     "pinyin": "zhēn duō!",
+     "fr": "Beaucoup !",
+     "en": "That's a lot!",
+     "words": [
+      "真",
+      "多"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我想再买一些。",
+     "pinyin": "wǒ xiǎng zài mǎi yī xiē.",
+     "fr": "Je veux en acheter encore.",
+     "en": "I want to buy some more.",
+     "words": [
+      "我",
+      "想",
+      "再",
+      "买",
+      "一些"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "people",
+   "title": {
+    "fr": "Les gens",
+    "en": "People"
+   },
+   "level": 1,
+   "focus": [
+    "儿子",
+    "女儿",
+    "男",
+    "女",
+    "女士",
+    "它们"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你有儿子吗？",
+     "pinyin": "nǐ yǒu ér zi ma?",
+     "fr": "Tu as un fils ?",
+     "en": "Do you have a son?",
+     "words": [
+      "你",
+      "有",
+      "儿子",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我有一个儿子和一个女儿。",
+     "pinyin": "wǒ yǒu yī gè ér zi hé yī gè nǚ ér.",
+     "fr": "J'ai un fils et une fille.",
+     "en": "I have a son and a daughter.",
+     "words": [
+      "我",
+      "有",
+      "一",
+      "个",
+      "儿子",
+      "和",
+      "一",
+      "个",
+      "女儿"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "那个男人是谁？",
+     "pinyin": "nà gè nán rén shì shéi?",
+     "fr": "Qui est cet homme ?",
+     "en": "Who is that man?",
+     "words": [
+      "那",
+      "个",
+      "男",
+      "人",
+      "是",
+      "谁"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "他是我爸爸的朋友。",
+     "pinyin": "tā shì wǒ bà ba de péng you.",
+     "fr": "C'est un ami de mon père.",
+     "en": "He's a friend of my father.",
+     "words": [
+      "他",
+      "是",
+      "我",
+      "爸爸",
+      "的",
+      "朋友"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "那个女的呢？",
+     "pinyin": "nà gè nǚ de ne?",
+     "fr": "Et cette femme ?",
+     "en": "And that woman?",
+     "words": [
+      "那",
+      "个",
+      "女",
+      "的",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "她是我姐姐。",
+     "pinyin": "tā shì wǒ jiě jie.",
+     "fr": "C'est ma sœur.",
+     "en": "She's my sister.",
+     "words": [
+      "她",
+      "是",
+      "我",
+      "姐姐"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "她们是谁？",
+     "pinyin": "tā men shì shéi?",
+     "fr": "Qui sont-elles ?",
+     "en": "Who are they?",
+     "words": [
+      "她们",
+      "是",
+      "谁"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "她们是我同学。",
+     "pinyin": "tā men shì wǒ tóng xué.",
+     "fr": "Ce sont mes condisciples.",
+     "en": "They are my classmates.",
+     "words": [
+      "她们",
+      "是",
+      "我",
+      "同学"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "女士，您好。",
+     "pinyin": "nǚ shì, nín hǎo.",
+     "fr": "Madame, bonjour.",
+     "en": "Hello, madam.",
+     "words": [
+      "女士",
+      "您",
+      "好"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "你好，先生。",
+     "pinyin": "nǐ hǎo, xiān sheng.",
+     "fr": "Bonjour, monsieur.",
+     "en": "Hello, sir.",
+     "words": [
+      "你",
+      "好",
+      "先生"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "它是什么？",
+     "pinyin": "tā shì shén me?",
+     "fr": "Qu'est-ce que c'est ?",
+     "en": "What is it?",
+     "words": [
+      "它",
+      "是",
+      "什么"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "它是猫。",
+     "pinyin": "tā shì māo.",
+     "fr": "C'est un chat.",
+     "en": "It's a cat.",
+     "words": [
+      "它",
+      "是",
+      "猫"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "它们在哪儿？",
+     "pinyin": "tā men zài nǎ r?",
+     "fr": "Où sont-ils ?",
+     "en": "Where are they?",
+     "words": [
+      "它们",
+      "在",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "它们在那边。",
+     "pinyin": "tā men zài nà bian.",
+     "fr": "Ils sont là-bas.",
+     "en": "They're over there.",
+     "words": [
+      "它们",
+      "在",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你是哪国人？",
+     "pinyin": "nǐ shì nǎ guó rén?",
+     "fr": "De quel pays es-tu ?",
+     "en": "Which country are you from?",
+     "words": [
+      "你",
+      "是",
+      "哪",
+      "国",
+      "人"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我是中国人。",
+     "pinyin": "wǒ shì zhōng guó rén.",
+     "fr": "Je suis chinois.",
+     "en": "I'm Chinese.",
+     "words": [
+      "我",
+      "是",
+      "中国",
+      "人"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "哪些人会说汉语？",
+     "pinyin": "nǎ xiē rén huì shuō hàn yǔ?",
+     "fr": "Qui parle chinois ?",
+     "en": "Who speaks Chinese?",
+     "words": [
+      "哪些",
+      "人",
+      "会",
+      "说",
+      "汉语"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "他们会说。",
+     "pinyin": "tā men huì shuō.",
+     "fr": "Eux parlent.",
+     "en": "They do.",
+     "words": [
+      "他们",
+      "会",
+      "说"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "今天是六月一日吗？",
+     "pinyin": "jīn tiān shì liù yuè yī rì ma?",
+     "fr": "C'est le premier juin aujourd'hui ?",
+     "en": "Is today June first?",
+     "words": [
+      "今天",
+      "是",
+      "六",
+      "月",
+      "一",
+      "日",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是。今天很热。",
+     "pinyin": "shì. jīn tiān hěn rè.",
+     "fr": "Oui. Il fait très chaud aujourd'hui.",
+     "en": "Yes. It's very hot today.",
+     "words": [
+      "是",
+      "今天",
+      "很",
+      "热"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "天上下雪吗？",
+     "pinyin": "tiān shàng xià xuě ma?",
+     "fr": "Est-ce qu'il neige ?",
+     "en": "Is it snowing?",
+     "words": [
+      "天",
+      "上",
+      "下",
+      "雪",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不下雪。下雨。",
+     "pinyin": "bù xià xuě. xià yǔ.",
+     "fr": "Non, il ne neige pas. Il pleut.",
+     "en": "It's not snowing. It's raining.",
+     "words": [
+      "不",
+      "下",
+      "雪",
+      "下雨"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你住在哪里？",
+     "pinyin": "nǐ zhù zài nǎ lǐ?",
+     "fr": "Où habites-tu ?",
+     "en": "Where do you live?",
+     "words": [
+      "你",
+      "住",
+      "在",
+      "哪里"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我住在学校那边。",
+     "pinyin": "wǒ zhù zài xué xiào nà bian.",
+     "fr": "J'habite de l'autre côté de l'école.",
+     "en": "I live over by the school.",
+     "words": [
+      "我",
+      "住",
+      "在",
+      "学校",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你会做饭吗？",
+     "pinyin": "nǐ huì zuò fàn ma?",
+     "fr": "Sais-tu cuisiner ?",
+     "en": "Can you cook?",
+     "words": [
+      "你",
+      "会",
+      "做饭",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "会。我会做饺子。",
+     "pinyin": "huì. wǒ huì zuò jiǎo zi.",
+     "fr": "Oui. Je sais faire des raviolis chinois.",
+     "en": "Yes. I can make dumplings.",
+     "words": [
+      "会",
+      "我",
+      "会",
+      "做",
+      "饺子"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "很好吃吗？",
+     "pinyin": "hěn hǎo chī ma?",
+     "fr": "C'est bon ?",
+     "en": "Are they good?",
+     "words": [
+      "很",
+      "好吃",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "很好吃。",
+     "pinyin": "hěn hǎo chī.",
+     "fr": "C'est très bon.",
+     "en": "They're very good.",
+     "words": [
+      "很",
+      "好吃"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。再见！",
+     "pinyin": "hǎo. zài jiàn!",
+     "fr": "D'accord. Au revoir !",
+     "en": "Okay. Goodbye!",
+     "words": [
+      "好",
+      "再见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "week",
+   "title": {
+    "fr": "La semaine",
+    "en": "The week"
+   },
+   "level": 1,
+   "focus": [
+    "时间",
+    "星期",
+    "星期日",
+    "昨天",
+    "明天",
+    "早"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "现在几点？",
+     "pinyin": "xiàn zài jī diǎn?",
+     "fr": "Quelle heure est-il ?",
+     "en": "What time is it?",
+     "words": [
+      "现在",
+      "几",
+      "点"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "八点。",
+     "pinyin": "bā diǎn.",
+     "fr": "Huit heures.",
+     "en": "Eight o'clock.",
+     "words": [
+      "八",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "明天几点？",
+     "pinyin": "míng tiān jī diǎn?",
+     "fr": "Et demain à quelle heure ?",
+     "en": "And tomorrow?",
+     "words": [
+      "明天",
+      "几",
+      "点"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "明天七点。",
+     "pinyin": "míng tiān qī diǎn.",
+     "fr": "Demain à sept heures.",
+     "en": "Tomorrow at seven.",
+     "words": [
+      "明天",
+      "七",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "星期日你去哪儿？",
+     "pinyin": "xīng qī rì nǐ qù nǎ r?",
+     "fr": "Où vas-tu le dimanche ?",
+     "en": "Where do you go on Sunday?",
+     "words": [
+      "星期日",
+      "你",
+      "去",
+      "哪儿"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我去书店。",
+     "pinyin": "wǒ qù shū diàn.",
+     "fr": "Je vais à la librairie.",
+     "en": "I'm going to the bookstore.",
+     "words": [
+      "我",
+      "去",
+      "书店"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "那个大学生呢？",
+     "pinyin": "nà gè dà xué shēng ne?",
+     "fr": "Et l'étudiant ?",
+     "en": "And the university student?",
+     "words": [
+      "那",
+      "个",
+      "大学生",
+      "呢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "他在那边。",
+     "pinyin": "tā zài nà bian.",
+     "fr": "Il est là-bas.",
+     "en": "He's over there.",
+     "words": [
+      "他",
+      "在",
+      "那边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你在外吗？",
+     "pinyin": "nǐ zài wài ma?",
+     "fr": "Es-tu dehors ?",
+     "en": "Are you outside?",
+     "words": [
+      "你",
+      "在",
+      "外",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不。我在家里。",
+     "pinyin": "bù. wǒ zài jiā lǐ.",
+     "fr": "Non. Je suis à la maison.",
+     "en": "No. I'm at home.",
+     "words": [
+      "不",
+      "我",
+      "在",
+      "家",
+      "里"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "昨天你去哪儿了？",
+     "pinyin": "zuó tiān nǐ qù nǎ r le?",
+     "fr": "Où étais-tu hier ?",
+     "en": "Where were you yesterday?",
+     "words": [
+      "昨天",
+      "你",
+      "去",
+      "哪儿",
+      "了"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我在家里看书。",
+     "pinyin": "wǒ zài jiā lǐ kān shū.",
+     "fr": "J'étais à la maison, je lisais.",
+     "en": "I was at home reading.",
+     "words": [
+      "我",
+      "在",
+      "家",
+      "里",
+      "看",
+      "书"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你知道时间吗？",
+     "pinyin": "nǐ zhī dào shí jiān ma?",
+     "fr": "Tu sais l'heure ?",
+     "en": "Do you know the time?",
+     "words": [
+      "你",
+      "知道",
+      "时间",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "知道。现在八点。",
+     "pinyin": "zhī dào. xiàn zài bā diǎn.",
+     "fr": "Oui. Il est huit heures.",
+     "en": "Yes. It's eight o'clock.",
+     "words": [
+      "知道",
+      "现在",
+      "八",
+      "点"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我很早起床。",
+     "pinyin": "wǒ hěn zǎo qǐ chuáng.",
+     "fr": "Je me lève très tôt.",
+     "en": "I get up very early.",
+     "words": [
+      "我",
+      "很",
+      "早",
+      "起床"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我也很早。",
+     "pinyin": "wǒ yě hěn zǎo.",
+     "fr": "Moi aussi, très tôt.",
+     "en": "Me too, very early.",
+     "words": [
+      "我",
+      "也",
+      "很",
+      "早"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "politeness",
+   "title": {
+    "fr": "Poliresse et chiffres",
+    "en": "Politeness and numbers"
+   },
+   "level": 1,
+   "focus": [
+    "请",
+    "能",
+    "半",
+    "些",
+    "岁"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "你三十岁吗？",
+     "pinyin": "nǐ sān shí suì ma?",
+     "fr": "Tu as trente ans ?",
+     "en": "Are you thirty?",
+     "words": [
+      "你",
+      "三",
+      "十",
+      "岁",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是。我三十岁。",
+     "pinyin": "shì. wǒ sān shí suì.",
+     "fr": "Oui. J'ai trente ans.",
+     "en": "Yes. I'm thirty.",
+     "words": [
+      "是",
+      "我",
+      "三",
+      "十",
+      "岁"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你小吗？",
+     "pinyin": "nǐ xiǎo ma?",
+     "fr": "Tu es jeune ?",
+     "en": "Are you young?",
+     "words": [
+      "你",
+      "小",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不。我不小。",
+     "pinyin": "bù. wǒ bù xiǎo.",
+     "fr": "Non. Je ne suis plus jeune.",
+     "en": "No. I'm not young.",
+     "words": [
+      "不",
+      "我",
+      "不",
+      "小"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你的病好了吗？",
+     "pinyin": "nǐ de bìng hǎo le ma?",
+     "fr": "Tu vas mieux ?",
+     "en": "Is your illness better?",
+     "words": [
+      "你",
+      "的",
+      "病",
+      "好",
+      "了",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好了。谢谢。",
+     "pinyin": "hǎo le. xiè xie.",
+     "fr": "Oui. Merci.",
+     "en": "Yes. Thank you.",
+     "words": [
+      "好",
+      "了",
+      "谢谢"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "请给我一个苹果。",
+     "pinyin": "qǐng gěi wǒ yī gè píng guǒ.",
+     "fr": "S'il te plaît, donne-moi une pomme.",
+     "en": "Please give me an apple.",
+     "words": [
+      "请",
+      "给",
+      "我",
+      "一",
+      "个",
+      "苹果"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "好。",
+     "pinyin": "hǎo.",
+     "fr": "D'accord.",
+     "en": "Okay.",
+     "words": [
+      "好"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我能给朋友打电话吗？",
+     "pinyin": "wǒ néng gěi péng you dǎ diàn huà ma?",
+     "fr": "Puis-je appeler un ami ?",
+     "en": "Can I call a friend?",
+     "words": [
+      "我",
+      "能",
+      "给",
+      "朋友",
+      "打电话",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "能。",
+     "pinyin": "néng.",
+     "fr": "Oui.",
+     "en": "Yes.",
+     "words": [
+      "能"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "谢谢。",
+     "pinyin": "xiè xie.",
+     "fr": "Merci.",
+     "en": "Thank you.",
+     "words": [
+      "谢谢"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "不客气。",
+     "pinyin": "bù kè qi.",
+     "fr": "De rien.",
+     "en": "You're welcome.",
+     "words": [
+      "不客气"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你会开车吗？",
+     "pinyin": "nǐ huì kāi chē ma?",
+     "fr": "Sais-tu conduire ?",
+     "en": "Can you drive?",
+     "words": [
+      "你",
+      "会",
+      "开车",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "会。我开车上班。",
+     "pinyin": "huì. wǒ kāi chē shàng bān.",
+     "fr": "Oui. Je conduis pour aller travailler.",
+     "en": "Yes. I drive to work.",
+     "words": [
+      "会",
+      "我",
+      "开车",
+      "上班"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "今天有雨吗？",
+     "pinyin": "jīn tiān yǒu yǔ ma?",
+     "fr": "Est-ce qu'il pleut aujourd'hui ?",
+     "en": "Is it raining today?",
+     "words": [
+      "今天",
+      "有",
+      "雨",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "有。下午下雨。",
+     "pinyin": "yǒu. xià wǔ xià yǔ.",
+     "fr": "Oui. Il pleut l'après-midi.",
+     "en": "Yes. It rains in the afternoon.",
+     "words": [
+      "有",
+      "下午",
+      "下雨"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我买些苹果。",
+     "pinyin": "wǒ mǎi xiē píng guǒ.",
+     "fr": "J'achète des pommes.",
+     "en": "I'll buy some apples.",
+     "words": [
+      "我",
+      "买",
+      "些",
+      "苹果"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "多少钱？",
+     "pinyin": "duō shǎo qián?",
+     "fr": "C'est combien ?",
+     "en": "How much?",
+     "words": [
+      "多少",
+      "钱"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "二十块。",
+     "pinyin": "èr shí kuài.",
+     "fr": "Vingt yuans.",
+     "en": "Twenty yuan.",
+     "words": [
+      "二",
+      "十",
+      "块"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我要一半。",
+     "pinyin": "wǒ yào yī bàn.",
+     "fr": "J'en veux la moitié.",
+     "en": "I want half.",
+     "words": [
+      "我",
+      "要",
+      "一半"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。给你。",
+     "pinyin": "hǎo. gěi nǐ.",
+     "fr": "D'accord. Tiens.",
+     "en": "Okay. Here you are.",
+     "words": [
+      "好",
+      "给",
+      "你"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "谢谢。再见。",
+     "pinyin": "xiè xie. zài jiàn.",
+     "fr": "Merci. Au revoir.",
+     "en": "Thanks. Goodbye.",
+     "words": [
+      "谢谢",
+      "再见"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "好。你去睡吧。",
+     "pinyin": "hǎo. nǐ qù shuì ba.",
+     "fr": "D'accord. Va dormir.",
+     "en": "Okay. Go and sleep.",
+     "words": [
+      "好",
+      "你",
+      "去",
+      "睡",
+      "吧"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "明天见。",
+     "pinyin": "míng tiān jiàn.",
+     "fr": "À demain.",
+     "en": "See you tomorrow.",
+     "words": [
+      "明天",
+      "见"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "misc",
+   "title": {
+    "fr": "Quelques questions",
+    "en": "A few questions"
+   },
+   "level": 1,
+   "focus": [
+    "星期",
+    "时候",
+    "电话",
+    "半",
+    "少"
+   ],
+   "exchanges": [
+    {
+     "who": "A",
+     "hanzi": "星期几？",
+     "pinyin": "xīng qī jī?",
+     "fr": "Quel jour de la semaine ?",
+     "en": "Which day of the week?",
+     "words": [
+      "星期",
+      "几"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "星期日。",
+     "pinyin": "xīng qī rì.",
+     "fr": "Dimanche.",
+     "en": "Sunday.",
+     "words": [
+      "星期日"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你什么时候来？",
+     "pinyin": "nǐ shén me shí hou lái?",
+     "fr": "Quand viens-tu ?",
+     "en": "When are you coming?",
+     "words": [
+      "你",
+      "什么",
+      "时候",
+      "来"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "下午。",
+     "pinyin": "xià wǔ.",
+     "fr": "L'après-midi.",
+     "en": "In the afternoon.",
+     "words": [
+      "下午"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你的电话几号？",
+     "pinyin": "nǐ de diàn huà jī hào?",
+     "fr": "Quel est ton numéro de téléphone ?",
+     "en": "What is your phone number?",
+     "words": [
+      "你",
+      "的",
+      "电话",
+      "几",
+      "号"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "八一二。",
+     "pinyin": "bā yī èr.",
+     "fr": "Huit-deux-un.",
+     "en": "Eight-two-one.",
+     "words": [
+      "八",
+      "一",
+      "二"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你住那里？",
+     "pinyin": "nǐ zhù nà li?",
+     "fr": "Tu habites là-bas ?",
+     "en": "Do you live there?",
+     "words": [
+      "你",
+      "住",
+      "那里"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我住那里。",
+     "pinyin": "wǒ zhù nà li.",
+     "fr": "J'habite là-bas.",
+     "en": "I live there.",
+     "words": [
+      "我",
+      "住",
+      "那里"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "你坐这边吗？",
+     "pinyin": "nǐ zuò zhè biān ma?",
+     "fr": "Tu t'assieds par là ?",
+     "en": "Are you sitting over here?",
+     "words": [
+      "你",
+      "坐",
+      "这边",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "坐。请你坐在桌子边。",
+     "pinyin": "zuò. qǐng nǐ zuò zài zhuō zi biān.",
+     "fr": "Assieds-toi. S'il te plaît, assieds-toi au bord de la table.",
+     "en": "Sit down. Please sit at the side of the table.",
+     "words": [
+      "坐",
+      "请",
+      "你",
+      "坐",
+      "在",
+      "桌子",
+      "边"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "明年你来吗？",
+     "pinyin": "míng nián nǐ lái ma?",
+     "fr": "Tu viens l'année prochaine ?",
+     "en": "Are you coming next year?",
+     "words": [
+      "明年",
+      "你",
+      "来",
+      "吗"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "来。",
+     "pinyin": "lái.",
+     "fr": "Oui, je viens.",
+     "en": "Yes, I'm coming.",
+     "words": [
+      "来"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "我学了半年。",
+     "pinyin": "wǒ xué le bàn nián.",
+     "fr": "J'ai étudié pendant un demi-an.",
+     "en": "I've studied for half a year.",
+     "words": [
+      "我",
+      "学",
+      "了",
+      "半",
+      "年"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "我学了一年。",
+     "pinyin": "wǒ xué le yī nián.",
+     "fr": "J'ai étudié pendant un an.",
+     "en": "I've studied for a year.",
+     "words": [
+      "我",
+      "学",
+      "了",
+      "一",
+      "年"
+     ]
+    },
+    {
+     "who": "A",
+     "hanzi": "今天学生少。",
+     "pinyin": "jīn tiān xué sheng shǎo.",
+     "fr": "Il y a peu d'étudiants aujourd'hui.",
+     "en": "There are few students today.",
+     "words": [
+      "今天",
+      "学生",
+      "少"
+     ]
+    },
+    {
+     "who": "B",
+     "hanzi": "是。明天学生多。",
+     "pinyin": "shì. míng tiān xué sheng duō.",
+     "fr": "Oui. Demain il y en a beaucoup.",
+     "en": "Yes. Tomorrow there are a lot.",
+     "words": [
+      "是",
+      "明天",
+      "学生",
+      "多"
+     ]
+    }
+   ]
+  }
+ ]
+}

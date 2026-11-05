@@ -136,7 +136,7 @@ WORDS = [
     ('公交车', 'gongjiaoche', 2, 'gōng jiāo chē', 1000000, 'public transport vehicle',
      'autobus', 'transport', 'a city bus stopped at a bus stop with a sign'),
     ('咖啡', 'kafei', 2, 'kā fēi', 1698, 'coffee (loanword)',
-     'café', 'food', 'a small white espresso cup of black coffee on a saucer, a coffee bean beside'),
+     'café', 'food', 'a small white ceramic cup of coffee seen from a slight top angle, the cup filled with rich dark brown coffee, a plain white saucer under it, single centered subject, no frame, no border, no picture, no sheet of paper, no window, no steam, no lettering'),
     ('商场', 'shangchang', 2, 'shāng chǎng', 4093, 'shopping mall',
      'centre commercial', 'place', 'a shopping mall interior with an escalator and shopping bags'),
     ('地铁', 'ditie', 2, 'dì tiě', 3046, 'underground railway; subway',
@@ -176,7 +176,7 @@ WORDS = [
     ('画', 'hua2', 2, 'huà', 1119, 'to draw; to paint',
      'peinture ; tableau', 'object', 'a framed landscape painting hanging on a wall'),
     ('白色', 'baise', 2, 'bái sè', 2643, 'white',
-     'blanc', 'color', 'a thick stroke of white paint from a paintbrush on a grey background'),
+     'blanc', 'color', 'a single thick glossy blob of pure white paint with a bold dark outline and two small white droplets beside it, isolated, no frame, no border, no picture, no sheet of paper'),
     ('眼睛', 'yanjing', 2, 'yǎn jing', 814, 'eye',
      'yeux', 'body', 'a close-up of a single human eye with an eyebrow'),
     ('票', 'piao', 2, 'piào', 956, 'ticket',
@@ -186,9 +186,9 @@ WORDS = [
     ('篮球', 'lanqiu', 2, 'lán qiú', 3596, 'basketball',
      'basket', 'sport', 'an orange basketball with black seams'),
     ('红色', 'hongse', 2, 'hóng sè', 2146, 'red (color)',
-     'rouge', 'color', 'a thick stroke of red paint from a paintbrush on white paper'),
+     'rouge', 'color', 'a single thick glossy blob of bright red paint with a bold dark outline and two small red droplets beside it, isolated, no frame, no border, no picture, no sheet of paper'),
     ('绿色', 'lvse', 2, 'lǜ sè', 2383, 'green',
-     'vert', 'color', 'a thick stroke of green paint from a paintbrush on white paper'),
+     'vert', 'color', 'a single thick glossy blob of bright green paint with a bold dark outline and two small green droplets beside it, isolated, no frame, no border, no picture, no sheet of paper'),
     ('肉', 'rou', 2, 'ròu', 1215, 'meat',
      'viande', 'food', 'a sliced grilled piece of meat on a plate'),
     ('花', 'hua', 2, 'Huā', 435, 'surname Hua',
@@ -230,7 +230,7 @@ WORDS = [
     ('鸟', 'niao', 2, 'diǎo', 1593, 'variant of 屌',
      'oiseau', 'animal', 'a small songbird perched on a branch'),
     ('黑色', 'heise', 2, 'hēi sè', 2362, 'black',
-     'noir', 'color', 'a thick stroke of black paint from a paintbrush on white paper'),
+     'noir', 'color', 'a single thick glossy blob of black paint with a bold dark outline and two small black droplets beside it, isolated, no frame, no border, no picture, no sheet of paper'),
 ]
 
 

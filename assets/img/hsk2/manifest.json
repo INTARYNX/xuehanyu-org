@@ -1,7 +1,7 @@
 {
  "version": 2,
  "level": 2,
- "count": 13,
+ "count": 51,
  "words": [
   {
    "char": "丈夫",
@@ -162,6 +162,473 @@
    "confusable": [
     "shou"
    ]
+  },
+  {
+   "char": "教室",
+   "slug": "jiaoshi",
+   "pinyin": "jiào shì",
+   "tone": 4,
+   "freq": 5082,
+   "en": "classroom",
+   "fr": "salle de classe",
+   "cat": "school",
+   "image": "jiaoshi.webp",
+   "confusable": []
+  },
+  {
+   "char": "本子",
+   "slug": "benzi",
+   "pinyin": "běn zi",
+   "tone": 3,
+   "freq": 12849,
+   "en": "book",
+   "fr": "cahier",
+   "cat": "school",
+   "image": "benzi.webp",
+   "confusable": [
+    "shu"
+   ]
+  },
+  {
+   "char": "机场",
+   "slug": "jichang",
+   "pinyin": "jī chǎng",
+   "tone": 3,
+   "freq": 2308,
+   "en": "airport; airfield",
+   "fr": "aéroport",
+   "cat": "transport",
+   "image": "jichang.webp",
+   "confusable": []
+  },
+  {
+   "char": "楼",
+   "slug": "lou",
+   "pinyin": "Lóu",
+   "tone": 2,
+   "freq": 765,
+   "en": "surname Lou",
+   "fr": "immeuble ; étage",
+   "cat": "place",
+   "image": "lou.webp",
+   "confusable": []
+  },
+  {
+   "char": "洗手间",
+   "slug": "xishoujian",
+   "pinyin": "xǐ shǒu jiān",
+   "tone": 1,
+   "freq": 9674,
+   "en": "toilet",
+   "fr": "toilettes",
+   "cat": "place",
+   "image": "xishoujian.webp",
+   "confusable": [
+    "men"
+   ]
+  },
+  {
+   "char": "游泳",
+   "slug": "youyong",
+   "pinyin": "yóu yǒng",
+   "tone": 3,
+   "freq": 3695,
+   "en": "swimming",
+   "fr": "nager",
+   "cat": "sport",
+   "image": "youyong.webp",
+   "confusable": []
+  },
+  {
+   "char": "爷爷",
+   "slug": "yeye",
+   "pinyin": "yé ye",
+   "tone": 2,
+   "freq": 3099,
+   "en": "(coll.) fathers father",
+   "fr": "papi",
+   "cat": "people",
+   "image": "yeye.webp",
+   "confusable": []
+  },
+  {
+   "char": "生日",
+   "slug": "shengri",
+   "pinyin": "shēng rì",
+   "tone": 4,
+   "freq": 1506,
+   "en": "birthday",
+   "fr": "anniversaire",
+   "cat": "food",
+   "image": "shengri.webp",
+   "confusable": []
+  },
+  {
+   "char": "男孩儿",
+   "slug": "nanhai",
+   "pinyin": "nán hái r",
+   "tone": 2,
+   "freq": 1000000,
+   "en": "erhua variant of 男孩",
+   "fr": "garçon",
+   "cat": "people",
+   "image": "nanhai.webp",
+   "confusable": []
+  },
+  {
+   "char": "画",
+   "slug": "hua2",
+   "pinyin": "huà",
+   "tone": 4,
+   "freq": 1119,
+   "en": "to draw; to paint",
+   "fr": "peinture ; tableau",
+   "cat": "object",
+   "image": "hua2.webp",
+   "confusable": []
+  },
+  {
+   "char": "白色",
+   "slug": "baise",
+   "pinyin": "bái sè",
+   "tone": 4,
+   "freq": 2643,
+   "en": "white",
+   "fr": "blanc",
+   "cat": "color",
+   "image": "baise.webp",
+   "confusable": []
+  },
+  {
+   "char": "眼睛",
+   "slug": "yanjing",
+   "pinyin": "yǎn jing",
+   "tone": 3,
+   "freq": 814,
+   "en": "eye",
+   "fr": "yeux",
+   "cat": "body",
+   "image": "yanjing.webp",
+   "confusable": []
+  },
+  {
+   "char": "票",
+   "slug": "piao",
+   "pinyin": "piào",
+   "tone": 4,
+   "freq": 956,
+   "en": "ticket",
+   "fr": "billet ; ticket",
+   "cat": "object",
+   "image": "piao.webp",
+   "confusable": []
+  },
+  {
+   "char": "笔",
+   "slug": "bi",
+   "pinyin": "bǐ",
+   "tone": 3,
+   "freq": 1245,
+   "en": "pen",
+   "fr": "stylo ; crayon",
+   "cat": "object",
+   "image": "bi.webp",
+   "confusable": []
+  },
+  {
+   "char": "篮球",
+   "slug": "lanqiu",
+   "pinyin": "lán qiú",
+   "tone": 2,
+   "freq": 3596,
+   "en": "basketball",
+   "fr": "basket",
+   "cat": "sport",
+   "image": "lanqiu.webp",
+   "confusable": []
+  },
+  {
+   "char": "红色",
+   "slug": "hongse",
+   "pinyin": "hóng sè",
+   "tone": 4,
+   "freq": 2146,
+   "en": "red (color)",
+   "fr": "rouge",
+   "cat": "color",
+   "image": "hongse.webp",
+   "confusable": []
+  },
+  {
+   "char": "绿色",
+   "slug": "lvse",
+   "pinyin": "lǜ sè",
+   "tone": 4,
+   "freq": 2383,
+   "en": "green",
+   "fr": "vert",
+   "cat": "color",
+   "image": "lvse.webp",
+   "confusable": []
+  },
+  {
+   "char": "肉",
+   "slug": "rou",
+   "pinyin": "ròu",
+   "tone": 4,
+   "freq": 1215,
+   "en": "meat",
+   "fr": "viande",
+   "cat": "food",
+   "image": "rou.webp",
+   "confusable": []
+  },
+  {
+   "char": "花",
+   "slug": "hua",
+   "pinyin": "Huā",
+   "tone": 1,
+   "freq": 435,
+   "en": "surname Hua",
+   "fr": "fleur",
+   "cat": "nature",
+   "image": "hua.webp",
+   "confusable": []
+  },
+  {
+   "char": "药",
+   "slug": "yao",
+   "pinyin": "yào",
+   "tone": 4,
+   "freq": 701,
+   "en": "leaf of the iris",
+   "fr": "médicament",
+   "cat": "object",
+   "image": "yao.webp",
+   "confusable": [
+    "yaodian"
+   ]
+  },
+  {
+   "char": "药店",
+   "slug": "yaodian",
+   "pinyin": "yào diàn",
+   "tone": 4,
+   "freq": 9052,
+   "en": "pharmacy",
+   "fr": "pharmacie",
+   "cat": "place",
+   "image": "yaodian.webp",
+   "confusable": [
+    "yao",
+    "yiyuan"
+   ]
+  },
+  {
+   "char": "裤子",
+   "slug": "kuzi",
+   "pinyin": "kù zi",
+   "tone": 4,
+   "freq": 3765,
+   "en": "variant of 裤子, trousers",
+   "fr": "pantalon",
+   "cat": "clothes",
+   "image": "kuzi.webp",
+   "confusable": []
+  },
+  {
+   "char": "走路",
+   "slug": "zoulu",
+   "pinyin": "zǒu lù",
+   "tone": 4,
+   "freq": 4517,
+   "en": "to walk",
+   "fr": "marcher",
+   "cat": "sport",
+   "image": "zoulu.webp",
+   "confusable": []
+  },
+  {
+   "char": "足球",
+   "slug": "zuqiu",
+   "pinyin": "zú qiú",
+   "tone": 2,
+   "freq": 2550,
+   "en": "soccer ball",
+   "fr": "ballon de football",
+   "cat": "sport",
+   "image": "zuqiu.webp",
+   "confusable": []
+  },
+  {
+   "char": "跑步",
+   "slug": "paobu",
+   "pinyin": "pǎo bù",
+   "tone": 4,
+   "freq": 7199,
+   "en": "to run",
+   "fr": "courir",
+   "cat": "sport",
+   "image": "paobu.webp",
+   "confusable": []
+  },
+  {
+   "char": "路",
+   "slug": "lu",
+   "pinyin": "Lù",
+   "tone": 4,
+   "freq": 409,
+   "en": "surname Lu",
+   "fr": "route ; rue",
+   "cat": "place",
+   "image": "lu.webp",
+   "confusable": []
+  },
+  {
+   "char": "跳舞",
+   "slug": "tiaowu",
+   "pinyin": "tiào wǔ",
+   "tone": 3,
+   "freq": 3920,
+   "en": "to dance",
+   "fr": "danser",
+   "cat": "sport",
+   "image": "tiaowu.webp",
+   "confusable": []
+  },
+  {
+   "char": "踢",
+   "slug": "ti",
+   "pinyin": "tī",
+   "tone": 1,
+   "freq": 2330,
+   "en": "to kick",
+   "fr": "frapper du pied",
+   "cat": "sport",
+   "image": "ti.webp",
+   "confusable": []
+  },
+  {
+   "char": "身体",
+   "slug": "shenti",
+   "pinyin": "shēn tǐ",
+   "tone": 3,
+   "freq": 731,
+   "en": "the body",
+   "fr": "corps",
+   "cat": "body",
+   "image": "shenti.webp",
+   "confusable": []
+  },
+  {
+   "char": "车站",
+   "slug": "chezhan",
+   "pinyin": "chē zhàn",
+   "tone": 4,
+   "freq": 4480,
+   "en": "rail station",
+   "fr": "gare",
+   "cat": "transport",
+   "image": "chezhan.webp",
+   "confusable": []
+  },
+  {
+   "char": "酒店",
+   "slug": "jiudian",
+   "pinyin": "jiǔ diàn",
+   "tone": 4,
+   "freq": 1680,
+   "en": "wine shop",
+   "fr": "hôtel",
+   "cat": "place",
+   "image": "jiudian.webp",
+   "confusable": []
+  },
+  {
+   "char": "门",
+   "slug": "men",
+   "pinyin": "Mén",
+   "tone": 2,
+   "freq": 422,
+   "en": "surname Men",
+   "fr": "porte",
+   "cat": "home",
+   "image": "men.webp",
+   "confusable": [
+    "xishoujian"
+   ]
+  },
+  {
+   "char": "面",
+   "slug": "mian",
+   "pinyin": "miàn",
+   "tone": 4,
+   "freq": 604,
+   "en": "face",
+   "fr": "nouilles",
+   "cat": "food",
+   "image": "mian.webp",
+   "confusable": []
+  },
+  {
+   "char": "飞",
+   "slug": "fei",
+   "pinyin": "fēi",
+   "tone": 1,
+   "freq": 779,
+   "en": "to fly",
+   "fr": "voler",
+   "cat": "nature",
+   "image": "fei.webp",
+   "confusable": []
+  },
+  {
+   "char": "饭馆",
+   "slug": "fanguan",
+   "pinyin": "fàn guǎn",
+   "tone": 3,
+   "freq": 16449,
+   "en": "restaurant",
+   "fr": "restaurant",
+   "cat": "place",
+   "image": "fanguan.webp",
+   "confusable": []
+  },
+  {
+   "char": "鱼",
+   "slug": "yu2",
+   "pinyin": "Yú",
+   "tone": 2,
+   "freq": 1189,
+   "en": "surname Yu",
+   "fr": "poisson",
+   "cat": "animal",
+   "image": "yu2.webp",
+   "confusable": []
+  },
+  {
+   "char": "鸟",
+   "slug": "niao",
+   "pinyin": "diǎo",
+   "tone": 3,
+   "freq": 1593,
+   "en": "variant of 屌",
+   "fr": "oiseau",
+   "cat": "animal",
+   "image": "niao.webp",
+   "confusable": []
+  },
+  {
+   "char": "黑色",
+   "slug": "heise",
+   "pinyin": "hēi sè",
+   "tone": 4,
+   "freq": 2362,
+   "en": "black",
+   "fr": "noir",
+   "cat": "color",
+   "image": "heise.webp",
+   "confusable": []
   }
  ]
 }
