@@ -7,6 +7,12 @@
 // -------------------------------------------------------------------------
 // I18N
 // -------------------------------------------------------------------------
+// Escapes a value before it is interpolated into an HTML template.
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 const I18N = {
   fr: {
     tagline:       'apprendre le chinois, un caractère à la fois',
@@ -351,13 +357,13 @@ function renderCards() {
   stage.innerHTML = `
     <div class="q-card card-flash">
       <div class="flash-image-wrap">
-        <img src="assets/img/hsk${w.level}/${w.image}" alt="${w.char}" class="q-image" loading="eager">
+        <img src="assets/img/hsk${w.level}/${w.image}" alt="${esc(w.char)}" class="q-image" loading="eager">
         ${speakButton(w)}
       </div>
       <div class="flash-body">
-        <div class="flash-hanzi">${w.char}</div>
-        <div class="flash-pinyin">${w.pinyin}</div>
-        <div class="flash-meaning">${lang === 'fr' ? w.fr : w.en}</div>
+        <div class="flash-hanzi">${esc(w.char)}</div>
+        <div class="flash-pinyin">${esc(w.pinyin)}</div>
+        <div class="flash-meaning">${esc(lang === 'fr' ? w.fr : w.en)}</div>
         <div class="flash-actions">
           <button class="q-btn ghost" id="btnReview">${t().review}</button>
           <button class="q-btn primary" id="btnKnew">${t().knew}</button>
@@ -386,7 +392,7 @@ function renderImg2Word() {
     <p class="q-prompt">${t().pickWord}</p>
     <div class="q-card quiz-card">
       <div class="flash-image-wrap big">
-        <img src="assets/img/hsk${w.level}/${w.image}" alt="" class="q-image">
+        <img src="assets/img/hsk${w.level}/${esc(w.image)}" alt="" class="q-image">
         ${speakButton(w)}
       </div>
       <div class="choices choices-text" id="choices"></div>
@@ -396,7 +402,7 @@ function renderImg2Word() {
   choices.forEach(c => {
     const b = document.createElement('button');
     b.className = 'choice';
-    b.innerHTML = `<span class="choice-hanzi">${c.char}</span><span class="choice-pinyin">${c.pinyin}</span>`;
+    b.innerHTML = `<span class="choice-hanzi">${esc(c.char)}</span><span class="choice-pinyin">${esc(c.pinyin)}</span>`;
     b.addEventListener('click', () => answer(b, c.slug === w.slug, w, box));
     box.appendChild(b);
   });
@@ -412,8 +418,8 @@ function renderWord2Img() {
     <p class="q-prompt">${t().pickImage}</p>
     <div class="q-card quiz-card">
       <div class="word-head">
-        <div class="flash-hanzi">${w.char}</div>
-        <div class="flash-pinyin">${w.pinyin}</div>
+        <div class="flash-hanzi">${esc(w.char)}</div>
+        <div class="flash-pinyin">${esc(w.pinyin)}</div>
         ${speakButton(w)}
       </div>
       <div class="choices choices-image" id="choices"></div>
@@ -423,7 +429,7 @@ function renderWord2Img() {
   choices.forEach(c => {
     const b = document.createElement('button');
     b.className = 'choice choice-img';
-    b.innerHTML = `<img src="assets/img/hsk${c.level}/${c.image}" alt="">`;
+    b.innerHTML = `<img src="assets/img/hsk${c.level}/${esc(c.image)}" alt="">`;
     b.addEventListener('click', () => answer(b, c.slug === w.slug, w, box));
     box.appendChild(b);
   });
@@ -451,7 +457,7 @@ function answer(btn, ok, word, box) {
   fb.innerHTML = `
     <div class="fb-title"><i class="fa-solid ${ok ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
       ${ok ? t().correct : t().wrong}</div>
-    <div class="fb-meaning">${lang === 'fr' ? word.fr : word.en}</div>
+    <div class="fb-meaning">${esc(lang === 'fr' ? word.fr : word.en)}</div>
     <button class="q-btn primary" id="btnCont">${t().next} <i class="fa-solid fa-arrow-right"></i></button>`;
   stage.appendChild(fb);
   fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
