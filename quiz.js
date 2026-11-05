@@ -50,6 +50,8 @@ const I18N = {
     correctIs:     (w) => `${w.char} — ${w.fr}`,
     tryAgain:      'Réessayer',
     noWords:       'Aucun mot à réviser pour l’instant.',
+    due:           'Révisions',
+    noDue:         'Rien à réviser pour le moment — reviens plus tard.',
     pickImage:     'Choisissez l’image qui correspond',
     pickWord:      'Choisissez le mot qui correspond',
   },
@@ -89,6 +91,8 @@ const I18N = {
     correctIs:     (w) => `${w.char} — ${w.en}`,
     tryAgain:      'Try again',
     noWords:       'Nothing to review yet.',
+    due:           'Due',
+    noDue:         'Nothing due right now — come back later.',
     pickImage:     'Choose the matching image',
     pickWord:      'Choose the matching word',
   }
@@ -198,6 +202,7 @@ buildPaper();
 // -------------------------------------------------------------------------
 const INDEX_URL   = 'assets/img/index.json';
 const STORE_KEY   = 'xuehanyu.quiz.v1';
+const SRS_KEY     = 'xuehanyu.srs.v1';
 
 let LEVELS      = [];       // [{id, label, manifest, count}]
 let LEVEL_WORDS = {};       // { 1: [...], 2: [...] }
@@ -209,7 +214,9 @@ let mode  = 'cards';
 let currentLevel = 1;
 let answered = false;
 let onlyReview = false;
+let onlyDue = false;      // deck = every word whose review is due
 let known = new Set();   // slugs que l'apprenant maîtrise
+let cards = {};          // slug -> carte de répétition espacée (srs.js)
 
 const stage   = document.getElementById('quizStage');
 const progFill = document.getElementById('progressFill');
@@ -328,11 +335,25 @@ function loadStore() {
     const d = JSON.parse(raw);
     if (Array.isArray(d.known)) known = new Set(d.known);
   } catch {}
+  try {
+    const raw = localStorage.getItem(SRS_KEY);
+    if (raw) cards = JSON.parse(raw) || {};
+    // first run with the scheduler: words already marked as known join it
+    else if (known.size) cards = SRS.seedFromKnown(known);
+  } catch {}
 }
 function saveStore() {
   try {
     localStorage.setItem(STORE_KEY, JSON.stringify({ known: [...known] }));
+    localStorage.setItem(SRS_KEY, JSON.stringify(cards));
   } catch {}
+}
+
+/** Records one review of a word in the scheduler. */
+function gradeWord(word, ok) {
+  cards[word.slug] = SRS.grade(cards[word.slug], ok);
+  saveStore();
+  updateDueToggle();
 }
 
 // -------------------------------------------------------------------------
@@ -379,8 +400,8 @@ function renderCards() {
     </div>`;
 
   document.getElementById('speakBtn').addEventListener('click', e => { e.stopPropagation(); speak(w.char); });
-  document.getElementById('btnKnew').addEventListener('click', () => { known.add(w.slug); saveStore(); renderCards(); });
-  document.getElementById('btnReview').addEventListener('click', () => { known.delete(w.slug); saveStore(); renderCards(); });
+  document.getElementById('btnKnew').addEventListener('click', () => { known.add(w.slug); gradeWord(w, true); renderCards(); });
+  document.getElementById('btnReview').addEventListener('click', () => { known.delete(w.slug); gradeWord(w, false); renderCards(); });
   document.getElementById('btnPrev').addEventListener('click', () => go(-1));
   document.getElementById('btnNext').addEventListener('click', () => go(1));
 }
@@ -441,6 +462,7 @@ function renderWord2Img() {
 function answer(btn, ok, word, box) {
   if (answered) return;
   answered = true;
+  gradeWord(word, ok);
   if (ok) {
     score++;
     btn.classList.add('right');
@@ -488,7 +510,7 @@ function renderSummary() {
 
 function render() {
   if (!deck.length) {
-    stage.innerHTML = `<div class="q-card summary-card"><p class="summary-msg">${t().noWords}</p></div>`;
+    stage.innerHTML = `<div class="q-card summary-card"><p class="summary-msg">${onlyDue ? t().noDue : t().noWords}</p></div>`;
     return;
   }
   if (idx >= deck.length) { renderSummary(); return; }
@@ -517,6 +539,11 @@ function restart() {
 }
 
 function buildDeck() {
+  if (onlyDue) {
+    const now = Date.now();
+    deck = shuffle(WORDS.filter(w => SRS.isDue(cards[w.slug], now)));
+    return;
+  }
   let words = levelPool();
   if (onlyReview) words = words.filter(w => !known.has(w.slug));
   deck = shuffle(words);
@@ -555,6 +582,7 @@ function applyI18n() {
   document.documentElement.lang = lang;
   setVersion();
   updateReviewToggle();
+  updateDueToggle();
   render();
 }
 
@@ -583,6 +611,19 @@ reviewToggle.addEventListener('click', () => {
   reviewToggle.classList.toggle('active', onlyReview);
   restart();
 });
+
+const dueToggle = document.getElementById('dueToggle');
+dueToggle.addEventListener('click', () => {
+  onlyDue = !onlyDue;
+  restart();
+  updateDueToggle();
+});
+
+function updateDueToggle() {
+  const lbl = document.getElementById('dueToggleLabel');
+  if (lbl) lbl.textContent = `${t().due} (${SRS.dueCount(cards)})`;
+  dueToggle.classList.toggle('active', onlyDue);
+}
 
 function updateReviewToggle() {
   const lbl = document.getElementById('reviewToggleLabel');
