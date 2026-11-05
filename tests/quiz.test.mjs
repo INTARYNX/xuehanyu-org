@@ -123,7 +123,8 @@ const sandbox = {
 sandbox.window.document = document;
 sandbox.globalThis = sandbox;
 
-const source = readFileSync(path.join(ROOT, 'quiz.js'), 'utf8');
+const source = readFileSync(path.join(ROOT, 'srs.js'), 'utf8')
+  + readFileSync(path.join(ROOT, 'quiz.js'), 'utf8');
 const exposed = `
 globalThis.__quiz = {
   pickDistractors, shuffle, buildDeck, isConfusable,
@@ -137,11 +138,15 @@ globalThis.__quiz = {
   get known() { return known; },
   setKnown(s) { known = new Set(s); },
   get onlyReview() { return onlyReview; },
-  setOnlyReview(v) { onlyReview = v; }
+  setOnlyReview(v) { onlyReview = v; },
+  get cards() { return cards; },
+  setCards(c) { cards = c; },
+  setOnlyDue(v) { onlyDue = v; },
+  gradeWord
 };`;
 
 vm.createContext(sandbox);
-vm.runInContext(source + exposed, sandbox, { filename: 'quiz.js' });
+vm.runInContext(source + exposed, sandbox, { filename: 'srs.js+quiz.js' });
 
 const quiz = sandbox.__quiz;
 
@@ -334,4 +339,30 @@ test('buildDeck respecte le filtre « à revoir seulement »', () => {
     assert.ok(!quiz.known.has(w.slug), 'un mot déjà maîtrisé reste dans le deck filtré');
   }
   quiz.setOnlyReview(false);
+});
+
+// ---------------------------------------------------------------------------
+// Spaced repetition
+// ---------------------------------------------------------------------------
+test('le deck « révisions » ne contient que les mots échus, tous niveaux confondus', () => {
+  const [a, b, c] = allWords;
+  quiz.setWords(allWords);
+  quiz.setCards({
+    [a.slug]: { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: Date.now() - 1000 },
+    [b.slug]: { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: Date.now() + 86400000 }
+  });
+  quiz.setOnlyDue(true);
+  quiz.buildDeck();
+  quiz.setOnlyDue(false);
+  assert.deepEqual(quiz.deck.map(w => w.slug), [a.slug]);
+  assert.ok(c);
+});
+
+test('noter un mot crée sa carte et un échec la rend échue', () => {
+  const w = allWords[0];
+  quiz.setCards({});
+  quiz.gradeWord(w, true);
+  assert.equal(quiz.cards[w.slug].interval, 1);
+  quiz.gradeWord(w, false);
+  assert.equal(quiz.cards[w.slug].reps, 0);
 });
