@@ -180,6 +180,14 @@ html, body {
   letter-spacing: 0.02em;
 }
 .cta-btn:hover { background: #9a1c1a; transform: translateY(-1px); }
+.cta-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  margin-left: 0.6rem;
+}
+.cta-secondary:hover { background: var(--accent-soft); color: var(--accent); }
+@media (max-width: 420px) { .cta-secondary { margin-left: 0; margin-top: 0.6rem; display: block; } }
 .scroll-hint {
   position: absolute;
   bottom: calc(1.75rem + env(safe-area-inset-bottom));
@@ -306,6 +314,7 @@ footer a:hover { color: var(--accent); }
       <h1 class="brand-title"><span class="zh">学汉语</span>xuehanyu.org</h1>
       <p class="tagline" data-t="tagline">Apprendre le chinois mandarin,<br>un caractère à la fois.</p>
       <a href="app.html" class="cta-btn" data-t="cta">Commencer →</a>
+      <a href="quiz.html" class="cta-btn cta-secondary" data-t="ctaQuiz">Quiz d'images →</a>
     </div>
   </div>
 
@@ -407,6 +416,7 @@ const COPY = {
   fr: {
     tagline:  'Apprendre le chinois mandarin,<br>un caractère à la fois.',
     cta:      'Commencer →',
+    ctaQuiz:  "Quiz d'images →",
     scroll:   'Découvrir',
     label1:   'Le projet',
     h1:       'Un outil libre pour apprendre les caractères chinois',
@@ -435,6 +445,7 @@ const COPY = {
   en: {
     tagline:  'Learn Mandarin Chinese,<br>one character at a time.',
     cta:      'Get started →',
+    ctaQuiz:  'Image quiz →',
     scroll:   'Discover',
     label1:   'The project',
     h1:       'A free tool to learn Chinese characters',

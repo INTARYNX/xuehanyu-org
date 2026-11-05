@@ -1,0 +1,431 @@
+/* =========================================================================
+   QUIZ D'IMAGES — styles spécifiques (le socle visuel est dans style.css)
+   ========================================================================= */
+
+.quiz-body { background: #e3d2a8; }
+.quiz-app { max-width: 860px; }
+
+/* ---------- ONGLETS DE NIVEAU HSK ---------- */
+.level-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.level-tab {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(60, 35, 15, 0.22);
+  background: rgba(255, 252, 240, 0.55);
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.18s;
+}
+.level-tab:hover { background: rgba(255, 252, 240, 0.85); }
+.level-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff8ec;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.level-count {
+  font-size: 0.72rem;
+  font-weight: 400;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(60, 35, 15, 0.1);
+  color: var(--ink-soft);
+}
+.level-tab.active .level-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff8ec;
+}
+
+/* ---------- ONGLETS DE MODE ---------- */
+.mode-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.mode-tab {
+  font-family: inherit;
+  font-size: 0.88rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(60, 35, 15, 0.22);
+  background: rgba(255, 252, 240, 0.55);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.mode-tab:hover { background: rgba(255, 252, 240, 0.85); }
+.mode-tab.active {
+  background: var(--ink);
+  color: var(--paper-light);
+  border-color: var(--ink);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ---------- BARRE DE PROGRESSION ---------- */
+.quiz-topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.progress-track {
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(60, 35, 15, 0.14);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #d4562f);
+  transition: width 0.3s ease;
+}
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.score-text { font-style: normal; font-weight: 600; }
+
+/* Filtre « à revoir seulement » */
+.filter-toggle {
+  align-self: flex-start;
+  font-family: inherit;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(60, 35, 15, 0.22);
+  background: rgba(255, 252, 240, 0.55);
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s;
+}
+.filter-toggle:hover { background: rgba(255, 252, 240, 0.85); }
+.filter-toggle.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff8ec;
+}
+
+/* ---------- SCÈNE ---------- */
+.quiz-main { flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+.quiz-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.loading { text-align: center; padding: 3rem 1rem; font-style: italic; color: var(--ink-soft); }
+.q-prompt {
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0.25rem 0 0;
+  font-size: 0.92rem;
+}
+
+/* ---------- CARTE ---------- */
+.q-card {
+  background: rgba(255, 252, 240, 0.82);
+  border: 1px solid rgba(60, 35, 15, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 6px 22px rgba(60, 35, 15, 0.13);
+  padding: clamp(1rem, 3vw, 1.75rem);
+}
+.quiz-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.9rem, 2.5vw, 1.4rem);
+}
+
+/* ---------- IMAGE ---------- */
+.flash-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.q-image {
+  width: clamp(190px, 42vw, 270px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(60, 35, 15, 0.1);
+  padding: 6px;
+}
+.flash-image-wrap.big .q-image { width: clamp(210px, 48vw, 300px); }
+
+.speak-btn {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: inherit;
+  font-size: 0.82rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(60, 35, 15, 0.2);
+  background: #fffdf5;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(60, 35, 15, 0.16);
+  transition: transform 0.15s, background 0.15s;
+}
+.speak-btn:hover { transform: translateY(-1px); background: #fff; }
+.speak-btn:active { transform: translateY(0); }
+
+/* ---------- FLASHCARD ---------- */
+.card-flash {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flash-body { flex: 1 1 220px; min-width: 0; text-align: center; }
+.flash-hanzi {
+  font-family: "STKaiti", "Kaiti SC", "Noto Serif CJK SC", serif;
+  font-size: clamp(3rem, 11vw, 4.6rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+.flash-pinyin {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+.flash-meaning {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+.flash-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1.1rem;
+  flex-wrap: wrap;
+}
+.flash-status {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+
+/* ---------- MOT -> IMAGE ---------- */
+.word-head {
+  position: relative;            /* ancre du bouton audio */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+/* Le recentrage est porté par les éléments eux-mêmes (largeur pleine +
+   text-align), pas seulement par le parent : il reste correct même si les
+   styles du conteneur changent. Le pinyin ne doit jamais dériver à gauche. */
+.word-head > .flash-hanzi,
+.word-head > .flash-pinyin {
+  width: 100%;
+  text-align: center;
+}
+.word-head .speak-btn {
+  position: static;
+  margin-top: 0.6rem;
+  align-self: center;
+}
+
+/* ---------- BOUTONS ---------- */
+.q-btn {
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(60, 35, 15, 0.25);
+  background: #fffdf5;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s;
+}
+.q-btn:hover { background: #fff; transform: translateY(-1px); }
+.q-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff8ec;
+}
+.q-btn.primary:hover { background: #9d1b19; }
+.q-btn.ghost { background: transparent; }
+
+.q-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.q-nav .q-btn { flex: 1; justify-content: center; }
+
+/* ---------- CHOIX ---------- */
+.choices {
+  display: grid;
+  gap: 0.7rem;
+  width: 100%;
+}
+.choices-text { grid-template-columns: repeat(2, 1fr); }
+.choices-image { grid-template-columns: repeat(2, 1fr); }
+
+.choice {
+  font-family: inherit;
+  background: #fffdf5;
+  border: 1px solid rgba(60, 35, 15, 0.2);
+  border-radius: 14px;
+  padding: 0.85rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  transition: all 0.15s;
+  box-shadow: 0 2px 6px rgba(60, 35, 15, 0.07);
+}
+.choice:hover { border-color: var(--accent); transform: translateY(-2px); }
+.choice-hanzi {
+  font-family: "STKaiti", "Kaiti SC", "Noto Serif CJK SC", serif;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  line-height: 1.1;
+  width: 100%;
+  text-align: center;          /* le pinyin doit suivre le hanzi, pas dériver */
+}
+.choice-pinyin {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  width: 100%;
+  text-align: center;
+}
+
+.choice-img { padding: 0.5rem; }
+.choice-img img {
+  width: 100%;
+  max-width: 190px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.choice.right {
+  background: rgba(74, 140, 74, 0.16);
+  border-color: #3f7d3f;
+  box-shadow: 0 0 0 2px rgba(63, 125, 63, 0.3);
+}
+.choice.wrong {
+  background: rgba(184, 33, 31, 0.14);
+  border-color: var(--accent);
+}
+.choice:disabled { cursor: default; }
+.choice:hover { transform: none; }
+
+/* ---------- RETOUR ---------- */
+.feedback {
+  margin-top: 0.4rem;
+  padding: 1rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid rgba(60, 35, 15, 0.15);
+  background: rgba(255, 252, 240, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  animation: fb-in 0.22s ease-out;
+}
+@keyframes fb-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.fb-title { font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.feedback.ok  .fb-title { color: #3f7d3f; }
+.feedback.ko  .fb-title { color: var(--accent); }
+.fb-meaning { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ---------- BILAN ---------- */
+.summary-card { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.summary-icon { font-size: 2.2rem; color: var(--accent); }
+.summary-card h2 { margin: 0; font-size: 1.5rem; }
+.summary-score {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.summary-msg { color: var(--ink-soft); margin: 0 0 0.5rem; }
+.summary-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- PIED ---------- */
+.quiz-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  opacity: 0.8;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(60, 35, 15, 0.15);
+  flex-wrap: wrap;
+}
+.quiz-footer a { color: var(--ink-soft); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  .choices-text, .choices-image { grid-template-columns: 1fr 1fr; }
+  .choice-img img { max-width: 130px; }
+
+  /* Cibles tactiles : 44 px minimum (Apple HIG / Material) */
+  .speak-btn {
+    padding: 0.65rem 0.8rem;
+    min-width: 46px;
+    min-height: 46px;
+    justify-content: center;
+  }
+  .mode-tab   { min-height: 46px; padding: 0.5rem 1rem; }
+  .level-tab  { min-height: 46px; padding: 0.5rem 1rem; }
+  .filter-toggle { min-height: 44px; padding: 0.45rem 0.9rem; }
+  .q-btn      { min-height: 46px; }
+  .lang-switch button { min-height: 44px; padding: 0.4rem 0.9rem; }
+
+  .card-flash { flex-direction: column; }
+  .header-link { font-size: 0.75rem; }
+}
+
+/* Safe-area :reserve l'espace de l'indicateur d'accueil iOS */
+.quiz-app { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+.quiz-footer { padding-bottom: env(safe-area-inset-bottom); }

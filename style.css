@@ -83,6 +83,25 @@ header {
 }
 .lang-switch button.active { background: var(--ink); color: var(--paper-light); }
 
+/* HEADER — groupe d'actions à droite */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.header-link {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(60, 35, 15, 0.3);
+  padding-bottom: 1px;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.header-link:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 640px) { .header-link { font-size: 0.75rem; } }
+
 /* LAYOUT */
 main {
   display: grid;

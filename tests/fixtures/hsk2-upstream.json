@@ -1,0 +1,593 @@
+[
+ {
+  "simplified": "啊"
+ },
+ {
+  "simplified": "爱好"
+ },
+ {
+  "simplified": "白色"
+ },
+ {
+  "simplified": "班"
+ },
+ {
+  "simplified": "帮"
+ },
+ {
+  "simplified": "帮忙"
+ },
+ {
+  "simplified": "包"
+ },
+ {
+  "simplified": "本子"
+ },
+ {
+  "simplified": "比"
+ },
+ {
+  "simplified": "笔"
+ },
+ {
+  "simplified": "别"
+ },
+ {
+  "simplified": "不错"
+ },
+ {
+  "simplified": "不好意思"
+ },
+ {
+  "simplified": "车站"
+ },
+ {
+  "simplified": "出"
+ },
+ {
+  "simplified": "出国"
+ },
+ {
+  "simplified": "出来"
+ },
+ {
+  "simplified": "出门"
+ },
+ {
+  "simplified": "出去"
+ },
+ {
+  "simplified": "床"
+ },
+ {
+  "simplified": "词"
+ },
+ {
+  "simplified": "次"
+ },
+ {
+  "simplified": "从"
+ },
+ {
+  "simplified": "从小"
+ },
+ {
+  "simplified": "错"
+ },
+ {
+  "simplified": "打"
+ },
+ {
+  "simplified": "打车"
+ },
+ {
+  "simplified": "打开"
+ },
+ {
+  "simplified": "但"
+ },
+ {
+  "simplified": "但是"
+ },
+ {
+  "simplified": "地"
+ },
+ {
+  "simplified": "地铁"
+ },
+ {
+  "simplified": "得"
+ },
+ {
+  "simplified": "等"
+ },
+ {
+  "simplified": "懂"
+ },
+ {
+  "simplified": "动"
+ },
+ {
+  "simplified": "饭馆"
+ },
+ {
+  "simplified": "飞"
+ },
+ {
+  "simplified": "高"
+ },
+ {
+  "simplified": "高中"
+ },
+ {
+  "simplified": "告诉"
+ },
+ {
+  "simplified": "个子"
+ },
+ {
+  "simplified": "跟"
+ },
+ {
+  "simplified": "公交车"
+ },
+ {
+  "simplified": "过"
+ },
+ {
+  "simplified": "过来"
+ },
+ {
+  "simplified": "过年"
+ },
+ {
+  "simplified": "过去"
+ },
+ {
+  "simplified": "还是"
+ },
+ {
+  "simplified": "黑色"
+ },
+ {
+  "simplified": "红茶"
+ },
+ {
+  "simplified": "红色"
+ },
+ {
+  "simplified": "后面"
+ },
+ {
+  "simplified": "花"
+ },
+ {
+  "simplified": "画"
+ },
+ {
+  "simplified": "坏"
+ },
+ {
+  "simplified": "回来"
+ },
+ {
+  "simplified": "回去"
+ },
+ {
+  "simplified": "机场"
+ },
+ {
+  "simplified": "机票"
+ },
+ {
+  "simplified": "记得"
+ },
+ {
+  "simplified": "间"
+ },
+ {
+  "simplified": "教"
+ },
+ {
+  "simplified": "教室"
+ },
+ {
+  "simplified": "介绍"
+ },
+ {
+  "simplified": "近"
+ },
+ {
+  "simplified": "进"
+ },
+ {
+  "simplified": "进来"
+ },
+ {
+  "simplified": "进去"
+ },
+ {
+  "simplified": "经常"
+ },
+ {
+  "simplified": "酒店"
+ },
+ {
+  "simplified": "就"
+ },
+ {
+  "simplified": "咖啡"
+ },
+ {
+  "simplified": "开始"
+ },
+ {
+  "simplified": "开学"
+ },
+ {
+  "simplified": "考"
+ },
+ {
+  "simplified": "考试"
+ },
+ {
+  "simplified": "可能"
+ },
+ {
+  "simplified": "裤子"
+ },
+ {
+  "simplified": "快"
+ },
+ {
+  "simplified": "快乐"
+ },
+ {
+  "simplified": "快要"
+ },
+ {
+  "simplified": "篮球"
+ },
+ {
+  "simplified": "累"
+ },
+ {
+  "simplified": "离"
+ },
+ {
+  "simplified": "里面"
+ },
+ {
+  "simplified": "楼"
+ },
+ {
+  "simplified": "路"
+ },
+ {
+  "simplified": "路上"
+ },
+ {
+  "simplified": "旅游"
+ },
+ {
+  "simplified": "绿茶"
+ },
+ {
+  "simplified": "绿色"
+ },
+ {
+  "simplified": "慢"
+ },
+ {
+  "simplified": "没意思"
+ },
+ {
+  "simplified": "每"
+ },
+ {
+  "simplified": "门"
+ },
+ {
+  "simplified": "门口"
+ },
+ {
+  "simplified": "门票"
+ },
+ {
+  "simplified": "面"
+ },
+ {
+  "simplified": "名"
+ },
+ {
+  "simplified": "拿"
+ },
+ {
+  "simplified": "那么"
+ },
+ {
+  "simplified": "那样"
+ },
+ {
+  "simplified": "奶茶"
+ },
+ {
+  "simplified": "奶奶"
+ },
+ {
+  "simplified": "男孩儿"
+ },
+ {
+  "simplified": "鸟"
+ },
+ {
+  "simplified": "女孩儿"
+ },
+ {
+  "simplified": "旁边"
+ },
+ {
+  "simplified": "跑"
+ },
+ {
+  "simplified": "跑步"
+ },
+ {
+  "simplified": "票"
+ },
+ {
+  "simplified": "妻子"
+ },
+ {
+  "simplified": "起来"
+ },
+ {
+  "simplified": "前面"
+ },
+ {
+  "simplified": "晴"
+ },
+ {
+  "simplified": "球"
+ },
+ {
+  "simplified": "让"
+ },
+ {
+  "simplified": "肉"
+ },
+ {
+  "simplified": "商场"
+ },
+ {
+  "simplified": "上来"
+ },
+ {
+  "simplified": "上面"
+ },
+ {
+  "simplified": "上去"
+ },
+ {
+  "simplified": "上网"
+ },
+ {
+  "simplified": "身体"
+ },
+ {
+  "simplified": "生日"
+ },
+ {
+  "simplified": "时"
+ },
+ {
+  "simplified": "事情"
+ },
+ {
+  "simplified": "手"
+ },
+ {
+  "simplified": "手表"
+ },
+ {
+  "simplified": "书包"
+ },
+ {
+  "simplified": "舒服"
+ },
+ {
+  "simplified": "送"
+ },
+ {
+  "simplified": "虽然"
+ },
+ {
+  "simplified": "所以"
+ },
+ {
+  "simplified": "疼"
+ },
+ {
+  "simplified": "踢"
+ },
+ {
+  "simplified": "题"
+ },
+ {
+  "simplified": "条"
+ },
+ {
+  "simplified": "跳舞"
+ },
+ {
+  "simplified": "头"
+ },
+ {
+  "simplified": "外国"
+ },
+ {
+  "simplified": "外面"
+ },
+ {
+  "simplified": "完"
+ },
+ {
+  "simplified": "万"
+ },
+ {
+  "simplified": "网上"
+ },
+ {
+  "simplified": "往"
+ },
+ {
+  "simplified": "忘"
+ },
+ {
+  "simplified": "为什么"
+ },
+ {
+  "simplified": "位"
+ },
+ {
+  "simplified": "希望"
+ },
+ {
+  "simplified": "洗"
+ },
+ {
+  "simplified": "洗手间"
+ },
+ {
+  "simplified": "下来"
+ },
+ {
+  "simplified": "下面"
+ },
+ {
+  "simplified": "下去"
+ },
+ {
+  "simplified": "小孩儿"
+ },
+ {
+  "simplified": "小时候"
+ },
+ {
+  "simplified": "笑"
+ },
+ {
+  "simplified": "姓"
+ },
+ {
+  "simplified": "姓名"
+ },
+ {
+  "simplified": "颜色"
+ },
+ {
+  "simplified": "眼睛"
+ },
+ {
+  "simplified": "药"
+ },
+ {
+  "simplified": "药店"
+ },
+ {
+  "simplified": "爷爷"
+ },
+ {
+  "simplified": "一会儿"
+ },
+ {
+  "simplified": "一起"
+ },
+ {
+  "simplified": "已经"
+ },
+ {
+  "simplified": "意思"
+ },
+ {
+  "simplified": "因为"
+ },
+ {
+  "simplified": "阴"
+ },
+ {
+  "simplified": "游"
+ },
+ {
+  "simplified": "游泳"
+ },
+ {
+  "simplified": "有时"
+ },
+ {
+  "simplified": "有意思"
+ },
+ {
+  "simplified": "右"
+ },
+ {
+  "simplified": "右边"
+ },
+ {
+  "simplified": "鱼"
+ },
+ {
+  "simplified": "远"
+ },
+ {
+  "simplified": "运动"
+ },
+ {
+  "simplified": "站"
+ },
+ {
+  "simplified": "长"
+ },
+ {
+  "simplified": "丈夫"
+ },
+ {
+  "simplified": "这么"
+ },
+ {
+  "simplified": "这样"
+ },
+ {
+  "simplified": "着"
+ },
+ {
+  "simplified": "正"
+ },
+ {
+  "simplified": "周"
+ },
+ {
+  "simplified": "准备"
+ },
+ {
+  "simplified": "自己"
+ },
+ {
+  "simplified": "走"
+ },
+ {
+  "simplified": "走路"
+ },
+ {
+  "simplified": "足球"
+ },
+ {
+  "simplified": "最"
+ },
+ {
+  "simplified": "左"
+ },
+ {
+  "simplified": "左边"
+ }
+]

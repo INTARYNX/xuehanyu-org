@@ -4,3 +4,7 @@ tests/bench-report.txt
 web.cmd
 deploy.config.ps1
 .webignore
+__pycache__/
+*.pyc
+.img-raw/
+.img-args.json

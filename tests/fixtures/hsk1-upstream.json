@@ -1,0 +1,884 @@
+[
+ {
+  "simplified": "爱"
+ },
+ {
+  "simplified": "八"
+ },
+ {
+  "simplified": "爸爸"
+ },
+ {
+  "simplified": "吧"
+ },
+ {
+  "simplified": "白天"
+ },
+ {
+  "simplified": "百"
+ },
+ {
+  "simplified": "半"
+ },
+ {
+  "simplified": "包子"
+ },
+ {
+  "simplified": "杯子"
+ },
+ {
+  "simplified": "本"
+ },
+ {
+  "simplified": "边"
+ },
+ {
+  "simplified": "便宜"
+ },
+ {
+  "simplified": "病"
+ },
+ {
+  "simplified": "不"
+ },
+ {
+  "simplified": "不客气"
+ },
+ {
+  "simplified": "不要"
+ },
+ {
+  "simplified": "菜"
+ },
+ {
+  "simplified": "茶"
+ },
+ {
+  "simplified": "唱"
+ },
+ {
+  "simplified": "超市"
+ },
+ {
+  "simplified": "车"
+ },
+ {
+  "simplified": "吃"
+ },
+ {
+  "simplified": "出租车"
+ },
+ {
+  "simplified": "穿"
+ },
+ {
+  "simplified": "打电话"
+ },
+ {
+  "simplified": "大"
+ },
+ {
+  "simplified": "大家"
+ },
+ {
+  "simplified": "大学"
+ },
+ {
+  "simplified": "大学生"
+ },
+ {
+  "simplified": "到"
+ },
+ {
+  "simplified": "的"
+ },
+ {
+  "simplified": "弟弟"
+ },
+ {
+  "simplified": "第"
+ },
+ {
+  "simplified": "点"
+ },
+ {
+  "simplified": "电话"
+ },
+ {
+  "simplified": "电脑"
+ },
+ {
+  "simplified": "电视"
+ },
+ {
+  "simplified": "电影"
+ },
+ {
+  "simplified": "电影院"
+ },
+ {
+  "simplified": "店"
+ },
+ {
+  "simplified": "东西"
+ },
+ {
+  "simplified": "都"
+ },
+ {
+  "simplified": "读"
+ },
+ {
+  "simplified": "读书"
+ },
+ {
+  "simplified": "对"
+ },
+ {
+  "simplified": "对不起"
+ },
+ {
+  "simplified": "多"
+ },
+ {
+  "simplified": "多少"
+ },
+ {
+  "simplified": "儿子"
+ },
+ {
+  "simplified": "二"
+ },
+ {
+  "simplified": "饭"
+ },
+ {
+  "simplified": "饭店"
+ },
+ {
+  "simplified": "房间"
+ },
+ {
+  "simplified": "飞机"
+ },
+ {
+  "simplified": "非常"
+ },
+ {
+  "simplified": "分"
+ },
+ {
+  "simplified": "分钟"
+ },
+ {
+  "simplified": "高兴"
+ },
+ {
+  "simplified": "哥哥"
+ },
+ {
+  "simplified": "歌"
+ },
+ {
+  "simplified": "个"
+ },
+ {
+  "simplified": "给"
+ },
+ {
+  "simplified": "工作"
+ },
+ {
+  "simplified": "公司"
+ },
+ {
+  "simplified": "狗"
+ },
+ {
+  "simplified": "贵"
+ },
+ {
+  "simplified": "国"
+ },
+ {
+  "simplified": "还"
+ },
+ {
+  "simplified": "孩子"
+ },
+ {
+  "simplified": "汉语"
+ },
+ {
+  "simplified": "汉字"
+ },
+ {
+  "simplified": "好"
+ },
+ {
+  "simplified": "好吃"
+ },
+ {
+  "simplified": "好看"
+ },
+ {
+  "simplified": "好听"
+ },
+ {
+  "simplified": "好玩儿"
+ },
+ {
+  "simplified": "号"
+ },
+ {
+  "simplified": "喝"
+ },
+ {
+  "simplified": "和"
+ },
+ {
+  "simplified": "很"
+ },
+ {
+  "simplified": "后"
+ },
+ {
+  "simplified": "回"
+ },
+ {
+  "simplified": "会"
+ },
+ {
+  "simplified": "火车"
+ },
+ {
+  "simplified": "鸡蛋"
+ },
+ {
+  "simplified": "几"
+ },
+ {
+  "simplified": "家"
+ },
+ {
+  "simplified": "家人"
+ },
+ {
+  "simplified": "见"
+ },
+ {
+  "simplified": "件"
+ },
+ {
+  "simplified": "饺子"
+ },
+ {
+  "simplified": "叫"
+ },
+ {
+  "simplified": "姐姐"
+ },
+ {
+  "simplified": "今年"
+ },
+ {
+  "simplified": "今天"
+ },
+ {
+  "simplified": "九"
+ },
+ {
+  "simplified": "觉得"
+ },
+ {
+  "simplified": "开"
+ },
+ {
+  "simplified": "开车"
+ },
+ {
+  "simplified": "看"
+ },
+ {
+  "simplified": "看病"
+ },
+ {
+  "simplified": "看见"
+ },
+ {
+  "simplified": "可以"
+ },
+ {
+  "simplified": "课"
+ },
+ {
+  "simplified": "口"
+ },
+ {
+  "simplified": "块"
+ },
+ {
+  "simplified": "来"
+ },
+ {
+  "simplified": "老师"
+ },
+ {
+  "simplified": "了"
+ },
+ {
+  "simplified": "冷"
+ },
+ {
+  "simplified": "里"
+ },
+ {
+  "simplified": "两"
+ },
+ {
+  "simplified": "零"
+ },
+ {
+  "simplified": "六"
+ },
+ {
+  "simplified": "妈妈"
+ },
+ {
+  "simplified": "吗"
+ },
+ {
+  "simplified": "买"
+ },
+ {
+  "simplified": "卖"
+ },
+ {
+  "simplified": "忙"
+ },
+ {
+  "simplified": "猫"
+ },
+ {
+  "simplified": "没关系"
+ },
+ {
+  "simplified": "没有"
+ },
+ {
+  "simplified": "妹妹"
+ },
+ {
+  "simplified": "们"
+ },
+ {
+  "simplified": "米饭"
+ },
+ {
+  "simplified": "面包"
+ },
+ {
+  "simplified": "面条儿"
+ },
+ {
+  "simplified": "名字"
+ },
+ {
+  "simplified": "明年"
+ },
+ {
+  "simplified": "明天"
+ },
+ {
+  "simplified": "哪"
+ },
+ {
+  "simplified": "哪儿"
+ },
+ {
+  "simplified": "哪里"
+ },
+ {
+  "simplified": "哪些"
+ },
+ {
+  "simplified": "那"
+ },
+ {
+  "simplified": "那边"
+ },
+ {
+  "simplified": "那儿"
+ },
+ {
+  "simplified": "那里"
+ },
+ {
+  "simplified": "那些"
+ },
+ {
+  "simplified": "男"
+ },
+ {
+  "simplified": "男朋友"
+ },
+ {
+  "simplified": "呢"
+ },
+ {
+  "simplified": "能"
+ },
+ {
+  "simplified": "你"
+ },
+ {
+  "simplified": "你们"
+ },
+ {
+  "simplified": "年"
+ },
+ {
+  "simplified": "您"
+ },
+ {
+  "simplified": "牛奶"
+ },
+ {
+  "simplified": "女"
+ },
+ {
+  "simplified": "女儿"
+ },
+ {
+  "simplified": "女朋友"
+ },
+ {
+  "simplified": "女士"
+ },
+ {
+  "simplified": "朋友"
+ },
+ {
+  "simplified": "漂亮"
+ },
+ {
+  "simplified": "苹果"
+ },
+ {
+  "simplified": "七"
+ },
+ {
+  "simplified": "起床"
+ },
+ {
+  "simplified": "千"
+ },
+ {
+  "simplified": "前"
+ },
+ {
+  "simplified": "钱"
+ },
+ {
+  "simplified": "请"
+ },
+ {
+  "simplified": "请问"
+ },
+ {
+  "simplified": "去"
+ },
+ {
+  "simplified": "去年"
+ },
+ {
+  "simplified": "热"
+ },
+ {
+  "simplified": "人"
+ },
+ {
+  "simplified": "认识"
+ },
+ {
+  "simplified": "日"
+ },
+ {
+  "simplified": "三"
+ },
+ {
+  "simplified": "商店"
+ },
+ {
+  "simplified": "上"
+ },
+ {
+  "simplified": "上班"
+ },
+ {
+  "simplified": "上课"
+ },
+ {
+  "simplified": "上午"
+ },
+ {
+  "simplified": "上学"
+ },
+ {
+  "simplified": "少"
+ },
+ {
+  "simplified": "什么"
+ },
+ {
+  "simplified": "生病"
+ },
+ {
+  "simplified": "十"
+ },
+ {
+  "simplified": "时候"
+ },
+ {
+  "simplified": "时间"
+ },
+ {
+  "simplified": "事"
+ },
+ {
+  "simplified": "是"
+ },
+ {
+  "simplified": "手机"
+ },
+ {
+  "simplified": "书"
+ },
+ {
+  "simplified": "书店"
+ },
+ {
+  "simplified": "谁"
+ },
+ {
+  "simplified": "水"
+ },
+ {
+  "simplified": "水果"
+ },
+ {
+  "simplified": "睡"
+ },
+ {
+  "simplified": "睡觉"
+ },
+ {
+  "simplified": "说"
+ },
+ {
+  "simplified": "说话"
+ },
+ {
+  "simplified": "四"
+ },
+ {
+  "simplified": "岁"
+ },
+ {
+  "simplified": "他"
+ },
+ {
+  "simplified": "他们"
+ },
+ {
+  "simplified": "它"
+ },
+ {
+  "simplified": "它们"
+ },
+ {
+  "simplified": "她"
+ },
+ {
+  "simplified": "她们"
+ },
+ {
+  "simplified": "太"
+ },
+ {
+  "simplified": "天"
+ },
+ {
+  "simplified": "天气"
+ },
+ {
+  "simplified": "听"
+ },
+ {
+  "simplified": "听见"
+ },
+ {
+  "simplified": "同学"
+ },
+ {
+  "simplified": "外"
+ },
+ {
+  "simplified": "外边"
+ },
+ {
+  "simplified": "玩"
+ },
+ {
+  "simplified": "晚"
+ },
+ {
+  "simplified": "晚饭"
+ },
+ {
+  "simplified": "晚上"
+ },
+ {
+  "simplified": "喂"
+ },
+ {
+  "simplified": "问"
+ },
+ {
+  "simplified": "问题"
+ },
+ {
+  "simplified": "我"
+ },
+ {
+  "simplified": "我们"
+ },
+ {
+  "simplified": "五"
+ },
+ {
+  "simplified": "午饭"
+ },
+ {
+  "simplified": "喜欢"
+ },
+ {
+  "simplified": "下"
+ },
+ {
+  "simplified": "下班"
+ },
+ {
+  "simplified": "下课"
+ },
+ {
+  "simplified": "下午"
+ },
+ {
+  "simplified": "下雨"
+ },
+ {
+  "simplified": "先生"
+ },
+ {
+  "simplified": "现在"
+ },
+ {
+  "simplified": "想"
+ },
+ {
+  "simplified": "小"
+ },
+ {
+  "simplified": "小朋友"
+ },
+ {
+  "simplified": "小时"
+ },
+ {
+  "simplified": "小学"
+ },
+ {
+  "simplified": "小学生"
+ },
+ {
+  "simplified": "些"
+ },
+ {
+  "simplified": "写"
+ },
+ {
+  "simplified": "谢谢"
+ },
+ {
+  "simplified": "新"
+ },
+ {
+  "simplified": "星期"
+ },
+ {
+  "simplified": "星期日"
+ },
+ {
+  "simplified": "星期天"
+ },
+ {
+  "simplified": "休息"
+ },
+ {
+  "simplified": "学"
+ },
+ {
+  "simplified": "学生"
+ },
+ {
+  "simplified": "学习"
+ },
+ {
+  "simplified": "学校"
+ },
+ {
+  "simplified": "雪"
+ },
+ {
+  "simplified": "要"
+ },
+ {
+  "simplified": "也"
+ },
+ {
+  "simplified": "一"
+ },
+ {
+  "simplified": "一半"
+ },
+ {
+  "simplified": "一点儿"
+ },
+ {
+  "simplified": "一些"
+ },
+ {
+  "simplified": "衣服"
+ },
+ {
+  "simplified": "医生"
+ },
+ {
+  "simplified": "医院"
+ },
+ {
+  "simplified": "椅子"
+ },
+ {
+  "simplified": "有"
+ },
+ {
+  "simplified": "有的"
+ },
+ {
+  "simplified": "有点儿"
+ },
+ {
+  "simplified": "有些"
+ },
+ {
+  "simplified": "雨"
+ },
+ {
+  "simplified": "元"
+ },
+ {
+  "simplified": "月"
+ },
+ {
+  "simplified": "再"
+ },
+ {
+  "simplified": "再见"
+ },
+ {
+  "simplified": "在"
+ },
+ {
+  "simplified": "早"
+ },
+ {
+  "simplified": "早饭"
+ },
+ {
+  "simplified": "早上"
+ },
+ {
+  "simplified": "怎么"
+ },
+ {
+  "simplified": "怎么样"
+ },
+ {
+  "simplified": "找"
+ },
+ {
+  "simplified": "这"
+ },
+ {
+  "simplified": "这边"
+ },
+ {
+  "simplified": "这儿"
+ },
+ {
+  "simplified": "这里"
+ },
+ {
+  "simplified": "这些"
+ },
+ {
+  "simplified": "真"
+ },
+ {
+  "simplified": "正在"
+ },
+ {
+  "simplified": "知道"
+ },
+ {
+  "simplified": "只"
+ },
+ {
+  "simplified": "中国"
+ },
+ {
+  "simplified": "中文"
+ },
+ {
+  "simplified": "中午"
+ },
+ {
+  "simplified": "中学"
+ },
+ {
+  "simplified": "中学生"
+ },
+ {
+  "simplified": "住"
+ },
+ {
+  "simplified": "桌子"
+ },
+ {
+  "simplified": "字"
+ },
+ {
+  "simplified": "昨天"
+ },
+ {
+  "simplified": "坐"
+ },
+ {
+  "simplified": "做"
+ },
+ {
+  "simplified": "做饭"
+ }
+]

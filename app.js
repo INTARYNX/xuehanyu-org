@@ -69,7 +69,8 @@ const I18N = {
     toneDelta:    'variation',
     toneDuration: 'durée',
     toneConfidence: 'confiance',
-    toneInWord:   'en phrase'
+    toneInWord:   'en phrase',
+    quizLink:     'Quiz d\'images'
   },
   en: {
     tagline:      'learn Chinese, one character at a time',
@@ -103,7 +104,8 @@ const I18N = {
     toneDelta:    'change',
     toneDuration: 'duration',
     toneConfidence: 'confidence',
-    toneInWord:   'in the word'
+    toneInWord:   'in the word',
+    quizLink:     'Image quiz'
   }
 };
 

@@ -1,0 +1,167 @@
+{
+ "version": 2,
+ "level": 2,
+ "count": 13,
+ "words": [
+  {
+   "char": "丈夫",
+   "slug": "zhangfu",
+   "pinyin": "zhàng fu",
+   "tone": 4,
+   "freq": 1376,
+   "en": "husband",
+   "fr": "mari",
+   "cat": "people",
+   "image": "zhangfu.webp",
+   "confusable": []
+  },
+  {
+   "char": "书包",
+   "slug": "shubao",
+   "pinyin": "shū bāo",
+   "tone": 1,
+   "freq": 11861,
+   "en": "schoolbag",
+   "fr": "cartable",
+   "cat": "school",
+   "image": "shubao.webp",
+   "confusable": []
+  },
+  {
+   "char": "公交车",
+   "slug": "gongjiaoche",
+   "pinyin": "gōng jiāo chē",
+   "tone": 1,
+   "freq": 1000000,
+   "en": "public transport vehicle",
+   "fr": "autobus",
+   "cat": "transport",
+   "image": "gongjiaoche.webp",
+   "confusable": []
+  },
+  {
+   "char": "咖啡",
+   "slug": "kafei",
+   "pinyin": "kā fēi",
+   "tone": 1,
+   "freq": 1698,
+   "en": "coffee (loanword)",
+   "fr": "café",
+   "cat": "food",
+   "image": "kafei.webp",
+   "confusable": []
+  },
+  {
+   "char": "商场",
+   "slug": "shangchang",
+   "pinyin": "shāng chǎng",
+   "tone": 3,
+   "freq": 4093,
+   "en": "shopping mall",
+   "fr": "centre commercial",
+   "cat": "place",
+   "image": "shangchang.webp",
+   "confusable": []
+  },
+  {
+   "char": "地铁",
+   "slug": "ditie",
+   "pinyin": "dì tiě",
+   "tone": 3,
+   "freq": 3046,
+   "en": "underground railway; subway",
+   "fr": "métro",
+   "cat": "transport",
+   "image": "ditie.webp",
+   "confusable": []
+  },
+  {
+   "char": "女孩儿",
+   "slug": "nuhai",
+   "pinyin": "nǚ hái r",
+   "tone": 2,
+   "freq": 18271,
+   "en": "erhua variant of 女孩",
+   "fr": "fille",
+   "cat": "people",
+   "image": "nuhai.webp",
+   "confusable": []
+  },
+  {
+   "char": "奶奶",
+   "slug": "nainai",
+   "pinyin": "nǎi nai",
+   "tone": 3,
+   "freq": 2809,
+   "en": "(informal) grandma (paternal grandmother)",
+   "fr": "mamie",
+   "cat": "people",
+   "image": "nainai.webp",
+   "confusable": []
+  },
+  {
+   "char": "奶茶",
+   "slug": "naicha",
+   "pinyin": "nǎi chá",
+   "tone": 2,
+   "freq": 20075,
+   "en": "milk tea",
+   "fr": "thé au lait",
+   "cat": "food",
+   "image": "naicha.webp",
+   "confusable": []
+  },
+  {
+   "char": "妻子",
+   "slug": "qizi",
+   "pinyin": "qī zǐ",
+   "tone": 3,
+   "freq": 1187,
+   "en": "wife and children",
+   "fr": "femme",
+   "cat": "people",
+   "image": "qizi.webp",
+   "confusable": []
+  },
+  {
+   "char": "床",
+   "slug": "chuang",
+   "pinyin": "chuáng",
+   "tone": 2,
+   "freq": 961,
+   "en": "bed",
+   "fr": "lit",
+   "cat": "home",
+   "image": "chuang.webp",
+   "confusable": []
+  },
+  {
+   "char": "手",
+   "slug": "shou",
+   "pinyin": "shǒu",
+   "tone": 3,
+   "freq": 190,
+   "en": "hand",
+   "fr": "main",
+   "cat": "body",
+   "image": "shou.webp",
+   "confusable": [
+    "shoubiao"
+   ]
+  },
+  {
+   "char": "手表",
+   "slug": "shoubiao",
+   "pinyin": "shǒu biǎo",
+   "tone": 3,
+   "freq": 6179,
+   "en": "wristwatch",
+   "fr": "montre",
+   "cat": "object",
+   "image": "shoubiao.webp",
+   "confusable": [
+    "shou"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz d'images — Vocabulaire HSK 1 | xuehanyu.org</title>
+<meta name="description" content="Quiz d'apprentissage du vocabulaire HSK 1 par l'image : flashcards illustrées, quiz image vers mot et mot vers image. Gratuit, hors-ligne, sans compte.">
+<meta name="author" content="xuehanyu.org">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.xuehanyu.org/quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xuehanyu.org">
+<meta property="og:url" content="https://www.xuehanyu.org/quiz.html">
+<meta property="og:title" content="Quiz d'images — Vocabulaire HSK 1 | xuehanyu.org">
+<meta property="og:description" content="Apprenez le vocabulaire HSK 1 par l'image : flashcards illustrées et quiz à choix multiples.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quiz d'images — Vocabulaire HSK 1">
+<meta name="twitter:description" content="Flashcards illustrées et quiz à choix multiples pour le vocabulaire HSK 1.">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body class="quiz-body">
+
+<canvas id="paper-bg"></canvas>
+
+<div class="app quiz-app">
+
+  <header>
+    <div class="header-text">
+      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
+      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
+    </div>
+    <div class="header-right">
+      <a href="app.html" class="header-link" id="backLink" data-i18n="back">← Retour à l'app</a>
+      <div class="lang-switch">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="level-tabs" id="levelTabs"></nav>
+
+  <nav class="mode-tabs" id="modeTabs">
+    <button class="mode-tab active" data-mode="cards"   data-i18n="modeCards">Cartes</button>
+    <button class="mode-tab"        data-mode="img2word" data-i18n="modeImg2Word">Image → Mot</button>
+    <button class="mode-tab"        data-mode="word2img" data-i18n="modeWord2Img">Mot → Image</button>
+  </nav>
+
+  <main class="quiz-main">
+
+    <div class="quiz-topbar">
+      <div class="progress">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="quiz-meta">
+        <span id="progressText">—</span>
+        <span id="scoreText" class="score-text"></span>
+      </div>
+      <button class="filter-toggle" id="reviewToggle">
+        <i class="fa-solid fa-rotate-left"></i>
+        <span id="reviewToggleLabel">À revoir seulement</span>
+      </button>
+    </div>
+
+    <div id="quizStage" class="quiz-stage">
+      <div class="loading" id="loading">Chargement…</div>
+    </div>
+
+  </main>
+
+  <footer class="quiz-footer">
+    <span>
+      <span id="footerNote">Illustrations générées pour ce projet · vocabulaire HSK 1</span>
+      · <span id="quizVersion"></span>
+    </span>
+    <a href="index.html" data-i18n="home">Accueil</a>
+  </footer>
+
+</div>
+
+<script src="quiz.js"></script>
+</body>
+</html>

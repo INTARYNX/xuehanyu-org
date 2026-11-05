@@ -9,6 +9,7 @@ A static web app for studying Mandarin Chinese vocabulary from HSK levels 1–6.
 - **HSK 1–6 vocabulary** — 5,000+ characters with pinyin, French and English translations, radicals, classifiers, and part-of-speech tags
 - **Animated stroke order** via [Hanzi Writer](https://hanziwriter.org)
 - **Stroke quiz** — trace the character yourself
+- **Image quiz** — learn the 45 most concrete HSK 1 words from illustrations, with three modes (see below)
 - **Text-to-speech** — hear the pronunciation
 - **Tone detection** — record yourself and get real-time pitch feedback: measured breakdown (F0 start → end, pitch change in semitones, duration, confidence) and the target tone shape drawn on the same semitone scale
 - **Bilingual UI** — French / English
@@ -29,7 +30,68 @@ Data sources:
 - [CFDICT](https://chine.in/mandarin/open/CFDICT/) (CC BY-SA 3.0)
 - [Make Me a Hanzi](https://github.com/skishore/makemeahanzi) — stroke data (GPL)
 
-## Tone detection
+## Image quiz
+
+[`quiz.html`](quiz.html) teaches vocabulary by picture, the way a picture dictionary does. It covers the concrete words of **HSK 1 and HSK 2** — the nouns and simple verbs a learner can actually see: `苹果, 猫, 狗, 飞机, 火车, 医生, 面包, 饺子, 咖啡, 地铁, 眼睛, 鸟, 雨, 雪…`
+
+The level selector at the top switches between HSK 1 and HSK 2. Each level has its own deck — a beginner never meets a word from a level they haven't reached — while the distractors are drawn from the current level **and the previous ones**, so the choices stay demanding even on a short level.
+
+> **Current state:** HSK 1 is complete (55 words). HSK 2 is partially illustrated (13 of 51) — the level selector shows the real count, and the remaining illustrations are produced by the command below as soon as image-generation credit is available.
+
+Three modes, all bilingual and fully static:
+
+| Mode | What it does |
+| --- | --- |
+| **Cards** | Image + character + pinyin + meaning, with a speaker button. Mark each word *I know it* or *To review*. |
+| **Image → Word** | One picture, four Chinese characters to choose from. The audio plays automatically. |
+| **Word → Image** | One character and its pinyin, four pictures to choose from. |
+
+A few design choices worth knowing:
+
+- **Distractors are drawn from the same semantic category** when possible (`电话 / 电视 / 电脑 / 手机`), so the test discriminates meaning instead of guessing by topic.
+- **Indistinguishable pairs are never offered together.** Some words are impossible to tell apart from the picture alone — at HSK 1 level a beginner has no way to know a university hall from a primary school. `scripts/image_words.py` declares those pairs in `CONFUSABLE`, and the quiz refuses to put two of them in the same set of choices. Declaring a pair is a deliberate editorial decision: it means *the image cannot carry the distinction*, not that the two words are similar.
+- **No tone is ever forced** — the progress bar shows the position, the score is only counted for the two quiz modes.
+- **Progress is remembered locally** (`localStorage`): the words you marked as known are kept out of the *To review only* filter.
+- The illustrations are **versioned in the repository** (`assets/img/hsk1/*.webp`, ~20 kB each), so the page works offline and calls no external service.
+
+### Mobile
+
+The quiz is built for the phone first:
+
+- every interactive target is at least **44 × 44 px** (Apple HIG / Material);
+- the layout is verified at 390 × 844 with real touch events — no horizontal overflow, nothing off-screen;
+- `speechSynthesis` is **unlocked on the first user gesture**, because iOS refuses to speak before the user has interacted with the page; the speaker button works regardless;
+- the bottom padding reserves `env(safe-area-inset-bottom)` so the home indicator never covers the footer.
+
+### Versioning
+
+The footer shows the quiz version (`v1.1`). Check it after a deployment: an old build cached by the browser will show an older number, and the pinyin alignment fix landed in `v1.1`.
+
+### Data files
+
+| File | Content |
+| --- | --- |
+| `assets/img/index.json` | Lists the available levels and their manifest |
+| `assets/img/hsk1/manifest.json` | The HSK 1 words: character, pinyin, tone, frequency, EN and FR meaning, category, image file, confusable pairs |
+| `assets/img/hsk2/manifest.json` | The same, for HSK 2 |
+| `assets/img/hsk<n>/<slug>.webp` | The illustration, 512×512, white background |
+
+The manifests live under `assets/` and **not** under `data/`: `data/` is git-ignored, so anything placed there would never be committed.
+
+### Regenerating the illustrations
+
+The images were produced with a text-to-image model from the scene descriptions in `scripts/image_words.py`, then normalised: the subject is isolated, re-centred and re-composed on a pure white background at a constant scale, so every illustration has the same framing and weight.
+
+```bash
+python3 scripts/generate_images.py          # requiert la CLI `mcode-tools`
+python3 scripts/build_images.py manifest    # reconstruit les manifestes + index.json
+python3 scripts/build_images.py check       # vérifie manifestes ↔ fichiers
+```
+
+`generate_images.py` skips the illustrations that already exist, so it can be interrupted and resumed: it only produces what is missing. The generator writes the words that are missing to the manifest as *not available*, and `build_images.py manifest` then publishes only the levels whose images are on disk.
+
+`scripts/image_words.py` is the single source of truth: character, slug, **level**, pinyin, frequency, EN/FR meaning, category and the English scene description used as the image prompt. Adding a word means adding one line there, then regenerating.
+
 
 [`tone-dsp.js`](tone-dsp.js) is a dependency-free DSP module (usable in the browser as `window.ToneDSP` and in Node via `require`/`import`):
 
@@ -80,13 +142,15 @@ The app captures at **16 kHz** (`AudioContext({ sampleRate: 16000 })`) with a 10
 ## Tests
 
 ```bash
-node --test tests/tone-dsp.test.mjs tests/app-tone.test.mjs tests/tone-3.test.mjs   # 73 tests
+node --test tests/tone-dsp.test.mjs tests/app-tone.test.mjs tests/tone-3.test.mjs tests/quiz.test.mjs   # 82 tests
 node tests/tone-dsp.bench.mjs      # benchmark: 600 generated cases, confusion matrix
 ```
 
 `tests/app-tone.test.mjs` loads `app.js` in a simulated DOM and checks the UI logic: the reference tone is the *cited* form, the sandhi is only shown as information, the grading (`perfect` / `close` / `wrong` / `unclear`) and the measurement banner.
 
 `tests/tone-3.test.mjs` focuses on the dipping tone. It runs the **realistic contour corpus** (`tests/fixtures/real-contours.mjs`) — tone shapes as they are actually observed on a recording, with their accidents (low plateau, final rise, attack head) — through the classifier alone, then through the full audio chain, across registers, durations, noise levels, octave errors and capture windows. It also checks the regressions (a tone 3 with a late valley must not be reported as a tone 4, a half third tone that drifts must stay a tone 3, a flat tone with a mid-sag must not become a tone 3, …) and that the sensitivity presets really change the outcome.
+
+`tests/quiz.test.mjs` checks the image quiz: manifest integrity (schema, uniqueness, every image file present, every word really in HSK 1) and the distractor logic — the four choices offered are always distinct, never include the answer, and preferentially come from the same semantic category so the test discriminates meaning rather than topic. It also asserts that **no two indistinguishable words are ever offered in the same set of choices**, and that the `CONFUSABLE` declarations are symmetric.
 
 `tests/synth.mjs` synthesises Mandarin-like syllables (glottal source + formants, attack/release envelope, background noise) for the five tones across three vocal registers, two durations, two noise levels, and with injected octave errors. The benchmark prints a confusion matrix, the success rate per tone and the false-positive rate on pure noise, and exits non-zero if the acceptance criteria are not met.
 

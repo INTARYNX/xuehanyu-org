@@ -1,0 +1,17 @@
+{
+ "version": 2,
+ "levels": [
+  {
+   "id": 1,
+   "label": "HSK 1",
+   "manifest": "hsk1/manifest.json",
+   "count": 55
+  },
+  {
+   "id": 2,
+   "label": "HSK 2",
+   "manifest": "hsk2/manifest.json",
+   "count": 13
+  }
+ ]
+}

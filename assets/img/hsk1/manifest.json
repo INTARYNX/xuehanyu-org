@@ -1,0 +1,715 @@
+{
+ "version": 2,
+ "level": 1,
+ "count": 55,
+ "words": [
+  {
+   "char": "书",
+   "slug": "shu",
+   "pinyin": "Shū",
+   "tone": 1,
+   "freq": 560,
+   "en": "abbr. for 书经",
+   "fr": "livre",
+   "cat": "school",
+   "image": "shu.webp",
+   "confusable": [
+    "shudian",
+    "benzi"
+   ]
+  },
+  {
+   "char": "书店",
+   "slug": "shudian",
+   "pinyin": "shū diàn",
+   "tone": 4,
+   "freq": 7174,
+   "en": "bookstore",
+   "fr": "librairie",
+   "cat": "place",
+   "image": "shudian.webp",
+   "confusable": [
+    "shu"
+   ]
+  },
+  {
+   "char": "人",
+   "slug": "ren",
+   "pinyin": "rén",
+   "tone": 2,
+   "freq": 19,
+   "en": "person; people",
+   "fr": "personne",
+   "cat": "people",
+   "image": "ren.webp",
+   "confusable": []
+  },
+  {
+   "char": "出租车",
+   "slug": "chuzuche",
+   "pinyin": "chū zū chē",
+   "tone": 1,
+   "freq": 2677,
+   "en": "taxi",
+   "fr": "taxi",
+   "cat": "transport",
+   "image": "chuzuche.webp",
+   "confusable": [
+    "che"
+   ]
+  },
+  {
+   "char": "包子",
+   "slug": "baozi",
+   "pinyin": "bāo zi",
+   "tone": 1,
+   "freq": 16315,
+   "en": "bao (steamed stuffed bun)",
+   "fr": "bun farci à la vapeur",
+   "cat": "food",
+   "image": "baozi.webp",
+   "confusable": [
+    "jiaozi"
+   ]
+  },
+  {
+   "char": "医生",
+   "slug": "yisheng",
+   "pinyin": "yī shēng",
+   "tone": 1,
+   "freq": 827,
+   "en": "doctor",
+   "fr": "médecin",
+   "cat": "people",
+   "image": "yisheng.webp",
+   "confusable": []
+  },
+  {
+   "char": "医院",
+   "slug": "yiyuan",
+   "pinyin": "yī yuàn",
+   "tone": 4,
+   "freq": 608,
+   "en": "hospital",
+   "fr": "hôpital",
+   "cat": "place",
+   "image": "yiyuan.webp",
+   "confusable": [
+    "yaodian"
+   ]
+  },
+  {
+   "char": "哥哥",
+   "slug": "gege",
+   "pinyin": "gē ge",
+   "tone": 1,
+   "freq": 1655,
+   "en": "older brother",
+   "fr": "grand frère",
+   "cat": "people",
+   "image": "gege.webp",
+   "confusable": []
+  },
+  {
+   "char": "商店",
+   "slug": "shangdian",
+   "pinyin": "shāng diàn",
+   "tone": 4,
+   "freq": 3479,
+   "en": "store; shop",
+   "fr": "magasin",
+   "cat": "place",
+   "image": "shangdian.webp",
+   "confusable": [
+    "chaoshi"
+   ]
+  },
+  {
+   "char": "大学",
+   "slug": "daxue",
+   "pinyin": "Dà xué",
+   "tone": 2,
+   "freq": 814,
+   "en": "the Great Learning, one of the Four Books 四书 in Confucianism",
+   "fr": "université",
+   "cat": "school",
+   "image": "daxue.webp",
+   "confusable": [
+    "xuexiao",
+    "xuesheng"
+   ]
+  },
+  {
+   "char": "天",
+   "slug": "tian",
+   "pinyin": "tiān",
+   "tone": 1,
+   "freq": 83,
+   "en": "day",
+   "fr": "ciel",
+   "cat": "nature",
+   "image": "tian.webp",
+   "confusable": []
+  },
+  {
+   "char": "妈妈",
+   "slug": "mama",
+   "pinyin": "mā ma",
+   "tone": 1,
+   "freq": 527,
+   "en": "mama",
+   "fr": "maman",
+   "cat": "people",
+   "image": "mama.webp",
+   "confusable": []
+  },
+  {
+   "char": "妹妹",
+   "slug": "meimei",
+   "pinyin": "mèi mei",
+   "tone": 4,
+   "freq": 2093,
+   "en": "younger sister",
+   "fr": "petite sœur",
+   "cat": "people",
+   "image": "meimei.webp",
+   "confusable": []
+  },
+  {
+   "char": "姐姐",
+   "slug": "jiejie",
+   "pinyin": "jiě jie",
+   "tone": 3,
+   "freq": 1513,
+   "en": "older sister",
+   "fr": "grande sœur",
+   "cat": "people",
+   "image": "jiejie.webp",
+   "confusable": []
+  },
+  {
+   "char": "学校",
+   "slug": "xuexiao",
+   "pinyin": "xué xiào",
+   "tone": 4,
+   "freq": 430,
+   "en": "school",
+   "fr": "école",
+   "cat": "school",
+   "image": "xuexiao.webp",
+   "confusable": [
+    "daxue",
+    "xuesheng"
+   ]
+  },
+  {
+   "char": "学生",
+   "slug": "xuesheng",
+   "pinyin": "xué sheng",
+   "tone": 2,
+   "freq": 651,
+   "en": "student",
+   "fr": "élève ; étudiant",
+   "cat": "school",
+   "image": "xuesheng.webp",
+   "confusable": [
+    "xuexiao",
+    "daxue"
+   ]
+  },
+  {
+   "char": "孩子",
+   "slug": "haizi",
+   "pinyin": "hái zi",
+   "tone": 2,
+   "freq": 207,
+   "en": "child",
+   "fr": "enfant",
+   "cat": "people",
+   "image": "haizi.webp",
+   "confusable": []
+  },
+  {
+   "char": "家",
+   "slug": "jia",
+   "pinyin": "jiā",
+   "tone": 1,
+   "freq": 124,
+   "en": "used in 家伙 and 家俱",
+   "fr": "maison ; famille",
+   "cat": "home",
+   "image": "jia.webp",
+   "confusable": [
+    "fangjian"
+   ]
+  },
+  {
+   "char": "弟弟",
+   "slug": "didi",
+   "pinyin": "dì di",
+   "tone": 4,
+   "freq": 2424,
+   "en": "younger brother",
+   "fr": "petit frère",
+   "cat": "people",
+   "image": "didi.webp",
+   "confusable": []
+  },
+  {
+   "char": "房间",
+   "slug": "fangjian",
+   "pinyin": "fáng jiān",
+   "tone": 1,
+   "freq": 1357,
+   "en": "room",
+   "fr": "chambre",
+   "cat": "home",
+   "image": "fangjian.webp",
+   "confusable": [
+    "jia"
+   ]
+  },
+  {
+   "char": "手机",
+   "slug": "shouji",
+   "pinyin": "shǒu jī",
+   "tone": 1,
+   "freq": 857,
+   "en": "cell phone",
+   "fr": "téléphone portable",
+   "cat": "tech",
+   "image": "shouji.webp",
+   "confusable": []
+  },
+  {
+   "char": "月",
+   "slug": "yue",
+   "pinyin": "yuè",
+   "tone": 4,
+   "freq": 161,
+   "en": "moon",
+   "fr": "lune",
+   "cat": "nature",
+   "image": "yue.webp",
+   "confusable": []
+  },
+  {
+   "char": "朋友",
+   "slug": "pengyou",
+   "pinyin": "péng you",
+   "tone": 2,
+   "freq": 280,
+   "en": "friend",
+   "fr": "ami ; camarade",
+   "cat": "people",
+   "image": "pengyou.webp",
+   "confusable": []
+  },
+  {
+   "char": "杯子",
+   "slug": "beizi",
+   "pinyin": "bēi zi",
+   "tone": 1,
+   "freq": 6162,
+   "en": "cup",
+   "fr": "tasse ; verre",
+   "cat": "home",
+   "image": "beizi.webp",
+   "confusable": [
+    "cha",
+    "niunai"
+   ]
+  },
+  {
+   "char": "桌子",
+   "slug": "zhuozi",
+   "pinyin": "zhuō zi",
+   "tone": 1,
+   "freq": 3639,
+   "en": "table",
+   "fr": "table",
+   "cat": "home",
+   "image": "zhuozi.webp",
+   "confusable": []
+  },
+  {
+   "char": "椅子",
+   "slug": "yizi",
+   "pinyin": "yǐ zi",
+   "tone": 3,
+   "freq": 4472,
+   "en": "chair",
+   "fr": "chaise",
+   "cat": "home",
+   "image": "yizi.webp",
+   "confusable": []
+  },
+  {
+   "char": "歌",
+   "slug": "ge",
+   "pinyin": "gē",
+   "tone": 1,
+   "freq": 702,
+   "en": "song",
+   "fr": "chanson",
+   "cat": "leisure",
+   "image": "ge.webp",
+   "confusable": []
+  },
+  {
+   "char": "水",
+   "slug": "shui",
+   "pinyin": "Shuǐ",
+   "tone": 3,
+   "freq": 335,
+   "en": "surname Shui",
+   "fr": "eau",
+   "cat": "food",
+   "image": "shui.webp",
+   "confusable": []
+  },
+  {
+   "char": "水果",
+   "slug": "shuiguo",
+   "pinyin": "shuǐ guǒ",
+   "tone": 3,
+   "freq": 3271,
+   "en": "fruit",
+   "fr": "fruits",
+   "cat": "food",
+   "image": "shuiguo.webp",
+   "confusable": [
+    "pingguo"
+   ]
+  },
+  {
+   "char": "火车",
+   "slug": "huoche",
+   "pinyin": "huǒ chē",
+   "tone": 1,
+   "freq": 2791,
+   "en": "train",
+   "fr": "train",
+   "cat": "transport",
+   "image": "huoche.webp",
+   "confusable": []
+  },
+  {
+   "char": "爸爸",
+   "slug": "baba",
+   "pinyin": "bà ba",
+   "tone": 4,
+   "freq": 908,
+   "en": "(coll.) father; dad",
+   "fr": "papa",
+   "cat": "people",
+   "image": "baba.webp",
+   "confusable": []
+  },
+  {
+   "char": "牛奶",
+   "slug": "niunai",
+   "pinyin": "niú nǎi",
+   "tone": 3,
+   "freq": 2986,
+   "en": "cows milk",
+   "fr": "lait",
+   "cat": "food",
+   "image": "niunai.webp",
+   "confusable": [
+    "beizi",
+    "cha"
+   ]
+  },
+  {
+   "char": "狗",
+   "slug": "gou",
+   "pinyin": "gǒu",
+   "tone": 3,
+   "freq": 620,
+   "en": "dog",
+   "fr": "chien",
+   "cat": "animal",
+   "image": "gou.webp",
+   "confusable": []
+  },
+  {
+   "char": "猫",
+   "slug": "mao",
+   "pinyin": "māo",
+   "tone": 1,
+   "freq": 1150,
+   "en": "cat",
+   "fr": "chat",
+   "cat": "animal",
+   "image": "mao.webp",
+   "confusable": []
+  },
+  {
+   "char": "电影",
+   "slug": "dianying",
+   "pinyin": "diàn yǐng",
+   "tone": 3,
+   "freq": 546,
+   "en": "movie; film",
+   "fr": "film ; cinéma",
+   "cat": "leisure",
+   "image": "dianying.webp",
+   "confusable": []
+  },
+  {
+   "char": "电影院",
+   "slug": "dianyingyuan",
+   "pinyin": "diàn yǐng yuàn",
+   "tone": 4,
+   "freq": 7945,
+   "en": "cinema; movie theater",
+   "fr": "cinéma",
+   "cat": "place",
+   "image": "dianyingyuan.webp",
+   "confusable": []
+  },
+  {
+   "char": "电脑",
+   "slug": "diannao",
+   "pinyin": "diàn nǎo",
+   "tone": 3,
+   "freq": 946,
+   "en": "computer",
+   "fr": "ordinateur",
+   "cat": "tech",
+   "image": "diannao.webp",
+   "confusable": []
+  },
+  {
+   "char": "电视",
+   "slug": "dianshi",
+   "pinyin": "diàn shì",
+   "tone": 4,
+   "freq": 779,
+   "en": "television; TV",
+   "fr": "télévision ; poste TV",
+   "cat": "tech",
+   "image": "dianshi.webp",
+   "confusable": []
+  },
+  {
+   "char": "电话",
+   "slug": "dianhua",
+   "pinyin": "diàn huà",
+   "tone": 4,
+   "freq": 359,
+   "en": "telephone",
+   "fr": "téléphone",
+   "cat": "tech",
+   "image": "dianhua.webp",
+   "confusable": []
+  },
+  {
+   "char": "老师",
+   "slug": "laoshi",
+   "pinyin": "lǎo shī",
+   "tone": 1,
+   "freq": 799,
+   "en": "teacher",
+   "fr": "professeur ; enseignant",
+   "cat": "school",
+   "image": "laoshi.webp",
+   "confusable": []
+  },
+  {
+   "char": "苹果",
+   "slug": "pingguo",
+   "pinyin": "píng guǒ",
+   "tone": 3,
+   "freq": 2562,
+   "en": "apple",
+   "fr": "pomme",
+   "cat": "food",
+   "image": "pingguo.webp",
+   "confusable": [
+    "shuiguo"
+   ]
+  },
+  {
+   "char": "茶",
+   "slug": "cha",
+   "pinyin": "chá",
+   "tone": 2,
+   "freq": 1910,
+   "en": "tea",
+   "fr": "thé",
+   "cat": "food",
+   "image": "cha.webp",
+   "confusable": [
+    "beizi",
+    "niunai"
+   ]
+  },
+  {
+   "char": "菜",
+   "slug": "cai",
+   "pinyin": "cài",
+   "tone": 4,
+   "freq": 1448,
+   "en": "dish (type of food)",
+   "fr": "plat ; légumes",
+   "cat": "food",
+   "image": "cai.webp",
+   "confusable": []
+  },
+  {
+   "char": "衣服",
+   "slug": "yifu",
+   "pinyin": "yī fu",
+   "tone": 1,
+   "freq": 1472,
+   "en": "clothes",
+   "fr": "vêtements",
+   "cat": "clothes",
+   "image": "yifu.webp",
+   "confusable": []
+  },
+  {
+   "char": "超市",
+   "slug": "chaoshi",
+   "pinyin": "chāo shì",
+   "tone": 4,
+   "freq": 4427,
+   "en": "supermarket (abbr. for 超级市场)",
+   "fr": "supermarché",
+   "cat": "place",
+   "image": "chaoshi.webp",
+   "confusable": [
+    "fandian",
+    "shangdian"
+   ]
+  },
+  {
+   "char": "车",
+   "slug": "che",
+   "pinyin": "Chē",
+   "tone": 1,
+   "freq": 186,
+   "en": "surname Che",
+   "fr": "voiture ; véhicule",
+   "cat": "transport",
+   "image": "che.webp",
+   "confusable": [
+    "chuzuche"
+   ]
+  },
+  {
+   "char": "钱",
+   "slug": "qian",
+   "pinyin": "Qián",
+   "tone": 2,
+   "freq": 218,
+   "en": "surname Qian",
+   "fr": "argent ; monnaie",
+   "cat": "money",
+   "image": "qian.webp",
+   "confusable": []
+  },
+  {
+   "char": "雨",
+   "slug": "yu",
+   "pinyin": "yǔ",
+   "tone": 3,
+   "freq": 1929,
+   "en": "rain",
+   "fr": "pluie",
+   "cat": "nature",
+   "image": "yu.webp",
+   "confusable": []
+  },
+  {
+   "char": "雪",
+   "slug": "xue",
+   "pinyin": "Xuě",
+   "tone": 3,
+   "freq": 1971,
+   "en": "surname Xue",
+   "fr": "neige",
+   "cat": "nature",
+   "image": "xue.webp",
+   "confusable": []
+  },
+  {
+   "char": "面包",
+   "slug": "mianbao",
+   "pinyin": "miàn bāo",
+   "tone": 1,
+   "freq": 4138,
+   "en": "bread",
+   "fr": "pain",
+   "cat": "food",
+   "image": "mianbao.webp",
+   "confusable": []
+  },
+  {
+   "char": "飞机",
+   "slug": "feiji",
+   "pinyin": "fēi jī",
+   "tone": 1,
+   "freq": 1067,
+   "en": "airplane",
+   "fr": "avion",
+   "cat": "transport",
+   "image": "feiji.webp",
+   "confusable": []
+  },
+  {
+   "char": "饭",
+   "slug": "fan",
+   "pinyin": "fàn",
+   "tone": 4,
+   "freq": 1529,
+   "en": "cooked rice",
+   "fr": "riz ; repas",
+   "cat": "food",
+   "image": "fan.webp",
+   "confusable": []
+  },
+  {
+   "char": "饭店",
+   "slug": "fandian",
+   "pinyin": "fàn diàn",
+   "tone": 4,
+   "freq": 3998,
+   "en": "restaurant",
+   "fr": "restaurant",
+   "cat": "place",
+   "image": "fandian.webp",
+   "confusable": [
+    "chaoshi"
+   ]
+  },
+  {
+   "char": "饺子",
+   "slug": "jiaozi",
+   "pinyin": "jiǎo zi",
+   "tone": 3,
+   "freq": 11834,
+   "en": "dumpling",
+   "fr": "raviolis chinois",
+   "cat": "food",
+   "image": "jiaozi.webp",
+   "confusable": [
+    "baozi"
+   ]
+  },
+  {
+   "char": "鸡蛋",
+   "slug": "jidan",
+   "pinyin": "jī dàn",
+   "tone": 4,
+   "freq": 3501,
+   "en": "(chicken) egg",
+   "fr": "œuf",
+   "cat": "food",
+   "image": "jidan.webp",
+   "confusable": []
+  }
+ ]
+}
