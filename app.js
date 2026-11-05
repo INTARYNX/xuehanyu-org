@@ -43,9 +43,8 @@ async function loadLevel(level) {
   } catch (err) {
     console.error('Erreur chargement HSK', level, err);
     loadingState[level] = 'error';
-    HSK_DATA[level] = [];
   }
-  return HSK_DATA[level];
+  return HSK_DATA[level] || [];
 }
 
 // =========================================================================
