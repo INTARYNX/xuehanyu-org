@@ -53,6 +53,7 @@ A few design choices worth knowing:
 - **Indistinguishable pairs are never offered together.** Some words are impossible to tell apart from the picture alone — at HSK 1 level a beginner has no way to know a university hall from a primary school. `scripts/image_words.py` declares those pairs in `CONFUSABLE`, and the quiz refuses to put two of them in the same set of choices. Declaring a pair is a deliberate editorial decision: it means *the image cannot carry the distinction*, not that the two words are similar.
 - **No tone is ever forced** — the progress bar shows the position, the score is only counted for the two quiz modes.
 - **Progress is remembered locally** (`localStorage`): the words you marked as known are kept out of the *To review only* filter.
+- **Spaced repetition** ([`srs.js`](srs.js)): every answer (cards or quiz) schedules the word with a simplified SM-2 (1 day, 3 days, then growing by the ease factor; a miss brings it back in 10 minutes). The **Due (n)** button builds a deck from every word whose review has come, across all levels.
 - The illustrations are **versioned in the repository** (`assets/img/hsk<n>/*.webp`, ~20 kB each), so the page works offline and calls no external service.
 
 ### Lessons
