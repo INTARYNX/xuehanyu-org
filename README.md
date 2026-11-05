@@ -54,6 +54,7 @@ A few design choices worth knowing:
 - **No tone is ever forced** — the progress bar shows the position, the score is only counted for the two quiz modes.
 - **Progress is remembered locally** (`localStorage`): the words you marked as known are kept out of the *To review only* filter.
 - **Spaced repetition** ([`srs.js`](srs.js)): every answer (cards or quiz) schedules the word with a simplified SM-2 (1 day, 3 days, then growing by the ease factor; a miss brings it back in 10 minutes). The **Due (n)** button builds a deck from every word whose review has come, across all levels.
+- **Works offline once visited**: a service worker ([`sw.js`](sw.js)) caches the pages, scripts, data and images; bump `VERSION` in it to flush the cache.
 - The illustrations are **versioned in the repository** (`assets/img/hsk<n>/*.webp`, ~20 kB each), so the page works offline and calls no external service.
 
 ### Lessons
