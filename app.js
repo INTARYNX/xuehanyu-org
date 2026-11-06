@@ -338,6 +338,7 @@ function buildCharList() {
   for (const item of filtered.slice(0, MAX)) {
     const row = document.createElement('div');
     row.className = 'char-row' + (currentChar?.char === item.char ? ' active' : '');
+    row.dataset.len = Math.min([...item.char].length, 5);
     row.innerHTML = `
       <div class="char-row-char">${esc(item.char)}</div>
       <div class="char-row-meta">

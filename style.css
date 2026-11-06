@@ -220,7 +220,7 @@ main {
 .char-list::-webkit-scrollbar-thumb { background: rgba(60, 35, 15, 0.25); border-radius: 3px; }
 .char-row {
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: minmax(40px, max-content) 1fr;
   gap: 0.5rem;
   padding: 0.45rem 0.55rem;
   border: 1px solid rgba(60, 35, 15, 0.12);
@@ -242,7 +242,12 @@ main {
   text-align: center;
   color: var(--ink);
   line-height: 1;
+  white-space: nowrap;
 }
+.char-row[data-len="2"] .char-row-char { font-size: 1.35rem; }
+.char-row[data-len="3"] .char-row-char,
+.char-row[data-len="4"] .char-row-char { font-size: 1.1rem; }
+.char-row[data-len="5"] .char-row-char { font-size: 0.9rem; }
 .char-row-meta { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
 .char-row-pinyin {
   font-style: italic;
