@@ -425,6 +425,13 @@
 
   .card-flash { flex-direction: column; }
   .header-link { font-size: 0.75rem; }
+
+  /* Progress bar full width, then filters and counter share one row */
+  .quiz-app { gap: 0.6rem; }
+  .quiz-topbar { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+  .quiz-topbar .progress { flex: 1 0 100%; }
+  .quiz-filters { order: 2; }
+  .quiz-meta { order: 3; gap: 0.8rem; }
 }
 
 /* Safe-area :reserve l'espace de l'indicateur d'accueil iOS */
