@@ -95,7 +95,7 @@
 .quiz-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   color: var(--ink-soft);
   font-style: italic;
 }
@@ -397,9 +397,9 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   color: var(--ink-soft);
-  opacity: 0.8;
+  opacity: 0.9;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(60, 35, 15, 0.15);
   flex-wrap: wrap;

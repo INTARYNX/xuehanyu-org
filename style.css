@@ -206,7 +206,7 @@ main {
 }
 .filter-chip:hover { background: rgba(60, 35, 15, 0.06); }
 .filter-chip.active { background: var(--accent); color: white; border-color: var(--accent); }
-.results-count { font-size: 0.75rem; color: var(--ink-soft); font-style: italic; }
+.results-count { font-size: 0.82rem; color: var(--ink-soft); font-style: italic; }
 .char-list {
   flex: 1;
   overflow-y: auto;
@@ -260,7 +260,7 @@ main {
 }
 .char-row-meaning {
   color: var(--ink-soft);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
