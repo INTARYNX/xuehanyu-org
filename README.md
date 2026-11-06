@@ -62,7 +62,7 @@ python3 scripts/build_images.py check
 
 Source code: MIT.
 
-Illustrations (`assets/img/`): generated with MiniMax by the author and released under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+Illustrations (`assets/img/`): generated with an AI image model by the author and released under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 Data and assets keep their own licenses:
 
