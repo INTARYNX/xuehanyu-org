@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apprendre le chinois en ligne gratuitement — HSK 1 à 6 | xuehanyu.org</title>
-<meta name="description" content="Application gratuite et sans publicité pour apprendre le chinois mandarin : plus de 5 000 caractères HSK 1-6 avec tracé animé, pinyin, prononciation, tons, traductions français et anglais. Sans compte, open source.">
+<meta name="description" content="Application gratuite et sans publicité pour apprendre le chinois mandarin : plus de 5 000 caractères HSK 1-6 avec tracé animé, pinyin, tons, quiz d'images, leçons de conversation et révisions espacées. Utilisable hors ligne, sans compte, open source.">
 <meta name="keywords" content="apprendre le chinois, apprendre le chinois gratuit, chinois mandarin, HSK, caractères chinois, pinyin, tracé hanzi, vocabulaire chinois, learn Chinese, apprendre le chinois en ligne">
 <meta name="author" content="intarynx">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="xuehanyu.org">
 <meta property="og:url" content="https://www.xuehanyu.org/">
 <meta property="og:title" content="Apprendre le chinois gratuitement — HSK 1 à 6 | xuehanyu.org">
-<meta property="og:description" content="Plus de 5 000 caractères chinois avec tracé animé, pinyin, prononciation et traductions FR/EN. Gratuit, sans pub, sans compte.">
+<meta property="og:description" content="Plus de 5 000 caractères chinois avec tracé animé, détection des tons, quiz d'images et leçons. Gratuit, sans pub, sans compte.">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:image" content="https://www.xuehanyu.org/xuehanyu.png">
@@ -27,7 +27,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Apprendre le chinois gratuitement — HSK 1 à 6">
-<meta name="twitter:description" content="5 000+ caractères chinois : tracé animé, pinyin, prononciation, traductions FR/EN. Gratuit et open source.">
+<meta name="twitter:description" content="5 000+ caractères chinois : tracé animé, tons, quiz d'images, leçons. Gratuit et open source.">
 <meta name="twitter:image" content="https://www.xuehanyu.org/xuehanyu.png">
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,7 +49,7 @@
       "url": "https://www.xuehanyu.org/",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
-      "description": "Application gratuite pour apprendre le vocabulaire chinois HSK 1 à 6 avec tracé animé des caractères, pinyin, prononciation, tons et traductions français/anglais.",
+      "description": "Application gratuite pour apprendre le vocabulaire chinois HSK 1 à 6 avec tracé animé des caractères, pinyin, détection des tons, quiz d'images, leçons de conversation et révisions espacées, avec traductions français/anglais.",
       "inLanguage": ["fr", "en"],
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
@@ -370,6 +370,16 @@ footer a:hover { color: var(--accent); }
         <h3 data-t="f4t">Recherche rapide</h3>
         <p data-t="f4b">Cherche par caractère, pinyin ou sens. Filtre par niveau HSK. Résultats instantanés parmi plus de 5 000 entrées.</p>
       </div>
+      <div class="feature-card">
+        <span class="feature-icon">图</span>
+        <h3 data-t="f5t">Quiz d'images</h3>
+        <p data-t="f5b">145 mots HSK 1-2 appris par l'image, en cartes ou en choix multiples. Les révisions sont planifiées en répétition espacée.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">话</span>
+        <h3 data-t="f6t">Leçons</h3>
+        <p data-t="f6b">25 dialogues HSK 1 qui n'emploient que des mots HSK 1, avec pinyin tel qu'il se prononce, traduction et audio. Tout fonctionne hors ligne après une première visite.</p>
+      </div>
     </div>
   </div>
 
@@ -434,6 +444,10 @@ const COPY = {
     f3b:      'Pinyin avec tons, sens, forme traditionnelle, radical, catégorie grammaticale et classificateurs pour chaque entrée.',
     f4t:      'Recherche rapide',
     f4b:      'Cherche par caractère, pinyin ou sens. Filtre par niveau HSK. Résultats instantanés parmi plus de 5 000 entrées.',
+    f5t:      'Quiz d\'images',
+    f5b:      '145 mots HSK 1-2 appris par l\'image, en cartes ou en choix multiples. Les révisions sont planifiées en répétition espacée.',
+    f6t:      'Leçons',
+    f6b:      '25 dialogues HSK 1 qui n\'emploient que des mots HSK 1, avec pinyin tel qu\'il se prononce, traduction et audio. Tout fonctionne hors ligne après une première visite.',
     label3:   'À propos',
     h3:       'Un projet signé intarynx',
     p3a:      'xuehanyu.org est un projet développé par <a href="https://www.intarynx.com" target="_blank" rel="noopener">intarynx</a> — passionné par les langues, la calligraphie et l\'open source.',
@@ -464,6 +478,10 @@ const COPY = {
     f3b:      'Pinyin with tone marks, meaning, traditional form, radical, grammar category and classifiers for every entry.',
     f4t:      'Fast search',
     f4b:      'Search by character, pinyin, or meaning. Filter by HSK level. Instant results across 5,000+ entries.',
+    f5t:      'Image quiz',
+    f5b:      '145 HSK 1-2 words learned from pictures, as flashcards or multiple choice. Reviews are scheduled with spaced repetition.',
+    f6t:      'Lessons',
+    f6b:      '25 HSK 1 dialogues that only use HSK 1 words, with pinyin as pronounced, translation and audio. Everything works offline after a first visit.',
     label3:   'About',
     h3:       'A project by intarynx',
     p3a:      'xuehanyu.org is a project built by <a href="https://www.intarynx.com" target="_blank" rel="noopener">intarynx</a> — passionate about languages, calligraphy and open source.',
