@@ -119,6 +119,7 @@
   transition: all 0.15s;
 }
 .filter-toggle:hover { background: rgba(255, 252, 240, 0.85); }
+.filter-toggle:disabled { opacity: 0.5; cursor: default; }
 .filter-toggle.active {
   background: var(--accent);
   border-color: var(--accent);

@@ -631,11 +631,12 @@ function updateDueToggle() {
   const lbl = document.getElementById('dueToggleLabel');
   if (lbl) lbl.textContent = `${t().due} (${SRS.dueCount(cards)})`;
   dueToggle.classList.toggle('active', onlyDue);
+  dueToggle.disabled = !onlyDue && SRS.dueCount(cards) === 0;
 }
 
 function updateReviewToggle() {
   const lbl = document.getElementById('reviewToggleLabel');
-  if (lbl) lbl.textContent = onlyReview ? t().onlyReview : t().allWords;
+  if (lbl) lbl.textContent = t().onlyReview;
   reviewToggle.classList.toggle('active', onlyReview);
 }
 
