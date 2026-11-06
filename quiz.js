@@ -227,7 +227,6 @@ let known = new Set();   // slugs que l'apprenant maîtrise
 let cards = {};          // slug -> carte de répétition espacée (srs.js)
 
 const stage   = document.getElementById('quizStage');
-const progFill = document.getElementById('progressFill');
 const progText = document.getElementById('progressText');
 const scoreText = document.getElementById('scoreText');
 
@@ -368,8 +367,6 @@ function gradeWord(word, ok) {
 // RENDU
 // -------------------------------------------------------------------------
 function updateProgress() {
-  const total = deck.length || 1;
-  progFill.style.width = Math.min(100, (idx / total) * 100) + '%';
   progText.textContent = `${Math.min(idx + 1, deck.length)} / ${deck.length}`;
   scoreText.textContent = mode === 'cards' ? '' : `${t().score} ${score}`;
 }
@@ -509,7 +506,6 @@ function renderSummary() {
         <button class="q-btn" id="btnCards">${t().backToCards}</button>
       </div>
     </div>`;
-  progFill.style.width = '100%';
   progText.textContent = t().done;
   scoreText.textContent = `${t().score} ${score} / ${total}`;
   document.getElementById('btnAgain').addEventListener('click', restart);
