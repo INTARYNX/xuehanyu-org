@@ -102,6 +102,7 @@
 .score-text { font-style: normal; font-weight: 600; }
 
 /* Filtre « à revoir seulement » */
+.quiz-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .filter-toggle {
   align-self: flex-start;
   font-family: inherit;
