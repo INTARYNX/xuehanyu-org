@@ -162,8 +162,10 @@
 .flash-image-wrap {
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.7rem;
 }
 .q-image {
   width: clamp(190px, 42vw, 270px);
@@ -178,9 +180,7 @@
 .flash-image-wrap.big .q-image { width: clamp(210px, 48vw, 300px); }
 
 .speak-btn {
-  position: absolute;
-  right: -6px;
-  bottom: -6px;
+  position: static;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
