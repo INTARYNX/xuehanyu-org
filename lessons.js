@@ -193,6 +193,8 @@ function saveReviewed() {
 const lessonList = document.getElementById('lessonList');
 const dialogue   = document.getElementById('dialogue');
 const vocabBox   = document.getElementById('vocab');
+const lessonSelect = document.getElementById('lessonSelect');
+lessonSelect.addEventListener('change', () => selectLesson(Number(lessonSelect.value)));
 
 function renderList() {
   lessonList.innerHTML = LESSONS.map((l, i) => {
@@ -204,6 +206,8 @@ function renderList() {
       ${done ? `<span class="lesson-item-done">✓</span>` : ''}
     </button>`;
   }).join('');
+  lessonSelect.innerHTML = LESSONS.map((l, i) =>
+    `<option value="${i}"${i === currentLesson ? ' selected' : ''}>${String(i + 1).padStart(2, '0')} · ${esc(l.title[lang])}${reviewed.has(l.id) ? ' ✓' : ''}</option>`).join('');
   lessonList.querySelectorAll('.lesson-item').forEach(b =>
     b.addEventListener('click', () => selectLesson(Number(b.dataset.i))));
 }
