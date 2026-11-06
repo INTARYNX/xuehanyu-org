@@ -1,7 +1,7 @@
 {
  "version": 2,
  "level": 2,
- "count": 51,
+ "count": 63,
  "words": [
   {
    "char": "丈夫",
@@ -37,7 +37,9 @@
    "fr": "autobus",
    "cat": "transport",
    "image": "gongjiaoche.webp",
-   "confusable": []
+   "confusable": [
+    "kaiche"
+   ]
   },
   {
    "char": "咖啡",
@@ -49,7 +51,9 @@
    "fr": "café",
    "cat": "food",
    "image": "kafei.webp",
-   "confusable": []
+   "confusable": [
+    "he"
+   ]
   },
   {
    "char": "商场",
@@ -109,7 +113,9 @@
    "fr": "thé au lait",
    "cat": "food",
    "image": "naicha.webp",
-   "confusable": []
+   "confusable": [
+    "he"
+   ]
   },
   {
    "char": "妻子",
@@ -133,7 +139,9 @@
    "fr": "lit",
    "cat": "home",
    "image": "chuang.webp",
-   "confusable": []
+   "confusable": [
+    "shuijiao"
+   ]
   },
   {
    "char": "手",
@@ -146,6 +154,7 @@
    "cat": "body",
    "image": "shou.webp",
    "confusable": [
+    "xi",
     "shoubiao"
    ]
   },
@@ -186,7 +195,9 @@
    "cat": "school",
    "image": "benzi.webp",
    "confusable": [
-    "shu"
+    "du",
+    "shu",
+    "xie"
    ]
   },
   {
@@ -211,7 +222,9 @@
    "fr": "immeuble ; étage",
    "cat": "place",
    "image": "lou.webp",
-   "confusable": []
+   "confusable": [
+    "gongsi"
+   ]
   },
   {
    "char": "洗手间",
@@ -224,6 +237,7 @@
    "cat": "place",
    "image": "xishoujian.webp",
    "confusable": [
+    "xi",
     "men"
    ]
   },
@@ -309,7 +323,10 @@
    "fr": "yeux",
    "cat": "body",
    "image": "yanjing.webp",
-   "confusable": []
+   "confusable": [
+    "kan",
+    "tou"
+   ]
   },
   {
    "char": "票",
@@ -321,7 +338,9 @@
    "fr": "billet ; ticket",
    "cat": "object",
    "image": "piao.webp",
-   "confusable": []
+   "confusable": [
+    "kuai"
+   ]
   },
   {
    "char": "笔",
@@ -333,7 +352,9 @@
    "fr": "stylo ; crayon",
    "cat": "object",
    "image": "bi.webp",
-   "confusable": []
+   "confusable": [
+    "xie"
+   ]
   },
   {
    "char": "篮球",
@@ -357,7 +378,9 @@
    "fr": "rouge",
    "cat": "color",
    "image": "hongse.webp",
-   "confusable": []
+   "confusable": [
+    "ai"
+   ]
   },
   {
    "char": "绿色",
@@ -381,7 +404,9 @@
    "fr": "viande",
    "cat": "food",
    "image": "rou.webp",
-   "confusable": []
+   "confusable": [
+    "chi"
+   ]
   },
   {
    "char": "花",
@@ -434,7 +459,9 @@
    "fr": "pantalon",
    "cat": "clothes",
    "image": "kuzi.webp",
-   "confusable": []
+   "confusable": [
+    "chuan"
+   ]
   },
   {
    "char": "走路",
@@ -470,7 +497,10 @@
    "fr": "courir",
    "cat": "sport",
    "image": "paobu.webp",
-   "confusable": []
+   "confusable": [
+    "lei",
+    "kuai"
+   ]
   },
   {
    "char": "路",
@@ -518,7 +548,9 @@
    "fr": "corps",
    "cat": "body",
    "image": "shenti.webp",
-   "confusable": []
+   "confusable": [
+    "tou"
+   ]
   },
   {
    "char": "车站",
@@ -530,7 +562,9 @@
    "fr": "gare",
    "cat": "transport",
    "image": "chezhan.webp",
-   "confusable": []
+   "confusable": [
+    "zhan"
+   ]
   },
   {
    "char": "酒店",
@@ -568,7 +602,9 @@
    "fr": "nouilles",
    "cat": "food",
    "image": "mian.webp",
-   "confusable": []
+   "confusable": [
+    "chi"
+   ]
   },
   {
    "char": "飞",
@@ -628,6 +664,180 @@
    "fr": "noir",
    "cat": "color",
    "image": "heise.webp",
+   "confusable": []
+  },
+  {
+   "char": "头",
+   "slug": "tou",
+   "pinyin": "Tóu",
+   "tone": 2,
+   "freq": 329,
+   "en": "head",
+   "fr": "tête",
+   "cat": "body",
+   "image": "tou.webp",
+   "confusable": [
+    "shenti",
+    "yanjing"
+   ]
+  },
+  {
+   "char": "笑",
+   "slug": "xiao",
+   "pinyin": "Xiào",
+   "tone": 4,
+   "freq": 382,
+   "en": "to laugh",
+   "fr": "rire",
+   "cat": "people",
+   "image": "xiao.webp",
+   "confusable": [
+    "kou"
+   ]
+  },
+  {
+   "char": "站",
+   "slug": "zhan",
+   "pinyin": "Zhàn",
+   "tone": 4,
+   "freq": 399,
+   "en": "to stand",
+   "fr": "se tenir debout",
+   "cat": "people",
+   "image": "zhan.webp",
+   "confusable": [
+    "ren",
+    "chezhan"
+   ]
+  },
+  {
+   "char": "洗",
+   "slug": "xi",
+   "pinyin": "Xǐ",
+   "tone": 3,
+   "freq": 1298,
+   "en": "to wash",
+   "fr": "laver",
+   "cat": "home",
+   "image": "xi.webp",
+   "confusable": [
+    "shou",
+    "xishoujian"
+   ]
+  },
+  {
+   "char": "累",
+   "slug": "lei",
+   "pinyin": "Lèi",
+   "tone": 4,
+   "freq": 1197,
+   "en": "tired; exhausted",
+   "fr": "fatigué",
+   "cat": "sport",
+   "image": "lei.webp",
+   "confusable": [
+    "paobu",
+    "shufu",
+    "shuijiao"
+   ]
+  },
+  {
+   "char": "晴",
+   "slug": "qing",
+   "pinyin": "Qíng",
+   "tone": 2,
+   "freq": 9343,
+   "en": "clear (weather)",
+   "fr": "clair",
+   "cat": "nature",
+   "image": "qing.webp",
+   "confusable": [
+    "re",
+    "yin",
+    "tian",
+    "baitian",
+    "zaoshang"
+   ]
+  },
+  {
+   "char": "阴",
+   "slug": "yin",
+   "pinyin": "Yīn",
+   "tone": 1,
+   "freq": 4058,
+   "en": "overcast; cloudy",
+   "fr": "nuageux",
+   "cat": "nature",
+   "image": "yin.webp",
+   "confusable": [
+    "yu",
+    "qing",
+    "tian"
+   ]
+  },
+  {
+   "char": "高",
+   "slug": "gao",
+   "pinyin": "Gāo",
+   "tone": 1,
+   "freq": 290,
+   "en": "tall; high",
+   "fr": "haut",
+   "cat": "animal",
+   "image": "gao.webp",
+   "confusable": []
+  },
+  {
+   "char": "快",
+   "slug": "kuai",
+   "pinyin": "Kuài",
+   "tone": 4,
+   "freq": 153,
+   "en": "fast; quick",
+   "fr": "rapide",
+   "cat": "sport",
+   "image": "kuai.webp",
+   "confusable": [
+    "piao",
+    "paobu"
+   ]
+  },
+  {
+   "char": "慢",
+   "slug": "man",
+   "pinyin": "Màn",
+   "tone": 4,
+   "freq": 1770,
+   "en": "slow",
+   "fr": "lent",
+   "cat": "animal",
+   "image": "man.webp",
+   "confusable": []
+  },
+  {
+   "char": "舒服",
+   "slug": "shufu",
+   "pinyin": "shū fu",
+   "tone": 1,
+   "freq": 2343,
+   "en": "comfortable",
+   "fr": "confortable",
+   "cat": "home",
+   "image": "shufu.webp",
+   "confusable": [
+    "lei"
+   ]
+  },
+  {
+   "char": "疼",
+   "slug": "teng",
+   "pinyin": "Téng",
+   "tone": 2,
+   "freq": 1641,
+   "en": "to ache; to hurt",
+   "fr": "avoir mal",
+   "cat": "body",
+   "image": "teng.webp",
    "confusable": []
   }
  ]
