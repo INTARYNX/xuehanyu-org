@@ -38,6 +38,8 @@ node --test tests/*.test.mjs        # needs Node 20+
 node tests/tone-dsp.bench.mjs       # tone detection benchmark (generated audio)
 ```
 
+`tests/ui.test.mjs` opens the pages in a real browser (Playwright, skipped when it is not installed) to check the layout at phone and desktop width.
+
 CI runs the same on every push. The suites cover the tone classifier (including a corpus of realistic tone-3 contours), the lessons (every line must segment into HSK 1 words only), the image quiz (manifest integrity, distractor selection), the spaced-repetition scheduler and the HTML escaping helper.
 
 ## How it works
