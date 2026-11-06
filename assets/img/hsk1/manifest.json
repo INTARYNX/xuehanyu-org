@@ -309,7 +309,8 @@
    "cat": "tech",
    "image": "shouji.webp",
    "confusable": [
-    "dadianhua"
+    "dadianhua",
+    "dianhua"
    ]
   },
   {
@@ -545,7 +546,8 @@
    "cat": "tech",
    "image": "dianhua.webp",
    "confusable": [
-    "dadianhua"
+    "dadianhua",
+    "shouji"
    ]
   },
   {
