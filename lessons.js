@@ -24,8 +24,7 @@ const I18N = {
     navTitle: 'Leçons de conversation',
     navNote: 'vocabulaire HSK 1 uniquement',
     pinyin: 'Pinyin',
-    hideTrans: 'Masquer la traduction',
-    showTrans: 'Afficher la traduction',
+    trans: 'Traduction',
     playAll: 'Écouter',
     stop: 'Arrêter',
     markReviewed: 'Marquer comme revu',
@@ -48,8 +47,7 @@ const I18N = {
     navTitle: 'Conversation lessons',
     navNote: 'HSK 1 vocabulary only',
     pinyin: 'Pinyin',
-    hideTrans: 'Hide translation',
-    showTrans: 'Show translation',
+    trans: 'Translation',
     playAll: 'Listen',
     stop: 'Stop',
     markReviewed: 'Mark as reviewed',
@@ -398,12 +396,13 @@ async function init() {
 document.getElementById('btnPinyin').addEventListener('click', e => {
   showPinyin = !showPinyin;
   e.currentTarget.classList.toggle('active', showPinyin);
+  e.currentTarget.setAttribute('aria-pressed', showPinyin);
   renderDialogue();
 });
 document.getElementById('btnTrans').addEventListener('click', e => {
   showTrans = !showTrans;
-  e.currentTarget.classList.toggle('active', !showTrans);
-  e.currentTarget.querySelector('span').textContent = showTrans ? t('hideTrans') : t('showTrans');
+  e.currentTarget.classList.toggle('active', showTrans);
+  e.currentTarget.setAttribute('aria-pressed', showTrans);
   renderDialogue();
 });
 document.getElementById('btnPlay').addEventListener('click', playConversation);
