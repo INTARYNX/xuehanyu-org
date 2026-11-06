@@ -15,6 +15,10 @@ function esc(v) {
 
 const I18N = {
   fr: {
+    navHome:      'Accueil',
+    navDict:      'Dictionnaire',
+    navQuiz:      'Quiz d\'images',
+    navLessons:   'Leçons',
     tagline: 'apprendre le chinois, un caractère à la fois',
     back: "← Retour à l'app",
     navTitle: 'Leçons de conversation',
@@ -35,6 +39,10 @@ const I18N = {
     reviewed: 'revu',
   },
   en: {
+    navHome:      'Home',
+    navDict:      'Dictionary',
+    navQuiz:      'Image quiz',
+    navLessons:   'Lessons',
     tagline: 'learn Chinese, one character at a time',
     back: '← Back to the app',
     navTitle: 'Conversation lessons',

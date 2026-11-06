@@ -52,6 +52,10 @@ async function loadLevel(level) {
 // =========================================================================
 const I18N = {
   fr: {
+    navHome:      'Accueil',
+    navDict:      'Dictionnaire',
+    navQuiz:      'Quiz d\'images',
+    navLessons:   'Leçons',
     tagline:      'apprendre le chinois, un caractère à la fois',
     empty:        'Sélectionnez un caractère pour voir son tracé',
     search:       'Rechercher…',
@@ -88,6 +92,10 @@ const I18N = {
     lessonsLink:  'Leçons'
   },
   en: {
+    navHome:      'Home',
+    navDict:      'Dictionary',
+    navQuiz:      'Image quiz',
+    navLessons:   'Lessons',
     tagline:      'learn Chinese, one character at a time',
     empty:        'Select a character to see its stroke order',
     search:       'Search…',
