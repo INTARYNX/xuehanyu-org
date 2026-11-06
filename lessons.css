@@ -56,7 +56,9 @@
     max-height: none;
     overflow-x: auto;
     padding-bottom: 0.3rem;
+    scrollbar-width: none;
   }
+  .lesson-list::-webkit-scrollbar { display: none; }
 }
 .lesson-item {
   display: flex;
