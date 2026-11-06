@@ -10,5 +10,7 @@ jobs:
           node-version: 20
       - name: Syntax check
         run: for f in *.js; do node --check "$f"; done
+      - name: Install Playwright
+        run: npm install --no-save playwright && npx playwright install --with-deps chromium
       - name: Tests
         run: node --test tests/*.test.mjs
