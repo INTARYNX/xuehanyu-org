@@ -1,7 +1,7 @@
 {
  "version": 2,
  "level": 1,
- "count": 55,
+ "count": 82,
  "words": [
   {
    "char": "书",
@@ -14,8 +14,10 @@
    "cat": "school",
    "image": "shu.webp",
    "confusable": [
-    "shudian",
-    "benzi"
+    "du",
+    "xie",
+    "benzi",
+    "shudian"
    ]
   },
   {
@@ -42,7 +44,10 @@
    "fr": "personne",
    "cat": "people",
    "image": "ren.webp",
-   "confusable": []
+   "confusable": [
+    "zhan",
+    "dajia"
+   ]
   },
   {
    "char": "出租车",
@@ -55,7 +60,8 @@
    "cat": "transport",
    "image": "chuzuche.webp",
    "confusable": [
-    "che"
+    "che",
+    "kaiche"
    ]
   },
   {
@@ -69,6 +75,7 @@
    "cat": "food",
    "image": "baozi.webp",
    "confusable": [
+    "chi",
     "jiaozi"
    ]
   },
@@ -108,7 +115,9 @@
    "fr": "grand frère",
    "cat": "people",
    "image": "gege.webp",
-   "confusable": []
+   "confusable": [
+    "erzi"
+   ]
   },
   {
    "char": "商店",
@@ -135,6 +144,7 @@
    "cat": "school",
    "image": "daxue.webp",
    "confusable": [
+    "gongsi",
     "xuexiao",
     "xuesheng"
    ]
@@ -149,7 +159,13 @@
    "fr": "ciel",
    "cat": "nature",
    "image": "tian.webp",
-   "confusable": []
+   "confusable": [
+    "yin",
+    "qing",
+    "baitian",
+    "wanshang",
+    "zaoshang"
+   ]
   },
   {
    "char": "妈妈",
@@ -173,7 +189,12 @@
    "fr": "petite sœur",
    "cat": "people",
    "image": "meimei.webp",
-   "confusable": []
+   "confusable": [
+    "nuer",
+    "haizi",
+    "nühair",
+    "nanhair"
+   ]
   },
   {
    "char": "姐姐",
@@ -213,8 +234,8 @@
    "cat": "school",
    "image": "xuesheng.webp",
    "confusable": [
-    "xuexiao",
-    "daxue"
+    "daxue",
+    "xuexiao"
    ]
   },
   {
@@ -227,7 +248,13 @@
    "fr": "enfant",
    "cat": "people",
    "image": "haizi.webp",
-   "confusable": []
+   "confusable": [
+    "erzi",
+    "nuer",
+    "meimei",
+    "nühair",
+    "nanhair"
+   ]
   },
   {
    "char": "家",
@@ -253,7 +280,9 @@
    "fr": "petit frère",
    "cat": "people",
    "image": "didi.webp",
-   "confusable": []
+   "confusable": [
+    "erzi"
+   ]
   },
   {
    "char": "房间",
@@ -279,7 +308,9 @@
    "fr": "téléphone portable",
    "cat": "tech",
    "image": "shouji.webp",
-   "confusable": []
+   "confusable": [
+    "dadianhua"
+   ]
   },
   {
    "char": "月",
@@ -291,7 +322,9 @@
    "fr": "lune",
    "cat": "nature",
    "image": "yue.webp",
-   "confusable": []
+   "confusable": [
+    "wanshang"
+   ]
   },
   {
    "char": "朋友",
@@ -342,7 +375,9 @@
    "fr": "chaise",
    "cat": "home",
    "image": "yizi.webp",
-   "confusable": []
+   "confusable": [
+    "zuo"
+   ]
   },
   {
    "char": "歌",
@@ -354,7 +389,9 @@
    "fr": "chanson",
    "cat": "leisure",
    "image": "ge.webp",
-   "confusable": []
+   "confusable": [
+    "chang"
+   ]
   },
   {
    "char": "水",
@@ -366,7 +403,9 @@
    "fr": "eau",
    "cat": "food",
    "image": "shui.webp",
-   "confusable": []
+   "confusable": [
+    "he"
+   ]
   },
   {
    "char": "水果",
@@ -379,6 +418,7 @@
    "cat": "food",
    "image": "shuiguo.webp",
    "confusable": [
+    "chi",
     "pingguo"
    ]
   },
@@ -417,8 +457,9 @@
    "cat": "food",
    "image": "niunai.webp",
    "confusable": [
-    "beizi",
-    "cha"
+    "he",
+    "cha",
+    "beizi"
    ]
   },
   {
@@ -503,7 +544,9 @@
    "fr": "téléphone",
    "cat": "tech",
    "image": "dianhua.webp",
-   "confusable": []
+   "confusable": [
+    "dadianhua"
+   ]
   },
   {
    "char": "老师",
@@ -528,6 +571,7 @@
    "cat": "food",
    "image": "pingguo.webp",
    "confusable": [
+    "chi",
     "shuiguo"
    ]
   },
@@ -542,6 +586,7 @@
    "cat": "food",
    "image": "cha.webp",
    "confusable": [
+    "he",
     "beizi",
     "niunai"
    ]
@@ -556,7 +601,9 @@
    "fr": "plat ; légumes",
    "cat": "food",
    "image": "cai.webp",
-   "confusable": []
+   "confusable": [
+    "chi"
+   ]
   },
   {
    "char": "衣服",
@@ -568,7 +615,9 @@
    "fr": "vêtements",
    "cat": "clothes",
    "image": "yifu.webp",
-   "confusable": []
+   "confusable": [
+    "chuan"
+   ]
   },
   {
    "char": "超市",
@@ -581,6 +630,7 @@
    "cat": "place",
    "image": "chaoshi.webp",
    "confusable": [
+    "gongsi",
     "fandian",
     "shangdian"
    ]
@@ -596,6 +646,7 @@
    "cat": "transport",
    "image": "che.webp",
    "confusable": [
+    "kaiche",
     "chuzuche"
    ]
   },
@@ -621,7 +672,9 @@
    "fr": "pluie",
    "cat": "nature",
    "image": "yu.webp",
-   "confusable": []
+   "confusable": [
+    "yin"
+   ]
   },
   {
    "char": "雪",
@@ -633,7 +686,9 @@
    "fr": "neige",
    "cat": "nature",
    "image": "xue.webp",
-   "confusable": []
+   "confusable": [
+    "leng"
+   ]
   },
   {
    "char": "面包",
@@ -645,7 +700,9 @@
    "fr": "pain",
    "cat": "food",
    "image": "mianbao.webp",
-   "confusable": []
+   "confusable": [
+    "chi"
+   ]
   },
   {
    "char": "飞机",
@@ -669,7 +726,9 @@
    "fr": "riz ; repas",
    "cat": "food",
    "image": "fan.webp",
-   "confusable": []
+   "confusable": [
+    "chi"
+   ]
   },
   {
    "char": "饭店",
@@ -696,6 +755,7 @@
    "cat": "food",
    "image": "jiaozi.webp",
    "confusable": [
+    "chi",
     "baozi"
    ]
   },
@@ -709,6 +769,421 @@
    "fr": "œuf",
    "cat": "food",
    "image": "jidan.webp",
+   "confusable": []
+  },
+  {
+   "char": "吃",
+   "slug": "chi",
+   "pinyin": "Chī",
+   "tone": 1,
+   "freq": 142,
+   "en": "to eat",
+   "fr": "manger",
+   "cat": "food",
+   "image": "chi.webp",
+   "confusable": [
+    "cai",
+    "fan",
+    "kou",
+    "rou",
+    "mian",
+    "baozi",
+    "danji",
+    "jiaozi",
+    "mianbao",
+    "pingguo",
+    "shuiguo"
+   ]
+  },
+  {
+   "char": "喝",
+   "slug": "he",
+   "pinyin": "Hē",
+   "tone": 1,
+   "freq": 428,
+   "en": "to drink",
+   "fr": "boire",
+   "cat": "food",
+   "image": "he.webp",
+   "confusable": [
+    "cha",
+    "shui",
+    "kafei",
+    "naicha",
+    "niunai"
+   ]
+  },
+  {
+   "char": "睡觉",
+   "slug": "shuijiao",
+   "pinyin": "shuì jiào",
+   "tone": 4,
+   "freq": 944,
+   "en": "to sleep",
+   "fr": "dormir",
+   "cat": "home",
+   "image": "shuijiao.webp",
+   "confusable": [
+    "lei",
+    "chuang"
+   ]
+  },
+  {
+   "char": "唱",
+   "slug": "chang",
+   "pinyin": "Chàng",
+   "tone": 4,
+   "freq": 813,
+   "en": "to sing",
+   "fr": "chanter",
+   "cat": "leisure",
+   "image": "chang.webp",
+   "confusable": [
+    "ge",
+    "kou",
+    "shuo"
+   ]
+  },
+  {
+   "char": "写",
+   "slug": "xie",
+   "pinyin": "Xiě",
+   "tone": 3,
+   "freq": 352,
+   "en": "to write",
+   "fr": "écrire",
+   "cat": "school",
+   "image": "xie.webp",
+   "confusable": [
+    "bi",
+    "shu",
+    "benzi"
+   ]
+  },
+  {
+   "char": "看",
+   "slug": "kan",
+   "pinyin": "Kàn",
+   "tone": 4,
+   "freq": 52,
+   "en": "to look; to watch",
+   "fr": "regarder",
+   "cat": "leisure",
+   "image": "kan.webp",
+   "confusable": [
+    "yanjing"
+   ]
+  },
+  {
+   "char": "听",
+   "slug": "ting",
+   "pinyin": "Tīng",
+   "tone": 1,
+   "freq": 190,
+   "en": "to listen",
+   "fr": "écouter",
+   "cat": "leisure",
+   "image": "ting.webp",
+   "confusable": [
+    "dadianhua"
+   ]
+  },
+  {
+   "char": "穿",
+   "slug": "chuan",
+   "pinyin": "Chuān",
+   "tone": 1,
+   "freq": 430,
+   "en": "to wear",
+   "fr": "porter",
+   "cat": "clothes",
+   "image": "chuan.webp",
+   "confusable": [
+    "kuzi",
+    "yifu"
+   ]
+  },
+  {
+   "char": "开车",
+   "slug": "kaiche",
+   "pinyin": "kāi chē",
+   "tone": 1,
+   "freq": 2670,
+   "en": "to drive a car",
+   "fr": "conduire (un véhicule)",
+   "cat": "transport",
+   "image": "kaiche.webp",
+   "confusable": [
+    "che",
+    "chuzuche",
+    "gongjiaoche"
+   ]
+  },
+  {
+   "char": "打电话",
+   "slug": "dadianhua",
+   "pinyin": "dǎ diàn huà",
+   "tone": 4,
+   "freq": 1218,
+   "en": "to make a telephone call",
+   "fr": "téléphoner",
+   "cat": "tech",
+   "image": "dadianhua.webp",
+   "confusable": [
+    "shuo",
+    "ting",
+    "shouji",
+    "dianhua"
+   ]
+  },
+  {
+   "char": "坐",
+   "slug": "zuo",
+   "pinyin": "Zuò",
+   "tone": 4,
+   "freq": 435,
+   "en": "to sit",
+   "fr": "s'asseoir",
+   "cat": "home",
+   "image": "zuo.webp",
+   "confusable": [
+    "yizi"
+   ]
+  },
+  {
+   "char": "口",
+   "slug": "kou",
+   "pinyin": "Kǒu",
+   "tone": 3,
+   "freq": 637,
+   "en": "mouth",
+   "fr": "bouche",
+   "cat": "body",
+   "image": "kou.webp",
+   "confusable": [
+    "chi",
+    "xiao",
+    "chang"
+   ]
+  },
+  {
+   "char": "儿子",
+   "slug": "erzi",
+   "pinyin": "ér zi",
+   "tone": 2,
+   "freq": 665,
+   "en": "son",
+   "fr": "fils",
+   "cat": "people",
+   "image": "erzi.webp",
+   "confusable": [
+    "didi",
+    "gege",
+    "haizi",
+    "nanhair"
+   ]
+  },
+  {
+   "char": "女儿",
+   "slug": "nuer",
+   "pinyin": "nǚ ér",
+   "tone": 2,
+   "freq": 879,
+   "en": "daughter",
+   "fr": "fille",
+   "cat": "people",
+   "image": "nuer.webp",
+   "confusable": [
+    "haizi",
+    "jieji",
+    "meimei",
+    "nühair"
+   ]
+  },
+  {
+   "char": "冷",
+   "slug": "leng",
+   "pinyin": "Lěng",
+   "tone": 3,
+   "freq": 1027,
+   "en": "cold",
+   "fr": "froid",
+   "cat": "nature",
+   "image": "leng.webp",
+   "confusable": [
+    "xue"
+   ]
+  },
+  {
+   "char": "热",
+   "slug": "re",
+   "pinyin": "Rè",
+   "tone": 4,
+   "freq": 938,
+   "en": "hot",
+   "fr": "chaud",
+   "cat": "nature",
+   "image": "re.webp",
+   "confusable": [
+    "qing"
+   ]
+  },
+  {
+   "char": "早上",
+   "slug": "zaoshang",
+   "pinyin": "zǎo shang",
+   "tone": 3,
+   "freq": 1092,
+   "en": "early morning",
+   "fr": "matin",
+   "cat": "nature",
+   "image": "zaoshang.webp",
+   "confusable": [
+    "qing",
+    "tian"
+   ]
+  },
+  {
+   "char": "晚上",
+   "slug": "wanshang",
+   "pinyin": "wǎn shang",
+   "tone": 3,
+   "freq": 502,
+   "en": "evening; at night",
+   "fr": "nuit",
+   "cat": "nature",
+   "image": "wanshang.webp",
+   "confusable": [
+    "yue",
+    "tian"
+   ]
+  },
+  {
+   "char": "公司",
+   "slug": "gongsi",
+   "pinyin": "gōng sī",
+   "tone": 1,
+   "freq": 220,
+   "en": "company; firm",
+   "fr": "société",
+   "cat": "place",
+   "image": "gongsi.webp",
+   "confusable": [
+    "lou",
+    "daxue",
+    "chaoshi"
+   ]
+  },
+  {
+   "char": "说",
+   "slug": "shuo",
+   "pinyin": "shuō",
+   "tone": 1,
+   "freq": 19,
+   "en": "to speak; to say",
+   "fr": "dire",
+   "cat": "leisure",
+   "image": "shuo.webp",
+   "confusable": [
+    "chang",
+    "dadianhua"
+   ]
+  },
+  {
+   "char": "读",
+   "slug": "du",
+   "pinyin": "dú",
+   "tone": 2,
+   "freq": 1013,
+   "en": "to read",
+   "fr": "lire",
+   "cat": "school",
+   "image": "du.webp",
+   "confusable": [
+    "shu",
+    "benzi"
+   ]
+  },
+  {
+   "char": "喜欢",
+   "slug": "xihuan",
+   "pinyin": "xǐ huan",
+   "tone": 3,
+   "freq": 139,
+   "en": "to like",
+   "fr": "aimer",
+   "cat": "people",
+   "image": "xihuan.webp",
+   "confusable": [
+    "ai"
+   ]
+  },
+  {
+   "char": "爱",
+   "slug": "ai",
+   "pinyin": "Ài",
+   "tone": 4,
+   "freq": 130,
+   "en": "to love",
+   "fr": "aimer",
+   "cat": "people",
+   "image": "ai.webp",
+   "confusable": [
+    "hongse",
+    "xihuan"
+   ]
+  },
+  {
+   "char": "白天",
+   "slug": "baitian",
+   "pinyin": "bái tiān",
+   "tone": 1,
+   "freq": 3645,
+   "en": "daytime",
+   "fr": "le jour",
+   "cat": "nature",
+   "image": "baitian.webp",
+   "confusable": [
+    "qing",
+    "tian"
+   ]
+  },
+  {
+   "char": "大家",
+   "slug": "dajia",
+   "pinyin": "dà jiā",
+   "tone": 1,
+   "freq": 189,
+   "en": "everyone",
+   "fr": "tout le monde",
+   "cat": "people",
+   "image": "dajia.webp",
+   "confusable": [
+    "ren"
+   ]
+  },
+  {
+   "char": "上",
+   "slug": "shang",
+   "pinyin": "Shàng",
+   "tone": 4,
+   "freq": 29,
+   "en": "up; on top of",
+   "fr": "sur ; monter",
+   "cat": "position",
+   "image": "shang.webp",
+   "confusable": []
+  },
+  {
+   "char": "下",
+   "slug": "xia",
+   "pinyin": "Xià",
+   "tone": 4,
+   "freq": 70,
+   "en": "down; under",
+   "fr": "sous ; en bas",
+   "cat": "position",
+   "image": "xia.webp",
    "confusable": []
   }
  ]
