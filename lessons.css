@@ -50,15 +50,21 @@
   overflow-y: auto;
   padding-right: 0.2rem;
 }
+.lesson-select {
+  display: none;
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  min-height: 44px;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid rgba(60, 35, 15, 0.25);
+  border-radius: 8px;
+  background: rgba(255, 252, 240, 0.8);
+  color: var(--ink);
+}
 @media (max-width: 860px) {
-  .lesson-list {
-    flex-direction: row;
-    max-height: none;
-    overflow-x: auto;
-    padding-bottom: 0.3rem;
-    scrollbar-width: none;
-  }
-  .lesson-list::-webkit-scrollbar { display: none; }
+  .lesson-list { display: none; }
+  .lesson-select { display: block; }
 }
 .lesson-item {
   display: flex;
