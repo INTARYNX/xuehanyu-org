@@ -30,6 +30,11 @@ const I18N = {
     markReviewed: 'Marquer comme revu',
     markUnreviewed: 'À revoir',
     vocab: 'Vocabulaire de la leçon',
+    grammar: 'Grammaire de la leçon',
+    tagNew: 'Nouveau',
+    tagReuse: 'Nouvel emploi',
+    tagReuseHint: 'Ce mot est déjà apparu dans une leçon précédente, avec un autre emploi.',
+    listenExample: 'Écouter l’exemple',
     home: 'Accueil',
     footerNote: 'Dialogues restreints au vocabulaire HSK 1',
     lines: 'répliques',
@@ -56,6 +61,11 @@ const I18N = {
     markReviewed: 'Mark as reviewed',
     markUnreviewed: 'Needs review',
     vocab: 'Lesson vocabulary',
+    grammar: 'Grammar of the lesson',
+    tagNew: 'New',
+    tagReuse: 'New use',
+    tagReuseHint: 'This word appeared in an earlier lesson, with a different use.',
+    listenExample: 'Listen to the example',
     home: 'Home',
     footerNote: 'Dialogues restricted to HSK 1 vocabulary',
     lines: 'lines',
@@ -81,7 +91,9 @@ const { phrasePinyin } = window.LessonsPinyin;
 // -------------------------------------------------------------------------
 // SPEECH — voir speech.js (voix chinoise du système, message clair si elle manque)
 // -------------------------------------------------------------------------
-const speak = text => Speech.speak(text);
+const speak = (text, opts) => Speech.speak(text, opts);
+/** Fichier audio d'une réplique (voir scripts/build_audio.py). */
+const lineSrc = (lesson, i) => `audio/l/${lesson.id}-${i}.mp3`;
 const stopSpeech = () => Speech.stop();
 
 // -------------------------------------------------------------------------
@@ -89,10 +101,12 @@ const stopSpeech = () => Speech.stop();
 // -------------------------------------------------------------------------
 const LESSONS_URL = 'lessons/hsk1.json';
 const VOCAB_URL   = 'lessons/hsk1-vocab.json';
+const GRAMMAR_URL = 'lessons/hsk1-grammar.json';
 const STORE_KEY   = 'xuehanyu.lessons.v1';
 
 let LESSONS = [];
 let VOCAB = {};
+let GRAMMAR = [];
 let currentLesson = 0;
 let showPinyin = true;
 let showTrans = true;
@@ -121,6 +135,7 @@ function saveReviewed() {
 const lessonList = document.getElementById('lessonList');
 const dialogue   = document.getElementById('dialogue');
 const vocabBox   = document.getElementById('vocab');
+const grammarBox = document.getElementById('grammar');
 const lessonSelect = document.getElementById('lessonSelect');
 lessonSelect.addEventListener('change', () => selectLesson(Number(lessonSelect.value)));
 
@@ -175,7 +190,10 @@ function renderDialogue() {
     </div>`).join('');
 
   dialogue.querySelectorAll('[data-speak]').forEach(b =>
-    b.addEventListener('click', () => { stopSpeech(); speak(LESSONS[currentLesson].exchanges[Number(b.dataset.speak)].hanzi); }));
+    b.addEventListener('click', () => {
+      const lesson = LESSONS[currentLesson], i = Number(b.dataset.speak);
+      speak(lesson.exchanges[i].hanzi, { src: lineSrc(lesson, i) });
+    }));
   dialogue.querySelectorAll('.chip').forEach(c =>
     c.addEventListener('mouseenter', ev => showWordPop(ev, c.dataset.w)));
   dialogue.querySelectorAll('.chip').forEach(c =>
@@ -202,6 +220,65 @@ function renderVocab() {
   }
   vocabBox.innerHTML = `<div class="lesson-vocab-title">${t('vocab')}</div>
     <div class="vocab-grid">${items.join('')}</div>`;
+}
+
+// -------------------------------------------------------------------------
+// GRAMMAIRE — les points de la leçon, avec une phrase du dialogue pour exemple
+// Données : lessons/hsk1-grammar.json (chaque exemple est vérifié par les tests : la phrase existe bien dans la leçon).
+// « Nouveau » = aucune leçon précédente ne contient la construction ; sinon « Nouvel emploi ».
+// -------------------------------------------------------------------------
+/** Le mot-clé du point (regex `rx`) apparaît-il dans une leçon précédente ? null si le point n'a pas de repère. */
+function grammarSeenBefore(point, lessonIndex) {
+  if (!point.rx) return null;
+  const rx = new RegExp(point.rx);
+  return LESSONS.slice(0, lessonIndex).some(l => l.exchanges.some(e => rx.test(e.hanzi)));
+}
+
+/** La phrase avec la partie étudiée en évidence (échappée : le balisage est le nôtre). */
+function highlightMark(hanzi, mark) {
+  const i = hanzi.indexOf(mark);
+  if (!mark || i < 0) return esc(hanzi);
+  return esc(hanzi.slice(0, i)) + '<mark>' + esc(mark) + '</mark>' + esc(hanzi.slice(i + mark.length));
+}
+
+function renderGrammar() {
+  const lesson = LESSONS[currentLesson];
+  const points = lesson ? GRAMMAR.filter(p => p.lesson === lesson.id) : [];
+  grammarBox.hidden = points.length === 0;
+  if (!points.length) { grammarBox.innerHTML = ''; return; }
+  grammarBox.innerHTML = `<div class="lesson-grammar-title" id="grammarTitle">${t('grammar')} <span class="count">${points.length}</span></div>
+    <div class="grammar-list">${points.map(p => {
+      const e = lesson.exchanges[p.line];
+      const seen = grammarSeenBefore(p, currentLesson);
+      const tag = seen === null ? '' : seen
+        ? `<span class="gp-tag reuse" title="${esc(t('tagReuseHint'))}">${t('tagReuse')}</span>`
+        : `<span class="gp-tag new">${t('tagNew')}</span>`;
+      return `<article class="gp" data-gp="${esc(p.id)}">
+        <div class="gp-head"><span class="gp-pattern" lang="zh">${esc(p.pattern)}</span>${tag}</div>
+        <h3 class="gp-title">${esc(p.title[lang])}</h3>
+        <p class="gp-text">${esc(p.text[lang])}</p>
+        <button type="button" class="gp-example" data-line="${p.line}" aria-label="${esc(t('listenExample'))}">
+          <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+          <span class="gp-ex-body">
+            <span class="gp-hanzi" lang="zh">${highlightMark(e.hanzi, p.mark)}</span>
+            <span class="gp-pinyin${showPinyin ? '' : ' hidden'}">${esc(phrasePinyin(e.pinyin))}</span>
+            <span class="gp-tr${showTrans ? '' : ' hidden'}">${esc(e[lang])}</span>
+          </span>
+        </button>
+      </article>`;
+    }).join('')}</div>`;
+
+  grammarBox.querySelectorAll('.gp-example').forEach(b => b.addEventListener('click', () => {
+    const i = Number(b.dataset.line);
+    speak(lesson.exchanges[i].hanzi, { src: lineSrc(lesson, i) });
+    // la même réplique dans le dialogue, brièvement en évidence
+    dialogue.querySelectorAll('.exchange.speaking').forEach(el => el.classList.remove('speaking'));
+    const row = dialogue.querySelector(`.exchange[data-i="${i}"]`);
+    if (row) {
+      row.classList.add('speaking');
+      setTimeout(() => row.classList.remove('speaking'), 2200);
+    }
+  }));
 }
 
 // -------------------------------------------------------------------------
@@ -240,6 +317,7 @@ function selectLesson(i) {
   updatePlayButton();
   renderList();
   renderDialogue();
+  renderGrammar();
   renderVocab();
   updateReviewButton();
 }
@@ -265,7 +343,7 @@ async function playConversation() {
       row.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
     // wait for the voice to finish, then a short beat, before moving on and scrolling
-    const spoken = await speak(lines[i].hanzi);
+    const spoken = await speak(lines[i].hanzi, { src: lineSrc(LESSONS[currentLesson], i) });
     if (token !== playToken) return;
     if (spoken === 'no-voice') { stopPlayback(); return; }   // inutile de dérouler tout le dialogue en silence
     await new Promise(r => setTimeout(r, 450));
@@ -327,6 +405,7 @@ function setLang(l) {
   document.getElementById('footerNote').textContent = t('footerNote');
   renderList();
   renderDialogue();
+  renderGrammar();
   renderVocab();
   updateReviewButton();
 }
@@ -337,12 +416,14 @@ function setLang(l) {
 async function init() {
   loadReviewed();
   try {
-    const [lr, vr] = await Promise.all([
+    const [lr, vr, gr] = await Promise.all([
       fetch(LESSONS_URL).then(r => r.json()),
       fetch(VOCAB_URL).then(r => r.json()),
+      fetch(GRAMMAR_URL).then(r => r.json()).catch(() => ({ points: [] })),   // la grammaire est un plus : sans elle, la leçon reste complète
     ]);
     LESSONS = lr.lessons || [];
     VOCAB = vr.words || {};
+    GRAMMAR = gr.points || [];
     document.getElementById('lessonVersion').textContent =
       `${LESSONS.length} ${t('lessons')} · ${Object.keys(VOCAB).length} ${t('words')} HSK 1`;
   } catch (err) {
@@ -354,6 +435,7 @@ async function init() {
   if (start > 0) currentLesson = start;
   renderList();
   renderDialogue();
+  renderGrammar();
   renderVocab();
   updateReviewButton();
 }
@@ -367,12 +449,14 @@ document.getElementById('btnPinyin').addEventListener('click', e => {
   e.currentTarget.classList.toggle('active', showPinyin);
   e.currentTarget.setAttribute('aria-pressed', showPinyin);
   renderDialogue();
+  renderGrammar();
 });
 document.getElementById('btnTrans').addEventListener('click', e => {
   showTrans = !showTrans;
   e.currentTarget.classList.toggle('active', showTrans);
   e.currentTarget.setAttribute('aria-pressed', showTrans);
   renderDialogue();
+  renderGrammar();
 });
 document.getElementById('btnPlay').addEventListener('click', playConversation);
 document.getElementById('btnReview').addEventListener('click', toggleReviewed);

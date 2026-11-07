@@ -67,27 +67,31 @@ const Speech = (() => {
     return 'other';
   }
 
-  return { isChinese, pickVoice, verdict, platformOf, T };
+  /** Nom de fichier d'un mot : ses codepoints en hexadécimal, séparés par « - » (爱 -> 7231). Même règle que scripts/build_audio.py. */
+  const audioKey = text => [...String(text)].map(c => c.codePointAt(0).toString(16)).join('-');
+
+  return { isChinese, pickVoice, verdict, platformOf, audioKey, T };
 })();
 
 if (typeof module !== 'undefined' && module.exports) module.exports = Speech;
 
 // ------------------------------------------------------------------ navigateur
-if (typeof window !== 'undefined' && typeof document !== 'undefined' && 'speechSynthesis' in window) (() => {
-  const synth = window.speechSynthesis;
+if (typeof window !== 'undefined' && typeof document !== 'undefined') (() => {
+  const synth = window.speechSynthesis || null;     // absente de certains navigateurs : les fichiers audio marchent quand même
   let unlocked = false;
 
   // iOS : la synthèse refuse de parler avant un premier geste de l'utilisateur ; on la déverrouille.
   function unlock() {
     if (unlocked) return;
     unlocked = true;
-    try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; synth.speak(u); } catch {}
+    try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; synth.speak(u); } catch {}   // (sans synth : exception, ignorée)
   }
   ['pointerdown', 'touchstart', 'keydown'].forEach(ev => document.addEventListener(ev, unlock, { once: true, passive: true }));
 
   /** Les voix arrivent parfois tard (Chrome) : on attend l'événement, avec un filet. */
   function voices() {
     return new Promise(resolve => {
+      if (!synth) return resolve([]);
       const now = synth.getVoices();
       if (now.length) return resolve(now);
       let done = false;
@@ -113,12 +117,55 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined' && 'speechS
     document.body.appendChild(notice);
   }
 
+  // ---- fichiers audio (voix Kokoro, voir scripts/build_audio.py) : lus en priorité -------------------
+  // Un seul élément <audio> réutilisé : sur iOS, il n'est autorisé à jouer qu'après avoir été « débloqué »
+  // par un geste, puis il peut enchaîner les lectures (quiz, dialogues) sans nouveau geste.
+  const player = new Audio();
+  const SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+  ['pointerdown', 'touchstart', 'keydown'].forEach(ev => document.addEventListener(ev, () => {
+    if (player.dataset.unlocked) return;
+    player.dataset.unlocked = '1';
+    try { player.src = SILENCE; const p = player.play(); if (p && p.catch) p.catch(() => {}); } catch {}
+  }, { once: true, passive: true }));
+
+  let words = null;                       // mots disponibles en audio (audio/index.json)
+  const indexReady = fetch('audio/index.json').then(r => (r.ok ? r.json() : null))
+    .then(j => { if (j && Array.isArray(j.words)) words = new Set(j.words); }).catch(() => {});
+
+  const wordSrc = text => (words && words.has(Speech.audioKey(text)) ? `audio/w/${Speech.audioKey(text)}.mp3` : null);
+
+  let cancelAudio = null;                 // coupe la lecture en cours et résout sa promesse
+  async function playFile(src) {
+    // fetch + blob (et non src=URL) : le service worker met le fichier en cache sans souci de requêtes « Range » (Safari)
+    const res = await fetch(src);
+    if (!res.ok) throw new Error('audio ' + res.status);
+    const url = URL.createObjectURL(await res.blob());
+    try {
+      return await new Promise((resolve, reject) => {
+        cancelAudio = () => { try { player.pause(); } catch {} resolve('stopped'); };
+        player.onended = () => resolve('spoken');
+        player.onerror = () => reject(new Error('audio'));
+        player.src = url;
+        const p = player.play();
+        if (p && p.catch) p.catch(reject);
+      });
+    } finally { cancelAudio = null; URL.revokeObjectURL(url); }
+  }
+
   /**
-   * Prononce `text`. La promesse se résout quand la voix a fini (ou échoué) :
-   * 'spoken' | 'no-voice' | 'error'. Un navigateur qui ne déclenche jamais `end` est coupé par un
-   * délai proportionnel à la longueur du texte.
+   * Prononce `text`. Le fichier audio d'abord (`src`, ou celui du mot s'il existe), puis la voix du système.
+   * La promesse se résout à la fin de la lecture : 'spoken' | 'stopped' | 'no-voice' | 'error'.
    */
-  async function speak(text, { rate = 0.8 } = {}) {
+  async function speak(text, { rate = 0.8, src = null } = {}) {
+    stop();
+    if (!src) { await Promise.race([indexReady, new Promise(r => setTimeout(r, 600))]); src = wordSrc(text); }
+    if (src) { try { return await playFile(src); } catch { /* fichier absent ou illisible : voix du système */ } }
+    return speakWithSystemVoice(text, rate);
+  }
+
+  /** La voix chinoise du système ; un message explique quand il n'y en a pas. */
+  async function speakWithSystemVoice(text, rate) {
+    if (!synth) { showNotice(); return 'no-voice'; }
     const list = await voices();
     const v = Speech.verdict(list);
     if (v === 'none') { showNotice(); return 'no-voice'; }
@@ -140,8 +187,11 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined' && 'speechS
     });
   }
 
-  /** Coupe toute lecture en cours. */
-  function stop() { try { synth.cancel(); } catch {} }
+  /** Coupe toute lecture en cours (fichier ou voix du système). */
+  function stop() {
+    if (cancelAudio) cancelAudio();
+    try { if (synth) synth.cancel(); } catch {}
+  }
 
   window.Speech = Object.assign(Speech, { speak, stop });
 })();

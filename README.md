@@ -37,6 +37,10 @@ python3 -m http.server 8080
 node scripts/build-seo.mjs     # mot/*.html, vocabulaire-hsk-N.html, sitemap-mots.xml (git-ignored, rebuilt by deploy.ps1)
 ```
 
+## Audio
+
+Pronunciation plays pre-recorded files first (`audio/l/` lesson lines, `audio/w/` HSK 1–2 words) and falls back to the system's Chinese voice, which many Windows and Linux PCs lack. The files are generated locally, without any account or key, by `scripts/build_audio.py` with [Kokoro v1.1-zh](https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh) (Apache-2.0 weights, Chinese data granted permissively by LongMaoData). See `audio/NOTICE.txt`.
+
 ## Reminders backend
 
 `server/push_server.py` (Python 3.12, `pywebpush`, SQLite) serves `/api/push/*` behind nginx and sends the daily reminder. `scripts/deploy-push.ps1` installs it on the server. Tests: `cd server && python -m unittest test_push_server`.

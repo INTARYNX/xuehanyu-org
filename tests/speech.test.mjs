@@ -51,3 +51,9 @@ test('the help text matches the system', () => {
 test('every French message has an English counterpart', () => {
   assert.deepEqual(Object.keys(Speech.T.fr).sort(), Object.keys(Speech.T.en).sort());
 });
+
+test('audioKey names a word file by its codepoints (same rule as scripts/build_audio.py)', () => {
+  assert.equal(Speech.audioKey('爱'), '7231');
+  assert.equal(Speech.audioKey('你好'), '4f60-597d');
+  assert.equal(Speech.audioKey('𠮷'), '20bb7');           // beyond the BMP: one codepoint, not two surrogates
+});

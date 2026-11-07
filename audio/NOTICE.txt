@@ -1,0 +1,8 @@
+Audio of xuehanyu.org (audio/l/*.mp3 lesson lines, audio/w/*.mp3 words)
+
+Generated with Kokoro v1.1-zh (hexgrad), https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh
+  - model weights: Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+  - Chinese training data: freely and permissively granted by LongMaoData (see the model card)
+Voices used: zf_003 (speaker A, words) and zm_012 (speaker B).
+
+The files are produced by scripts/build_audio.py. The audio itself is released under the same terms as the rest of the site.

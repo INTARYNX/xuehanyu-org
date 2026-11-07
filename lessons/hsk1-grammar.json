@@ -1,0 +1,1430 @@
+{
+ "version": 1,
+ "level": 1,
+ "points": [
+  {
+   "id": "shi",
+   "lesson": "presentation",
+   "pattern": "A 是 B",
+   "title": {
+    "fr": "是 : être",
+    "en": "是: to be"
+   },
+   "text": {
+    "fr": "« 是 » relie deux noms : A est B. On ne l'emploie pas devant un adjectif (on dit 我很高兴, pas 我是高兴).",
+    "en": "“是” links two nouns: A is B. It is not used before an adjective (say 我很高兴, not 我是高兴)."
+   },
+   "line": 2,
+   "mark": "我是老师",
+   "rx": "是"
+  },
+  {
+   "id": "hen",
+   "lesson": "presentation",
+   "pattern": "很 + adj.",
+   "title": {
+    "fr": "很 devant un adjectif",
+    "en": "很 before an adjective"
+   },
+   "text": {
+    "fr": "Un adjectif attribut est le plus souvent précédé de 很. Ici le sens est faible : 很高兴 = content, pas forcément « très ».",
+    "en": "A predicate adjective usually takes 很 in front of it. The meaning is weak here: 很高兴 = happy, not necessarily “very”."
+   },
+   "line": 0,
+   "mark": "很高兴",
+   "rx": "很"
+  },
+  {
+   "id": "ma",
+   "lesson": "presentation",
+   "pattern": "… 吗 ？",
+   "title": {
+    "fr": "Question oui/non avec 吗",
+    "en": "Yes/no questions with 吗"
+   },
+   "text": {
+    "fr": "Ajoutez 吗 à la fin d'une phrase affirmative pour poser une question oui/non. On répond avec le verbe (是) ou 不 + verbe.",
+    "en": "Add 吗 to the end of a statement to ask a yes/no question. Answer with the verb (是) or 不 + verb."
+   },
+   "line": 7,
+   "mark": "你也是学生吗",
+   "rx": "吗"
+  },
+  {
+   "id": "ye",
+   "lesson": "presentation",
+   "pattern": "也 + verbe",
+   "title": {
+    "fr": "也 : aussi",
+    "en": "也: also"
+   },
+   "text": {
+    "fr": "« 也 » se place toujours devant le verbe ou l'adjectif, jamais en fin de phrase comme « aussi » en français.",
+    "en": "“也” always goes before the verb or adjective, never at the end of the sentence like “too”."
+   },
+   "line": 1,
+   "mark": "我也很高兴",
+   "rx": "也"
+  },
+  {
+   "id": "ne",
+   "lesson": "presentation",
+   "pattern": "X 呢 ？",
+   "title": {
+    "fr": "呢 : et toi ?",
+    "en": "呢: and you?"
+   },
+   "text": {
+    "fr": "呢 reprend la question précédente pour un autre sujet : 你呢 ? = Et toi ?",
+    "en": "呢 repeats the previous question for a new subject: 你呢? = And you?"
+   },
+   "line": 2,
+   "mark": "你呢",
+   "rx": "呢"
+  },
+  {
+   "id": "zai_v",
+   "lesson": "presentation",
+   "pattern": "在 + lieu + verbe",
+   "title": {
+    "fr": "Le lieu avant le verbe",
+    "en": "The place before the verb"
+   },
+   "text": {
+    "fr": "Le lieu de l'action se place AVANT le verbe : 我在大学学习 (je à l'université étudie).",
+    "en": "The place of an action goes BEFORE the verb: 我在大学学习 (I at university study)."
+   },
+   "line": 3,
+   "mark": "在大学学习",
+   "rx": "在[^那这哪]"
+  },
+  {
+   "id": "men",
+   "lesson": "presentation",
+   "pattern": "pronom + 们",
+   "title": {
+    "fr": "们 : le pluriel des personnes",
+    "en": "们: the plural of people"
+   },
+   "text": {
+    "fr": "们 met au pluriel les pronoms (我们, 你们, 他们) et certains noms de personnes, jamais les choses.",
+    "en": "们 makes pronouns plural (我们, 你们, 他们) and some nouns for people, never things."
+   },
+   "line": 9,
+   "mark": "我们学习",
+   "rx": "[我你他她]们"
+  },
+  {
+   "id": "yao",
+   "lesson": "restaurant",
+   "pattern": "要 + nom / verbe",
+   "title": {
+    "fr": "要 : vouloir, prendre",
+    "en": "要: to want, to order"
+   },
+   "text": {
+    "fr": "要 + nom = vouloir, prendre (en commandant) : 我要米饭, je prends du riz. Devant un verbe : vouloir faire.",
+    "en": "要 + noun = to want, to order: 我要米饭, I'll have rice. Before a verb: to want to do."
+   },
+   "line": 1,
+   "mark": "我要米饭",
+   "rx": "要"
+  },
+  {
+   "id": "bu",
+   "lesson": "restaurant",
+   "pattern": "不 + verbe / adj.",
+   "title": {
+    "fr": "不 : ne … pas",
+    "en": "不: not"
+   },
+   "text": {
+    "fr": "不 nie un verbe ou un adjectif, juste devant lui : 不要, 不贵. Il nie le présent ou l'habitude.",
+    "en": "不 negates a verb or an adjective, right in front of it: 不要, 不贵. It negates the present or a habit."
+   },
+   "line": 3,
+   "mark": "不要米饭",
+   "rx": "不"
+  },
+  {
+   "id": "taile",
+   "lesson": "restaurant",
+   "pattern": "太 + adj. + 了",
+   "title": {
+    "fr": "太…了 : trop",
+    "en": "太…了: too, so"
+   },
+   "text": {
+    "fr": "太…了 = trop, tellement : 太贵了 ! (trop cher !). C'est souvent une exclamation.",
+    "en": "太…了 = too, so: 太贵了! (too expensive!). It is often an exclamation."
+   },
+   "line": 8,
+   "mark": "太贵了",
+   "rx": "太.*了"
+  },
+  {
+   "id": "he",
+   "lesson": "restaurant",
+   "pattern": "A 和 B",
+   "title": {
+    "fr": "和 : et",
+    "en": "和: and"
+   },
+   "text": {
+    "fr": "和 relie deux noms (pas deux verbes ni deux phrases) : 米饭和鸡蛋.",
+    "en": "和 joins two nouns (not two verbs or two sentences): 米饭和鸡蛋."
+   },
+   "line": 1,
+   "mark": "米饭和鸡蛋",
+   "rx": "和"
+  },
+  {
+   "id": "xiang",
+   "lesson": "shopping",
+   "pattern": "想 + verbe",
+   "title": {
+    "fr": "想 : avoir envie de",
+    "en": "想: to want, to feel like"
+   },
+   "text": {
+    "fr": "想 = avoir envie de, vouloir (plus doux que 要) : 我想去超市, j'aimerais aller au supermarché.",
+    "en": "想 = to want, to feel like (softer than 要): 我想去超市, I'd like to go to the supermarket."
+   },
+   "line": 0,
+   "mark": "我想去超市",
+   "rx": "想"
+  },
+  {
+   "id": "you",
+   "lesson": "shopping",
+   "pattern": "有 + nom",
+   "title": {
+    "fr": "有 : avoir, il y a",
+    "en": "有: to have, there is"
+   },
+   "text": {
+    "fr": "有 = avoir, il y a. Question : 有…吗 ? 有便宜的吗 ? = Y en a-t-il de moins cher ? Après un adjectif, 的 remplace le nom : 便宜的 = un(e) moins cher(ère).",
+    "en": "有 = to have, there is. Question: 有…吗? 有便宜的吗? = Is there a cheaper one? After an adjective, 的 stands for the noun: 便宜的 = a cheaper one."
+   },
+   "line": 7,
+   "mark": "有便宜的吗",
+   "rx": "有"
+  },
+  {
+   "id": "ge",
+   "lesson": "shopping",
+   "pattern": "nombre + 个 + nom",
+   "title": {
+    "fr": "个 : le classificateur par défaut",
+    "en": "个: the default measure word"
+   },
+   "text": {
+    "fr": "Entre un nombre (ou 这/那) et un nom, il faut un classificateur. 个 est le plus courant : 这个, 两个.",
+    "en": "Between a number (or 这/那) and a noun a measure word is needed. 个 is the most common: 这个, 两个."
+   },
+   "line": 9,
+   "mark": "我要两个",
+   "rx": "[两三四五六七八九十这那哪]个"
+  },
+  {
+   "id": "liang",
+   "lesson": "shopping",
+   "pattern": "两 + classificateur",
+   "title": {
+    "fr": "两 et 二",
+    "en": "两 and 二"
+   },
+   "text": {
+    "fr": "Devant un classificateur, « deux » se dit 两 : 两块, 两个. 二 sert pour compter et dans les nombres (二十).",
+    "en": "Before a measure word, “two” is 两: 两块, 两个. 二 is for counting and inside numbers (二十)."
+   },
+   "line": 8,
+   "mark": "这个两块",
+   "rx": "两"
+  },
+  {
+   "id": "zai_loc",
+   "lesson": "street",
+   "pattern": "X 在 lieu",
+   "title": {
+    "fr": "在 : être situé",
+    "en": "在: to be located"
+   },
+   "text": {
+    "fr": "在 = être situé à. 电影院在那边 : le cinéma est là-bas.",
+    "en": "在 = to be located at. 电影院在那边: the cinema is over there."
+   },
+   "line": 1,
+   "mark": "在那边",
+   "rx": "在[那这哪]"
+  },
+  {
+   "id": "nar",
+   "lesson": "street",
+   "pattern": "mot interrogatif",
+   "title": {
+    "fr": "Où ? Qui ? Quoi ?",
+    "en": "Where? Who? What?"
+   },
+   "text": {
+    "fr": "Le mot interrogatif prend la place de l'information cherchée, sans changer l'ordre : 在哪儿 ? (où ?) – 在那边. On n'ajoute pas 吗.",
+    "en": "The question word takes the place of the missing information, with no change of order: 在哪儿? (where?) – 在那边. No 吗 is added."
+   },
+   "line": 0,
+   "mark": "在哪儿",
+   "rx": "哪[儿里]"
+  },
+  {
+   "id": "zenme",
+   "lesson": "street",
+   "pattern": "怎么 + verbe",
+   "title": {
+    "fr": "怎么 : comment",
+    "en": "怎么: how"
+   },
+   "text": {
+    "fr": "怎么 + verbe = comment faire cela ? 怎么去 ? = Comment y aller ?",
+    "en": "怎么 + verb = how do you do it? 怎么去? = How do I get there?"
+   },
+   "line": 2,
+   "mark": "怎么去",
+   "rx": "怎么[^样了]"
+  },
+  {
+   "id": "zuo",
+   "lesson": "street",
+   "pattern": "坐 + moyen + 去",
+   "title": {
+    "fr": "Y aller en…",
+    "en": "Going by…"
+   },
+   "text": {
+    "fr": "Pour dire « y aller en … », on met le moyen de transport devant 去 : 坐出租车去 (prendre un taxi y aller).",
+    "en": "To say “go by …”, put the means of transport before 去: 坐出租车去 (take a taxi go)."
+   },
+   "line": 3,
+   "mark": "坐出租车去",
+   "rx": "坐"
+  },
+  {
+   "id": "time",
+   "lesson": "work",
+   "pattern": "temps + verbe",
+   "title": {
+    "fr": "L'heure avant le verbe",
+    "en": "Time before the verb"
+   },
+   "text": {
+    "fr": "Les mots de temps (八点, 早上, 明天) se placent avant le verbe : 我八点上班 (je à huit heures commence le travail). 几点 ? = quelle heure ?",
+    "en": "Time words (八点, 早上, 明天) go before the verb: 我八点上班 (I at eight start work). 几点? = what time?"
+   },
+   "line": 3,
+   "mark": "我八点上班",
+   "rx": "[零一二三四五六七八九十几两]点"
+  },
+  {
+   "id": "yaole",
+   "lesson": "work",
+   "pattern": "要 … 了",
+   "title": {
+    "fr": "要…了 : bientôt",
+    "en": "要…了: about to"
+   },
+   "text": {
+    "fr": "要…了 = sur le point de, bientôt : 我要休息了 (je vais me reposer).",
+    "en": "要…了 = about to, soon: 我要休息了 (I'm going to rest)."
+   },
+   "line": 8,
+   "mark": "我要休息了",
+   "rx": "要.*了"
+  },
+  {
+   "id": "de",
+   "lesson": "work",
+   "pattern": "A 的 B",
+   "title": {
+    "fr": "的 : possession",
+    "en": "的: possession"
+   },
+   "text": {
+    "fr": "的 relie le possesseur ou le qualificatif au nom : 你的工作 (ton travail).",
+    "en": "的 links the owner or a qualifier to the noun: 你的工作 (your job)."
+   },
+   "line": 6,
+   "mark": "你的工作",
+   "rx": "[你我他她们]的[^。？！]"
+  },
+  {
+   "id": "shang",
+   "lesson": "work",
+   "pattern": "上 + 班 / 课 / 学",
+   "title": {
+    "fr": "上 : aller au travail, en cours",
+    "en": "上: to go to work, to class"
+   },
+   "text": {
+    "fr": "上 + activité = commencer ou suivre : 上班 (aller travailler), 上课 (aller en cours), 上学 (aller à l'école).",
+    "en": "上 + activity = to start or attend: 上班 (go to work), 上课 (go to class), 上学 (go to school)."
+   },
+   "line": 2,
+   "mark": "去上班",
+   "rx": "上[班课学]"
+  },
+  {
+   "id": "dou",
+   "lesson": "family",
+   "pattern": "sujet + 都",
+   "title": {
+    "fr": "都 : tous",
+    "en": "都: all"
+   },
+   "text": {
+    "fr": "都 = tous, tous les deux : il se place devant le verbe ou l'adjectif et renvoie à un sujet pluriel : 你们家人都好吗 ?",
+    "en": "都 = all, both: it goes before the verb or adjective and refers to a plural subject: 你们家人都好吗?"
+   },
+   "line": 10,
+   "mark": "你们家人都好",
+   "rx": "都"
+  },
+  {
+   "id": "kin",
+   "lesson": "family",
+   "pattern": "我 + proche",
+   "title": {
+    "fr": "Pas de 的 devant un proche",
+    "en": "No 的 before a relative"
+   },
+   "text": {
+    "fr": "Entre un possessif et un proche, on omet souvent 的 : 我哥哥, 我姐姐, 我爸爸.",
+    "en": "Between a possessive and a close relative, 的 is often left out: 我哥哥, 我姐姐, 我爸爸."
+   },
+   "line": 5,
+   "mark": "我哥哥",
+   "rx": "[我你他她][哥姐爸妈弟妹]"
+  },
+  {
+   "id": "nounpred",
+   "lesson": "family",
+   "pattern": "nombre + nom",
+   "title": {
+    "fr": "Un nombre sans 是",
+    "en": "A number without 是"
+   },
+   "text": {
+    "fr": "Avec un nombre, un âge ou une date, 是 peut disparaître : 三口人 (trois personnes), 二十号, 三十岁.",
+    "en": "With a number, an age or a date, 是 can disappear: 三口人 (three people), 二十号, 三十岁."
+   },
+   "line": 1,
+   "mark": "三口人",
+   "rx": "[二三四五六七八九十]口人|[一二三四五六七八九十]+号|[三二四五六七八九十]+岁"
+  },
+  {
+   "id": "mei",
+   "lesson": "weather",
+   "pattern": "没(有) + verbe",
+   "title": {
+    "fr": "没有 : ne pas",
+    "en": "没有: not"
+   },
+   "text": {
+    "fr": "没有 nie 有 (我没有弟弟) et nie un fait réel : 没有下雨 = il ne pleut pas, il n'a pas plu. On ne dit jamais 不有.",
+    "en": "没有 negates 有 (我没有弟弟) and a real event: 没有下雨 = it is not raining, it did not rain. Never 不有."
+   },
+   "line": 1,
+   "mark": "没有下雨",
+   "rx": "没"
+  },
+  {
+   "id": "zenmeyang",
+   "lesson": "weather",
+   "pattern": "怎么样 ？",
+   "title": {
+    "fr": "怎么样 : comment est-ce ?",
+    "en": "怎么样: how is it?"
+   },
+   "text": {
+    "fr": "怎么样 ? = comment est-ce, comment ça va ? 今天天气怎么样 ? = Quel temps fait-il aujourd'hui ?",
+    "en": "怎么样? = how is it, how about it? 今天天气怎么样? = What's the weather like today?"
+   },
+   "line": 0,
+   "mark": "怎么样",
+   "rx": "怎么样"
+  },
+  {
+   "id": "he2",
+   "lesson": "weather",
+   "pattern": "和 + personne + verbe",
+   "title": {
+    "fr": "和 : avec",
+    "en": "和: with"
+   },
+   "text": {
+    "fr": "和 + personne + verbe = faire quelque chose avec quelqu'un : 我和朋友去看电影 (je avec un ami vais voir un film).",
+    "en": "和 + person + verb = to do something with someone: 我和朋友去看电影 (I with a friend go see a film)."
+   },
+   "line": 5,
+   "mark": "我和朋友去",
+   "rx": "[我你他她们]和[^，。？！]{1,3}[去来做吃看]"
+  },
+  {
+   "id": "qu",
+   "lesson": "weather",
+   "pattern": "去 + verbe",
+   "title": {
+    "fr": "去 : aller faire",
+    "en": "去: to go and do"
+   },
+   "text": {
+    "fr": "去 + verbe = aller faire : 去看电影. Le premier verbe donne le but, pas besoin de « pour ».",
+    "en": "去 + verb = to go and do: 去看电影. The first verb gives the purpose, no “to” needed."
+   },
+   "line": 5,
+   "mark": "去看电影",
+   "rx": "去[看买吃做打玩]"
+  },
+  {
+   "id": "le",
+   "lesson": "health",
+   "pattern": "… 了 (état nouveau)",
+   "title": {
+    "fr": "了 : un état nouveau",
+    "en": "了: a new state"
+   },
+   "text": {
+    "fr": "了 en fin de phrase signale un état nouveau : 我生病了 (je suis tombé malade), 你怎么了 ? (que t'arrive-t-il ?).",
+    "en": "了 at the end of a sentence signals a new state: 我生病了 (I've fallen ill), 你怎么了? (what's wrong?)."
+   },
+   "line": 1,
+   "mark": "我生病了",
+   "rx": "[病好冷雨累忙]了|怎么了"
+  },
+  {
+   "id": "yixie",
+   "lesson": "health",
+   "pattern": "adj. + 一些 / 多了",
+   "title": {
+    "fr": "好一些, 好多了",
+    "en": "好一些, 好多了"
+   },
+   "text": {
+    "fr": "好一些 = un peu mieux ; 好多了 = bien mieux. Pas besoin de 比 quand on compare avec avant.",
+    "en": "好一些 = a bit better; 好多了 = much better. No 比 is needed when comparing with before."
+   },
+   "line": 6,
+   "mark": "好一些了",
+   "rx": "好一些|好多了"
+  },
+  {
+   "id": "haohao",
+   "lesson": "health",
+   "pattern": "好好 + verbe",
+   "title": {
+    "fr": "好好 : bien, sérieusement",
+    "en": "好好: properly, seriously"
+   },
+   "text": {
+    "fr": "好好 + verbe = bien, sérieusement : 好好休息 (repose-toi bien).",
+    "en": "好好 + verb = properly, seriously: 好好休息 (get a good rest)."
+   },
+   "line": 8,
+   "mark": "好好休息",
+   "rx": "好好"
+  },
+  {
+   "id": "yao2",
+   "lesson": "health",
+   "pattern": "要 = devoir",
+   "title": {
+    "fr": "要 : devoir, falloir",
+    "en": "要: must, need to"
+   },
+   "text": {
+    "fr": "要 peut aussi vouloir dire devoir, falloir : 我要看医生 (je dois voir un médecin), 你要好好休息.",
+    "en": "要 can also mean must, need to: 我要看医生 (I need to see a doctor), 你要好好休息."
+   },
+   "line": 3,
+   "mark": "我要看医生",
+   "rx": "要"
+  },
+  {
+   "id": "xihuan",
+   "lesson": "leisure",
+   "pattern": "喜欢 + verbe",
+   "title": {
+    "fr": "喜欢 : aimer faire",
+    "en": "喜欢: to like doing"
+   },
+   "text": {
+    "fr": "喜欢 + verbe = aimer faire : 喜欢唱歌. Aussi 喜欢 + nom.",
+    "en": "喜欢 + verb = to like doing: 喜欢唱歌. Also 喜欢 + noun."
+   },
+   "line": 1,
+   "mark": "我喜欢唱歌",
+   "rx": "喜欢[唱看听做读写玩]"
+  },
+  {
+   "id": "feichang",
+   "lesson": "leisure",
+   "pattern": "非常 + adj.",
+   "title": {
+    "fr": "非常 : extrêmement",
+    "en": "非常: extremely"
+   },
+   "text": {
+    "fr": "非常 = extrêmement, plus fort que 很 : 非常好.",
+    "en": "非常 = extremely, stronger than 很: 非常好."
+   },
+   "line": 8,
+   "mark": "非常好",
+   "rx": "非常"
+  },
+  {
+   "id": "ellipsis",
+   "lesson": "leisure",
+   "pattern": "réponse = verbe",
+   "title": {
+    "fr": "Répondre par le verbe",
+    "en": "Answering with the verb"
+   },
+   "text": {
+    "fr": "On répond souvent en répétant le verbe de la question, sans sujet : 你去吗 ? – 去. / 明天去.",
+    "en": "People often answer by repeating the verb of the question, without a subject: 你去吗? – 去. / 明天去."
+   },
+   "line": 4,
+   "mark": "明天去",
+   "rx": null
+  },
+  {
+   "id": "hui",
+   "lesson": "meeting",
+   "pattern": "会 + verbe",
+   "title": {
+    "fr": "会 : savoir faire",
+    "en": "会: can, to know how to"
+   },
+   "text": {
+    "fr": "会 = savoir (une compétence apprise) : 他会中文吗 ? = Parle-t-il chinois ? Aussi 会说, 会写…",
+    "en": "会 = can, to know how to (a learned skill): 他会中文吗? = Does he speak Chinese? Also 会说, 会写…"
+   },
+   "line": 6,
+   "mark": "他会中文",
+   "rx": "会"
+  },
+  {
+   "id": "zheshi",
+   "lesson": "meeting",
+   "pattern": "这 / 那 + 是",
+   "title": {
+    "fr": "这是… : voici",
+    "en": "这是…: this is"
+   },
+   "text": {
+    "fr": "这是… = voici, c'est ; 那是… = c'est là-bas : 这是我的朋友.",
+    "en": "这是… = this is; 那是… = that is: 这是我的朋友."
+   },
+   "line": 5,
+   "mark": "这是我的朋友",
+   "rx": "[这那]是"
+  },
+  {
+   "id": "yidianer",
+   "lesson": "meeting",
+   "pattern": "adj. + 了 + 一点儿",
+   "title": {
+    "fr": "一点儿 : un peu",
+    "en": "一点儿: a little"
+   },
+   "text": {
+    "fr": "一点儿 après un adjectif = un peu (trop) : 来晚了一点儿 (je suis un peu en retard).",
+    "en": "一点儿 after an adjective = a little (too): 来晚了一点儿 (I'm a little late)."
+   },
+   "line": 11,
+   "mark": "晚了一点儿",
+   "rx": "一点儿"
+  },
+  {
+   "id": "adj1",
+   "lesson": "meeting",
+   "pattern": "adj. + nom",
+   "title": {
+    "fr": "Un adjectif court devant le nom",
+    "en": "A short adjective before the noun"
+   },
+   "text": {
+    "fr": "Un adjectif d'une syllabe se place souvent directement devant le nom, sans 很 ni 的 : 新学生 (un nouvel élève), 小朋友, 好书.",
+    "en": "A one-syllable adjective often goes straight before the noun, without 很 or 的: 新学生 (a new student), 小朋友, 好书."
+   },
+   "line": 2,
+   "mark": "新学生",
+   "rx": "新学生|小学生|小朋友|好书"
+  },
+  {
+   "id": "zhengzai",
+   "lesson": "day-rhythm",
+   "pattern": "正在 + verbe",
+   "title": {
+    "fr": "正在 : en train de",
+    "en": "正在: in the middle of"
+   },
+   "text": {
+    "fr": "正在 + verbe = être en train de : 我现在正在吃早饭. 在 seul suffit aussi : 她在看电视.",
+    "en": "正在 + verb = to be in the middle of: 我现在正在吃早饭. 在 alone works too: 她在看电视."
+   },
+   "line": 4,
+   "mark": "正在吃早饭",
+   "rx": "正在"
+  },
+  {
+   "id": "dunhao",
+   "lesson": "day-rhythm",
+   "pattern": "A、B",
+   "title": {
+    "fr": "、 : la virgule d'énumération",
+    "en": "、: the enumeration comma"
+   },
+   "text": {
+    "fr": "La virgule d'énumération 、 sépare des éléments de même nature : 读书、写字. Pas de 和 entre chaque élément.",
+    "en": "The enumeration comma 、 separates items of the same kind: 读书、写字. No 和 between each item."
+   },
+   "line": 12,
+   "mark": "读书、写字",
+   "rx": "、"
+  },
+  {
+   "id": "ji",
+   "lesson": "family-numbers",
+   "pattern": "几 ou 多少",
+   "title": {
+    "fr": "几 et 多少",
+    "en": "几 and 多少"
+   },
+   "text": {
+    "fr": "几 + classificateur demande un petit nombre (几口人 ? jusqu'à 10) ; 多少 pour un nombre quelconque : 多少人 ? 多少钱 ?",
+    "en": "几 + measure word asks for a small number (几口人? up to 10); 多少 for any number: 多少人? 多少钱?"
+   },
+   "line": 0,
+   "mark": "几口人",
+   "rx": "几口"
+  },
+  {
+   "id": "mei2",
+   "lesson": "family-numbers",
+   "pattern": "没有 + nom",
+   "title": {
+    "fr": "没有 + nom : ne pas avoir",
+    "en": "没有 + noun: not to have"
+   },
+   "text": {
+    "fr": "没有 + nom = ne pas avoir : 我没有弟弟 (je n'ai pas de petit frère). Jamais 不有.",
+    "en": "没有 + noun = not to have: 我没有弟弟 (I don't have a younger brother). Never 不有."
+   },
+   "line": 5,
+   "mark": "我没有弟弟",
+   "rx": "没有[弟妹哥姐钱]"
+  },
+  {
+   "id": "bushi",
+   "lesson": "family-numbers",
+   "pattern": "不是",
+   "title": {
+    "fr": "不是 : non, ce n'est pas",
+    "en": "不是: no, it isn't"
+   },
+   "text": {
+    "fr": "不是 = ne pas être, non : 不是。他会中文. Pour nier 是, on utilise 不 (jamais 没).",
+    "en": "不是 = to not be, no: 不是。他会中文. To negate 是, use 不 (never 没)."
+   },
+   "line": 13,
+   "mark": "不是",
+   "rx": "不是"
+  },
+  {
+   "id": "youzai",
+   "lesson": "at-home",
+   "pattern": "lieu + 有 / chose + 在",
+   "title": {
+    "fr": "有 ou 在",
+    "en": "有 or 在"
+   },
+   "text": {
+    "fr": "Lieu + 有 + chose : il y a (房间里有书). Chose + 在 + lieu : se trouve (杯子在这儿). 有 présente, 在 localise.",
+    "en": "Place + 有 + thing: there is (房间里有书). Thing + 在 + place: is located (杯子在这儿). 有 introduces, 在 locates."
+   },
+   "line": 0,
+   "mark": "房间里有什么东西",
+   "rx": "[里上]有"
+  },
+  {
+   "id": "fangwei",
+   "lesson": "at-home",
+   "pattern": "nom + 上 / 里 / 边",
+   "title": {
+    "fr": "上, 里, 边 après un lieu",
+    "en": "上, 里, 边 after a place"
+   },
+   "text": {
+    "fr": "On ajoute 上 (sur), 里 (dans), 边 (côté) après le nom : 桌子上, 房间里, 外边.",
+    "en": "Add 上 (on), 里 (in), 边 (side) after the noun: 桌子上, 房间里, 外边."
+   },
+   "line": 9,
+   "mark": "在桌子上",
+   "rx": "[子间][上里]|外边"
+  },
+  {
+   "id": "bujian",
+   "lesson": "at-home",
+   "pattern": "看不见",
+   "title": {
+    "fr": "看见, 看不见",
+    "en": "看见, 看不见"
+   },
+   "text": {
+    "fr": "verbe + 见 = percevoir : 看见, 听见. Négatif : 看不见 (ne pas parvenir à voir).",
+    "en": "verb + 见 = to perceive: 看见, 听见. Negative: 看不见 (can't see)."
+   },
+   "line": 8,
+   "mark": "我看不见",
+   "rx": "[看听]见|不见"
+  },
+  {
+   "id": "ba",
+   "lesson": "at-home",
+   "pattern": "… 吧",
+   "title": {
+    "fr": "吧 : suggestion",
+    "en": "吧: suggestion"
+   },
+   "text": {
+    "fr": "吧 en fin de phrase adoucit un ordre ou propose : 回来坐吧 (reviens t'asseoir).",
+    "en": "吧 at the end of a sentence softens an order or suggests: 回来坐吧 (come back and sit)."
+   },
+   "line": 11,
+   "mark": "回来坐吧",
+   "rx": "吧"
+  },
+  {
+   "id": "gei",
+   "lesson": "phone",
+   "pattern": "给 + personne + verbe",
+   "title": {
+    "fr": "给 : pour, à quelqu'un",
+    "en": "给: for, to someone"
+   },
+   "text": {
+    "fr": "给 + personne + verbe = faire quelque chose pour ou à quelqu'un : 我给老师打电话 (j'appelle le professeur).",
+    "en": "给 + person + verb = to do something for or to someone: 我给老师打电话 (I call the teacher)."
+   },
+   "line": 2,
+   "mark": "我给老师打电话",
+   "rx": "给.{1,3}[打做写买]"
+  },
+  {
+   "id": "na",
+   "lesson": "phone",
+   "pattern": "那 + phrase",
+   "title": {
+    "fr": "那 : alors",
+    "en": "那: then"
+   },
+   "text": {
+    "fr": "那 en début de phrase = alors, dans ce cas : 那我晚一点儿打电话.",
+    "en": "那 at the start of a sentence = then, in that case: 那我晚一点儿打电话."
+   },
+   "line": 4,
+   "mark": "那我晚一点儿打电话",
+   "rx": "^那"
+  },
+  {
+   "id": "zai_prog",
+   "lesson": "phone",
+   "pattern": "在 + verbe",
+   "title": {
+    "fr": "在 : en train de",
+    "en": "在: in the middle of"
+   },
+   "text": {
+    "fr": "在 devant un verbe = être en train de : 她在看电视. Même sens que 正在, en plus court.",
+    "en": "在 before a verb = to be in the middle of: 她在看电视. Same meaning as 正在, shorter."
+   },
+   "line": 8,
+   "mark": "她在看电视",
+   "rx": "在[看吃写做听打]"
+  },
+  {
+   "id": "youdianr",
+   "lesson": "weather-talk",
+   "pattern": "有点儿 + adj.",
+   "title": {
+    "fr": "有点儿 : un peu (gênant)",
+    "en": "有点儿: a bit (unpleasant)"
+   },
+   "text": {
+    "fr": "有点儿 + adjectif = un peu, avec une nuance négative : 有点儿冷 (un peu froid, gênant). À ne pas confondre avec 一点儿 après l'adjectif.",
+    "en": "有点儿 + adjective = a bit, with a negative shade: 有点儿冷 (a bit cold, unpleasantly). Not to be confused with 一点儿 after the adjective."
+   },
+   "line": 1,
+   "mark": "有点儿冷",
+   "rx": "有点儿"
+  },
+  {
+   "id": "juede",
+   "lesson": "weather-talk",
+   "pattern": "觉得 + phrase",
+   "title": {
+    "fr": "觉得 : trouver que",
+    "en": "觉得: to feel that"
+   },
+   "text": {
+    "fr": "觉得 = trouver que, avoir l'impression que : 我觉得很冷.",
+    "en": "觉得 = to find that, to feel that: 我觉得很冷."
+   },
+   "line": 6,
+   "mark": "我觉得很冷",
+   "rx": "觉得"
+  },
+  {
+   "id": "adjde",
+   "lesson": "weather-talk",
+   "pattern": "adj. + 的 + nom",
+   "title": {
+    "fr": "adj. + 的 + nom",
+    "en": "adj. + 的 + noun"
+   },
+   "text": {
+    "fr": "adjectif + 的 + nom = le nom qui est … : 热的水 (de l'eau chaude). 的 souligne la qualité.",
+    "en": "adjective + 的 + noun = the noun that is …: 热的水 (hot water). 的 stresses the quality."
+   },
+   "line": 7,
+   "mark": "热的水",
+   "rx": "[便宜热冷]的"
+  },
+  {
+   "id": "hao",
+   "lesson": "writing",
+   "pattern": "好 + verbe",
+   "title": {
+    "fr": "好看, 好听, 好吃",
+    "en": "好看, 好听, 好吃"
+   },
+   "text": {
+    "fr": "好 devant un verbe = agréable à… : 好看 (beau à voir), 好听 (agréable à entendre), 好吃 (bon à manger).",
+    "en": "好 before a verb = pleasant to …: 好看 (nice to look at), 好听 (nice to hear), 好吃 (tasty)."
+   },
+   "line": 11,
+   "mark": "好听",
+   "rx": "好[看听吃]"
+  },
+  {
+   "id": "zhen",
+   "lesson": "writing",
+   "pattern": "真 + adj.",
+   "title": {
+    "fr": "真 : vraiment",
+    "en": "真: really"
+   },
+   "text": {
+    "fr": "真 + adjectif = vraiment, tellement (exclamation) : 真多 !",
+    "en": "真 + adjective = really, so (exclamation): 真多!"
+   },
+   "line": 6,
+   "mark": "真多",
+   "rx": "真[^的]"
+  },
+  {
+   "id": "ai",
+   "lesson": "writing",
+   "pattern": "爱 / 喜欢",
+   "title": {
+    "fr": "爱 et 喜欢",
+    "en": "爱 and 喜欢"
+   },
+   "text": {
+    "fr": "爱 = aimer (plus fort, parfois l'amour) ; 喜欢 = aimer bien. 我爱中文.",
+    "en": "爱 = to love (stronger); 喜欢 = to like. 我爱中文."
+   },
+   "line": 13,
+   "mark": "我爱中文",
+   "rx": "爱"
+  },
+  {
+   "id": "date",
+   "lesson": "dates",
+   "pattern": "X 月 Y 号",
+   "title": {
+    "fr": "Les dates",
+    "en": "Dates"
+   },
+   "text": {
+    "fr": "Les dates vont du plus grand au plus petit : 月 (mois), 号 (jour). 今天几号 ? – 二十号. Pas besoin de 是 pour répondre.",
+    "en": "Dates run from big to small: 月 (month), 号 (day). 今天几号? – 二十号. No 是 is needed in the answer."
+   },
+   "line": 2,
+   "mark": "今天几号",
+   "rx": "[几二三四五六七八九十]月|几号|[二三十]号"
+  },
+  {
+   "id": "yixie2",
+   "lesson": "dates",
+   "pattern": "一些 + nom",
+   "title": {
+    "fr": "一些 : quelques",
+    "en": "一些: some"
+   },
+   "text": {
+    "fr": "一些 + nom = quelques, un peu de : 我买一些水果.",
+    "en": "一些 + noun = some, a few: 我买一些水果."
+   },
+   "line": 8,
+   "mark": "我买一些水果",
+   "rx": "买一些"
+  },
+  {
+   "id": "qianhou",
+   "lesson": "travel",
+   "pattern": "heure + 前 / 后",
+   "title": {
+    "fr": "前 et 后 : avant, après",
+    "en": "前 and 后: before, after"
+   },
+   "text": {
+    "fr": "Après un moment, 前 = avant, 后 = après : 三点前, 三点后. Heures : 点 (heure), 分 (minute) : 三点十分.",
+    "en": "After a time, 前 = before, 后 = after: 三点前, 三点后. Clock: 点 (hour), 分 (minute): 三点十分."
+   },
+   "line": 7,
+   "mark": "三点前到",
+   "rx": "点[前后]"
+  },
+  {
+   "id": "keyi",
+   "lesson": "travel",
+   "pattern": "可以 (… 吗)",
+   "title": {
+    "fr": "可以 : pouvoir, ça va",
+    "en": "可以: may, is it OK"
+   },
+   "text": {
+    "fr": "可以 = pouvoir (permission), être acceptable : 可以吗 ? = Ça va ? – 可以.",
+    "en": "可以 = may, to be acceptable: 可以吗? = Is that OK? – 可以."
+   },
+   "line": 11,
+   "mark": "可以吗",
+   "rx": "可以"
+  },
+  {
+   "id": "yao3",
+   "lesson": "travel",
+   "pattern": "要 + durée",
+   "title": {
+    "fr": "要 : il faut (durée)",
+    "en": "要: it takes (duration)"
+   },
+   "text": {
+    "fr": "Devant une durée, 要 = il faut, ça prend : 坐火车要多少分钟 ? (combien de minutes faut-il en train ?)",
+    "en": "Before a duration, 要 = it takes: 坐火车要多少分钟? (how many minutes does the train take?)"
+   },
+   "line": 9,
+   "mark": "要多少分钟",
+   "rx": "要多少"
+  },
+  {
+   "id": "nage",
+   "lesson": "travel",
+   "pattern": "哪 + 个 + nom",
+   "title": {
+    "fr": "哪个 : lequel",
+    "en": "哪个: which"
+   },
+   "text": {
+    "fr": "哪 = quel ; il faut un classificateur : 哪个朋友 ? Au pluriel : 哪些.",
+    "en": "哪 = which; a measure word is needed: 哪个朋友? Plural: 哪些."
+   },
+   "line": 14,
+   "mark": "哪个朋友",
+   "rx": "哪个"
+  },
+  {
+   "id": "nali",
+   "lesson": "school",
+   "pattern": "哪里 = 哪儿",
+   "title": {
+    "fr": "哪里 et 哪儿",
+    "en": "哪里 and 哪儿"
+   },
+   "text": {
+    "fr": "哪里 et 哪儿 signifient « où ». 哪里 est plus neutre, 哪儿 plus oral (surtout au nord).",
+    "en": "哪里 and 哪儿 both mean “where”. 哪里 is more neutral, 哪儿 more colloquial (mostly northern)."
+   },
+   "line": 2,
+   "mark": "在哪里上学",
+   "rx": "哪里"
+  },
+  {
+   "id": "shuangbin",
+   "lesson": "school",
+   "pattern": "verbe + personne + chose",
+   "title": {
+    "fr": "Deux compléments",
+    "en": "Two objects"
+   },
+   "text": {
+    "fr": "Certains verbes prennent deux objets : la personne, puis la chose : 给你钱, 问老师问题.",
+    "en": "Some verbs take two objects: the person, then the thing: 给你钱, 问老师问题."
+   },
+   "line": 12,
+   "mark": "问老师问题",
+   "rx": "问.{1,3}问题|给[你我他您]钱"
+  },
+  {
+   "id": "yige",
+   "lesson": "school",
+   "pattern": "一个 = le même",
+   "title": {
+    "fr": "一个 : le même",
+    "en": "一个: the same"
+   },
+   "text": {
+    "fr": "一个 peut vouloir dire « le même » : 你们在一个学校吗 ? = Êtes-vous dans la même école ?",
+    "en": "一个 can mean “the same”: 你们在一个学校吗? = Are you in the same school?"
+   },
+   "line": 8,
+   "mark": "在一个学校",
+   "rx": "在一个"
+  },
+  {
+   "id": "jian",
+   "lesson": "home-shop",
+   "pattern": "一 + 件 + vêtement",
+   "title": {
+    "fr": "件 : les vêtements",
+    "en": "件: clothes"
+   },
+   "text": {
+    "fr": "Le classificateur dépend du nom : 件 pour les vêtements, 本 pour les livres, 个 par défaut : 一件新衣服.",
+    "en": "The measure word depends on the noun: 件 for clothes, 本 for books, 个 by default: 一件新衣服."
+   },
+   "line": 3,
+   "mark": "一件新衣服",
+   "rx": "件"
+  },
+  {
+   "id": "youde",
+   "lesson": "home-shop",
+   "pattern": "有的 … 有些 …",
+   "title": {
+    "fr": "有的…有些… : certains…, d'autres…",
+    "en": "有的…有些…: some…, others…"
+   },
+   "text": {
+    "fr": "有的…, 有些… = certains…, d'autres… : 有的面包很贵，有些便宜.",
+    "en": "有的…, 有些… = some…, others…: 有的面包很贵，有些便宜."
+   },
+   "line": 16,
+   "mark": "有的面包很贵",
+   "rx": "有的|有些"
+  },
+  {
+   "id": "xiangyao",
+   "lesson": "home-shop",
+   "pattern": "想要 + nom",
+   "title": {
+    "fr": "想要 : avoir envie d'avoir",
+    "en": "想要: to want to have"
+   },
+   "text": {
+    "fr": "想要 + nom = avoir envie de, vouloir avoir : 我也想要一些菜.",
+    "en": "想要 + noun = to want to have: 我也想要一些菜."
+   },
+   "line": 11,
+   "mark": "我也想要一些菜",
+   "rx": "想要"
+  },
+  {
+   "id": "di",
+   "lesson": "numbers-money",
+   "pattern": "第 + nombre",
+   "title": {
+    "fr": "第 : l'ordinal",
+    "en": "第: ordinals"
+   },
+   "text": {
+    "fr": "第 devant un nombre forme l'ordinal : 第十本书 (le dixième livre).",
+    "en": "第 before a number makes an ordinal: 第十本书 (the tenth book)."
+   },
+   "line": 10,
+   "mark": "第十本书",
+   "rx": "第"
+  },
+  {
+   "id": "zhi",
+   "lesson": "numbers-money",
+   "pattern": "只 + verbe",
+   "title": {
+    "fr": "只 : seulement",
+    "en": "只: only"
+   },
+   "text": {
+    "fr": "只 = seulement, devant le verbe : 我只有零钱 (je n'ai que de la monnaie).",
+    "en": "只 = only, before the verb: 我只有零钱 (I only have small change)."
+   },
+   "line": 4,
+   "mark": "我只有零钱",
+   "rx": "只"
+  },
+  {
+   "id": "zai3",
+   "lesson": "numbers-money",
+   "pattern": "再 + verbe",
+   "title": {
+    "fr": "再 : encore",
+    "en": "再: again"
+   },
+   "text": {
+    "fr": "再 = encore, de nouveau (pour une action à venir) : 我想再买一些.",
+    "en": "再 = again, more (for an action still to come): 我想再买一些."
+   },
+   "line": 14,
+   "mark": "再买一些",
+   "rx": "再[买吃去看做来]"
+  },
+  {
+   "id": "zhexie",
+   "lesson": "numbers-money",
+   "pattern": "这些 / 那些",
+   "title": {
+    "fr": "这些, 那些 : ceux-ci, ceux-là",
+    "en": "这些, 那些: these, those"
+   },
+   "text": {
+    "fr": "这些 = ceux-ci, ces… ; 那些 = ceux-là : 那些是他们的. Pluriel de 这 et 那 (jamais 们).",
+    "en": "这些 = these; 那些 = those: 那些是他们的. Plural of 这 and 那 (never 们)."
+   },
+   "line": 9,
+   "mark": "那些是他们的",
+   "rx": "[这那]些"
+  },
+  {
+   "id": "de2",
+   "lesson": "numbers-money",
+   "pattern": "… 的 (sans nom)",
+   "title": {
+    "fr": "的 sans nom : le tien, le leur",
+    "en": "的 without a noun: yours, theirs"
+   },
+   "text": {
+    "fr": "Quand le nom est évident, on le supprime : 这是你的, 那些是他们的 (c'est le tien, ce sont les leurs).",
+    "en": "When the noun is obvious, drop it: 这是你的, 那些是他们的 (this is yours, those are theirs)."
+   },
+   "line": 7,
+   "mark": "这是你的",
+   "rx": "[你我他她们]的[。？！]"
+  },
+  {
+   "id": "ta",
+   "lesson": "people",
+   "pattern": "它 / 它们",
+   "title": {
+    "fr": "它 : il, elle (chose, animal)",
+    "en": "它: it (thing, animal)"
+   },
+   "text": {
+    "fr": "它 = il, elle pour un animal ou une chose ; 它们 au pluriel. 她们 = elles. 他, 她, 它 se prononcent tous tā.",
+    "en": "它 = it for an animal or a thing; 它们 in the plural. 她们 = they (women). 他, 她, 它 are all pronounced tā."
+   },
+   "line": 10,
+   "mark": "它是什么",
+   "rx": "它"
+  },
+  {
+   "id": "nastar",
+   "lesson": "people",
+   "pattern": "哪国 / 哪些",
+   "title": {
+    "fr": "哪国, 哪些",
+    "en": "哪国, 哪些"
+   },
+   "text": {
+    "fr": "哪国人 ? = de quel pays ? ; 哪些人 ? = lesquels, qui (pluriel). 哪 + 国 sans classificateur.",
+    "en": "哪国人? = from which country? 哪些人? = which ones (plural). 哪 + 国 takes no measure word."
+   },
+   "line": 14,
+   "mark": "哪国人",
+   "rx": "哪国|哪些"
+  },
+  {
+   "id": "renguo",
+   "lesson": "people",
+   "pattern": "pays + 人",
+   "title": {
+    "fr": "Pays + 人 : la nationalité",
+    "en": "Country + 人: nationality"
+   },
+   "text": {
+    "fr": "Nationalité = pays + 人 : 中国人 (Chinois). 你是哪国人 ? – 我是中国人.",
+    "en": "Nationality = country + 人: 中国人 (Chinese). 你是哪国人? – 我是中国人."
+   },
+   "line": 15,
+   "mark": "我是中国人",
+   "rx": "国人"
+  },
+  {
+   "id": "le2",
+   "lesson": "week",
+   "pattern": "verbe + 了 (passé)",
+   "title": {
+    "fr": "了 : l'action accomplie",
+    "en": "了: a completed action"
+   },
+   "text": {
+    "fr": "了 après le verbe ou en fin de phrase marque une action accomplie : 昨天你去哪儿了 ? (où es-tu allé hier ?)",
+    "en": "了 after the verb or at the end marks a completed action: 昨天你去哪儿了? (where did you go yesterday?)"
+   },
+   "line": 10,
+   "mark": "昨天你去哪儿了",
+   "rx": "哪儿了|[去来吃买做看写学]了"
+  },
+  {
+   "id": "zhidao",
+   "lesson": "week",
+   "pattern": "知道 / 认识 / 会",
+   "title": {
+    "fr": "Savoir : 知道, 认识, 会",
+    "en": "To know: 知道, 认识, 会"
+   },
+   "text": {
+    "fr": "知道 = savoir (un fait : l'heure) ; 认识 = connaître (une personne) ; 会 = savoir faire (une compétence).",
+    "en": "知道 = to know (a fact: the time); 认识 = to know (a person); 会 = to know how to (a skill)."
+   },
+   "line": 12,
+   "mark": "你知道时间吗",
+   "rx": "知道"
+  },
+  {
+   "id": "adv",
+   "lesson": "week",
+   "pattern": "adj. + verbe",
+   "title": {
+    "fr": "Un adjectif devant le verbe",
+    "en": "An adjective before the verb"
+   },
+   "text": {
+    "fr": "Un adjectif peut précéder le verbe comme adverbe : 很早起床 (se lever très tôt).",
+    "en": "An adjective can precede the verb as an adverb: 很早起床 (get up very early)."
+   },
+   "line": 14,
+   "mark": "我很早起床",
+   "rx": "很早"
+  },
+  {
+   "id": "neng",
+   "lesson": "politeness",
+   "pattern": "能 + verbe",
+   "title": {
+    "fr": "能 : pouvoir",
+    "en": "能: can, may"
+   },
+   "text": {
+    "fr": "能 = pouvoir (capacité ou permission ponctuelle) : 我能给朋友打电话吗 ? Proche de 可以 ; différent de 会 (savoir par apprentissage).",
+    "en": "能 = can, may (ability or one-off permission): 我能给朋友打电话吗? Close to 可以; different from 会 (a learned skill)."
+   },
+   "line": 8,
+   "mark": "我能给朋友打电话吗",
+   "rx": "能"
+  },
+  {
+   "id": "qing",
+   "lesson": "politeness",
+   "pattern": "请 + verbe",
+   "title": {
+    "fr": "请 : s'il vous plaît",
+    "en": "请: please"
+   },
+   "text": {
+    "fr": "请 devant un verbe = veuillez, s'il vous plaît : 请给我一个苹果.",
+    "en": "请 before a verb = please: 请给我一个苹果."
+   },
+   "line": 6,
+   "mark": "请给我一个苹果",
+   "rx": "请[给你坐]"
+  },
+  {
+   "id": "serial",
+   "lesson": "politeness",
+   "pattern": "verbe 1 + verbe 2",
+   "title": {
+    "fr": "Deux verbes de suite",
+    "en": "Two verbs in a row"
+   },
+   "text": {
+    "fr": "Deux verbes de suite : le premier donne le moyen : 开车上班 (aller travailler en conduisant).",
+    "en": "Two verbs in a row: the first gives the means: 开车上班 (drive to work)."
+   },
+   "line": 13,
+   "mark": "我开车上班",
+   "rx": "开车上班"
+  },
+  {
+   "id": "shihou",
+   "lesson": "misc",
+   "pattern": "什么时候 + verbe",
+   "title": {
+    "fr": "什么时候 : quand",
+    "en": "什么时候: when"
+   },
+   "text": {
+    "fr": "什么时候 = quand ? Il se place devant le verbe : 你什么时候来 ?",
+    "en": "什么时候 = when? It goes before the verb: 你什么时候来?"
+   },
+   "line": 2,
+   "mark": "你什么时候来",
+   "rx": "什么时候"
+  },
+  {
+   "id": "lezhong",
+   "lesson": "misc",
+   "pattern": "verbe + 了 + durée",
+   "title": {
+    "fr": "了 + durée : pendant",
+    "en": "了 + duration: for"
+   },
+   "text": {
+    "fr": "verbe + 了 + durée = a fait pendant… : 我学了半年 (j'ai étudié six mois). Comparez 三年了 (ça fait trois ans).",
+    "en": "verb + 了 + duration = did for…: 我学了半年 (I studied for half a year). Compare 三年了 (it has been three years)."
+   },
+   "line": 12,
+   "mark": "我学了半年",
+   "rx": "了[半一两三]年|了半年"
+  },
+  {
+   "id": "duoshao",
+   "lesson": "misc",
+   "pattern": "nom + 多 / 少",
+   "title": {
+    "fr": "多 et 少 après le nom",
+    "en": "多 and 少 after the noun"
+   },
+   "text": {
+    "fr": "多 et 少 s'emploient surtout comme attribut après le nom : 学生多, 学生少. Devant un nom : 很多, 不少.",
+    "en": "多 and 少 are mostly used as predicates after the noun: 学生多, 学生少. Before a noun: 很多, 不少."
+   },
+   "line": 14,
+   "mark": "今天学生少",
+   "rx": "学生[多少]"
+  },
+  {
+   "id": "intonation",
+   "lesson": "misc",
+   "pattern": "phrase ？",
+   "title": {
+    "fr": "Question sans 吗",
+    "en": "A question without 吗"
+   },
+   "text": {
+    "fr": "Une phrase affirmative devient question avec une intonation montante, sans 吗 : 你住那里 ?",
+    "en": "A statement becomes a question with rising intonation, without 吗: 你住那里?"
+   },
+   "line": 6,
+   "mark": "你住那里",
+   "rx": null
+  }
+ ]
+}

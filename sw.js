@@ -2,7 +2,7 @@
 // - same-origin pages, scripts, styles and data: network first, cache as fallback
 // - images and pinned CDN assets: cache first (they never change in place)
 // Bump VERSION to drop every cached file.
-const VERSION = 'v12';
+const VERSION = 'v13';
 const CACHE = 'xuehanyu-' + VERSION;
 const SHELL = [
   './', 'app.html', 'quiz.html', 'lessons.html',
@@ -34,7 +34,8 @@ self.addEventListener('fetch', e => {
   const sameOrigin = url.origin === self.location.origin;
   if (sameOrigin && url.pathname.startsWith('/api/')) return;   // backend des rappels : jamais en cache
 
-  if (!sameOrigin || req.destination === 'image') {
+  const audioFile = sameOrigin && /^\/audio\/[lw]\//.test(url.pathname);
+  if (!sameOrigin || req.destination === 'image' || audioFile) {
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => store(req, res))));
     return;
   }

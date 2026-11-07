@@ -79,6 +79,7 @@ async function open(name, size, init) {
   if (init) await ctx.addInitScript(init);
   const p = await ctx.newPage();
   await p.route(u => !u.toString().startsWith(base), r => r.abort());
+  await p.route('**/audio/**', r => r.abort());   // the tests stub the system voice: recordings are exercised in their own tests
   const errors = [];
   p.on('pageerror', e => errors.push(String(e)));
   await p.goto(`${base}/${name}`);
@@ -579,4 +580,156 @@ test('quiz and dictionary use the same speech module (one message, one voice cho
       assert.equal(await p.evaluate(() => Speech.verdict(speechSynthesis.getVoices())), 'none', page);
     } finally { await ctx.close(); }
   }
+});
+
+// ------------------------------------------------------------------ audio préenregistré (Kokoro) : lu avant la voix du système
+const FAKE_PLAYER = `
+  window.__played = [];
+  window.Audio = function () {
+    return { dataset: {}, pause() {}, play() { if (String(this.src).startsWith('blob:')) window.__played.push(this.src); setTimeout(() => this.onended && this.onended(), 30); return Promise.resolve(); } };
+  };
+`;
+const MP3_BYTES = Buffer.from('//uQxAAAAAAAAAAAAAAAAAAAAAA==', 'base64');   // octets quelconques : le lecteur est simulé
+
+async function audioPage(name, { files = [], index = null, voices = [] } = {}) {
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.desktop, serviceWorkers: 'block' });
+  await ctx.addInitScript(STUB_SPEECH(voices));
+  await ctx.addInitScript(FAKE_PLAYER);
+  const p = await ctx.newPage();
+  const requested = [];
+  await p.route(u => !u.toString().startsWith(base), r => r.abort());
+  await p.route('**/audio/**', r => {
+    const path = new URL(r.request().url()).pathname;
+    requested.push(path);
+    if (path === '/audio/index.json') return index ? r.fulfill({ json: index }) : r.fulfill({ status: 404, body: '' });
+    return files.includes(path) ? r.fulfill({ body: MP3_BYTES, contentType: 'audio/mpeg' }) : r.fulfill({ status: 404, body: '' });
+  });
+  await p.goto(`${base}/${name}`);
+  await p.waitForTimeout(700);
+  return { p, ctx, requested };
+}
+
+test('lessons: a line plays its recorded file (voice A/B), not the system voice', { skip }, async () => {
+  const { p, ctx, requested } = await audioPage('lessons.html', { files: ['/audio/l/presentation-0.mp3'] });
+  try {
+    await p.click('[data-speak="0"]');
+    await p.waitForTimeout(400);
+    assert.ok(requested.includes('/audio/l/presentation-0.mp3'), `requested: ${requested}`);
+    assert.equal((await p.evaluate(() => window.__played)).length, 1, 'the recorded file was not played');
+    assert.deepEqual(await p.evaluate(() => window.__spoken), [], 'the system voice must stay quiet when a recording exists');
+  } finally { await ctx.close(); }
+});
+
+test('lessons: a missing recording falls back to the system voice', { skip }, async () => {
+  const voices = [{ name: 'Microsoft Huihui', lang: 'zh-CN' }];
+  const { p, ctx } = await audioPage('lessons.html', { files: [], voices });
+  try {
+    await p.click('[data-speak="1"]');
+    await p.waitForTimeout(500);
+    assert.equal((await p.evaluate(() => window.__played)).length, 0);
+    assert.equal((await p.evaluate(() => window.__spoken)).length, 1, 'no fallback to the system voice');
+  } finally { await ctx.close(); }
+});
+
+test('lessons: with a recording a PC without Chinese voice no longer gets the "no voice" message', { skip }, async () => {
+  const { p, ctx } = await audioPage('lessons.html', { files: ['/audio/l/presentation-0.mp3'], voices: EN_ONLY });
+  try {
+    await p.click('[data-speak="0"]');
+    await p.waitForTimeout(400);
+    assert.equal(await p.isVisible('.speech-notice'), false);
+    assert.equal((await p.evaluate(() => window.__played)).length, 1);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: "Écouter" chains the recorded lines and stops when asked', { skip }, async () => {
+  const files = [0, 1, 2, 3].map(i => `/audio/l/presentation-${i}.mp3`);
+  const { p, ctx } = await audioPage('lessons.html', { files });
+  try {
+    await p.click('#btnPlay');
+    await p.waitForTimeout(1800);
+    const played = (await p.evaluate(() => window.__played)).length;
+    assert.ok(played >= 2, `only ${played} line(s) chained`);
+    await p.click('#btnPlay');                         // stop
+    const after = (await p.evaluate(() => window.__played)).length;
+    await p.waitForTimeout(900);
+    assert.equal((await p.evaluate(() => window.__played)).length, after, 'kept playing after stop');
+  } finally { await ctx.close(); }
+});
+
+test('quiz: a word listed in audio/index.json is played from its file', { skip }, async () => {
+  // 爱 = U+7231 -> w/7231.mp3
+  const { p, ctx, requested } = await audioPage('quiz.html', { index: { words: ['7231'] }, files: ['/audio/w/7231.mp3'] });
+  try {
+    const r = await p.evaluate(() => Speech.speak('爱'));
+    assert.equal(r, 'spoken');
+    assert.ok(requested.includes('/audio/w/7231.mp3'));
+    assert.equal((await p.evaluate(() => window.__played)).length, 1);
+    // a word that is not in the index goes to the system voice (here: none -> nothing played, nothing requested)
+    await p.evaluate(() => Speech.speak('龘'));
+    assert.ok(!requested.includes('/audio/w/9f98.mp3'));
+  } finally { await ctx.close(); }
+});
+
+// ------------------------------------------------------------------ grammaire par leçon
+const ZH_VOICE = [{ name: 'Microsoft Huihui - Chinese (Simplified, PRC)', lang: 'zh-CN' }];
+
+test('lessons: the first lesson lists its grammar points, each with a pattern, a tag and a highlighted example', { skip }, async () => {
+  const { p, ctx, errors } = await open('lessons.html', 'desktop');
+  try {
+    assert.equal(await p.isVisible('#grammar'), true);
+    assert.equal(await p.$$eval('#grammar .gp', a => a.length), 7);
+    assert.equal(await p.textContent('#grammar .gp-pattern'), 'A 是 B');
+    const tags = await p.$$eval('#grammar .gp-tag', a => a.map(t => t.textContent.trim()));
+    assert.ok(tags.length >= 6 && tags.every(t => t === 'Nouveau'), `first lesson tags: ${tags}`);
+    assert.equal(await p.innerHTML('#grammar .gp-hanzi'), '<mark>我是老师</mark>。你呢？');
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: a word met in an earlier lesson is tagged “Nouvel emploi”, with a hint', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop');
+  try {
+    await p.click('#lessonList > :nth-child(8)');      // « À la clinique » : 要 = devoir (déjà vu : 要 = vouloir)
+    await p.waitForTimeout(200);
+    const reuse = await p.$eval('[data-gp="yao2"] .gp-tag', t => [t.textContent.trim(), t.className, t.title]);
+    assert.equal(reuse[0], 'Nouvel emploi');
+    assert.match(reuse[1], /reuse/);
+    assert.ok(reuse[2].length > 10, 'the tag explains itself');
+    assert.equal(await p.$eval('[data-gp="le"] .gp-tag', t => t.textContent.trim()), 'Nouveau');
+  } finally { await ctx.close(); }
+});
+
+test('lessons: tapping the example plays that line and lights it up in the dialogue', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', STUB_SPEECH(ZH_VOICE));
+  try {
+    await p.click('[data-gp="shi"] .gp-example');
+    await p.waitForTimeout(300);
+    const spoken = await p.evaluate(() => window.__spoken);
+    assert.equal(spoken.length, 1);
+    assert.equal(spoken[0].text, '我是老师。你呢？');
+    assert.equal(await p.$eval('.exchange[data-i="2"]', e => e.classList.contains('speaking')), true);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: the grammar follows the language and the pinyin / translation switches', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop');
+  try {
+    assert.equal(await p.textContent('#grammarTitle'), 'Grammaire de la leçon 7');
+    assert.equal(await p.isVisible('#grammar .gp-pinyin'), true);
+    await p.click('#btnPinyin');
+    assert.equal(await p.isVisible('#grammar .gp-pinyin'), false, 'pinyin switch ignored by the grammar');
+    await p.click('.lang-switch [data-lang="en"]');
+    assert.equal(await p.textContent('#grammarTitle'), 'Grammar of the lesson 7');
+    assert.equal(await p.textContent('[data-gp="shi"] .gp-title'), '是: to be');
+    assert.equal(await p.textContent('[data-gp="shi"] .gp-tag'), 'New');
+  } finally { await ctx.close(); }
+});
+
+test('lessons (phone): grammar cards fit the screen without sideways scroll', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'phone');
+  try {
+    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    const widest = await p.$$eval('#grammar .gp', a => Math.max(...a.map(e => e.getBoundingClientRect().right)));
+    assert.ok(widest <= 390, `a card overflows the phone width (${widest}px)`);
+  } finally { await ctx.close(); }
 });

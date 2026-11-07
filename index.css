@@ -63,8 +63,13 @@ html, body {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  /* centrage vertical : sur la ligne de base, les caractères chinois paraissent plus bas que le latin */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .brand-title .zh {
+  line-height: 1;
   font-family: "Xuehanyu Brand", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
   font-weight: 900;
   color: var(--accent);
