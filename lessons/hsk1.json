@@ -20,7 +20,7 @@
      "who": "A",
      "hanzi": "您好！很高兴见到你。",
      "pinyin": "nín hǎo! hěn gāo xìng jiàn dào nǐ.",
-     "fr": "Bonjour ! Ravi de te rencontrer.",
+     "fr": "Bonjour ! Ravie de te rencontrer.",
      "en": "Hello! Nice to meet you.",
      "words": [
       "您",
@@ -122,7 +122,7 @@
      "who": "B",
      "hanzi": "你也是学生吗？",
      "pinyin": "nǐ yě shì xué sheng ma?",
-     "fr": "Tu es étudiant aussi ?",
+     "fr": "Tu es étudiante aussi ?",
      "en": "Are you a student too?",
      "words": [
       "你",
@@ -744,7 +744,7 @@
      "who": "A",
      "hanzi": "我也很忙。我要休息了。",
      "pinyin": "wǒ yě hěn máng. wǒ yào xiū xi le.",
-     "fr": "Moi aussi, je suis très occupé. Je vais me reposer.",
+     "fr": "Moi aussi, je suis très occupée. Je vais me reposer.",
      "en": "I'm busy too. I need to rest.",
      "words": [
       "我",
@@ -2023,13 +2023,13 @@
     },
     {
      "who": "A",
-     "hanzi": "你男朋友是中国人吗？",
-     "pinyin": "nǐ nán péng you shì zhōng guó rén ma?",
-     "fr": "Ton copain est chinois ?",
-     "en": "Is your boyfriend Chinese?",
+     "hanzi": "你女朋友是中国人吗？",
+     "pinyin": "nǐ nǚ péng you shì zhōng guó rén ma?",
+     "fr": "Ta copine est chinoise ?",
+     "en": "Is your girlfriend Chinese?",
      "words": [
       "你",
-      "男朋友",
+      "女朋友",
       "是",
       "中国",
       "人",
@@ -2038,14 +2038,14 @@
     },
     {
      "who": "B",
-     "hanzi": "不是。他会中文。",
+     "hanzi": "不是。她会中文。",
      "pinyin": "bù shì. tā huì zhōng wén.",
-     "fr": "Non. Il parle chinois.",
-     "en": "No. He speaks Chinese.",
+     "fr": "Non. Elle parle chinois.",
+     "en": "No. She speaks Chinese.",
      "words": [
       "不",
       "是",
-      "他",
+      "她",
       "会",
       "中文"
      ]
@@ -4201,26 +4201,26 @@
     },
     {
      "who": "A",
-     "hanzi": "女士，您好。",
-     "pinyin": "nǚ shì, nín hǎo.",
-     "fr": "Madame, bonjour.",
-     "en": "Hello, madam.",
+     "hanzi": "先生，您好。",
+     "pinyin": "xiān sheng, nín hǎo.",
+     "fr": "Monsieur, bonjour.",
+     "en": "Hello, sir.",
      "words": [
-      "女士",
+      "先生",
       "您",
       "好"
      ]
     },
     {
      "who": "B",
-     "hanzi": "你好，先生。",
-     "pinyin": "nǐ hǎo, xiān sheng.",
-     "fr": "Bonjour, monsieur.",
-     "en": "Hello, sir.",
+     "hanzi": "你好，女士。",
+     "pinyin": "nǐ hǎo, nǚ shì.",
+     "fr": "Bonjour, madame.",
+     "en": "Hello, madam.",
      "words": [
       "你",
       "好",
-      "先生"
+      "女士"
      ]
     },
     {

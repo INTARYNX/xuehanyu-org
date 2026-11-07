@@ -17,7 +17,7 @@
       "lines": [
         {
           "hanzi": "您好！很高兴见到你。",
-          "fr": "Bonjour ! Ravi de te rencontrer.",
+          "fr": "Bonjour ! Ravie de te rencontrer.",
           "en": "Hello! Nice to meet you."
         },
         {
@@ -52,7 +52,7 @@
         },
         {
           "hanzi": "你也是学生吗？",
-          "fr": "Tu es étudiant aussi ?",
+          "fr": "Tu es étudiante aussi ?",
           "en": "Are you a student too?"
         },
         {
@@ -330,7 +330,7 @@
         },
         {
           "hanzi": "我也很忙。我要休息了。",
-          "fr": "Moi aussi, je suis très occupé. Je vais me reposer.",
+          "fr": "Moi aussi, je suis très occupée. Je vais me reposer.",
           "en": "I'm busy too. I need to rest."
         },
         {
@@ -867,14 +867,14 @@
           "en": "I have a younger brother and a younger sister. They are children."
         },
         {
-          "hanzi": "你男朋友是中国人吗？",
-          "fr": "Ton copain est chinois ?",
-          "en": "Is your boyfriend Chinese?"
+          "hanzi": "你女朋友是中国人吗？",
+          "fr": "Ta copine est chinoise ?",
+          "en": "Is your girlfriend Chinese?"
         },
         {
-          "hanzi": "不是。他会中文。",
-          "fr": "Non. Il parle chinois.",
-          "en": "No. He speaks Chinese."
+          "hanzi": "不是。她会中文。",
+          "fr": "Non. Elle parle chinois.",
+          "en": "No. She speaks Chinese."
         },
         {
           "hanzi": "家里有多少人？",
@@ -1787,14 +1787,14 @@
           "en": "They are my classmates."
         },
         {
-          "hanzi": "女士，您好。",
-          "fr": "Madame, bonjour.",
-          "en": "Hello, madam."
+          "hanzi": "先生，您好。",
+          "fr": "Monsieur, bonjour.",
+          "en": "Hello, sir."
         },
         {
-          "hanzi": "你好，先生。",
-          "fr": "Bonjour, monsieur.",
-          "en": "Hello, sir."
+          "hanzi": "你好，女士。",
+          "fr": "Bonjour, madame.",
+          "en": "Hello, madam."
         },
         {
           "hanzi": "它是什么？",
