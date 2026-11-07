@@ -150,26 +150,24 @@ try {
     Write-Host ""
     Write-Host "Deploying root site to $SSH_USER@$SSH_HOST..." -ForegroundColor Cyan
 
+    # Deploiement ATOMIQUE : on envoie tout dans un dossier voisin, puis on l'echange avec le
+    # dossier en ligne. L'ancienne version videlait $REMOTE_DIR avant de recopier : pendant ces
+    # secondes le site etait incomplet, et une requete arrivee a ce moment recevait un 404 ou un
+    # fichier tronque que Cloudflare gardait ensuite en cache (jusqu'a 4 h).
+    $REMOTE_NEW = "$REMOTE_DIR.new"
+    $REMOTE_OLD = "$REMOTE_DIR.old"
+
     & ssh `
         -i $SSH_KEY `
         -o StrictHostKeyChecking=accept-new `
         "$SSH_USER@$SSH_HOST" `
-        "sudo mkdir -p '$REMOTE_DIR'"
+        "sudo mkdir -p '$REMOTE_DIR' && sudo rm -rf '$REMOTE_NEW' '$REMOTE_OLD' && sudo mkdir -p '$REMOTE_NEW'"
 
     if ($LASTEXITCODE -ne 0) { throw "SSH connection failed." }
 
-    Write-Host "Cleaning remote path: $REMOTE_DIR" -ForegroundColor White
-    & ssh `
-        -i $SSH_KEY `
-        -o StrictHostKeyChecking=accept-new `
-        "$SSH_USER@$SSH_HOST" `
-        "sudo find '$REMOTE_DIR' -mindepth 1 -delete"
+    Write-Host "Uploading files to $REMOTE_NEW (the live site is untouched)..." -ForegroundColor White
 
-    if ($LASTEXITCODE -ne 0) { throw "Failed cleaning remote path: $REMOTE_DIR" }
-
-    Write-Host "Uploading files..." -ForegroundColor White
-    
-    $remoteTarget = "${SSH_USER}@${SSH_HOST}:$REMOTE_DIR"
+    $remoteTarget = "${SSH_USER}@${SSH_HOST}:$REMOTE_NEW"
 
     & scp `
         -i $SSH_KEY `
@@ -180,14 +178,15 @@ try {
 
     if ($LASTEXITCODE -ne 0) { throw "SCP failed." }
 
-    Write-Host "Fixing permissions and reloading Nginx..." -ForegroundColor White
+    Write-Host "Fixing permissions, swapping the new version in and reloading Nginx..." -ForegroundColor White
+    # chown/chcon --reference : le nouveau dossier prend le proprietaire et le contexte SELinux du dossier en ligne.
     & ssh `
         -i $SSH_KEY `
         -o StrictHostKeyChecking=accept-new `
         "$SSH_USER@$SSH_HOST" `
-        "sudo chmod 755 '$REMOTE_DIR' && sudo find '$REMOTE_DIR' -type d -exec chmod 755 {} + && sudo find '$REMOTE_DIR' -type f -exec chmod 644 {} + && sudo nginx -s reload"
+        "sudo chmod 755 '$REMOTE_NEW' && sudo find '$REMOTE_NEW' -type d -exec chmod 755 {} + && sudo find '$REMOTE_NEW' -type f -exec chmod 644 {} + && sudo chown --reference='$REMOTE_DIR' '$REMOTE_NEW' && (sudo chcon -R --reference='$REMOTE_DIR' '$REMOTE_NEW' || true) && sudo mv '$REMOTE_DIR' '$REMOTE_OLD' && sudo mv '$REMOTE_NEW' '$REMOTE_DIR' && sudo rm -rf '$REMOTE_OLD' && sudo nginx -s reload"
 
-    if ($LASTEXITCODE -ne 0) { throw "Permission fix or nginx reload failed." }
+    if ($LASTEXITCODE -ne 0) { throw "Permission fix, swap or nginx reload failed." }
 
     Write-Host ""
     Write-Host "Deployment complete!" -ForegroundColor Green

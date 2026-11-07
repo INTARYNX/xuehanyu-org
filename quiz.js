@@ -256,7 +256,7 @@ buildPaper();
 // -------------------------------------------------------------------------
 const INDEX_URL   = 'assets/img/index.json';
 /** À changer quand les illustrations sont refaites : Cloudflare et le service worker les gardent sous leur nom. */
-const IMG_VERSION = '20261107c';
+const IMG_VERSION = '20261107e';
 const imgUrl = w => `assets/img/hsk${w.level}/${w.image}?v=${IMG_VERSION}`;
 const STORE_KEY   = 'xuehanyu.quiz.v1';
 const SRS_KEY     = 'xuehanyu.srs.v1';
