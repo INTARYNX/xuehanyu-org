@@ -16,6 +16,7 @@ Prérequis : la CLI `mcode-tools` sur le PATH et ses identifiants configurés.
 import glob
 import json
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -81,7 +82,8 @@ def generate(batch, attempts=3):
 
 def download(slug, node_id):
     url = json.loads(sh(f"mcode-tools get_asset_url {node_id}"))["download_url"]
-    dst = os.path.join(RAW, f"{slug}.img")
+    ext = ".png" if url.split("?")[0].lower().endswith(".png") else ".jpg"
+    dst = os.path.join(RAW, f"{slug}{ext}")
     sh(f'curl -sL -o "{dst}" "{url}"')
     return dst
 
@@ -103,6 +105,14 @@ def main():
             dest_dir = os.path.join(OUT, f"hsk{lvl}")
             os.makedirs(dest_dir, exist_ok=True)
             src = download(slug, mapping[slug])
+            # L'original est conservé : c'est la seule source de vérité.
+            # Le nettoyage qui suit est destructif (masque, érosion,
+            # effacement, recadrage) — sans cet original, une illustration
+            # abîmée est irrécupérable sans régénérer (donc : des crédits).
+            keep = os.path.join(OUT, "img-raw", f"hsk{lvl}",
+                                os.path.basename(src))
+            os.makedirs(os.path.dirname(keep), exist_ok=True)
+            shutil.copy2(src, keep)
             tmp = os.path.join(RAW, f"{slug}.webp")
             normalize(src, tmp)
             clean(tmp, os.path.join(dest_dir, f"{slug}.webp"))
