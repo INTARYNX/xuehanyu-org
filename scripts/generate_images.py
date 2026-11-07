@@ -12,6 +12,8 @@ Prérequis : la CLI `mcode-tools` sur le PATH et ses identifiants configurés.
 
     python3 scripts/generate_images.py                # tous les mots manquants
     python3 scripts/generate_images.py 0 6            # seulement les 6 premiers
+    python3 scripts/generate_images.py --force laoshi xie baise   # REGÉNÈRE ces mots
+                                                      # (écrase l'image existante)
 """
 import glob
 import json
@@ -87,13 +89,23 @@ def download(slug, node_id):
 
 
 def main():
-    start = int(sys.argv[1]) if len(sys.argv) > 1 else 0
-    end = int(sys.argv[2]) if len(sys.argv) > 2 else len(WORDS)
+    args = sys.argv[1:]
+    force = "--force" in args
+    args = [a for a in args if a != "--force"]
+    slugs = [a for a in args if not a.isdigit()]
+    nums = [int(a) for a in args if a.isdigit()]
+    known = {w[1] for w in WORDS}
+    unknown = [s for s in slugs if s not in known]
+    if unknown:
+        sys.exit(f"mots inconnus (voir image_words.py) : {', '.join(unknown)}")
+    start = nums[0] if len(nums) > 0 else 0
+    end = nums[1] if len(nums) > 1 else len(WORDS)
     os.makedirs(RAW, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
 
     todo = [w for w in WORDS[start:end]
-            if not os.path.exists(os.path.join(OUT, f"hsk{w[2]}", w[1] + ".webp"))]
+            if (not slugs or w[1] in slugs)
+            and (force or not os.path.exists(os.path.join(OUT, f"hsk{w[2]}", w[1] + ".webp")))]
     for i in range(0, len(todo), BATCH):
         chunk = todo[i:i + BATCH]
         print(f"[lot {i + start}..{i + start + len(chunk)}] "

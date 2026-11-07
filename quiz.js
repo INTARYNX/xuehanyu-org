@@ -255,6 +255,9 @@ buildPaper();
 // DATA
 // -------------------------------------------------------------------------
 const INDEX_URL   = 'assets/img/index.json';
+/** À changer quand les illustrations sont refaites : Cloudflare et le service worker les gardent sous leur nom. */
+const IMG_VERSION = '20261107c';
+const imgUrl = w => `assets/img/hsk${w.level}/${w.image}?v=${IMG_VERSION}`;
 const STORE_KEY   = 'xuehanyu.quiz.v1';
 const SRS_KEY     = 'xuehanyu.srs.v1';
 
@@ -505,7 +508,7 @@ function renderCards() {
   stage.innerHTML = `
     <div class="q-card card-flash">
       <div class="flash-image-wrap">
-        <img src="assets/img/hsk${w.level}/${esc(w.image)}" alt="" class="q-image" loading="eager">
+        <img src="${esc(imgUrl(w))}" alt="" class="q-image" loading="eager">
         ${speakButton()}
       </div>
       <div class="flash-reveal" id="flashReveal"><span class="flash-q" aria-hidden="true">?</span><span class="flash-hint">${t().cardsPrompt}</span></div>
@@ -573,7 +576,7 @@ function renderImg2Word() {
     <h2 class="q-prompt">${t().pickWord}</h2>
     <div class="q-card quiz-card">
       <div class="flash-image-wrap big">
-        <img src="assets/img/hsk${w.level}/${esc(w.image)}" alt="" class="q-image">
+        <img src="${esc(imgUrl(w))}" alt="" class="q-image">
         ${speakButton()}
       </div>
     </div>
@@ -617,7 +620,7 @@ function renderWord2Img() {
     b.className = 'choice choice-img';
     b.dataset.slug = c.slug;
     b.setAttribute('aria-label', String(i + 1));
-    b.innerHTML = `<img src="assets/img/hsk${c.level}/${esc(c.image)}" alt="">`;
+    b.innerHTML = `<img src="${esc(imgUrl(c))}" alt="">`;
     b.addEventListener('click', () => answer(b, c.slug === w.slug, w, box));
     box.appendChild(b);
   });

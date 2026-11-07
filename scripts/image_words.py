@@ -14,7 +14,8 @@ STYLE = (
     "centered subject, pure white background, square compositio"
     "n, generous white margin, crisp edges, no text, no letters"
     ", no words, no numbers, no writing, no Chinese characters,"
-    " no watermark, no logo"
+    " no watermark, no logo, no frame, no border, no dashed or "
+    "dotted lines, no cast shadow"
 )
 
 # (hanzi, slug, niveau, pinyin, freq, en, fr, cat, scene)

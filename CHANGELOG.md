@@ -9,6 +9,7 @@
 - `progress.js` (new, with tests): words practised per day, goal (10 words) and streak, kept in `localStorage`. An answered card or question counts as 1 word, a reviewed lesson as all its distinct words; the hub says so.
 - Lessons: a path with done / up-next states and overall progress, chat-style dialogue, switch-style Pinyin / Translation toggles, a sticky action bar, and a "next lesson" button. The page opens on the first lesson not reviewed yet.
 - Dictionary: word hero (pinyin, meaning, badges) above a stroke grid, labelled actions, and only the facts that exist (no more rows of dashes).
+- Illustrations: 140 images rebuilt from their originals by cropping only (the old pipeline erased pale parts such as grey hair and left stray dashes). Originals are kept in the git-ignored `assets/img-raw/`.
 - Home: one primary call to action (practice) and two secondary ones.
 
 ## 1.0.0 — 2026-11-06
