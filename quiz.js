@@ -255,53 +255,12 @@ function pickDistractors(word, n = 3) {
 }
 
 // -------------------------------------------------------------------------
-// SPEECH — même approche que app.js (synthèse vocale zh-CN)
-//
-// Sur iOS, speechSynthesis refuse de parler tant que l'utilisateur n'a pas
-// interagi avec la page. On déverrouille donc la synthèse au premier geste
-// (tap, clic, touche) : la lecture automatique fonctionne ensuite à chaque
-// question. Le bouton « Écouter » fonctionne de toute façon.
+// SPEECH — voir speech.js (voix chinoise du système, message clair si elle manque)
 // -------------------------------------------------------------------------
-let speechUnlocked = false;
-
-function unlockSpeech() {
-  if (speechUnlocked) return;
-  speechUnlocked = true;
-  try {
-    const u = new SpeechSynthesisUtterance(' ');
-    u.volume = 0;
-    speechSynthesis.speak(u);
-  } catch {}
-}
-
-['pointerdown', 'touchstart', 'keydown'].forEach(ev =>
-  document.addEventListener(ev, unlockSpeech, { once: true, passive: true })
-);
-
-function speak(text) {
-  const say = () => {
-    const voices = speechSynthesis.getVoices();
-    const zh = voices.find(v => v.lang && v.lang.startsWith('zh'));
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'zh-CN';
-    u.rate = 0.8;
-    if (zh) u.voice = zh;
-    try {
-      speechSynthesis.speak(u);
-    } catch {}
-  };
-  if (speechSynthesis.getVoices().length) say();
-  else {
-    // les voix peuvent arriver tard : on écoute l'événement, avec un filet
-    speechSynthesis.addEventListener('voiceschanged', say, { once: true });
-    setTimeout(say, 1200);
-  }
-}
+const speak = text => { Speech.speak(text); };
 
 /** Coupe toute lecture en cours (changement de question). */
-function stopSpeech() {
-  try { speechSynthesis.cancel(); } catch {}
-}
+function stopSpeech() { Speech.stop(); }
 
 // -------------------------------------------------------------------------
 // PERSISTANCE — mots maîtrisés (localStorage)

@@ -79,63 +79,10 @@ const t = (k) => (I18N[lang] && I18N[lang][k]) || k;
 const { phrasePinyin } = window.LessonsPinyin;
 
 // -------------------------------------------------------------------------
-// SPEECH — même approche que quiz.js
+// SPEECH — voir speech.js (voix chinoise du système, message clair si elle manque)
 // -------------------------------------------------------------------------
-let speechUnlocked = false;
-function unlockSpeech() {
-  if (speechUnlocked) return;
-  speechUnlocked = true;
-  try {
-    const u = new SpeechSynthesisUtterance(' ');
-    u.volume = 0;
-    speechSynthesis.speak(u);
-  } catch {}
-}
-['pointerdown', 'touchstart', 'keydown'].forEach(ev =>
-  document.addEventListener(ev, unlockSpeech, { once: true, passive: true })
-);
-
-/**
- * Speaks `text` and returns a promise that resolves when the voice has
- * actually finished (or was cancelled / failed), so callers can wait for it.
- * Some browsers never fire `end`, so a generous estimate caps the wait.
- */
-function speak(text) {
-  return new Promise(resolve => {
-    let safety;
-    let started = false;
-    let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      clearTimeout(safety);
-      resolve();
-    };
-    safety = setTimeout(finish, Math.max(4000, [...String(text)].length * 700 + 2500));
-
-    const say = () => {
-      if (started) return;           // `voiceschanged` and the fallback timer must not both speak
-      started = true;
-      const voices = speechSynthesis.getVoices();
-      const zh = voices.find(v => v.lang && v.lang.startsWith('zh'));
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'zh-CN';
-      u.rate = 0.8;
-      if (zh) u.voice = zh;
-      u.onend = finish;
-      u.onerror = finish;
-      try { speechSynthesis.speak(u); } catch { finish(); }
-    };
-    try {
-      if (speechSynthesis.getVoices().length) say();
-      else {
-        speechSynthesis.addEventListener('voiceschanged', say, { once: true });
-        setTimeout(say, 1200);
-      }
-    } catch { finish(); }
-  });
-}
-function stopSpeech() { try { speechSynthesis.cancel(); } catch {} }
+const speak = text => Speech.speak(text);
+const stopSpeech = () => Speech.stop();
 
 // -------------------------------------------------------------------------
 // DATA
@@ -318,8 +265,9 @@ async function playConversation() {
       row.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
     // wait for the voice to finish, then a short beat, before moving on and scrolling
-    await speak(lines[i].hanzi);
+    const spoken = await speak(lines[i].hanzi);
     if (token !== playToken) return;
+    if (spoken === 'no-voice') { stopPlayback(); return; }   // inutile de dérouler tout le dialogue en silence
     await new Promise(r => setTimeout(r, 450));
   }
   if (token === playToken) {

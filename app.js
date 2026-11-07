@@ -471,18 +471,7 @@ function quizChar() {
 // =========================================================================
 // SPEECH
 // =========================================================================
-function speakChar() {
-  const speak = () => {
-    const voices = speechSynthesis.getVoices();
-    const zh = voices.find(v => v.lang.startsWith('zh'));
-    const u = new SpeechSynthesisUtterance(currentChar.char);
-    u.lang = 'zh-CN'; u.rate = 0.8;
-    if (zh) u.voice = zh;
-    speechSynthesis.speak(u);
-  };
-  if (speechSynthesis.getVoices().length) speak();
-  else speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
-}
+function speakChar() { Speech.speak(currentChar.char); }
 
 // =========================================================================
 // TONE DETECTION — sequential, syllable by syllable, real-time feedback

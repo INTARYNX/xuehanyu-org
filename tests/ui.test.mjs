@@ -518,3 +518,65 @@ test('dictionary (phone): scrolled to the end, the last block of the word sheet 
     assert.equal(m.coveredByBar, false, 'the bottom bar covers the end of the word sheet');
   } finally { await ctx.close(); }
 });
+
+// ------------------------------------------------------------------ prononciation : voix chinoise du système
+const STUB_SPEECH = voices => `
+  window.__spoken = [];
+  const list = ${JSON.stringify(voices)};
+  Object.defineProperty(window, 'speechSynthesis', { value: {
+    getVoices: () => list, addEventListener() {}, cancel() {},
+    speak(u) { if (u.text.trim()) { window.__spoken.push({ text: u.text, lang: u.lang, voice: u.voice && u.voice.name }); setTimeout(() => u.onend && u.onend(), 20); } }
+  } });
+  window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+`;
+const EN_ONLY = [{ name: 'Microsoft George - English (United Kingdom)', lang: 'en-GB' }, { name: 'Microsoft Guillaume - French (Switzerland)', lang: 'fr-CH' }];
+
+test('lessons: with no Chinese voice (a Windows PC without the language pack) the user is told, not left with silence', { skip }, async () => {
+  const { p, ctx, errors } = await open('lessons.html', 'desktop', STUB_SPEECH(EN_ONLY));
+  try {
+    await p.click('[data-speak="0"]');
+    await p.waitForTimeout(300);
+    assert.equal(await p.isVisible('.speech-notice'), true, 'no message about the missing voice');
+    assert.match(await p.textContent('.speech-notice'), /voix chinoise/i);
+    assert.deepEqual(await p.evaluate(() => window.__spoken), [], 'an English voice must not read Chinese characters');
+    await p.click('.speech-notice-close');
+    await p.click('[data-speak="1"]');
+    await p.waitForTimeout(300);
+    assert.equal(await p.isVisible('.speech-notice'), false, 'the message came back after being closed');
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: with a Chinese voice available it is the one used, in zh-CN, and no message is shown', { skip }, async () => {
+  const voices = [...EN_ONLY, { name: 'Microsoft Huihui - Chinese (Simplified, PRC)', lang: 'zh-CN' }];
+  const { p, ctx } = await open('lessons.html', 'desktop', STUB_SPEECH(voices));
+  try {
+    await p.click('[data-speak="0"]');
+    await p.waitForTimeout(300);
+    const spoken = await p.evaluate(() => window.__spoken);
+    assert.equal(spoken.length, 1);
+    assert.equal(spoken[0].lang, 'zh-CN');
+    assert.match(spoken[0].voice, /Huihui/);
+    assert.equal(await p.isVisible('.speech-notice'), false);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: a browser that hides its voice list still gets a try (lang=zh-CN), as phones do', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', STUB_SPEECH([]));
+  try {
+    await p.click('[data-speak="0"]');
+    await p.waitForTimeout(1600);   // the voice list is empty: speech.js waits for it, then tries anyway
+    assert.equal((await p.evaluate(() => window.__spoken)).length, 1);
+    assert.equal(await p.isVisible('.speech-notice'), false);
+  } finally { await ctx.close(); }
+});
+
+test('quiz and dictionary use the same speech module (one message, one voice choice)', { skip }, async () => {
+  for (const [page, click] of [['quiz.html', null], ['app.html', null]]) {
+    const { p, ctx } = await open(page, 'desktop', STUB_SPEECH(EN_ONLY));
+    try {
+      assert.equal(await p.evaluate(() => typeof Speech.speak), 'function', `${page}: speech.js is not loaded`);
+      assert.equal(await p.evaluate(() => Speech.verdict(speechSynthesis.getVoices())), 'none', page);
+    } finally { await ctx.close(); }
+  }
+});
