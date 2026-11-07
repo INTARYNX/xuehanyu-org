@@ -80,7 +80,7 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js" integrity="sha384-p2WzfM2NW1JYnm3bFTXjUZyzgPx3NMnP4qIJN5M+PqItIAWRvwKyM7f/ZdFLFUad" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="fonts/manrope.css?v=20261107i">
+<link rel="stylesheet" href="fonts/manrope.css?v=20261107k">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -149,7 +149,8 @@ html, body {
   line-height: 1.1;
 }
 .brand-title .zh {
-  font-family: "STKaiti", "Kaiti SC", "Noto Serif CJK SC", serif;
+  font-family: "Xuehanyu Brand", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  font-weight: 900;
   color: var(--accent);
   margin-right: 0.3em;
 }
@@ -318,7 +319,7 @@ footer a:hover { color: var(--accent); }
         <button data-lang="fr" class="active">FR</button>
         <button data-lang="en">EN</button>
       </div>
-      <h1 class="brand-title"><span class="zh">学汉语</span>xuehanyu.org</h1>
+      <h1 class="brand-title"><span class="zh" lang="zh-Hans">学汉语</span>xuehanyu.org</h1>
       <p class="tagline" data-t="tagline">Apprendre le chinois mandarin,<br>un caractère à la fois.</p>
       <a href="quiz.html" class="cta-btn" data-t="cta">Commencer à pratiquer</a>
       <div class="cta-row">
@@ -774,6 +775,6 @@ buildPaper();
 buildCentralSeal();
 requestAnimationFrame(loop);
 </script>
-<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js?v=20261107i'));</script>
+<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js?v=20261107k'));</script>
 </body>
 </html>

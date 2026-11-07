@@ -44,10 +44,9 @@
   --r-pill: 999px;
   --gap: 1rem;
   --tap: 44px;
-  --tabbar-h: 54px;
-  /* Zone sûre du bas (home indicator, barre système Android), PLAFONNÉE : en PWA elle peut valoir
-     30–50px, ce qui doublait la hauteur de la barre et laissait une bande vide dessous. */
-  --sab: min(env(safe-area-inset-bottom, 0px), 14px);
+  --tabbar-h: 63px;
+  /* Zone sûre du bas, NON plafonnée : même valeur que la barre d'onglets (copie d'Enlistia). */
+  --sab: env(safe-area-inset-bottom, 0px);
   --topbar-h: 60px;
   --lift: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 1px 2px rgba(60, 35, 15, 0.1), 0 6px 18px -8px rgba(60, 35, 15, 0.25);
 }
@@ -145,9 +144,9 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 }
 /* Les caractères seuls, en graisse forte : le serif/kaiti par défaut était trop fin à cette taille. */
 .brand .zh {
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  font-family: "Xuehanyu Brand", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
   font-size: 1.75rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.04em;
   line-height: 1;
   color: var(--accent);
@@ -213,7 +212,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 @media (max-width: 800px) {
   .app {
     /* hauteur réelle de la barre (63px) + respiration + zone sûre */
-    padding-bottom: calc(var(--tabbar-h) + var(--sab) + 1.25rem);
+    padding-bottom: calc(71px + env(safe-area-inset-bottom, 0px));
   }
   .site-nav {
     position: fixed;
@@ -225,7 +224,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     justify-content: space-between;
     align-items: center;
     gap: 0;
-    padding: 8px 12px calc(8px + var(--sab));
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
     z-index: 10000;
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: saturate(140%) blur(14px);
@@ -235,22 +234,36 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     border-top: 1px solid color-mix(in srgb, var(--line-strong) 80%, transparent);
     border-radius: 0;
   }
+  /* `.nav-tab` d'Enlistia en mobile ; max-width 84px au lieu de 60px : nos libellés sont plus longs */
   .site-nav a {
     flex-direction: column;
-    justify-content: center;
-    gap: 2px;
+    gap: 0;
+    padding: 0;
     flex: 1;
-    max-width: none;
+    max-width: 84px;
     min-height: 0;
-    padding: 0 2px;
-    line-height: 1.3;
-    border-radius: var(--r-md);
-    font-size: 0.68rem;
-    letter-spacing: 0.01em;
     text-align: center;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    color: var(--ink);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
   }
-  .site-nav a i { font-size: 1.1rem; line-height: 1; }
-  .site-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
+  .site-nav a:hover { background: none; color: var(--ink); }
+  .site-nav a i {
+    flex: none;
+    width: 19px;
+    height: 19px;
+    font-size: 19px;
+    line-height: 19px;
+    color: color-mix(in srgb, var(--ink) 60%, var(--ink-soft));
+  }
+  .site-nav a span { display: block; margin-top: 4px; white-space: nowrap; }
+  .site-nav a[aria-current="page"] { background: none; color: var(--accent); font-weight: 700; }
+  .site-nav a[aria-current="page"] i { color: inherit; }
 }
 
 /* =========================================================================
