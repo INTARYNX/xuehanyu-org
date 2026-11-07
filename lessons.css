@@ -247,3 +247,18 @@
 .gp-pinyin { font-size: 0.85rem; color: var(--accent); }
 .gp-tr { font-size: 0.88rem; color: var(--ink-soft); }
 .gp-pinyin.hidden, .gp-tr.hidden { display: none; }
+
+/* ------------------------------------------------------- FICHE D'UN MOT (clic sur le vocabulaire) */
+button.vocab-item { border: 1px solid transparent; font: inherit; color: inherit; text-align: left; cursor: pointer; width: 100%; }
+button.vocab-item:hover { background: var(--surface-3); border-color: var(--line-strong); }
+button.vocab-item:focus-visible { outline-offset: 0; }
+.word-dict-link { margin: 0.25rem 0 0; text-align: center; font-size: 0.92rem; }
+.word-dict-link a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.writer-fallback { font-family: var(--hanzi); color: var(--ink); text-align: center; }
+/* sur grand écran, la fiche est une boîte centrée au lieu d'une feuille plein écran */
+@media (min-width: 801px) {
+  .word-sheet { inset: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(520px, 92vw); height: auto; max-height: 92dvh; border-radius: var(--r-lg); box-shadow: 0 24px 64px -16px rgba(30, 20, 10, 0.5); }
+  .word-sheet .popup-header { border-radius: var(--r-lg) var(--r-lg) 0 0; }
+}
+/* trois actions seulement (le dictionnaire en a quatre) : trois colonnes, sinon la quatrième reste vide à droite */
+.word-sheet .controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }

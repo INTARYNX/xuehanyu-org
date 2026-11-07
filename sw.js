@@ -2,7 +2,7 @@
 // - same-origin pages, scripts, styles and data: network first, cache as fallback
 // - images and pinned CDN assets: cache first (they never change in place)
 // Bump VERSION to drop every cached file.
-const VERSION = 'v16';
+const VERSION = 'v18';
 const CACHE = 'xuehanyu-' + VERSION;
 const SHELL = [
   './', 'app.html', 'quiz.html', 'lessons.html',

@@ -35,6 +35,11 @@ const I18N = {
     tagReuse: 'Nouvel emploi',
     tagReuseHint: 'Ce mot est déjà apparu dans une leçon précédente, avec un autre emploi.',
     listenExample: 'Écouter l’exemple',
+    redraw: 'Rejouer le tracé',
+    practice: 'S’entraîner',
+    openDict: 'Voir dans le dictionnaire',
+    close: 'Fermer',
+    openWordHint: 'Voir le tracé',
     home: 'Accueil',
     footerNote: 'Dialogues restreints au vocabulaire HSK 1',
     lines: 'répliques',
@@ -66,6 +71,11 @@ const I18N = {
     tagReuse: 'New use',
     tagReuseHint: 'This word appeared in an earlier lesson, with a different use.',
     listenExample: 'Listen to the example',
+    redraw: 'Replay the strokes',
+    practice: 'Practise',
+    openDict: 'See in the dictionary',
+    close: 'Close',
+    openWordHint: 'See the strokes',
     home: 'Home',
     footerNote: 'Dialogues restricted to HSK 1 vocabulary',
     lines: 'lines',
@@ -211,11 +221,11 @@ function renderVocab() {
       if (seen.has(w)) continue;
       seen.add(w);
       const v = VOCAB[w] || {};
-      items.push(`<div class="vocab-item">
-        <span class="vocab-char">${esc(w)}</span>
+      items.push(`<button type="button" class="vocab-item" data-word="${esc(w)}" title="${esc(t('openWordHint'))}">
+        <span class="vocab-char" lang="zh">${esc(w)}</span>
         <span class="vocab-pinyin">${esc(v.p)}</span>
-        <span class="vocab-fr">${esc((v.fr || v.en || '').split(';')[0])}</span>
-      </div>`);
+        <span class="vocab-fr">${esc(((lang === 'fr' ? v.fr : v.en) || v.fr || v.en || '').split(';')[0])}</span>
+      </button>`);
     }
   }
   vocabBox.innerHTML = `<div class="lesson-vocab-title">${t('vocab')}</div>
@@ -305,6 +315,130 @@ function showWordPop(ev, w, sticky = false) {
 function hideWordPop() {
   if (pop) { pop.remove(); pop = null; }
 }
+
+// -------------------------------------------------------------------------
+// FICHE D'UN MOT — clic sur un mot du vocabulaire : tracé animé, tracé à refaire, écoute
+// (même Hanzi Writer que le dictionnaire ; le lien mène à la fiche complète)
+// -------------------------------------------------------------------------
+const wordOverlay = document.getElementById('wordOverlay');
+const wordBody    = document.getElementById('wordBody');
+let wordState = null;          // { w, idx, writer } tant que la fiche est ouverte
+let wordReturnFocus = null;
+
+const wordChars = () => (wordState ? [...wordState.w] : []);
+
+function renderWordSheet() {
+  const w = wordState.w;
+  const v = VOCAB[w] || {};
+  const meaning = ((lang === 'fr' ? v.fr : v.en) || v.fr || v.en || '').split(';').slice(0, 2).join(' ; ').trim();
+  document.getElementById('wordTitle').textContent = w;
+  document.getElementById('wordClose').setAttribute('aria-label', t('close'));
+  wordBody.innerHTML = `
+    <div class="word-hero">
+      <div class="word-pinyin"><span class="pinyin">${esc(v.p)}</span></div>
+      <div class="word-meaning">${esc(meaning || '—')}</div>
+      <div class="word-badges"><span class="level-badge">HSK 1</span></div>
+    </div>
+    <div class="char-display">
+      <div id="writer-host" role="img" aria-label="${esc(w)}"></div>
+      <div class="char-nav" id="wordNav">
+        <button class="btn icon" id="wordPrev" type="button" aria-label="‹"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="char-nav-dots" id="wordDots"></div>
+        <button class="btn icon" id="wordNext" type="button" aria-label="›"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="controls">
+        <button class="ctrl-btn primary" id="wordReplay" type="button"><i class="fa-solid fa-rotate-right"></i><span class="ctrl-label">${esc(t('redraw'))}</span></button>
+        <button class="ctrl-btn" id="wordPractice" type="button"><i class="fa-solid fa-pen"></i><span class="ctrl-label">${esc(t('practice'))}</span></button>
+        <button class="ctrl-btn" id="wordSpeak" type="button"><i class="fa-solid fa-volume-high"></i><span class="ctrl-label">${esc(t('playAll'))}</span></button>
+      </div>
+    </div>
+    <p class="word-dict-link"><a href="app.html?w=${encodeURIComponent(w)}&l=1">${esc(t('openDict'))} →</a></p>`;
+
+  document.getElementById('wordReplay').addEventListener('click', () => drawWord(false));
+  document.getElementById('wordPractice').addEventListener('click', () => drawWord(true));
+  document.getElementById('wordSpeak').addEventListener('click', () => speak(w));
+  document.getElementById('wordPrev').addEventListener('click', () => stepWord(-1));
+  document.getElementById('wordNext').addEventListener('click', () => stepWord(1));
+  renderWordNav();
+  drawWord(false);
+}
+
+function renderWordNav() {
+  const chars = wordChars();
+  const nav = document.getElementById('wordNav');
+  if (!nav) return;
+  nav.classList.toggle('visible', chars.length > 1);
+  if (chars.length <= 1) return;
+  document.getElementById('wordPrev').disabled = wordState.idx === 0;
+  document.getElementById('wordNext').disabled = wordState.idx === chars.length - 1;
+  const dots = document.getElementById('wordDots');
+  dots.innerHTML = chars.map((c, i) =>
+    `<button type="button" class="char-dot${i === wordState.idx ? ' active' : ''}" data-idx="${i}">${esc(c)}</button>`).join('');
+  dots.querySelectorAll('.char-dot').forEach(b => b.addEventListener('click', () => {
+    wordState.idx = Number(b.dataset.idx); renderWordNav(); drawWord(false);
+  }));
+}
+
+function stepWord(d) {
+  const next = wordState.idx + d;
+  if (next < 0 || next >= wordChars().length) return;
+  wordState.idx = next;
+  renderWordNav();
+  drawWord(false);
+}
+
+/** Anime le caractère courant (practice = false) ou laisse l'élève le tracer lui-même (practice = true). */
+function drawWord(practice) {
+  const host = document.getElementById('writer-host');
+  if (!host || !wordState) return;
+  host.innerHTML = '';
+  const ch = wordChars()[wordState.idx];
+  const size = host.clientWidth || 260;
+  try {
+    wordState.writer = HanziWriter.create(host, ch, {
+      width: size, height: size, padding: 8,
+      strokeColor: '#1a1310', radicalColor: '#b8211f',
+      strokeAnimationSpeed: 1.0, delayBetweenStrokes: 200,
+      showOutline: true, outlineColor: practice ? 'rgba(60,35,15,0.2)' : 'rgba(60,35,15,0.15)',
+      showCharacter: false, drawingColor: '#b8211f', highlightColor: '#b8211f'
+    });
+    if (practice) wordState.writer.quiz({ onMistake() {}, onCorrectStroke() {}, onComplete() {} });
+    else wordState.writer.animateCharacter();
+  } catch {
+    // Hanzi Writer indisponible (hors ligne, CDN bloqué) : au moins le caractère en grand
+    host.innerHTML = `<div class="writer-fallback" style="font-size:${Math.round(size * 0.65)}px;line-height:${size}px">${esc(ch)}</div>`;
+  }
+}
+
+function openWord(w) {
+  wordState = { w, idx: 0, writer: null };
+  wordReturnFocus = document.activeElement;
+  wordOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // après l'affichage : le tracé se dimensionne sur la largeur réelle du cadre
+  requestAnimationFrame(() => {
+    renderWordSheet();
+    document.getElementById('wordClose').focus();
+  });
+}
+
+function closeWord() {
+  if (!wordState) return;
+  wordOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  wordState = null;
+  stopSpeech();
+  if (wordReturnFocus && wordReturnFocus.focus) wordReturnFocus.focus();
+}
+
+document.getElementById('wordClose').addEventListener('click', closeWord);
+wordOverlay.addEventListener('click', e => { if (e.target === wordOverlay) closeWord(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWord(); });
+vocabBox.addEventListener('click', e => {
+  const item = e.target.closest('.vocab-item');
+  if (item) openWord(item.dataset.word);
+});
+
 
 // -------------------------------------------------------------------------
 // NAVIGATION / ACTIONS
@@ -408,6 +542,7 @@ function setLang(l) {
   renderGrammar();
   renderVocab();
   updateReviewButton();
+  if (wordState) renderWordSheet();
 }
 
 // -------------------------------------------------------------------------

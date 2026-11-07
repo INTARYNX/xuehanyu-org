@@ -736,3 +736,132 @@ test('lessons (phone): grammar cards fit the screen without sideways scroll', { 
     assert.ok(widest <= 390, `a card overflows the phone width (${widest}px)`);
   } finally { await ctx.close(); }
 });
+
+// ------------------------------------------------------------------ fiche d'un mot du vocabulaire (tracé)
+const FAKE_WRITER = `
+  window.__writer = [];
+  window.HanziWriter = { create(host, ch, opts) {
+    const rec = { ch, size: opts.width, animated: 0, quiz: 0 };
+    window.__writer.push(rec);
+    host.innerHTML = '<svg data-ch="' + ch + '" width="' + opts.width + '" height="' + opts.width + '"></svg>';
+    return { animateCharacter() { rec.animated++; }, quiz() { rec.quiz++; } };
+  } };
+`;
+
+test('lessons: clicking a vocabulary word opens its stroke sheet with the animation running', { skip }, async () => {
+  const { p, ctx, errors } = await open('lessons.html', 'desktop', FAKE_WRITER);
+  try {
+    assert.ok(await p.$$eval('#vocab button.vocab-item', a => a.length) > 5, 'vocabulary items are not buttons');
+    await p.click('#vocab .vocab-item[data-word="老师"]');
+    await p.waitForTimeout(300);
+    assert.equal(await p.isVisible('#wordSheet'), true);
+    assert.equal(await p.textContent('#wordTitle'), '老师');
+    assert.match(await p.textContent('#wordBody .pinyin'), /lǎo shī|lao shi|lǎo shi/i);
+    const w = await p.evaluate(() => window.__writer);
+    assert.equal(w.length, 1);
+    assert.equal(w[0].ch, '老', 'first character first');
+    assert.equal(w[0].animated, 1, 'the stroke animation did not start');
+    assert.ok(w[0].size > 100, `the drawing area was sized before it was visible (${w[0].size}px)`);
+    assert.equal(await p.getAttribute('#wordBody .word-dict-link a', 'href'), 'app.html?w=%E8%80%81%E5%B8%88&l=1');
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: a two-character word has a character selector; practice mode lets the learner trace', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER);
+  try {
+    await p.click('#vocab .vocab-item[data-word="老师"]');
+    await p.waitForTimeout(300);
+    assert.equal(await p.$$eval('#wordDots .char-dot', a => a.map(b => b.textContent)).then(x => x.join('')), '老师');
+    await p.click('#wordNext');
+    assert.equal((await p.evaluate(() => window.__writer)).at(-1).ch, '师');
+    assert.equal(await p.isDisabled('#wordNext'), true);
+    await p.click('#wordDots .char-dot[data-idx="0"]');
+    assert.equal((await p.evaluate(() => window.__writer)).at(-1).ch, '老');
+    await p.click('#wordPractice');
+    const last = (await p.evaluate(() => window.__writer)).at(-1);
+    assert.equal(last.quiz, 1, 'practice mode did not start the trace quiz');
+    await p.click('#wordReplay');
+    assert.equal((await p.evaluate(() => window.__writer)).at(-1).animated, 1);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: the sheet closes with Escape, the close button or a click outside, and gives the focus back', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER);
+  try {
+    for (const how of ['escape', 'button', 'outside']) {
+      await p.focus('#vocab .vocab-item[data-word="你"]');
+      await p.keyboard.press('Enter');
+      await p.waitForTimeout(250);
+      assert.equal(await p.isVisible('#wordSheet'), true, `${how}: did not open from the keyboard`);
+      if (how === 'escape') await p.keyboard.press('Escape');
+      if (how === 'button') await p.click('#wordClose');
+      if (how === 'outside') await p.mouse.click(5, 5);
+      await p.waitForTimeout(200);
+      assert.equal(await p.isVisible('#wordSheet'), false, `${how}: did not close`);
+      assert.equal(await p.evaluate(() => document.activeElement.dataset.word), '你', `${how}: focus was not restored`);
+      assert.equal(await p.evaluate(() => document.body.style.overflow), '', `${how}: page scroll stays locked`);
+    }
+  } finally { await ctx.close(); }
+});
+
+test('lessons: the sheet plays the word and re-renders in the other language while open', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER + STUB_SPEECH([{ name: 'Huihui', lang: 'zh-CN' }]));
+  try {
+    await p.click('#vocab .vocab-item[data-word="你"]');
+    await p.waitForTimeout(300);
+    assert.match(await p.textContent('#wordReplay'), /Rejouer/);
+    await p.click('#wordSpeak');
+    await p.waitForTimeout(300);
+    assert.deepEqual((await p.evaluate(() => window.__spoken)).map(s => s.text), ['你']);
+    await p.evaluate(() => setLang('en'));                     // the header switch is behind the overlay
+    await p.waitForTimeout(200);
+    assert.match(await p.textContent('#wordReplay'), /Replay the strokes/);
+    assert.match(await p.textContent('#wordBody .word-dict-link'), /See in the dictionary/);
+    assert.equal(await p.isVisible('#wordSheet'), true, 'the language change closed the sheet');
+  } finally { await ctx.close(); }
+});
+
+test('lessons (phone): the stroke sheet covers the bottom bar and its last line is reachable', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'phone', FAKE_WRITER);
+  try {
+    await p.click('#vocab .vocab-item[data-word="老师"]');
+    await p.waitForTimeout(300);
+    const m = await p.evaluate(() => {
+      const sheet = document.getElementById('wordSheet');
+      sheet.scrollTop = sheet.scrollHeight;
+      const link = document.querySelector('#wordBody .word-dict-link').getBoundingClientRect();
+      const at = document.elementFromPoint(innerWidth / 2, innerHeight - 6);
+      return { linkBottom: link.bottom, h: innerHeight, overBar: !!(at && at.closest('#wordSheet')), overflow: document.documentElement.scrollWidth > innerWidth };
+    });
+    assert.equal(m.overBar, true, 'the bottom bar is drawn over the sheet');
+    assert.ok(m.linkBottom <= m.h, `the last link is cut off (${m.linkBottom} > ${m.h})`);
+    assert.equal(m.overflow, false);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: without Hanzi Writer (offline, CDN blocked) the sheet still shows the character', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop');          // external scripts are blocked in these tests
+  try {
+    await p.click('#vocab .vocab-item[data-word="你"]');
+    await p.waitForTimeout(300);
+    assert.equal(await p.textContent('#writer-host .writer-fallback'), '你');
+  } finally { await ctx.close(); }
+});
+
+test('lessons: the three buttons of the stroke sheet fill the row, nothing is left empty on one side', { skip }, async () => {
+  for (const size of ['phone', 'desktop']) {
+    const { p, ctx } = await open('lessons.html', size, FAKE_WRITER);
+    try {
+      await p.click('#vocab .vocab-item[data-word="老师"]');
+      await p.waitForTimeout(300);
+      const g = await p.evaluate(() => {
+        const row = document.querySelector('#wordBody .controls').getBoundingClientRect();
+        const btns = [...document.querySelectorAll('#wordBody .ctrl-btn')].map(b => b.getBoundingClientRect());
+        return { left: btns[0].left - row.left, right: row.right - btns.at(-1).right, n: btns.length };
+      });
+      assert.equal(g.n, 3);
+      assert.ok(Math.abs(g.left - g.right) <= 1, `${size}: buttons are off-centre (left gap ${g.left}px, right gap ${g.right}px)`);
+    } finally { await ctx.close(); }
+  }
+});

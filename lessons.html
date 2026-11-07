@@ -26,9 +26,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="xuehanyu">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="fonts/manrope.css?v=20261107s">
-<link rel="stylesheet" href="style.css?v=20261107s">
-<link rel="stylesheet" href="lessons.css?v=20261107s">
+<link rel="stylesheet" href="fonts/manrope.css?v=20261107v">
+<link rel="stylesheet" href="style.css?v=20261107v">
+<link rel="stylesheet" href="lessons.css?v=20261107v">
 <script defer src="https://analytics.mintaka.cc/script.js" data-website-id="c0e37aec-f56b-4e80-b592-3365e058f635" data-domains="www.xuehanyu.org" data-do-not-track="true"></script>
 </head>
 <body class="lessons-body">
@@ -100,16 +100,28 @@
 
   </main>
 
+  <!-- Fiche d'un mot du vocabulaire : tracé animé, à refaire soi-même (Hanzi Writer) -->
+  <div class="popup-overlay" id="wordOverlay">
+    <div class="popup word-sheet" id="wordSheet" role="dialog" aria-modal="true" aria-labelledby="wordTitle">
+      <div class="popup-header">
+        <span class="popup-title" id="wordTitle" lang="zh"></span>
+        <button class="btn icon" id="wordClose" type="button" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="popup-body" id="wordBody"></div>
+    </div>
+  </div>
+
   <footer class="lessons-footer">
     <span><span id="footerNote" data-i18n="footerNote">Dialogues restreints au vocabulaire HSK 1</span> · <span id="lessonVersion"></span> · <span class="voice-credit">Audio : <a href="https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh" target="_blank" rel="noopener">Kokoro</a> (Apache-2.0)</span></span>
   </footer>
 
 </div>
 
-<script src="speech.js?v=20261107s"></script>
-<script src="lessons-pinyin.js?v=20261107s"></script>
-<script src="progress.js?v=20261107s"></script>
-<script src="lessons.js?v=20261107s"></script>
-<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js?v=20261107s'));</script>
+<script defer src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js" integrity="sha384-p2WzfM2NW1JYnm3bFTXjUZyzgPx3NMnP4qIJN5M+PqItIAWRvwKyM7f/ZdFLFUad" crossorigin="anonymous"></script>
+<script src="speech.js?v=20261107v"></script>
+<script src="lessons-pinyin.js?v=20261107v"></script>
+<script src="progress.js?v=20261107v"></script>
+<script src="lessons.js?v=20261107v"></script>
+<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js?v=20261107v'));</script>
 </body>
 </html>
