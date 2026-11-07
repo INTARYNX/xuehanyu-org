@@ -211,8 +211,8 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
    sûre iOS est DANS le padding de la barre : son fond couvre le bandeau du home indicator. */
 @media (max-width: 800px) {
   .app {
-    /* hauteur réelle de la barre (63px) + respiration + zone sûre */
-    padding-bottom: calc(71px + env(safe-area-inset-bottom, 0px));
+    /* hauteur réelle de la barre (63px) + respiration */
+    padding-bottom: 71px;
   }
   .site-nav {
     position: fixed;
@@ -224,7 +224,12 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     justify-content: space-between;
     align-items: center;
     gap: 0;
-    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    /* Hauteur FIXE : pas de zone sûre dans le padding. Chrome Android la déclare (≈ 35px) alors
+       que la barre système ne recouvre pas la page : bande vide sous les libellés, et la barre
+       grandissait/rétrécissait au repli de la barre d'adresse. La zone sûre est remplie par le
+       ::after ci-dessous, SOUS la barre : si le navigateur dessine la page sous la barre système,
+       le fond la couvre ; sinon il tombe hors écran. */
+    padding: 10px 12px;
     z-index: 10000;
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: saturate(140%) blur(14px);
@@ -233,6 +238,15 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     border: 0;
     border-top: 1px solid color-mix(in srgb, var(--line-strong) 80%, transparent);
     border-radius: 0;
+  }
+  .site-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: env(safe-area-inset-bottom, 0px);
+    background: var(--surface);
   }
   /* `.nav-tab` d'Enlistia en mobile ; max-width 84px au lieu de 60px : nos libellés sont plus longs */
   .site-nav a {
