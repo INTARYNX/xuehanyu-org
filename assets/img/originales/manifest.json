@@ -1,682 +1,1602 @@
 {
  "baba": {
-  "file": "baba.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 307573,
-  "sha256": "7f02092b99c9b4114b47d29396532597634353771be7b4ccf8a699616ca1e31d",
-  "drive_node_id": "459758334238851",
-  "generated_at": 1793798509539
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "baba.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 307573,
+    "sha256": "7f02092b99c9b4114b47d29396532597634353771be7b4ccf8a699616ca1e31d",
+    "drive_node_id": "459758334238851",
+    "generated_at": "2026-11-04 13:21:49",
+    "fichier_source": "originaux_all/baba.jpg"
+   }
+  ]
  },
  "baozi": {
-  "file": "baozi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 773427,
-  "sha256": "8e148da540e08c6b44292ca392dc3ed3b4c21b6e6f2780e1ff1cb2637a48cdf4",
-  "drive_node_id": "459759554425097",
-  "generated_at": 1793798810119
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "baozi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 773427,
+    "sha256": "8e148da540e08c6b44292ca392dc3ed3b4c21b6e6f2780e1ff1cb2637a48cdf4",
+    "drive_node_id": "459759554425097",
+    "generated_at": "2026-11-04 13:26:50",
+    "fichier_source": "originaux_all/baozi.png"
+   },
+   {
+    "version": 2,
+    "file": "baozi__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 473107,
+    "sha256": "99b9ac62f411573a7e98d140e70f092aa280b084040f4b987e2b0347ee92bb72",
+    "drive_node_id": "459769190912107",
+    "generated_at": "2026-11-04 14:08:33",
+    "fichier_source": "originaux_all/baozi__v2.jpg"
+   }
+  ]
  },
  "beizi": {
-  "file": "beizi.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 315541,
-  "sha256": "ccbae452fe6d3e771d761c75af4aae465a527e6b9c9cc8b83e2836b8c280727c",
-  "drive_node_id": "459760546971910",
-  "generated_at": 1793799040051
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "beizi.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 315541,
+    "sha256": "ccbae452fe6d3e771d761c75af4aae465a527e6b9c9cc8b83e2836b8c280727c",
+    "drive_node_id": "459760546971910",
+    "generated_at": "2026-11-04 13:30:40",
+    "fichier_source": "originaux_all/beizi.jpg"
+   },
+   {
+    "version": 2,
+    "file": "beizi__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 313186,
+    "sha256": "71c6b4b854864ac95b0dead81015a0c6f2c510ceda3c12b7b2265d38f107d963",
+    "drive_node_id": "459763504320662",
+    "generated_at": "2026-11-04 13:44:01",
+    "fichier_source": "originaux_all/beizi__v2.jpg"
+   },
+   {
+    "version": 3,
+    "file": "beizi__v3.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 688749,
+    "sha256": "76c5d29abe50332dae595c9fce349dcd011fee0247bde73a451af78b64b12e6f",
+    "drive_node_id": "459763021901936",
+    "generated_at": "2026-11-04 13:44:46",
+    "fichier_source": "originaux_all/beizi__v3.png"
+   },
+   {
+    "version": 4,
+    "file": "beizi__v4.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 300229,
+    "sha256": "256ddc03642babbf8d27d8576027bb5f8b9a81c65fb0310ab246dcf25171fe64",
+    "drive_node_id": "459770524836119",
+    "generated_at": "2026-11-04 14:12:02",
+    "fichier_source": "originaux_all/beizi__v4.jpg"
+   }
+  ]
  },
  "cai": {
-  "file": "cai.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 362541,
-  "sha256": "8c68d6c428558bc276ca895b9dbae154d254ce88261152a70e92ee875d015266",
-  "drive_node_id": "459758334238900",
-  "generated_at": 1793798828633
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "cai.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 362541,
+    "sha256": "8c68d6c428558bc276ca895b9dbae154d254ce88261152a70e92ee875d015266",
+    "drive_node_id": "459758334238900",
+    "generated_at": "2026-11-04 13:27:08",
+    "fichier_source": "originaux_all/cai.jpg"
+   }
+  ]
  },
  "cha": {
-  "file": "cha.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 667887,
-  "sha256": "478243d75fa6ef44edaa31b37d8cf8b384f89045a9fdbf0d498871a43a54ba2a",
-  "drive_node_id": "459758334238898",
-  "generated_at": 1793798821219
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "cha.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 667887,
+    "sha256": "478243d75fa6ef44edaa31b37d8cf8b384f89045a9fdbf0d498871a43a54ba2a",
+    "drive_node_id": "459758334238898",
+    "generated_at": "2026-11-04 13:27:01",
+    "fichier_source": "originaux_all/cha.png"
+   },
+   {
+    "version": 2,
+    "file": "cha__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 344560,
+    "sha256": "9909b105574bee88a386d8d8fe4669cd1bd459315b4894f4534e7944f85949ab",
+    "drive_node_id": "459763592204624",
+    "generated_at": "2026-11-04 13:43:46",
+    "fichier_source": "originaux_all/cha__v2.jpg"
+   }
+  ]
  },
  "chaoshi": {
-  "file": "chaoshi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 633561,
-  "sha256": "823791dfba35036f6c4a95e6ef079592e8b079e2eee26cd53d7e410148881725",
-  "drive_node_id": "459760546971914",
-  "generated_at": 1793799063431
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "chaoshi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 633561,
+    "sha256": "823791dfba35036f6c4a95e6ef079592e8b079e2eee26cd53d7e410148881725",
+    "drive_node_id": "459760546971914",
+    "generated_at": "2026-11-04 13:31:03",
+    "fichier_source": "originaux_all/chaoshi.png"
+   }
+  ]
  },
  "che": {
-  "file": "che.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 300585,
-  "sha256": "4085587b19b52aa008e0857160dc06e045b3cf7749e6ec73caad871dd11b98fd",
-  "drive_node_id": "459757083422799",
-  "generated_at": 1793798253727
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "che.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 300585,
+    "sha256": "4085587b19b52aa008e0857160dc06e045b3cf7749e6ec73caad871dd11b98fd",
+    "drive_node_id": "459757083422799",
+    "generated_at": "2026-11-04 13:17:33",
+    "fichier_source": "originaux_all/che.jpg"
+   },
+   {
+    "version": 2,
+    "file": "che__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 271556,
+    "sha256": "00a21b549ee81b3dedab812eafceb512db97caf6f8e3fe0bc5b2c1ea8809e573",
+    "drive_node_id": "459756255199603",
+    "generated_at": "2026-11-04 13:19:40",
+    "fichier_source": "originaux_all/che__v2.jpg"
+   }
+  ]
  },
  "chuang": {
-  "file": "chuang.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 329168,
-  "sha256": "aefe2aba7a195c58fc20b97fd16db2449b3c4de07d9e6f21a8b9b49f74fbedb8",
-  "drive_node_id": "459954154418360",
-  "generated_at": 1793846477596
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "chuang.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 329168,
+    "sha256": "aefe2aba7a195c58fc20b97fd16db2449b3c4de07d9e6f21a8b9b49f74fbedb8",
+    "drive_node_id": "459954154418360",
+    "generated_at": "2026-11-05 02:41:17",
+    "fichier_source": "originaux_all/chuang.jpg"
+   }
+  ]
  },
  "chuzuche": {
-  "file": "chuzuche.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 319174,
-  "sha256": "1390642d73ca298c86904016533c9620ef5fe973138279278eef2df010510327",
-  "drive_node_id": "459759554425108",
-  "generated_at": 1793798863872
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "chuzuche.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 319174,
+    "sha256": "1390642d73ca298c86904016533c9620ef5fe973138279278eef2df010510327",
+    "drive_node_id": "459759554425108",
+    "generated_at": "2026-11-04 13:27:43",
+    "fichier_source": "originaux_all/chuzuche.jpg"
+   },
+   {
+    "version": 2,
+    "file": "chuzuche__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 361407,
+    "sha256": "bb1c1bbf258fe2061e8030256da0cf34a4f266b66710a6a2f1a457ac3134f0fb",
+    "drive_node_id": "459769711440230",
+    "generated_at": "2026-11-04 14:09:11",
+    "fichier_source": "originaux_all/chuzuche__v2.jpg"
+   }
+  ]
  },
  "daxue": {
-  "file": "daxue.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 422012,
-  "sha256": "87e47578f3eebad892ccbd1c63cf6447a36fa98b265800a44a84d60cb2664a73",
-  "drive_node_id": "459757908787488",
-  "generated_at": 1793798556031
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "daxue.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 422012,
+    "sha256": "87e47578f3eebad892ccbd1c63cf6447a36fa98b265800a44a84d60cb2664a73",
+    "drive_node_id": "459757908787488",
+    "generated_at": "2026-11-04 13:22:36",
+    "fichier_source": "originaux_all/daxue.jpg"
+   },
+   {
+    "version": 2,
+    "file": "daxue__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 475955,
+    "sha256": "19c675b5d8fecdcf9e8a829881be868bb11704653cf64c4f928eb6dd2a0816d8",
+    "drive_node_id": "459763021901924",
+    "generated_at": "2026-11-04 13:43:39",
+    "fichier_source": "originaux_all/daxue__v2.jpg"
+   },
+   {
+    "version": 3,
+    "file": "daxue__v3.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 441438,
+    "sha256": "2d18e284167134761fe688e0223940911e91db9d2a481f581b5d549799f0201c",
+    "drive_node_id": "459770084786247",
+    "generated_at": "2026-11-04 14:09:59",
+    "fichier_source": "originaux_all/daxue__v3.jpg"
+   }
+  ]
  },
  "dianhua": {
-  "file": "dianhua.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 813204,
-  "sha256": "84df24a76444510451d3a82ce8249ad5342198b7f41979f89cbada1df9e3d274",
-  "drive_node_id": "459758334238879",
-  "generated_at": 1793798702468
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "dianhua.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 813204,
+    "sha256": "84df24a76444510451d3a82ce8249ad5342198b7f41979f89cbada1df9e3d274",
+    "drive_node_id": "459758334238879",
+    "generated_at": "2026-11-04 13:25:02",
+    "fichier_source": "originaux_all/dianhua.png"
+   }
+  ]
  },
  "diannao": {
-  "file": "diannao.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 654939,
-  "sha256": "ad7e3854312ea9e4e839fed6def12d3e88a5efea5ccc0224fc30b03cfd30a16e",
-  "drive_node_id": "459759213039680",
-  "generated_at": 1793798701622
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "diannao.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 654939,
+    "sha256": "ad7e3854312ea9e4e839fed6def12d3e88a5efea5ccc0224fc30b03cfd30a16e",
+    "drive_node_id": "459759213039680",
+    "generated_at": "2026-11-04 13:25:01",
+    "fichier_source": "originaux_all/diannao.png"
+   }
+  ]
  },
  "dianshi": {
-  "file": "dianshi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 559099,
-  "sha256": "476f0df612c36f1b27b09752ad7eb265187b2740eef61cc22c65ddcd66f5f16a",
-  "drive_node_id": "459757908648238",
-  "generated_at": 1793798577733
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "dianshi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 559099,
+    "sha256": "476f0df612c36f1b27b09752ad7eb265187b2740eef61cc22c65ddcd66f5f16a",
+    "drive_node_id": "459757908648238",
+    "generated_at": "2026-11-04 13:22:57",
+    "fichier_source": "originaux_all/dianshi.png"
+   }
+  ]
  },
  "dianying": {
-  "file": "dianying.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 364426,
-  "sha256": "ad19244869df30986af6883fe7be584d055a4cdd7eeaddfca202ea38811924ec",
-  "drive_node_id": "459758334238857",
-  "generated_at": 1793798580312
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "dianying.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 364426,
+    "sha256": "ad19244869df30986af6883fe7be584d055a4cdd7eeaddfca202ea38811924ec",
+    "drive_node_id": "459758334238857",
+    "generated_at": "2026-11-04 13:23:00",
+    "fichier_source": "originaux_all/dianying.jpg"
+   }
+  ]
  },
  "dianyingyuan": {
-  "file": "dianyingyuan.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 356719,
-  "sha256": "93d770e5648815af8e964d44c89f08a42188947e4dbb8039a6ddbc629faedb3f",
-  "drive_node_id": "459771911159874",
-  "generated_at": 1793801802744
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "dianyingyuan.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 356719,
+    "sha256": "93d770e5648815af8e964d44c89f08a42188947e4dbb8039a6ddbc629faedb3f",
+    "drive_node_id": "459771911159874",
+    "generated_at": "2026-11-04 14:16:42",
+    "fichier_source": "originaux_all/dianyingyuan.jpg"
+   }
+  ]
  },
  "didi": {
-  "file": "didi.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 385360,
-  "sha256": "bdb13a6d0264e526a5e987de1ef539d5f21889bfe774b43a368dd2c10eb57567",
-  "drive_node_id": "459770524836113",
-  "generated_at": 1793801503018
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "didi.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 385360,
+    "sha256": "bdb13a6d0264e526a5e987de1ef539d5f21889bfe774b43a368dd2c10eb57567",
+    "drive_node_id": "459770524836113",
+    "generated_at": "2026-11-04 14:11:43",
+    "fichier_source": "originaux_all/didi.jpg"
+   },
+   {
+    "version": 2,
+    "file": "didi__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 334185,
+    "sha256": "994c46003c681936122bc9c88c21cf7e5559e30ed84d7d6e521bc6e173a0ddfe",
+    "drive_node_id": "459770986320244",
+    "generated_at": "2026-11-04 14:16:10",
+    "fichier_source": "originaux_all/didi__v2.jpg"
+   }
+  ]
  },
  "ditie": {
-  "file": "ditie.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 411882,
-  "sha256": "214b395fcd4c22e4bc04dff12777596807d035a2cbf76fae8e784ab8f139af60",
-  "drive_node_id": "459771911159889",
-  "generated_at": 1793801862365
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "ditie.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 411882,
+    "sha256": "214b395fcd4c22e4bc04dff12777596807d035a2cbf76fae8e784ab8f139af60",
+    "drive_node_id": "459771911159889",
+    "generated_at": "2026-11-04 14:17:42",
+    "fichier_source": "originaux_all/ditie.jpg"
+   }
+  ]
  },
  "fan": {
-  "file": "fan.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 354765,
-  "sha256": "44d2ca7d711f9179a2d75a30239fb529242fcf88a9bdda31e7848c44bfae5c83",
-  "drive_node_id": "459758775554143",
-  "generated_at": 1793798841080
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "fan.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 354765,
+    "sha256": "44d2ca7d711f9179a2d75a30239fb529242fcf88a9bdda31e7848c44bfae5c83",
+    "drive_node_id": "459758775554143",
+    "generated_at": "2026-11-04 13:27:21",
+    "fichier_source": "originaux_all/fan.jpg"
+   }
+  ]
  },
  "fandian": {
-  "file": "fandian.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 825586,
-  "sha256": "abd1589540345c486c2137a84294e90d7d7ae2e7b7aa5e4d2d33c6c71490157e",
-  "drive_node_id": "459759553347706",
-  "generated_at": 1793799064794
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "fandian.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 825586,
+    "sha256": "abd1589540345c486c2137a84294e90d7d7ae2e7b7aa5e4d2d33c6c71490157e",
+    "drive_node_id": "459759553347706",
+    "generated_at": "2026-11-04 13:31:04",
+    "fichier_source": "originaux_all/fandian.png"
+   }
+  ]
  },
  "fangjian": {
-  "file": "fangjian.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 715485,
-  "sha256": "692a6aa410a7aa89343ade82cc4e1cd48bee2716f6f377a1691a2b3ea2976dc4",
-  "drive_node_id": "459759213039741",
-  "generated_at": 1793799064376
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "fangjian.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 715485,
+    "sha256": "692a6aa410a7aa89343ade82cc4e1cd48bee2716f6f377a1691a2b3ea2976dc4",
+    "drive_node_id": "459759213039741",
+    "generated_at": "2026-11-04 13:31:04",
+    "fichier_source": "originaux_all/fangjian.png"
+   },
+   {
+    "version": 2,
+    "file": "fangjian__v2.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 793946,
+    "sha256": "63f2a26e3d6c9ae01b94c8d8e25adc7ca6c562b82544dfe3e379b7d57350e15e",
+    "drive_node_id": "459770450329869",
+    "generated_at": "2026-11-04 14:11:29",
+    "fichier_source": "originaux_all/fangjian__v2.png"
+   }
+  ]
  },
  "feiji": {
-  "file": "feiji.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 265336,
-  "sha256": "def7c3bc64690b4fafc188ca4bf9191fff87c12d4b0f3bf98553b48938cecbf8",
-  "drive_node_id": "459759213039711",
-  "generated_at": 1793798865289
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "feiji.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 265336,
+    "sha256": "def7c3bc64690b4fafc188ca4bf9191fff87c12d4b0f3bf98553b48938cecbf8",
+    "drive_node_id": "459759213039711",
+    "generated_at": "2026-11-04 13:27:45",
+    "fichier_source": "originaux_all/feiji.jpg"
+   }
+  ]
  },
  "ge": {
-  "file": "ge.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 342078,
-  "sha256": "4f657234eb0b60d5fa9939e1e564b2cc79ebd33f24215516d5f854f2a279b2f2",
-  "drive_node_id": "459771054387513",
-  "generated_at": 1793801770585
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "ge.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 342078,
+    "sha256": "4f657234eb0b60d5fa9939e1e564b2cc79ebd33f24215516d5f854f2a279b2f2",
+    "drive_node_id": "459771054387513",
+    "generated_at": "2026-11-04 14:16:10",
+    "fichier_source": "originaux_all/ge.jpg"
+   }
+  ]
  },
  "gege": {
-  "file": "gege.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 304174,
-  "sha256": "0caeee64f3ba4135cf696c95d2fdcf3ed085834fc0beaa77ef178bb7161a1efe",
-  "drive_node_id": "459769527259513",
-  "generated_at": 1793801382381
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "gege.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 304174,
+    "sha256": "0caeee64f3ba4135cf696c95d2fdcf3ed085834fc0beaa77ef178bb7161a1efe",
+    "drive_node_id": "459769527259513",
+    "generated_at": "2026-11-04 14:09:42",
+    "fichier_source": "originaux_all/gege.jpg"
+   },
+   {
+    "version": 2,
+    "file": "gege__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 289824,
+    "sha256": "0bdecd3c193993c48c31c262560d6730f36122613789a31a1549a49a1a78413a",
+    "drive_node_id": "459771143176552",
+    "generated_at": "2026-11-04 14:15:28",
+    "fichier_source": "originaux_all/gege__v2.jpg"
+   }
+  ]
  },
  "gongjiaoche": {
-  "file": "gongjiaoche.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 695017,
-  "sha256": "87f825a667bb69cfdf56e639bcb36be2e4e3c246740e89c6f555498e56278267",
-  "drive_node_id": "459772158587213",
-  "generated_at": 1793801900941
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "gongjiaoche.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 695017,
+    "sha256": "87f825a667bb69cfdf56e639bcb36be2e4e3c246740e89c6f555498e56278267",
+    "drive_node_id": "459772158587213",
+    "generated_at": "2026-11-04 14:18:20",
+    "fichier_source": "originaux_all/gongjiaoche.png"
+   }
+  ]
  },
  "gou": {
-  "file": "gou.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 407420,
-  "sha256": "c2317e5e718b58e8cb9e840132a9d7d2752eba7e2a8c48e52776d2c56a9f192e",
-  "drive_node_id": "459758243176518",
-  "generated_at": 1793798509068
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "gou.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 407420,
+    "sha256": "c2317e5e718b58e8cb9e840132a9d7d2752eba7e2a8c48e52776d2c56a9f192e",
+    "drive_node_id": "459758243176518",
+    "generated_at": "2026-11-04 13:21:49",
+    "fichier_source": "originaux_all/gou.jpg"
+   }
+  ]
  },
  "haizi": {
-  "file": "haizi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 680997,
-  "sha256": "b4f21c5e8dd50f69403bfacebd5c9bdfffd524def560df8991950971cc4d2993",
-  "drive_node_id": "459756702138667",
-  "generated_at": 1793798272442
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "haizi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 680997,
+    "sha256": "b4f21c5e8dd50f69403bfacebd5c9bdfffd524def560df8991950971cc4d2993",
+    "drive_node_id": "459756702138667",
+    "generated_at": "2026-11-04 13:17:52",
+    "fichier_source": "originaux_all/haizi.png"
+   },
+   {
+    "version": 2,
+    "file": "haizi__v2.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 701968,
+    "sha256": "3305f14d6a688efb511f52893af5a5f8fa98a956f18a4ae22f2478fc1f00678b",
+    "drive_node_id": "459756648943793",
+    "generated_at": "2026-11-04 13:19:54",
+    "fichier_source": "originaux_all/haizi__v2.png"
+   },
+   {
+    "version": 3,
+    "file": "haizi__v3.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 324909,
+    "sha256": "7e41ec68fd1306fa29b8fc9bb1064de5502c3f0aa9442d8b40acaacc560c2255",
+    "drive_node_id": "459770450329862",
+    "generated_at": "2026-11-04 14:11:03",
+    "fichier_source": "originaux_all/haizi__v3.jpg"
+   }
+  ]
  },
  "huoche": {
-  "file": "huoche.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 389865,
-  "sha256": "8465865145959d9706563e824f745c013eacba67c4e8024ab86949c5a9f2f232",
-  "drive_node_id": "459759894720641",
-  "generated_at": 1793798868050
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "huoche.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 389865,
+    "sha256": "8465865145959d9706563e824f745c013eacba67c4e8024ab86949c5a9f2f232",
+    "drive_node_id": "459759894720641",
+    "generated_at": "2026-11-04 13:27:48",
+    "fichier_source": "originaux_all/huoche.jpg"
+   }
+  ]
  },
  "jia": {
-  "file": "jia.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 663530,
-  "sha256": "af1fcfd97bf03d373a2e4dab83f60cbf1bd9998236460c5749182e61a7dc8b18",
-  "drive_node_id": "459756260462772",
-  "generated_at": 1793798250558
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "jia.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 663530,
+    "sha256": "af1fcfd97bf03d373a2e4dab83f60cbf1bd9998236460c5749182e61a7dc8b18",
+    "drive_node_id": "459756260462772",
+    "generated_at": "2026-11-04 13:17:30",
+    "fichier_source": "originaux_all/jia.png"
+   },
+   {
+    "version": 2,
+    "file": "jia__v2.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 804064,
+    "sha256": "acaf002615a2c8e21cf70613f7c05fb048f525c91b9248705eca588838b9e57a",
+    "drive_node_id": "459757083422825",
+    "generated_at": "2026-11-04 13:19:35",
+    "fichier_source": "originaux_all/jia__v2.png"
+   },
+   {
+    "version": 3,
+    "file": "jia__v3.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 763243,
+    "sha256": "957ca8afbe926cb3d9c0fbbca827e83835667b375a62a4db45dc90dccba16c07",
+    "drive_node_id": "459770524836096",
+    "generated_at": "2026-11-04 14:11:03",
+    "fichier_source": "originaux_all/jia__v3.png"
+   }
+  ]
  },
  "jiaozi": {
-  "file": "jiaozi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 905285,
-  "sha256": "b6cb4cf426e37eab3a8da1c84ce9dfabeb87781335cfbe3d782e943e0e5462f4",
-  "drive_node_id": "459759553347653",
-  "generated_at": 1793798810491
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "jiaozi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 905285,
+    "sha256": "b6cb4cf426e37eab3a8da1c84ce9dfabeb87781335cfbe3d782e943e0e5462f4",
+    "drive_node_id": "459759553347653",
+    "generated_at": "2026-11-04 13:26:50",
+    "fichier_source": "originaux_all/jiaozi.png"
+   }
+  ]
  },
  "jidan": {
-  "file": "jidan.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 303577,
-  "sha256": "665f259bccd403ae1db74bc7bed330b22eb5efc21471c422228f2e4bd1678702",
-  "drive_node_id": "459771390349492",
-  "generated_at": 1793801807527
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "jidan.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 303577,
+    "sha256": "665f259bccd403ae1db74bc7bed330b22eb5efc21471c422228f2e4bd1678702",
+    "drive_node_id": "459771390349492",
+    "generated_at": "2026-11-04 14:16:47",
+    "fichier_source": "originaux_all/jidan.jpg"
+   }
+  ]
  },
  "jiejie": {
-  "file": "jiejie.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 290956,
-  "sha256": "511e60059aa2d3fda941b3a5acc2a852c8eb7e58e0154f518c00c7c27a9e6440",
-  "drive_node_id": "459769654178102",
-  "generated_at": 1793801434740
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "jiejie.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 290956,
+    "sha256": "511e60059aa2d3fda941b3a5acc2a852c8eb7e58e0154f518c00c7c27a9e6440",
+    "drive_node_id": "459769654178102",
+    "generated_at": "2026-11-04 14:10:34",
+    "fichier_source": "originaux_all/jiejie.jpg"
+   },
+   {
+    "version": 2,
+    "file": "jiejie__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 324903,
+    "sha256": "a3becabd4958b10f0b98157abae7fbd509521a1ed4ed7960e65cbfd4090d23fb",
+    "drive_node_id": "459771143176556",
+    "generated_at": "2026-11-04 14:16:02",
+    "fichier_source": "originaux_all/jiejie__v2.jpg"
+   }
+  ]
  },
  "kafei": {
-  "file": "kafei.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 325308,
-  "sha256": "e0d095fd297d296db5254684b20cb9fcee3dcaa8f2c4ac22db7079204f5eba0b",
-  "drive_node_id": "459771320549678",
-  "generated_at": 1793801843625
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "kafei.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 325308,
+    "sha256": "e0d095fd297d296db5254684b20cb9fcee3dcaa8f2c4ac22db7079204f5eba0b",
+    "drive_node_id": "459771320549678",
+    "generated_at": "2026-11-04 14:17:23",
+    "fichier_source": "originaux_all/kafei.jpg"
+   }
+  ]
  },
  "laoshi": {
-  "file": "laoshi.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 366597,
-  "sha256": "e3d430824c786845948566e7af75ad2f23fdd8af3cff900d1fe7fea9be3de48d",
-  "drive_node_id": "459758243176522",
-  "generated_at": 1793798532487
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "laoshi.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 366597,
+    "sha256": "e3d430824c786845948566e7af75ad2f23fdd8af3cff900d1fe7fea9be3de48d",
+    "drive_node_id": "459758243176522",
+    "generated_at": "2026-11-04 13:22:12",
+    "fichier_source": "originaux_all/laoshi.jpg"
+   }
+  ]
  },
  "mama": {
-  "file": "mama.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 376202,
-  "sha256": "bb0f787453f9752fe451d4b208bd3933ccfab75f31468837aac4bbd1f5bc1926",
-  "drive_node_id": "459757908648226",
-  "generated_at": 1793798509366
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "mama.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 376202,
+    "sha256": "bb0f787453f9752fe451d4b208bd3933ccfab75f31468837aac4bbd1f5bc1926",
+    "drive_node_id": "459757908648226",
+    "generated_at": "2026-11-04 13:21:49",
+    "fichier_source": "originaux_all/mama.jpg"
+   },
+   {
+    "version": 2,
+    "file": "mama__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 333612,
+    "sha256": "14c857831a9f196b3a825997729651b42f9dc1e3dd05c30aaaf916d6fb9cd774",
+    "drive_node_id": "459770084786251",
+    "generated_at": "2026-11-04 14:10:09",
+    "fichier_source": "originaux_all/mama__v2.jpg"
+   }
+  ]
  },
  "mao": {
-  "file": "mao.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 374767,
-  "sha256": "dcaf8faa9b0295498939dd80ec638f7737d2874804c98aa577c39e731b251303",
-  "drive_node_id": "459756648943769",
-  "generated_at": 1793798277016
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "mao.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 374767,
+    "sha256": "dcaf8faa9b0295498939dd80ec638f7737d2874804c98aa577c39e731b251303",
+    "drive_node_id": "459756648943769",
+    "generated_at": "2026-11-04 13:17:57",
+    "fichier_source": "originaux_all/mao.jpg"
+   },
+   {
+    "version": 2,
+    "file": "mao__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 316656,
+    "sha256": "20bc4b1eefdec787db2cff04cc583babfeb54b8b1155971720dda358e1621e7e",
+    "drive_node_id": "459757083422831",
+    "generated_at": "2026-11-04 13:20:08",
+    "fichier_source": "originaux_all/mao__v2.jpg"
+   }
+  ]
  },
  "meimei": {
-  "file": "meimei.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 314062,
-  "sha256": "b2f050dc29812474dd399aabd6f619a8f32313d2f2521f9662faa5c57a557e75",
-  "drive_node_id": "459769711440248",
-  "generated_at": 1793801433933
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "meimei.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 314062,
+    "sha256": "b2f050dc29812474dd399aabd6f619a8f32313d2f2521f9662faa5c57a557e75",
+    "drive_node_id": "459769711440248",
+    "generated_at": "2026-11-04 14:10:33",
+    "fichier_source": "originaux_all/meimei.jpg"
+   },
+   {
+    "version": 2,
+    "file": "meimei__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 305162,
+    "sha256": "4f7a66ef280de7788285e35c2e40f1c9e8440340c8b4ee575e0dd663983655b2",
+    "drive_node_id": "459771390349470",
+    "generated_at": "2026-11-04 14:15:43",
+    "fichier_source": "originaux_all/meimei__v2.jpg"
+   }
+  ]
  },
  "mianbao": {
-  "file": "mianbao.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 710171,
-  "sha256": "c1ce96d8f3a9221d843bff63b6f7462365db499ed4f24362c77b3851625d7319",
-  "drive_node_id": "459758243111230",
-  "generated_at": 1793798739474
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "mianbao.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 710171,
+    "sha256": "c1ce96d8f3a9221d843bff63b6f7462365db499ed4f24362c77b3851625d7319",
+    "drive_node_id": "459758243111230",
+    "generated_at": "2026-11-04 13:25:39",
+    "fichier_source": "originaux_all/mianbao.png"
+   }
+  ]
  },
  "naicha": {
-  "file": "naicha.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 250255,
-  "sha256": "903de1cc08fc74520f22b1d67a16e40181c5c68ee98656b1ecad295a999226ee",
-  "drive_node_id": "459771846549669",
-  "generated_at": 1793801922439
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "naicha.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 250255,
+    "sha256": "903de1cc08fc74520f22b1d67a16e40181c5c68ee98656b1ecad295a999226ee",
+    "drive_node_id": "459771846549669",
+    "generated_at": "2026-11-04 14:18:42",
+    "fichier_source": "originaux_all/naicha.jpg"
+   }
+  ]
  },
  "nainai": {
-  "file": "nainai.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 310358,
-  "sha256": "69ab5b3f6b181877cf8e89e32d3e4b2e4253aa31531405877793ac5326c2ded3",
-  "drive_node_id": "459771911159912",
-  "generated_at": 1793801925687
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "nainai.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 310358,
+    "sha256": "69ab5b3f6b181877cf8e89e32d3e4b2e4253aa31531405877793ac5326c2ded3",
+    "drive_node_id": "459771911159912",
+    "generated_at": "2026-11-04 14:18:45",
+    "fichier_source": "originaux_all/nainai.jpg"
+   }
+  ]
  },
  "niunai": {
-  "file": "niunai.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 719365,
-  "sha256": "3db6573b3365766946d22a189b0141fbf5cc9cd77233528bb7af77f5fc8e86cb",
-  "drive_node_id": "459759213039697",
-  "generated_at": 1793798802256
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "niunai.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 719365,
+    "sha256": "3db6573b3365766946d22a189b0141fbf5cc9cd77233528bb7af77f5fc8e86cb",
+    "drive_node_id": "459759213039697",
+    "generated_at": "2026-11-04 13:26:42",
+    "fichier_source": "originaux_all/niunai.png"
+   },
+   {
+    "version": 2,
+    "file": "niunai__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 270082,
+    "sha256": "a8f69a1a410c0a52e1caae1b78275bde659f0cbb449349dc293e6c9727835ff2",
+    "drive_node_id": "459763021901930",
+    "generated_at": "2026-11-04 13:44:01",
+    "fichier_source": "originaux_all/niunai__v2.jpg"
+   }
+  ]
  },
  "nuhai": {
-  "file": "nuhai.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 400569,
-  "sha256": "bbee9505200ddaa4c99c6c61956cbc2dc518ea8f1c3c11adee0525af9e55cc44",
-  "drive_node_id": "459771320549691",
-  "generated_at": 1793801923884
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "nuhai.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 400569,
+    "sha256": "bbee9505200ddaa4c99c6c61956cbc2dc518ea8f1c3c11adee0525af9e55cc44",
+    "drive_node_id": "459771320549691",
+    "generated_at": "2026-11-04 14:18:43",
+    "fichier_source": "originaux_all/nuhai.jpg"
+   }
+  ]
  },
  "pengyou": {
-  "file": "pengyou.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 759389,
-  "sha256": "8152e1cb9f7b36ddc7d316a0bcbadf235c8e7352cfa93414daf21923e61bfff8",
-  "drive_node_id": "459756260462776",
-  "generated_at": 1793798271638
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "pengyou.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 759389,
+    "sha256": "8152e1cb9f7b36ddc7d316a0bcbadf235c8e7352cfa93414daf21923e61bfff8",
+    "drive_node_id": "459756260462776",
+    "generated_at": "2026-11-04 13:17:51",
+    "fichier_source": "originaux_all/pengyou.png"
+   },
+   {
+    "version": 2,
+    "file": "pengyou__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 373738,
+    "sha256": "7ed39e9213efaf23647fbbf832944b78ec9bf5b9f7df30b832b79b302bf75094",
+    "drive_node_id": "459757908787460",
+    "generated_at": "2026-11-04 13:20:00",
+    "fichier_source": "originaux_all/pengyou__v2.jpg"
+   },
+   {
+    "version": 3,
+    "file": "pengyou__v3.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 388003,
+    "sha256": "abdc38c39fc4653f0f8d55fbebb17b2e6de4696cbc072866b2551aa36a9dc64f",
+    "drive_node_id": "459770084786276",
+    "generated_at": "2026-11-04 14:11:47",
+    "fichier_source": "originaux_all/pengyou__v3.jpg"
+   }
+  ]
  },
  "pingguo": {
-  "file": "pingguo.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 304521,
-  "sha256": "a65e04dbd60f12aa55bfd82d7a95687e0be25140c3f711717db76c88a507f986",
-  "drive_node_id": "459758243176566",
-  "generated_at": 1793798718062
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "pingguo.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 304521,
+    "sha256": "a65e04dbd60f12aa55bfd82d7a95687e0be25140c3f711717db76c88a507f986",
+    "drive_node_id": "459758243176566",
+    "generated_at": "2026-11-04 13:25:18",
+    "fichier_source": "originaux_all/pingguo.jpg"
+   }
+  ]
  },
  "qian": {
-  "file": "qian.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 768511,
-  "sha256": "7222a96cd5b985949426912959e08b5f1a8852e83b54d56b741eecdc2c848267",
-  "drive_node_id": "459759553347688",
-  "generated_at": 1793799010748
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "qian.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 768511,
+    "sha256": "7222a96cd5b985949426912959e08b5f1a8852e83b54d56b741eecdc2c848267",
+    "drive_node_id": "459759553347688",
+    "generated_at": "2026-11-04 13:30:10",
+    "fichier_source": "originaux_all/qian.png"
+   }
+  ]
  },
  "qizi": {
-  "file": "qizi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 752445,
-  "sha256": "d19d997a3ea49f44b59e2fa46406332fa33e684599ac744bf7eadb7c968546e1",
-  "drive_node_id": "459772158587222",
-  "generated_at": 1793801944463
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "qizi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 752445,
+    "sha256": "d19d997a3ea49f44b59e2fa46406332fa33e684599ac744bf7eadb7c968546e1",
+    "drive_node_id": "459772158587222",
+    "generated_at": "2026-11-04 14:19:04",
+    "fichier_source": "originaux_all/qizi.png"
+   }
+  ]
  },
  "ren": {
-  "file": "ren.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 291008,
-  "sha256": "b55e00b69106692726e25843db65555165da0956c5a47a8fd0276d21d6f7de65",
-  "drive_node_id": "459756648943766",
-  "generated_at": 1793798255047
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "ren.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 291008,
+    "sha256": "b55e00b69106692726e25843db65555165da0956c5a47a8fd0276d21d6f7de65",
+    "drive_node_id": "459756648943766",
+    "generated_at": "2026-11-04 13:17:35",
+    "fichier_source": "originaux_all/ren.jpg"
+   },
+   {
+    "version": 2,
+    "file": "ren__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 278263,
+    "sha256": "b80abf265fed085ad8c50225d2e507005c95afefcacc6caef018a0a0d88ec929",
+    "drive_node_id": "459757908648194",
+    "generated_at": "2026-11-04 13:19:44",
+    "fichier_source": "originaux_all/ren__v2.jpg"
+   },
+   {
+    "version": 3,
+    "file": "ren__v3.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 638385,
+    "sha256": "24a45ef955745c01f2c44354f83a6e02a6831a9a12911c13d286172fcea7fec0",
+    "drive_node_id": "459769654178060",
+    "generated_at": "2026-11-04 14:08:16",
+    "fichier_source": "originaux_all/ren__v3.png"
+   }
+  ]
  },
  "shangchang": {
-  "file": "shangchang.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 287742,
-  "sha256": "e773c10161f6fab49de12c16b8c8f57b42cdcd7bbdc62a92e399ba0ab2a1c951",
-  "drive_node_id": "459771846549649",
-  "generated_at": 1793801846112
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shangchang.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 287742,
+    "sha256": "e773c10161f6fab49de12c16b8c8f57b42cdcd7bbdc62a92e399ba0ab2a1c951",
+    "drive_node_id": "459771846549649",
+    "generated_at": "2026-11-04 14:17:26",
+    "fichier_source": "originaux_all/shangchang.jpg"
+   }
+  ]
  },
  "shangdian": {
-  "file": "shangdian.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 360879,
-  "sha256": "bc21ec115b09d8f4c748fc7dc53637122bf42e829ff233fe3c7f745ab6af00ad",
-  "drive_node_id": "459769654178094",
-  "generated_at": 1793801391308
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shangdian.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 360879,
+    "sha256": "bc21ec115b09d8f4c748fc7dc53637122bf42e829ff233fe3c7f745ab6af00ad",
+    "drive_node_id": "459769654178094",
+    "generated_at": "2026-11-04 14:09:51",
+    "fichier_source": "originaux_all/shangdian.jpg"
+   },
+   {
+    "version": 2,
+    "file": "shangdian__v2.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 741018,
+    "sha256": "df87e03e500462c1b6690dd5c31a4ebe43a77a0c0866be18168b4d628f76bc5f",
+    "drive_node_id": "459771054387499",
+    "generated_at": "2026-11-04 14:15:25",
+    "fichier_source": "originaux_all/shangdian__v2.png"
+   }
+  ]
  },
  "shou": {
-  "file": "shou.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 269024,
-  "sha256": "5780f5437015207c021bffc545b13241269795e1edf6cf508a152e41285e1e71",
-  "drive_node_id": "459954750927189",
-  "generated_at": 1793846505528
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shou.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 269024,
+    "sha256": "5780f5437015207c021bffc545b13241269795e1edf6cf508a152e41285e1e71",
+    "drive_node_id": "459954750927189",
+    "generated_at": "2026-11-05 02:41:45",
+    "fichier_source": "originaux_all/shou.jpg"
+   }
+  ]
  },
  "shoubiao": {
-  "file": "shoubiao.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 340472,
-  "sha256": "a700287b4cc51dc86e4812286888f46571beee6080f23ce264f99f57334c88d9",
-  "drive_node_id": "459955109261442",
-  "generated_at": 1793846528292
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shoubiao.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 340472,
+    "sha256": "a700287b4cc51dc86e4812286888f46571beee6080f23ce264f99f57334c88d9",
+    "drive_node_id": "459955109261442",
+    "generated_at": "2026-11-05 02:42:08",
+    "fichier_source": "originaux_all/shoubiao.jpg"
+   }
+  ]
  },
  "shouji": {
-  "file": "shouji.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 303599,
-  "sha256": "3511ed29c766f7611fbdcabd2b6a864216d833586301dc90a9ee50bbaac5e168",
-  "drive_node_id": "459758334238894",
-  "generated_at": 1793798776375
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shouji.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 303599,
+    "sha256": "3511ed29c766f7611fbdcabd2b6a864216d833586301dc90a9ee50bbaac5e168",
+    "drive_node_id": "459758334238894",
+    "generated_at": "2026-11-04 13:26:16",
+    "fichier_source": "originaux_all/shouji.jpg"
+   },
+   {
+    "version": 2,
+    "file": "shouji__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 402005,
+    "sha256": "497624dc8b51bb1a146c988dfe90eefc07cc13dd179b932b1050894fd543b389",
+    "drive_node_id": "459770524836105",
+    "generated_at": "2026-11-04 14:11:29",
+    "fichier_source": "originaux_all/shouji__v2.jpg"
+   }
+  ]
  },
  "shu": {
-  "file": "shu.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 350840,
-  "sha256": "e42d8c87c03b3a7a33377bb862301b2c37d6a84721a168157ddd9ac42263fd2e",
-  "drive_node_id": "459758243176558",
-  "generated_at": 1793798677039
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shu.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 350840,
+    "sha256": "e42d8c87c03b3a7a33377bb862301b2c37d6a84721a168157ddd9ac42263fd2e",
+    "drive_node_id": "459758243176558",
+    "generated_at": "2026-11-04 13:24:37",
+    "fichier_source": "originaux_all/shu.jpg"
+   },
+   {
+    "version": 2,
+    "file": "shu__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 348985,
+    "sha256": "c1884f8da1dae3fdd89916a52a0861b8335fa92fb3e336adb6839017bc74bf54",
+    "drive_node_id": "459769696383268",
+    "generated_at": "2026-11-04 14:09:12",
+    "fichier_source": "originaux_all/shu__v2.jpg"
+   }
+  ]
  },
  "shubao": {
-  "file": "shubao.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 344613,
-  "sha256": "49b71264b8e99cb77575491c00f564570a712211cf96924a62b4674f63e5a90a",
-  "drive_node_id": "459771390349494",
-  "generated_at": 1793801823794
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shubao.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 344613,
+    "sha256": "49b71264b8e99cb77575491c00f564570a712211cf96924a62b4674f63e5a90a",
+    "drive_node_id": "459771390349494",
+    "generated_at": "2026-11-04 14:17:03",
+    "fichier_source": "originaux_all/shubao.jpg"
+   }
+  ]
  },
  "shudian": {
-  "file": "shudian.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 495353,
-  "sha256": "f466ba133dd9921d049f976ff21013a713f3836d180580bb5fa0a92400ab31d9",
-  "drive_node_id": "459769696383237",
-  "generated_at": 1793801271289
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shudian.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 495353,
+    "sha256": "f466ba133dd9921d049f976ff21013a713f3836d180580bb5fa0a92400ab31d9",
+    "drive_node_id": "459769696383237",
+    "generated_at": "2026-11-04 14:07:51",
+    "fichier_source": "originaux_all/shudian.jpg"
+   },
+   {
+    "version": 2,
+    "file": "shudian__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 474695,
+    "sha256": "60df4737d35ff79d0e15d186f720b84a9e136df540c95825d361f5ae61b97262",
+    "drive_node_id": "459771390349465",
+    "generated_at": "2026-11-04 14:15:27",
+    "fichier_source": "originaux_all/shudian__v2.jpg"
+   }
+  ]
  },
  "shui": {
-  "file": "shui.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 312696,
-  "sha256": "e5a57b511d11bb2e4c32f6e302e79d802dc4781bb757f327c10784c2ada34a16",
-  "drive_node_id": "459771390349480",
-  "generated_at": 1793801780922
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shui.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 312696,
+    "sha256": "e5a57b511d11bb2e4c32f6e302e79d802dc4781bb757f327c10784c2ada34a16",
+    "drive_node_id": "459771390349480",
+    "generated_at": "2026-11-04 14:16:20",
+    "fichier_source": "originaux_all/shui.jpg"
+   }
+  ]
  },
  "shuiguo": {
-  "file": "shuiguo.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 712004,
-  "sha256": "a81a43d896c1d8ce170c2259524af8b6d6fbdda7ba53a94a5e5ac8144dd2509d",
-  "drive_node_id": "459758775554120",
-  "generated_at": 1793798720547
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "shuiguo.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 712004,
+    "sha256": "a81a43d896c1d8ce170c2259524af8b6d6fbdda7ba53a94a5e5ac8144dd2509d",
+    "drive_node_id": "459758775554120",
+    "generated_at": "2026-11-04 13:25:20",
+    "fichier_source": "originaux_all/shuiguo.png"
+   }
+  ]
  },
  "tian": {
-  "file": "tian.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 698019,
-  "sha256": "dedd5bb7a4330abd4fd31c2712263c1b322d2599a7c380eda10e4fd0e2b4622b",
-  "drive_node_id": "459759554425141",
-  "generated_at": 1793799010502
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "tian.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 698019,
+    "sha256": "dedd5bb7a4330abd4fd31c2712263c1b322d2599a7c380eda10e4fd0e2b4622b",
+    "drive_node_id": "459759554425141",
+    "generated_at": "2026-11-04 13:30:10",
+    "fichier_source": "originaux_all/tian.png"
+   },
+   {
+    "version": 2,
+    "file": "tian__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 304304,
+    "sha256": "9f688edd8c6fa1162abbce59d1a501b79d3373486b3d408b5bb952558aec164e",
+    "drive_node_id": "459770084786245",
+    "generated_at": "2026-11-04 14:09:58",
+    "fichier_source": "originaux_all/tian__v2.jpg"
+   }
+  ]
  },
  "xue": {
-  "file": "xue.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 311231,
-  "sha256": "84e309852d998c4c4c5f1ec59a71d2bd2b0f5b238b5aff78fc4083f2007180f8",
-  "drive_node_id": "459758775554150",
-  "generated_at": 1793798887920
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "xue.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 311231,
+    "sha256": "84e309852d998c4c4c5f1ec59a71d2bd2b0f5b238b5aff78fc4083f2007180f8",
+    "drive_node_id": "459758775554150",
+    "generated_at": "2026-11-04 13:28:07",
+    "fichier_source": "originaux_all/xue.jpg"
+   }
+  ]
  },
  "xuesheng": {
-  "file": "xuesheng.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 718631,
-  "sha256": "c148cf7d3f29ee262741affa5d0ed0bf3c8ece713f5cc9c6d0331bba5d60388d",
-  "drive_node_id": "459758243176520",
-  "generated_at": 1793798527527
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "xuesheng.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 718631,
+    "sha256": "c148cf7d3f29ee262741affa5d0ed0bf3c8ece713f5cc9c6d0331bba5d60388d",
+    "drive_node_id": "459758243176520",
+    "generated_at": "2026-11-04 13:22:07",
+    "fichier_source": "originaux_all/xuesheng.png"
+   },
+   {
+    "version": 2,
+    "file": "xuesheng__v2.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 737818,
+    "sha256": "a78ba77c4d77542b532d2f61e2888aa4e59c11259a0e525a393039c124cb68ed",
+    "drive_node_id": "459770084786266",
+    "generated_at": "2026-11-04 14:10:56",
+    "fichier_source": "originaux_all/xuesheng__v2.png"
+   }
+  ]
  },
  "xuexiao": {
-  "file": "xuexiao.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 838096,
-  "sha256": "e1bf26b91313f2577c57d2039c175421966ed746871894f10025e5144a5f3de8",
-  "drive_node_id": "459758243176525",
-  "generated_at": 1793798558915
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "xuexiao.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 838096,
+    "sha256": "e1bf26b91313f2577c57d2039c175421966ed746871894f10025e5144a5f3de8",
+    "drive_node_id": "459758243176525",
+    "generated_at": "2026-11-04 13:22:38",
+    "fichier_source": "originaux_all/xuexiao.png"
+   },
+   {
+    "version": 2,
+    "file": "xuexiao__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 347047,
+    "sha256": "8cdfccb009c58577e5aced27e331b8a43e42b0a614e78d703f58bfda12dba13b",
+    "drive_node_id": "459763130954081",
+    "generated_at": "2026-11-04 13:43:27",
+    "fichier_source": "originaux_all/xuexiao__v2.jpg"
+   },
+   {
+    "version": 3,
+    "file": "xuexiao__v3.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 404976,
+    "sha256": "4bc5fba5b9525b4f6c99eb64e7deff560b8319f5d9a70e8fcab850c0e9b9dd99",
+    "drive_node_id": "459770438385984",
+    "generated_at": "2026-11-04 14:10:42",
+    "fichier_source": "originaux_all/xuexiao__v3.jpg"
+   }
+  ]
  },
  "yifu": {
-  "file": "yifu.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 715229,
-  "sha256": "04a1a155eec9820b56a67a19a4759aba6de4285e0a90e8743af7e8fa1378a2c9",
-  "drive_node_id": "459759213039732",
-  "generated_at": 1793799009109
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "yifu.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 715229,
+    "sha256": "04a1a155eec9820b56a67a19a4759aba6de4285e0a90e8743af7e8fa1378a2c9",
+    "drive_node_id": "459759213039732",
+    "generated_at": "2026-11-04 13:30:09",
+    "fichier_source": "originaux_all/yifu.png"
+   }
+  ]
  },
  "yisheng": {
-  "file": "yisheng.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 302652,
-  "sha256": "53235a8f1328a2b67313f9b25208c89468d3a806a0b43ec2e7050ec9535ce198",
-  "drive_node_id": "459758243111177",
-  "generated_at": 1793798525422
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "yisheng.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 302652,
+    "sha256": "53235a8f1328a2b67313f9b25208c89468d3a806a0b43ec2e7050ec9535ce198",
+    "drive_node_id": "459758243111177",
+    "generated_at": "2026-11-04 13:22:05",
+    "fichier_source": "originaux_all/yisheng.jpg"
+   },
+   {
+    "version": 2,
+    "file": "yisheng__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 301694,
+    "sha256": "d3797cb897326dbd26df321b28eae59da7068cd078ed8f030690c0bb9ec03772",
+    "drive_node_id": "459769190912119",
+    "generated_at": "2026-11-04 14:09:01",
+    "fichier_source": "originaux_all/yisheng__v2.jpg"
+   }
+  ]
  },
  "yiyuan": {
-  "file": "yiyuan.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 741218,
-  "sha256": "c492b64ddae23b9284b5aeab7d95a4fa719b36ea7d033eae3059246cf9994489",
-  "drive_node_id": "459757908648235",
-  "generated_at": 1793798559411
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "yiyuan.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 741218,
+    "sha256": "c492b64ddae23b9284b5aeab7d95a4fa719b36ea7d033eae3059246cf9994489",
+    "drive_node_id": "459757908648235",
+    "generated_at": "2026-11-04 13:22:39",
+    "fichier_source": "originaux_all/yiyuan.png"
+   },
+   {
+    "version": 2,
+    "file": "yiyuan__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 369579,
+    "sha256": "51f9ce64ceaff5d137493ecf9671418f2f8ad765e7ba66d681287be92b378f75",
+    "drive_node_id": "459769696383275",
+    "generated_at": "2026-11-04 14:09:34",
+    "fichier_source": "originaux_all/yiyuan__v2.jpg"
+   }
+  ]
  },
  "yizi": {
-  "file": "yizi.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 313361,
-  "sha256": "733b310c737f48ce503f75627479838f85c4cac86163d6721f76fe134f7eefcd",
-  "drive_node_id": "459759553347696",
-  "generated_at": 1793799027336
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "yizi.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 313361,
+    "sha256": "733b310c737f48ce503f75627479838f85c4cac86163d6721f76fe134f7eefcd",
+    "drive_node_id": "459759553347696",
+    "generated_at": "2026-11-04 13:30:27",
+    "fichier_source": "originaux_all/yizi.jpg"
+   }
+  ]
  },
  "yu": {
-  "file": "yu.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 780082,
-  "sha256": "e1bc8a6b5bdc7f99a6aa4896fa6e82d9ba1e7f4da923c3da3dd2c8ac8ecd0822",
-  "drive_node_id": "459758775554148",
-  "generated_at": 1793798882324
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "yu.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 780082,
+    "sha256": "e1bc8a6b5bdc7f99a6aa4896fa6e82d9ba1e7f4da923c3da3dd2c8ac8ecd0822",
+    "drive_node_id": "459758775554148",
+    "generated_at": "2026-11-04 13:28:02",
+    "fichier_source": "originaux_all/yu.png"
+   }
+  ]
  },
  "yue": {
-  "file": "yue.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 310061,
-  "sha256": "6907a6c0c4e63a62bf9d6eb6a01d2941edb5b928a98b57497f91c96f118df141",
-  "drive_node_id": "459759894720663",
-  "generated_at": 1793798984003
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "yue.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 310061,
+    "sha256": "6907a6c0c4e63a62bf9d6eb6a01d2941edb5b928a98b57497f91c96f118df141",
+    "drive_node_id": "459759894720663",
+    "generated_at": "2026-11-04 13:29:44",
+    "fichier_source": "originaux_all/yue.jpg"
+   },
+   {
+    "version": 2,
+    "file": "yue__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 370611,
+    "sha256": "63b7cdbb164442a7a8ca4b0861cd7e95809a3174bf7f79157496a6a895712190",
+    "drive_node_id": "459770438386000",
+    "generated_at": "2026-11-04 14:11:45",
+    "fichier_source": "originaux_all/yue__v2.jpg"
+   }
+  ]
  },
  "zhangfu": {
-  "file": "zhangfu.jpg",
-  "format": "JPEG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 377733,
-  "sha256": "caa721c2f0aaa70d447533a1f8815bab8a68fbaf0dd5ba705a37a0737de312ae",
-  "drive_node_id": "459771846549637",
-  "generated_at": 1793801801738
+  "niveau": 2,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "zhangfu.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 377733,
+    "sha256": "caa721c2f0aaa70d447533a1f8815bab8a68fbaf0dd5ba705a37a0737de312ae",
+    "drive_node_id": "459771846549637",
+    "generated_at": "2026-11-04 14:16:41",
+    "fichier_source": "originaux_all/zhangfu.jpg"
+   }
+  ]
  },
  "zhuozi": {
-  "file": "zhuozi.png",
-  "format": "PNG",
-  "width": 1024,
-  "height": 1024,
-  "bytes": 539979,
-  "sha256": "d9d96e17f6f88fef2e9b30470521540f45a5c1f494c0a0a5312f2b6a356dde53",
-  "drive_node_id": "459759894720665",
-  "generated_at": 1793799029693
+  "niveau": 1,
+  "variantes": [
+   {
+    "version": 1,
+    "file": "zhuozi.png",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 539979,
+    "sha256": "d9d96e17f6f88fef2e9b30470521540f45a5c1f494c0a0a5312f2b6a356dde53",
+    "drive_node_id": "459759894720665",
+    "generated_at": "2026-11-04 13:30:29",
+    "fichier_source": "originaux_all/zhuozi.png"
+   },
+   {
+    "version": 2,
+    "file": "zhuozi__v2.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 240645,
+    "sha256": "e74e27eb474debf5760cbe7e08d66e39d301d4f2790013bfa70057cd459dc2b6",
+    "drive_node_id": "459771390349446",
+    "generated_at": "2026-11-04 14:14:40",
+    "fichier_source": "originaux_all/zhuozi__v2.jpg"
+   }
+  ]
  }
 }
