@@ -1,5 +1,6 @@
 """Applique à /etc/nginx/conf.d/xuehanyu_org.conf (idempotent) :
   - la limitation de débit et le proxy de /api/push/ vers le service de rappels,
+  - `charset utf-8;` sur www,
   - des redirections 301 (au lieu de 302) de xuehanyu.org vers www : un 302 ne transmet pas
     le « jus » SEO vers l'adresse canonique.
 Usage : python3 patch_nginx.py /etc/nginx/conf.d/xuehanyu_org.conf
@@ -38,6 +39,13 @@ if "location /api/push/" not in s:
         sys.exit("bloc `location /` introuvable ou ambigu : rien modifié")
     s = s.replace(marker, LOCATION + marker)
 s = s.replace("return 302 https://www.xuehanyu.org$request_uri;", "return 301 https://www.xuehanyu.org$request_uri;")
+
+# En-tête Content-Type avec « charset=utf-8 » (signalé par les audits SEO quand il manque)
+if "charset utf-8;" not in s:
+    anchor = "    index index.html index.htm;\n"
+    if s.count(anchor) != 1:
+        sys.exit("ancre `index index.html` introuvable ou ambiguë : rien modifié")
+    s = s.replace(anchor, anchor + "    charset utf-8;\n")
 
 if s == orig:
     print("déjà à jour")

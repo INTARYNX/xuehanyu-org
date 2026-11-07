@@ -63,6 +63,18 @@ function load() {
 }
 
 const short = (arr, n) => arr.slice(0, n).join(' ; ');
+
+// Les moteurs coupent les titres à ~580 px (≈ 58 caractères latins, un idéogramme compte double) et les
+// descriptions à ~155 caractères : on raccourcit nous-mêmes plutôt que de laisser un « … » arbitraire.
+const width = s => [...s].reduce((n, c) => n + (c.codePointAt(0) > 0x2e80 ? 2 : 1), 0);
+function fit(text, max, measure = s => s.length) {
+  if (measure(text) <= max) return text;
+  const words = text.split(' ');
+  while (words.length > 1 && measure(words.join(' ') + '…') > max) words.pop();
+  return words.join(' ').replace(/[ ;,:—-]+$/, '') + '…';
+}
+const BRAND = ' | xuehanyu.org';
+const titleOf = base => (width(base + BRAND) <= 58 ? base + BRAND : fit(base, 58, width));
 const wordUrl = w => `/mot/${w.slug}.html`;
 const deepLink = w => `/app.html?w=${encodeURIComponent(w.char)}&l=${w.level}`;
 
@@ -123,8 +135,12 @@ ${body}
 function wordPage(w, i, list) {
   const prev = list[i - 1], next = list[i + 1];
   const meaning = short(w.fr, 3) || short(w.en, 3);
-  const title = `${w.char} (${w.pinyin}) : ${short(w.fr, 2) || short(w.en, 2)} — chinois HSK ${w.level} | xuehanyu.org`;
-  const desc = `${w.char} (${w.pinyin}) en chinois : ${meaning}. HSK ${w.level} — pinyin, traduction française et anglaise, ordre des traits${w.classifiers.length ? ', classificateurs' : ''}.`;
+  const head = `${w.char} (${w.pinyin})`;
+  const suffix = ` — chinois HSK ${w.level}`;
+  const budget = 58 - width(head) - width(' : ') - width(suffix);
+  const title = titleOf(`${head} : ${fit(short(w.fr, 2) || short(w.en, 2), Math.max(budget, 12))}${suffix}`);
+  const tail = ` HSK ${w.level} : pinyin, traduction, ordre des traits${w.classifiers.length ? ', classificateurs' : ''}.`;
+  const desc = `${head} en chinois : ${fit(meaning, 138 - head.length - tail.length)}.${tail}`;
   const canonical = wordUrl(w);
   const badges = [`<span class="level-badge">HSK ${w.level}</span>`]
     .concat(w.pos.map(p => `<span class="pos-badge">${esc(POS[p] || p)}</span>`)).join(' ');
@@ -170,8 +186,8 @@ ${facts.length ? `      <dl class="seo-facts">${facts.map(([k, v]) => `<dt>${k}<
 }
 
 function levelPage(level, words) {
-  const title = `Vocabulaire chinois HSK ${level} : liste de ${words.length} mots avec pinyin et traduction | xuehanyu.org`;
-  const desc = `Liste complète du vocabulaire HSK ${level} : ${words.length} mots chinois avec pinyin, traduction française et anglaise. Gratuit, avec ordre des traits, quiz d'images et leçons.`;
+  const title = titleOf(`Vocabulaire HSK ${level} : ${words.length} mots chinois avec pinyin`);
+  const desc = `Liste complète du vocabulaire HSK ${level} : ${words.length} mots chinois avec pinyin, traduction française et anglaise, ordre des traits et quiz. Gratuit.`;
   const canonical = `/vocabulaire-hsk-${level}.html`;
   const rows = words.map(w => `<tr><th scope="row" lang="zh-Hans"><a href="${wordUrl(w)}">${esc(w.char)}</a></th><td>${esc(w.pinyin)}</td><td>${esc(short(w.fr, 3) || '—')}</td><td lang="en">${esc(short(w.en, 2) || '—')}</td></tr>`).join('\n');
   const others = LEVELS.filter(l => l !== level).map(l => `<a href="/vocabulaire-hsk-${l}.html">HSK ${l}</a>`).join(' · ');
