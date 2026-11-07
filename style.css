@@ -91,7 +91,11 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 }
 .zh { font-family: var(--kai); }
 
-#paper-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+/* The paper is painted once at the size the window had; the browser toolbars and the
+   iOS safe area then change the visible height. Stretching the bitmap to the layout
+   viewport (instead of the px size set by the scripts) means no band of bare page
+   background can ever show under it. */
+#paper-bg { position: fixed; inset: 0; width: 100% !important; height: 100% !important; z-index: 0; pointer-events: none; }
 
 /* =========================================================================
    APP SHELL
@@ -103,7 +107,9 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
   z-index: 1;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 clamp(0.75rem, 3vw, 2rem) 2rem;
+  /* viewport-fit=cover (see the viewport meta) lets the page run under the notch and the
+     home indicator, so the safe areas are ours to keep clear */
+  padding: env(safe-area-inset-top, 0px) max(clamp(0.75rem, 3vw, 2rem), env(safe-area-inset-right, 0px)) 2rem max(clamp(0.75rem, 3vw, 2rem), env(safe-area-inset-left, 0px));
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -194,7 +200,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     border-radius: 0;
     border: 0;
     border-top: 1px solid var(--line-strong);
-    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+    padding: 6px max(6px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px));
     gap: 2px;
     background: var(--surface);
     box-shadow: 0 -6px 24px -12px var(--shadow);

@@ -54,7 +54,7 @@ python3 scripts/build_images.py manifest  # rebuilds manifests and index.json
 python3 scripts/build_images.py check
 ```
 
-**Practice sessions and streak** (`quiz.js`, `progress.js`). A session is 10 cards, due words first, then new ones; a missed word comes back once before the summary. `progress.js` counts one activity per answered card or reviewed lesson per local day (daily goal 10) and derives the streak; it is pure logic with `localStorage` as a thin wrapper.
+**Practice sessions and streak** (`quiz.js`, `progress.js`). A session is 10 cards, due words first, then new ones; a missed word comes back once before the summary. `progress.js` counts words practised per local day (daily goal 10: 1 per answered card or question, all the distinct words of a lesson when it is marked reviewed) and derives the streak; it is pure logic with `localStorage` as a thin wrapper.
 
 **Spaced repetition** (`srs.js`). A simplified SM-2 with right/wrong grades: a correct answer is due again in 1 day, then 3, then the interval grows by the ease factor; a miss brings the word back in 10 minutes. A correct answer on a word that is not yet due changes nothing. The *Due* button builds a deck from every word that is due. State is kept in `localStorage`.
 

@@ -142,21 +142,45 @@ function unlockSpeech() {
   document.addEventListener(ev, unlockSpeech, { once: true, passive: true })
 );
 
+/**
+ * Speaks `text` and returns a promise that resolves when the voice has
+ * actually finished (or was cancelled / failed), so callers can wait for it.
+ * Some browsers never fire `end`, so a generous estimate caps the wait.
+ */
 function speak(text) {
-  const say = () => {
-    const voices = speechSynthesis.getVoices();
-    const zh = voices.find(v => v.lang && v.lang.startsWith('zh'));
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'zh-CN';
-    u.rate = 0.8;
-    if (zh) u.voice = zh;
-    try { speechSynthesis.speak(u); } catch {}
-  };
-  if (speechSynthesis.getVoices().length) say();
-  else {
-    speechSynthesis.addEventListener('voiceschanged', say, { once: true });
-    setTimeout(say, 1200);
-  }
+  return new Promise(resolve => {
+    let safety;
+    let started = false;
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(safety);
+      resolve();
+    };
+    safety = setTimeout(finish, Math.max(4000, [...String(text)].length * 700 + 2500));
+
+    const say = () => {
+      if (started) return;           // `voiceschanged` and the fallback timer must not both speak
+      started = true;
+      const voices = speechSynthesis.getVoices();
+      const zh = voices.find(v => v.lang && v.lang.startsWith('zh'));
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'zh-CN';
+      u.rate = 0.8;
+      if (zh) u.voice = zh;
+      u.onend = finish;
+      u.onerror = finish;
+      try { speechSynthesis.speak(u); } catch { finish(); }
+    };
+    try {
+      if (speechSynthesis.getVoices().length) say();
+      else {
+        speechSynthesis.addEventListener('voiceschanged', say, { once: true });
+        setTimeout(say, 1200);
+      }
+    } catch { finish(); }
+  });
 }
 function stopSpeech() { try { speechSynthesis.cancel(); } catch {} }
 
@@ -340,8 +364,10 @@ async function playConversation() {
       row.classList.add('speaking');
       row.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
-    speak(lines[i].hanzi);
-    await new Promise(r => setTimeout(r, 1900));
+    // wait for the voice to finish, then a short beat, before moving on and scrolling
+    await speak(lines[i].hanzi);
+    if (token !== playToken) return;
+    await new Promise(r => setTimeout(r, 450));
   }
   if (token === playToken) {
     playing = false;
@@ -362,7 +388,11 @@ function toggleReviewed() {
   if (reviewed.has(id)) reviewed.delete(id);
   else {
     reviewed.add(id);
-    if (typeof Progress !== 'undefined') Progress.add(1);   // counts toward today's goal and the streak
+    // counts toward today's goal (in words) and the streak: every distinct word of the lesson
+    if (typeof Progress !== 'undefined') {
+      const l = LESSONS[currentLesson];
+      Progress.add(new Set(l.exchanges.flatMap(e => e.words)).size);
+    }
   }
   saveReviewed();
   renderList();

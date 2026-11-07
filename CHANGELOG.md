@@ -6,7 +6,7 @@
 - Pinyin is no longer italic: italic Georgia drew the tone-3 mark (ǎ ǐ ǒ) detached from its letter.
 - App shell: slim top bar with tabs on desktop, fixed bottom tab bar on phones.
 - Practice (`quiz.html`) is now a hub plus focused 10-card sessions: streak, daily goal, words due, mastery bar; flashcards hide the answer until revealed; multiple-choice answers get immediate feedback with a continue bar; missed words come back once at the end; end-of-session summary. Keyboard: space to reveal, 1/2 to grade, 1–4 to choose.
-- `progress.js` (new, with tests): daily activity, goal and streak, kept in `localStorage`. Answers and reviewed lessons both count.
+- `progress.js` (new, with tests): words practised per day, goal (10 words) and streak, kept in `localStorage`. An answered card or question counts as 1 word, a reviewed lesson as all its distinct words; the hub says so.
 - Lessons: a path with done / up-next states and overall progress, chat-style dialogue, switch-style Pinyin / Translation toggles, a sticky action bar, and a "next lesson" button. The page opens on the first lesson not reviewed yet.
 - Dictionary: word hero (pinyin, meaning, badges) above a stroke grid, labelled actions, and only the facts that exist (no more rows of dashes).
 - Home: one primary call to action (practice) and two secondary ones.

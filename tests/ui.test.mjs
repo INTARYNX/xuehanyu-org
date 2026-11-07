@@ -74,8 +74,9 @@ after(async () => {
 const VIEWPORTS = { phone: { width: 390, height: 844 }, desktop: { width: 1280, height: 800 } };
 const NAV = [['index.html', 'Accueil'], ['app.html', 'Dictionnaire'], ['quiz.html', "Quiz d'images"], ['lessons.html', 'Leçons']];
 
-async function open(name, size) {
+async function open(name, size, init) {
   const ctx = await browser.newContext({ viewport: VIEWPORTS[size], serviceWorkers: 'block' });
+  if (init) await ctx.addInitScript(init);
   const p = await ctx.newPage();
   await p.route(u => !u.toString().startsWith(base), r => r.abort());
   const errors = [];
@@ -119,6 +120,17 @@ test('quiz (phone): the hub puts the exercise choice and the start button above 
     const bar = await p.$eval('.site-nav', e => e.getBoundingClientRect().top);
     assert.ok(start <= bar, `start button (${start}) hides behind the tab bar (${bar})`);
   } finally { await ctx.close(); }
+});
+
+test('every app page extends under the safe areas (viewport-fit=cover) so no page background shows under the bottom bar', { skip }, async () => {
+  for (const page of ['app.html', 'quiz.html', 'lessons.html']) {
+    const { p, ctx } = await open(page, 'phone');
+    try {
+      assert.match(await p.getAttribute('meta[name="viewport"]', 'content'), /viewport-fit=cover/, page);
+      const bg = await p.$eval('#paper-bg', e => { const r = e.getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height), innerWidth, innerHeight]; });
+      assert.deepEqual(bg, [bg[2], bg[3], bg[2], bg[3]], `${page}: the paper does not cover the viewport`);
+    } finally { await ctx.close(); }
+  }
 });
 
 test('quiz (phone): the tab bar is fixed at the bottom and a session hides it', { skip }, async () => {
@@ -268,5 +280,32 @@ test('pinyin is never italic (italic broke the tone marks)', { skip }, async () 
     const styles = await p.$$eval('.exchange-pinyin', els => els.map(e => getComputedStyle(e).fontStyle));
     assert.ok(styles.length > 0);
     assert.ok(styles.every(s => s === 'normal'), 'italic pinyin found');
+  } finally { await ctx.close(); }
+});
+
+test('lessons: playback waits for each line to finish before moving on', { skip }, async () => {
+  // a fake voice that only ends when the test says so
+  const { p, ctx, errors } = await open('lessons.html', 'desktop', () => {
+    window.__spoken = []; window.__ends = [];
+    window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+    Object.defineProperty(window, 'speechSynthesis', { value: {
+      getVoices: () => [{ lang: 'zh-CN' }],
+      speak(u) { if (u.text.trim()) { window.__spoken.push(u.text); window.__ends.push(u.onend); } },   // ignore the silent unlock utterance
+      cancel() {}, addEventListener() {}
+    } });
+  });
+  try {
+    const speaking = () => p.$$eval('.exchange.speaking', e => e.map(x => x.dataset.i));
+    await p.click('#btnPlay');
+    await p.waitForTimeout(2600);   // longer than the old fixed 1.9 s per line
+    assert.equal(await p.evaluate(() => window.__spoken.length), 1, 'moved on before the voice ended');
+    assert.deepEqual(await speaking(), ['0']);
+    await p.evaluate(() => window.__ends[0]());
+    await p.waitForTimeout(900);
+    assert.equal(await p.evaluate(() => window.__spoken.length), 2, 'did not move on after the voice ended');
+    assert.deepEqual(await speaking(), ['1']);
+    await p.click('#btnPlay');      // stop
+    assert.deepEqual(await speaking(), []);
+    assert.deepEqual(errors, []);
   } finally { await ctx.close(); }
 });
