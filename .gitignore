@@ -9,3 +9,5 @@ __pycache__/
 .img-raw/
 .img-args.json
 node_modules/
+
+.playwright-mcp/
