@@ -1,6 +1,6 @@
 # 学汉语 · xuehanyu.org
 
-A free, static web app to learn Mandarin vocabulary (HSK 1–6). No account, no build step, no backend.
+A free web app to learn Mandarin vocabulary (HSK 1–6). No account, no build step for the app itself; the only server code is the optional daily-reminder service in `server/`.
 
 - **Dictionary** — ~5,000 words with pinyin, French and English meanings, radical, classifiers and part of speech. Search by character, pinyin or meaning.
 - **Stroke order** — animated, plus a mode where you trace the character yourself ([Hanzi Writer](https://hanziwriter.org)).
@@ -30,6 +30,16 @@ Then serve the folder (`fetch()` does not work from `file://`):
 ```bash
 python3 -m http.server 8080
 ```
+
+## Static SEO pages
+
+```bash
+node scripts/build-seo.mjs     # mot/*.html, vocabulaire-hsk-N.html, sitemap-mots.xml (git-ignored, rebuilt by deploy.ps1)
+```
+
+## Reminders backend
+
+`server/push_server.py` (Python 3.12, `pywebpush`, SQLite) serves `/api/push/*` behind nginx and sends the daily reminder. `scripts/deploy-push.ps1` installs it on the server. Tests: `cd server && python -m unittest test_push_server`.
 
 ## Tests
 

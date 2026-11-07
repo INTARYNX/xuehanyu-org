@@ -208,11 +208,11 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 /* tabs — mobile : barre BASSE, copie de `.app-nav` d'Enlistia (routes/u/+layout.svelte).
    Ancrée au VIEWPORT (`fixed; bottom: 0`), sans JS, hors du flux ; le document défile
    normalement. `top: auto` est OBLIGATOIRE (sinon la barre s'étire sur tout l'écran). La zone
-   sûre iOS est DANS le padding de la barre : son fond couvre le bandeau du home indicator. */
+   sûre (home indicator) est remplie par un ::after SOUS la barre, pas dans son padding : voir plus bas. */
 @media (max-width: 800px) {
   .app {
-    /* hauteur réelle de la barre (63px) + respiration */
-    padding-bottom: 71px;
+    /* hauteur de la barre (--tabbar-h, mesurée) + respiration : rien du contenu ne reste sous la barre */
+    padding-bottom: calc(var(--tabbar-h) + 10px);
   }
   .site-nav {
     position: fixed;
@@ -809,7 +809,7 @@ main {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 10001;   /* au-dessus de la barre du bas (10000) : la feuille est modale et ne doit pas finir dessous */
   background: rgba(30, 20, 10, 0.55);
 }
 .popup-overlay.open { display: block; }
@@ -817,7 +817,7 @@ main {
   position: fixed;
   inset: 0;
   height: 100dvh;
-  z-index: 101;
+  z-index: 10002;
   background: var(--surface);
   display: flex;
   flex-direction: column;

@@ -1,0 +1,28 @@
+[Unit]
+Description=xuehanyu.org - rappels quotidiens (Web Push)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Utilisateur éphémère : pas de compte à créer, et le service ne peut écrire que dans son StateDirectory
+# (/var/lib/xuehanyu-push : base SQLite des abonnés + clé privée VAPID, créée au premier démarrage).
+DynamicUser=yes
+StateDirectory=xuehanyu-push
+StateDirectoryMode=0700
+Environment=PUSH_HOST=127.0.0.1 PUSH_PORT=3004
+ExecStart=/opt/xuehanyu_push/venv/bin/python /opt/xuehanyu_push/push_server.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target

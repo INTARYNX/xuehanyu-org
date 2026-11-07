@@ -60,3 +60,21 @@ test('old days are pruned', () => {
   for (let i = 0; i < 450; i++) s = Progress.record(s, 1, at(2025, 1, 1) + i * 86400000);
   assert.ok(Object.keys(s.days).length <= 400);
 });
+
+test('setOnSave is called with the new state after add, and a throwing listener is ignored', () => {
+  const store = {};
+  globalThis.localStorage = { getItem: k => store[k] ?? null, setItem: (k, v) => { store[k] = v; } };
+  try {
+    let seen = null;
+    Progress.setOnSave(s => { seen = s; });
+    const s = Progress.add(3, at(2026, 11, 7));
+    assert.equal(seen.days['2026-11-07'], 3);
+    assert.deepEqual(seen, s);
+    Progress.setOnSave(() => { throw new Error('boom'); });
+    assert.doesNotThrow(() => Progress.add(1, at(2026, 11, 7)));
+    assert.equal(Progress.load().days['2026-11-07'], 4);
+  } finally {
+    Progress.setOnSave(null);
+    delete globalThis.localStorage;
+  }
+});

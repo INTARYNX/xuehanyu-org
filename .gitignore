@@ -12,3 +12,9 @@ node_modules/
 
 .playwright-mcp/
 assets/img-raw/
+
+# pages SEO générées par scripts/build-seo.mjs (relancé par deploy.ps1)
+mot/
+vocabulaire-hsk-*.html
+sitemap-mots.xml
+.deploy_stage.tgz

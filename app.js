@@ -297,7 +297,9 @@ function selectChar(item) {
 const POS_LABELS = {
   v:'verbe', n:'nom', vn:'nom verbal', m:'mesure', t:'temps', b:'attribut',
   r:'pronom', a:'adjectif', d:'adverbe', p:'préposition', c:'conjonction',
-  u:'particule', e:'exclamation', q:'classificateur', s:'lieu', f:'direction', o:'onomatopée'
+  u:'particule', e:'exclamation', q:'classificateur', s:'lieu', f:'direction', o:'onomatopée',
+  y:'particule modale', k:'suffixe', an:'adjectif nominal', g:'morphème', qt:'classificateur de durée',
+  nr:'nom de personne', ad:'adverbe adjectival', nz:'nom propre', cc:'conjonction', qv:'classificateur verbal', tg:'morphème de temps', mq:'numéral-classificateur', ns:'nom de lieu', l:'expression figée', z:'verbe d’état', h:'préfixe', Mg:'morphème numérique', nt:'nom d’organisation'
 };
 
 function getChars() { return currentChar ? [...currentChar.char] : []; }
@@ -1282,12 +1284,21 @@ function applyI18n() {
 // =========================================================================
 // INIT
 // =========================================================================
+// Lien direct depuis les pages statiques (SEO) : app.html?w=学&l=1 ouvre ce mot.
+const deepLink = (() => {
+  const p = new URLSearchParams(location.search);
+  const lvl = Number(p.get('l'));
+  return { word: p.get('w'), level: HSK_LEVELS.includes(lvl) ? lvl : null };
+})();
+if (deepLink.level) currentLevel = deepLink.level;
+
 buildLevels();
 applyI18n();
 (async () => {
   await ensureLevelLoaded(currentLevel);
   buildCharList();
-  if (window.innerWidth > 800 && HSK_DATA[currentLevel]?.length) {
-    selectChar(HSK_DATA[currentLevel][0]);
-  }
+  const list = HSK_DATA[currentLevel] || [];
+  const wanted = deepLink.word && list.find(it => it.char === deepLink.word);
+  if (wanted) selectChar(wanted);
+  else if (window.innerWidth > 800 && list.length) selectChar(list[0]);
 })();

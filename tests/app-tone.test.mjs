@@ -95,6 +95,8 @@ const sandbox = {
   document,
   console,
   ToneDSP,
+  location: { search: '' },
+  URLSearchParams,
   navigator: { mediaDevices: { getUserMedia: () => Promise.reject(new Error('no mic')) } },
   speechSynthesis: { getVoices: () => [], speak() {}, addEventListener() {} },
   performance: { now: () => Date.now() },

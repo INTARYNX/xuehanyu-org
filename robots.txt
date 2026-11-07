@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /assets/img-raw/
 
 Sitemap: https://www.xuehanyu.org/sitemap.xml
+Sitemap: https://www.xuehanyu.org/sitemap-mots.xml

@@ -217,7 +217,7 @@
 .lesson-dock .btn { flex: 1 1 140px; min-height: 48px; }
 .lesson-dock .btn.primary.done { background: var(--good); border-color: var(--good); box-shadow: 0 3px 0 #1f5a22; }
 @media (max-width: 800px) {
-  .lesson-dock { bottom: calc(var(--tabbar-h) + var(--sab) + 0.6rem); }
+  .lesson-dock { bottom: calc(var(--tabbar-h) + 0.6rem); }
   .lesson-dock .btn { flex: 1 1 0; white-space: nowrap; padding: 0 0.6rem; font-size: 0.9rem; }
   .lesson-dock #btnPlay { flex: 0 0 auto; }
 }

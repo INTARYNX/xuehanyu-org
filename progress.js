@@ -68,8 +68,13 @@ const Progress = (() => {
     return empty();
   }
 
+  let onSave = null;
+  /** Called with the new state after each save (the reminder sync uses it). */
+  function setOnSave(fn) { onSave = typeof fn === 'function' ? fn : null; }
+
   function save(state) {
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+    if (onSave) { try { onSave(state); } catch {} }
   }
 
   /** Records activity and persists it; returns the new state. */
@@ -79,7 +84,7 @@ const Progress = (() => {
     return s;
   }
 
-  return { dayKey, prevDay, empty, record, today, streak, goalRatio, load, save, add, DEFAULT_GOAL };
+  return { dayKey, prevDay, empty, record, today, streak, goalRatio, load, save, add, setOnSave, DEFAULT_GOAL };
 })();
 
 if (typeof module !== 'undefined' && module.exports) module.exports = Progress;

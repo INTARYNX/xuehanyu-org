@@ -733,6 +733,7 @@ function applyI18n() {
   setVersion();
   updateHub();
   render();
+  window.dispatchEvent(new Event('langchange'));
 }
 
 document.querySelectorAll('.lang-switch button').forEach(btn => {

@@ -72,6 +72,13 @@ try {
         Write-Host "No git changes to publish." -ForegroundColor Yellow
     }
 
+    # ── Generate the static SEO pages (mot/, vocabulaire-hsk-N.html, sitemap-mots.xml) ──────────
+    # Gitignored: rebuilt from data/ at every deploy.
+    Write-Host ""
+    Write-Host "Generating SEO pages..." -ForegroundColor Cyan
+    & node (Join-Path $base 'scripts/build-seo.mjs')
+    if ($LASTEXITCODE -ne 0) { throw "SEO page generation failed." }
+
     # ── Collect ALL physical files ────────────────────────────────────────────
 
     Write-Host ""
@@ -91,7 +98,7 @@ try {
 
     $webIgnoreFile = Join-Path $base '.webignore'
     # On protège les outils de déploiement et les dossiers temporaires d'office
-    $ignoredPatterns = @('deploy.ps1', 'deploy.config.ps1', '.webignore', '.gitignore', '.git', '.deploy_stage')
+    $ignoredPatterns = @('deploy.ps1', 'deploy.config.ps1', '.webignore', '.gitignore', '.git', '.deploy_stage', '.deploy_stage.tgz')
 
     if (Test-Path $webIgnoreFile) {
         Write-Host "Applying .webignore filters..." -ForegroundColor Yellow
@@ -167,16 +174,26 @@ try {
 
     Write-Host "Uploading files to $REMOTE_NEW (the live site is untouched)..." -ForegroundColor White
 
-    $remoteTarget = "${SSH_USER}@${SSH_HOST}:$REMOTE_NEW"
+    # One compressed archive instead of ~5,000 individual scp transfers (the SEO pages are small files).
+    $archive = Join-Path $base '.deploy_stage.tgz'
+    & tar -czf $archive -C $stage .
+    if ($LASTEXITCODE -ne 0) { throw "Archive creation failed." }
 
     & scp `
         -i $SSH_KEY `
         -o StrictHostKeyChecking=accept-new `
-        -r `
-        "$stage/*" `
-        $remoteTarget
+        $archive `
+        "${SSH_USER}@${SSH_HOST}:/tmp/xuehanyu_deploy.tgz"
 
     if ($LASTEXITCODE -ne 0) { throw "SCP failed." }
+
+    & ssh `
+        -i $SSH_KEY `
+        -o StrictHostKeyChecking=accept-new `
+        "$SSH_USER@$SSH_HOST" `
+        "sudo tar -xzf /tmp/xuehanyu_deploy.tgz -C '$REMOTE_NEW' && rm -f /tmp/xuehanyu_deploy.tgz"
+
+    if ($LASTEXITCODE -ne 0) { throw "Remote extraction failed." }
 
     Write-Host "Fixing permissions, swapping the new version in and reloading Nginx..." -ForegroundColor White
     # chown/chcon --reference : le nouveau dossier prend le proprietaire et le contexte SELinux du dossier en ligne.
@@ -200,6 +217,7 @@ finally {
         -Recurse `
         -Force `
         -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $base '.deploy_stage.tgz') -Force -ErrorAction SilentlyContinue
 
     Pop-Location
 }

@@ -17,7 +17,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -307,5 +307,214 @@ test('lessons: playback waits for each line to finish before moving on', { skip 
     await p.click('#btnPlay');      // stop
     assert.deepEqual(await speaking(), []);
     assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+// ------------------------------------------------------------------ rappels / installation / SEO
+const FAKE_PUSH = `
+  const calls = (window.__push = { subscribed: 0, unsubscribed: 0 });
+  // Headless Chromium starts with permission 'denied'; a real browser starts at 'default'.
+  // Permission and subscription survive reloads through localStorage, like they do in a browser profile.
+  const setPerm = v => Object.defineProperty(Notification, 'permission', { value: v, configurable: true });
+  setPerm(localStorage.getItem('__perm') || 'default');
+  const sub = { endpoint: 'https://fcm.googleapis.com/fcm/send/fake', toJSON() { return { endpoint: this.endpoint, keys: { p256dh: 'k', auth: 'a' } }; },
+                unsubscribe() { calls.unsubscribed++; localStorage.removeItem('__sub'); return Promise.resolve(true); } };
+  const reg = { pushManager: {
+    getSubscription() { return Promise.resolve(localStorage.getItem('__sub') ? sub : null); },
+    subscribe(opts) { calls.subscribed++; calls.key = opts.applicationServerKey.length; localStorage.setItem('__sub', '1'); return Promise.resolve(sub); } } };
+  Object.defineProperty(navigator, 'serviceWorker', { value: { ready: Promise.resolve(reg), register() { return Promise.resolve(reg); } } });
+  Notification.requestPermission = () => { localStorage.setItem('__perm', 'granted'); setPerm('granted'); return Promise.resolve('granted'); };
+`;
+const VAPID_KEY = 'BI-BcM1NJWPwdIlLWojxAzOe2w7ATOYLYWEZ4TWjX0B89thp8-ORnpz9bYlrlvMcOSc0ULjItsiHM6F3FknVTIE';
+
+test('quiz: the reminder card turns the daily reminder on and off against the push API', { skip }, async () => {
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.phone, serviceWorkers: 'block' });
+  await ctx.addInitScript(FAKE_PUSH);
+  const p = await ctx.newPage();
+  const posts = [];
+  await p.route(u => !u.toString().startsWith(base), r => r.abort());
+  await p.route('**/api/push/*', r => {
+    if (r.request().method() === 'POST') posts.push([new URL(r.request().url()).pathname, r.request().postDataJSON()]);
+    return r.fulfill({ json: { ok: true } });
+  });
+  await p.route('**/api/push/key', r => r.fulfill({ json: { key: VAPID_KEY } }));   // last registered wins
+  try {
+    await p.goto(`${base}/quiz.html`);
+    await p.waitForTimeout(500);
+    assert.equal(await p.isVisible('#remindCard'), true);
+    assert.equal(await p.inputValue('#remindTime'), '19:00');
+    assert.match(await p.textContent('#remindBtn'), /Activer le rappel/);
+
+    await p.fill('#remindTime', '08:30');
+    await p.click('#remindBtn');
+    await p.waitForTimeout(500);
+    const sent = posts.find(x => x[0] === '/api/push/subscribe');
+    assert.ok(sent, 'no subscribe request');
+    assert.equal(sent[1].time, '08:30');
+    assert.equal(sent[1].subscription.endpoint, 'https://fcm.googleapis.com/fcm/send/fake');
+    assert.ok(sent[1].tz.includes('/') || sent[1].tz === 'UTC', 'timezone missing');
+    assert.equal(sent[1].lang, 'fr');
+    assert.equal((await p.evaluate(() => window.__push)).key, 65, 'VAPID key must be the 65-byte uncompressed point');
+    assert.match(await p.textContent('#remindBtn'), /Désactiver/);
+    assert.match(await p.textContent('#remindText'), /08:30/);
+
+    await p.reload();
+    await p.waitForTimeout(500);
+    assert.match(await p.textContent('#remindBtn'), /Désactiver/, 'state is restored after a reload');
+    await p.click('#remindBtn');
+    await p.waitForTimeout(400);
+    assert.ok(posts.some(x => x[0] === '/api/push/unsubscribe'));
+    assert.match(await p.textContent('#remindBtn'), /Activer le rappel/);
+  } finally { await ctx.close(); }
+});
+
+test('quiz: practising while subscribed tells the server (silences the reminder of the day)', { skip }, async () => {
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.phone, serviceWorkers: 'block' });
+  await ctx.addInitScript(() => {   // a returning subscriber: permission granted, subscription kept, reminder on
+    localStorage.setItem('__perm', 'granted'); localStorage.setItem('__sub', '1');
+    localStorage.setItem('xuehanyu.remind.v1', JSON.stringify({ on: true, time: '19:00' }));
+  });
+  await ctx.addInitScript(FAKE_PUSH);   // after the storage setup: it reads __perm / __sub
+  const p = await ctx.newPage();
+  const posts = [];
+  await p.route(u => !u.toString().startsWith(base), r => r.abort());
+  await p.route('**/api/push/*', r => {
+    if (r.request().method() === 'POST') posts.push([new URL(r.request().url()).pathname, r.request().postDataJSON()]);
+    return r.fulfill({ json: { ok: true, key: VAPID_KEY } });
+  });
+  try {
+    await p.goto(`${base}/quiz.html`);
+    await p.waitForTimeout(500);
+    assert.match(await p.textContent('#remindBtn'), /Désactiver/);
+    await p.evaluate(() => Progress.add(3));
+    await p.waitForTimeout(2200);
+    const act = posts.find(x => x[0] === '/api/push/activity');
+    assert.ok(act, 'no activity request after practising');
+    assert.equal(act[1].endpoint, 'https://fcm.googleapis.com/fcm/send/fake');
+    assert.equal(act[1].today, 3);
+    assert.match(act[1].day, /^\d{4}-\d{2}-\d{2}$/);
+  } finally { await ctx.close(); }
+});
+
+test('quiz: on an iPhone Safari tab the card explains how to install the app instead of offering push', { skip }, async () => {
+  const ctx = await browser.newContext({
+    viewport: VIEWPORTS.phone, serviceWorkers: 'block',
+    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1'
+  });
+  await ctx.addInitScript(() => { delete window.PushManager; });
+  const p = await ctx.newPage();
+  await p.route(u => !u.toString().startsWith(base), r => r.abort());
+  try {
+    await p.goto(`${base}/quiz.html`);
+    await p.waitForTimeout(500);
+    assert.equal(await p.isVisible('#remindCard'), true);
+    assert.match(await p.textContent('#remindSteps'), /Partager/);
+    assert.match(await p.textContent('#remindSteps'), /écran d'accueil/);
+    assert.equal(await p.isVisible('#remindBtn'), false, 'push button must stay hidden until the app is installed');
+    await p.click('.lang-switch [data-lang="en"]');
+    assert.match(await p.textContent('#remindSteps'), /Add to Home Screen/);
+  } finally { await ctx.close(); }
+});
+
+test('quiz: the reminder card stays out of the way when neither install nor push is possible', { skip }, async () => {
+  const { p, ctx } = await open('quiz.html', 'desktop', () => { delete window.PushManager; });
+  try { assert.equal(await p.isVisible('#remindCard'), false); } finally { await ctx.close(); }
+});
+
+test('dictionary: a ?w=…&l=1 link opens that word (deep link from the static SEO pages)', { skip }, async () => {
+  const { p, ctx, errors } = await open('app.html?w=%E5%85%AB&l=1', 'desktop');
+  try {
+    assert.match(await p.textContent('#detail .word-pinyin'), /bā/);
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+test('the manifest is installable: id, start_url, scope, 192 + 512 + maskable icons that exist', { skip }, async () => {
+  const m = JSON.parse(await readFile(path.join(ROOT, 'site.webmanifest'), 'utf8'));
+  assert.equal(m.display, 'standalone');
+  assert.equal(m.id, '/');
+  assert.equal(m.start_url, '/quiz.html');
+  assert.ok(m.icons.some(i => i.sizes === '192x192' && i.purpose === 'any'));
+  assert.ok(m.icons.some(i => i.sizes === '512x512' && i.purpose === 'any'));
+  assert.ok(m.icons.some(i => i.purpose === 'maskable'));
+  for (const i of m.icons) await readFile(path.join(ROOT, i.src));
+});
+
+test('generated SEO page: content is in the HTML, with title, canonical, JSON-LD and a link into the app', { skip }, async () => {
+  let files = [];
+  try { files = (await readdir(path.join(ROOT, 'mot'))).filter(f => f.startsWith('ai4-')); } catch { return; }   // needs scripts/build-seo.mjs
+  if (!files.length) return;
+  const { p, ctx, errors } = await open(`mot/${files[0]}`, 'phone');
+  try {
+    assert.ok((await p.title()).endsWith('xuehanyu.org'));
+    assert.ok((await p.getAttribute('link[rel=canonical]', 'href')).startsWith('https://www.xuehanyu.org/mot/ai4-'));
+    assert.equal(await p.$$eval('h1', h => h.length), 1);
+    assert.equal(await p.$$eval('script[type="application/ld+json"]', s => s.length), 1);
+    assert.match(await p.getAttribute('.seo-word a.btn', 'href'), /^\/app\.html\?w=.+&l=\d$/);
+    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'page scrolls sideways');
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+// ------------------------------------------------------------------ rien sous la barre du bas
+for (const page of ['quiz.html', 'app.html', 'lessons.html', 'mot/a1-554a.html', 'vocabulaire-hsk-1.html']) {
+  test(`${page} (phone): scrolled to the end, no content is hidden under the bottom bar`, { skip }, async () => {
+    const { p, ctx } = await open(page, 'phone');
+    try {
+      for (const lang of ['fr', 'en']) {
+        if (lang === 'en') { const b = await p.$('.lang-switch [data-lang="en"]'); if (!b) break; await b.click(); await p.waitForTimeout(200); }
+        await p.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+        await p.waitForTimeout(150);
+        const m = await p.evaluate(() => {
+          const nav = document.querySelector('.site-nav').getBoundingClientRect();
+          const app = document.querySelector('.app');
+          const end = app.getBoundingClientRect().bottom - parseFloat(getComputedStyle(app).paddingBottom);
+          return { navTop: nav.top, navH: nav.height, end, reserved: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tabbar-h')) };
+        });
+        assert.ok(m.end <= m.navTop + 0.5, `${page} [${lang}]: content ends at ${m.end}, the bar starts at ${m.navTop}`);
+        assert.ok(m.navH <= m.reserved + 0.5, `${page} [${lang}]: the bar is ${m.navH}px tall but only ${m.reserved}px (--tabbar-h) is reserved`);
+      }
+    } finally { await ctx.close(); }
+  });
+}
+
+test('dictionary (phone): the word sheet opens above the bottom bar, nothing of it is covered', { skip }, async () => {
+  const { p, ctx } = await open('app.html', 'phone');
+  try {
+    await p.click('.char-row');
+    await p.waitForTimeout(500);
+    const covered = await p.evaluate(() => {
+      const x = innerWidth / 2, y = innerHeight - 8;                  // a point where the bar sits
+      const top = document.elementFromPoint(x, y);
+      return { inPopup: !!top.closest('.popup'), el: top.className || top.tagName };
+    });
+    assert.equal(covered.inPopup, true, `the bottom bar covers the word sheet (${covered.el})`);
+  } finally { await ctx.close(); }
+});
+
+test('lessons (phone): the action bar clears the bottom bar by a visible gap', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'phone');
+  try {
+    const g = await p.evaluate(() => ({ dock: document.querySelector('.lesson-dock').getBoundingClientRect().bottom, nav: document.querySelector('.site-nav').getBoundingClientRect().top }));
+    assert.ok(g.nav - g.dock >= 4 && g.nav - g.dock <= 24, `gap between action bar and tab bar: ${g.nav - g.dock}px`);
+  } finally { await ctx.close(); }
+});
+
+test('dictionary (phone): scrolled to the end, the last block of the word sheet is fully visible above the viewport edge', { skip }, async () => {
+  const { p, ctx } = await open('app.html', 'phone');
+  try {
+    await p.click('.char-row');
+    await p.waitForTimeout(500);
+    await p.evaluate(() => { const s = document.querySelector('.popup'); s.scrollTop = s.scrollHeight; });
+    await p.waitForTimeout(200);
+    const m = await p.evaluate(() => {
+      const last = [...document.querySelectorAll('.popup-body > *')].filter(e => e.getBoundingClientRect().height > 0).pop();
+      const b = last.getBoundingClientRect();
+      const bar = document.querySelector('.site-nav').getBoundingClientRect();
+      const at = document.elementFromPoint(innerWidth / 2, Math.min(b.bottom - 2, innerHeight - 2));
+      return { bottom: b.bottom, innerHeight, barTop: bar.top, coveredByBar: !!(at && at.closest('.site-nav')) };
+    });
+    assert.ok(m.bottom <= m.innerHeight, `last block ends at ${m.bottom}, below the viewport (${m.innerHeight})`);
+    assert.equal(m.coveredByBar, false, 'the bottom bar covers the end of the word sheet');
   } finally { await ctx.close(); }
 });

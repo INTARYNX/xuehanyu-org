@@ -1,1 +1,25 @@
-{"name":"学汉语 · xuehanyu.org","short_name":"学汉语","start_url":"/app.html","scope":"/","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#fffbf2","background_color":"#f0e4c5","display":"standalone"}
+{
+  "id": "/",
+  "name": "学汉语 · xuehanyu.org",
+  "short_name": "学汉语",
+  "description": "Apprendre le chinois : dictionnaire HSK 1-6, tracé des caractères, quiz d'images et leçons.",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["education"],
+  "start_url": "/quiz.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#fffbf2",
+  "background_color": "#f0e4c5",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-maskable-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Quiz d'images", "url": "/quiz.html", "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }] },
+    { "name": "Dictionnaire", "url": "/app.html", "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }] },
+    { "name": "Leçons", "url": "/lessons.html", "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }] }
+  ]
+}

@@ -11,6 +11,10 @@
 - Dictionary: word hero (pinyin, meaning, badges) above a stroke grid, labelled actions, and only the facts that exist (no more rows of dashes).
 - Illustrations: 140 images rebuilt from their originals by cropping only (the old pipeline erased pale parts such as grey hair and left stray dashes). Originals are kept in the git-ignored `assets/img-raw/`.
 - Home: one primary call to action (practice) and two secondary ones.
+- Installable app: richer manifest (id, shortcuts, maskable icon), install button on Android/desktop, step-by-step instructions on iPhone (where push only exists for apps added to the home screen).
+- Daily reminder (Web Push): choose a time on the practice page; a notification is sent only if nothing was practised that day, and stops after 14 idle days. Small backend in `server/` (Python + SQLite, no account: the push subscription is the only identifier). See `server/push_server.py`; deployed with `scripts/deploy-push.ps1`.
+- SEO: `scripts/build-seo.mjs` generates one static page per word (5,000+, content in the HTML, JSON-LD) and a list page per HSK level, plus `sitemap-mots.xml`; `deploy.ps1` runs it. Dictionary deep links (`app.html?w=学&l=1`). 301 (not 302) from the bare domain to `www`.
+- Bottom tab bar: fixed height (no safe-area in the padding), the safe area is filled under it; the word sheet opens above it; tests check that nothing is hidden under the bar.
 
 ## 1.0.0 — 2026-11-06
 
