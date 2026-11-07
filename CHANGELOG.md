@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased — interface redesign
+
+- New design system in `style.css`: solid surfaces on the paper backdrop, sans-serif UI, serif hanzi, tokens for colour, radius and spacing, visible keyboard focus, `prefers-reduced-motion`.
+- Pinyin is no longer italic: italic Georgia drew the tone-3 mark (ǎ ǐ ǒ) detached from its letter.
+- App shell: slim top bar with tabs on desktop, fixed bottom tab bar on phones.
+- Practice (`quiz.html`) is now a hub plus focused 10-card sessions: streak, daily goal, words due, mastery bar; flashcards hide the answer until revealed; multiple-choice answers get immediate feedback with a continue bar; missed words come back once at the end; end-of-session summary. Keyboard: space to reveal, 1/2 to grade, 1–4 to choose.
+- `progress.js` (new, with tests): daily activity, goal and streak, kept in `localStorage`. Answers and reviewed lessons both count.
+- Lessons: a path with done / up-next states and overall progress, chat-style dialogue, switch-style Pinyin / Translation toggles, a sticky action bar, and a "next lesson" button. The page opens on the first lesson not reviewed yet.
+- Dictionary: word hero (pinyin, meaning, badges) above a stroke grid, labelled actions, and only the facts that exist (no more rows of dashes).
+- Home: one primary call to action (practice) and two secondary ones.
+
 ## 1.0.0 — 2026-11-06
 
 First tagged release.

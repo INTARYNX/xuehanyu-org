@@ -32,7 +32,7 @@ const I18N = {
     listen:        'Écouter',
     correct:       'Correct !',
     wrong:         'Pas tout à fait',
-    next:          'Suivant',
+    next:          'Continuer',
     again:         'Recommencer',
     backToCards:   'Retour aux cartes',
     knew:          'Je connais',
@@ -58,6 +58,28 @@ const I18N = {
     noDue:         'Rien à réviser pour le moment — reviens plus tard.',
     pickImage:     'Choisissez l’image qui correspond',
     pickWord:      'Choisissez le mot qui correspond',
+    hubTitle:      'Pratique du jour',
+    statStreak:    'jours de suite',
+    statGoal:      'Objectif du jour',
+    statDue:       'mots à réviser',
+    setupLevel:    'Niveau',
+    setupMode:     'Exercice',
+    modeCardsHint: 'Retrouve le mot, puis note-toi',
+    modeImg2WordHint: 'Quel mot va avec l’image ?',
+    modeWord2ImgHint: 'Quelle image va avec le mot ?',
+    start:         'Commencer',
+    dueTitle:      'Réviser maintenant',
+    dueSub:        (n, total) => total > n ? `${n} mots sur ${total} en retard` : `${n} mots à revoir`,
+    reveal:        'Afficher la réponse',
+    keySpace:      'Espace',
+    cardsPrompt:   'Tu reconnais ce mot ?',
+    continue:      'Continuer',
+    finish:        'Terminer',
+    newSession:    'Nouvelle session',
+    missedTitle:   'À retravailler',
+    goalSub:       (n, g) => `${n} / ${g} aujourd’hui`,
+    streakDays:    (n) => n === 1 ? '1 jour de suite' : `${n} jours de suite`,
+    masteryText:   (n, total) => `${n} / ${total} connus`,
   },
   en: {
     navHome:      'Home',
@@ -77,7 +99,7 @@ const I18N = {
     listen:        'Listen',
     correct:       'Correct!',
     wrong:         'Not quite',
-    next:          'Next',
+    next:          'Continue',
     again:         'Start over',
     backToCards:   'Back to cards',
     knew:          'I know it',
@@ -103,6 +125,28 @@ const I18N = {
     noDue:         'Nothing due right now — come back later.',
     pickImage:     'Choose the matching image',
     pickWord:      'Choose the matching word',
+    hubTitle:      'Today’s practice',
+    statStreak:    'day streak',
+    statGoal:      'Daily goal',
+    statDue:       'words due',
+    setupLevel:    'Level',
+    setupMode:     'Exercise',
+    modeCardsHint: 'Recall the word, then rate yourself',
+    modeImg2WordHint: 'Which word matches the picture?',
+    modeWord2ImgHint: 'Which picture matches the word?',
+    start:         'Start',
+    dueTitle:      'Review now',
+    dueSub:        (n, total) => total > n ? `${n} of ${total} overdue words` : `${n} words to review`,
+    reveal:        'Show answer',
+    keySpace:      'Space',
+    cardsPrompt:   'Do you know this word?',
+    continue:      'Continue',
+    finish:        'Finish',
+    newSession:    'New session',
+    missedTitle:   'To work on',
+    goalSub:       (n, g) => `${n} / ${g} today`,
+    streakDays:    (n) => n === 1 ? '1 day streak' : `${n} day streak`,
+    masteryText:   (n, total) => `${n} / ${total} known`,
   }
 };
 
@@ -361,77 +405,186 @@ function saveStore() {
 function gradeWord(word, ok) {
   cards[word.slug] = SRS.grade(cards[word.slug], ok);
   saveStore();
-  updateDueToggle();
+  if (typeof updateHub === 'function') updateHub();
 }
 
 // -------------------------------------------------------------------------
-// RENDU
+// ACTIVITÉ — série, objectif du jour (progress.js ; absent dans les tests)
 // -------------------------------------------------------------------------
-function updateProgress() {
-  const total = deck.length || 1;
-  progFill.style.width = Math.min(100, (idx / total) * 100) + '%';
-  progText.textContent = `${Math.min(idx + 1, deck.length)} / ${deck.length}`;
-  scoreText.textContent = mode === 'cards' ? '' : `${t().score} ${score}`;
+const SESSION_SIZE = 10;
+
+function noteActivity(n = 1) {
+  if (typeof Progress !== 'undefined') Progress.add(n);
 }
 
-function speakButton(word, extraClass = '') {
-  return `<button class="speak-btn ${extraClass}" id="speakBtn" title="${t().listen}">
+// -------------------------------------------------------------------------
+// ÉTAT DE SESSION
+// -------------------------------------------------------------------------
+let view = 'hub';          // 'hub' | 'session'
+let revealed = false;      // flashcard : réponse affichée ?
+let sessionTotal = 0;      // taille initiale du deck (sans les mots remis en jeu)
+let sessionDue = false;    // la session a été lancée depuis « Réviser maintenant »
+let attempted = new Set(); // mots déjà répondus au moins une fois
+let requeued = new Set();  // mots déjà remis en fin de session
+let missed = [];           // mots ratés à la première tentative
+
+const hubEl     = document.getElementById('hub');
+const sessionEl = document.getElementById('session');
+const dockEl    = document.getElementById('dock');
+const progTrack = document.getElementById('progressTrack');
+const hubNote   = document.getElementById('hubNote');
+
+function speakButton() {
+  return `<button class="speak-btn" id="speakBtn" type="button">
             <i class="fa-solid fa-volume-high"></i><span>${t().listen}</span>
           </button>`;
 }
 
+/** Remplit le bandeau du bas (révéler / noter / retour / continuer). */
+function setDock(html, cls = '') {
+  dockEl.className = 'dock' + (cls ? ' ' + cls : '');
+  dockEl.innerHTML = html ? `<div class="dock-inner">${html}</div>` : '';
+}
+
+function updateProgress() {
+  const total = deck.length || 1;
+  const done = Math.min(deck.length, idx + (answered ? 1 : 0));
+  const pct = Math.round((done / total) * 100);
+  progFill.style.width = pct + '%';
+  progTrack.setAttribute('aria-valuenow', String(pct));
+  progText.textContent = `${Math.min(idx + 1, deck.length)} / ${deck.length}`;
+  scoreText.textContent = '';
+}
+
+// -------------------------------------------------------------------------
+// HUB — série, objectif, révisions, maîtrise du niveau
+// -------------------------------------------------------------------------
+function updateHub() {
+  const st = typeof Progress !== 'undefined' ? Progress.load() : { goal: 10, days: {} };
+  const streak = typeof Progress !== 'undefined' ? Progress.streak(st) : 0;
+  const today = typeof Progress !== 'undefined' ? Progress.today(st) : 0;
+  const goal = st.goal || 10;
+  const ratio = Math.min(1, today / goal);
+  const due = SRS.dueCount(cards);
+
+  document.getElementById('statStreak').textContent = String(streak);
+  document.querySelector('.stat-icon.flame')?.classList.toggle('off', streak === 0);
+
+  const ring = document.getElementById('goalRing');
+  ring.setAttribute('style', `--p:${Math.round(ratio * 100)}`);
+  ring.classList.toggle('done', ratio >= 1);
+  document.getElementById('goalText').textContent = ratio >= 1 ? '✓' : String(today);
+  document.getElementById('goalSub').textContent = `${Math.min(today, goal)} / ${goal}`;
+
+  document.getElementById('statDue').textContent = String(due);
+  const dueBtn = document.getElementById('dueBtn');
+  dueBtn.hidden = due === 0;
+  document.getElementById('dueBtnTitle').textContent = t().dueTitle;
+  document.getElementById('dueBtnSub').textContent = t().dueSub(Math.min(due, SESSION_SIZE), due);
+
+  const words = LEVEL_WORDS[currentLevel] || [];
+  const mastered = words.filter(w => known.has(w.slug)).length;
+  document.getElementById('masteryFill').style.width = (words.length ? (mastered / words.length) * 100 : 0) + '%';
+  document.getElementById('masteryText').textContent = t().masteryText(mastered, words.length);
+
+  document.getElementById('startBtnLabel').textContent = t().start;
+  const lbl = document.getElementById('reviewToggleLabel');
+  if (lbl) lbl.textContent = t().onlyReview;
+  reviewToggle.classList.toggle('active', onlyReview);
+  reviewToggle.setAttribute('aria-checked', String(onlyReview));
+}
+
+// -------------------------------------------------------------------------
+// FLASHCARDS — retrouver le mot, révéler, se noter
+// -------------------------------------------------------------------------
 function renderCards() {
   const w = deck[idx];
-  const isKnown = known.has(w.slug);
+  revealed = false;
   stage.innerHTML = `
     <div class="q-card card-flash">
       <div class="flash-image-wrap">
-        <img src="assets/img/hsk${w.level}/${w.image}" alt="${esc(w.char)}" class="q-image" loading="eager">
-        ${speakButton(w)}
+        <img src="assets/img/hsk${w.level}/${esc(w.image)}" alt="" class="q-image" loading="eager">
+        ${speakButton()}
       </div>
-      <div class="flash-body">
-        <div class="flash-hanzi">${esc(w.char)}</div>
-        <div class="flash-pinyin">${esc(w.pinyin)}</div>
-        <div class="flash-meaning">${esc(lang === 'fr' ? w.fr : w.en)}</div>
-        <div class="flash-actions">
-          <button class="q-btn ghost" id="btnReview">${t().review}</button>
-          <button class="q-btn primary" id="btnKnew">${t().knew}</button>
-        </div>
-        <div class="flash-status">${isKnown
-          ? `<i class="fa-solid fa-check"></i> ${t().known}`
-          : `<i class="fa-solid fa-rotate-left"></i> ${t().toReview}`}</div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="q-btn" id="btnPrev"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="q-btn" id="btnNext"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="flash-reveal" id="flashReveal"><span class="flash-q" aria-hidden="true">?</span><span class="flash-hint">${t().cardsPrompt}</span></div>
     </div>`;
+  setDock(`<button class="btn primary big" id="btnReveal" type="button">${t().reveal} <span class="kbd-hint">${t().keySpace}</span></button>`);
 
-  document.getElementById('speakBtn').addEventListener('click', e => { e.stopPropagation(); speak(w.char); });
-  document.getElementById('btnKnew').addEventListener('click', () => { known.add(w.slug); gradeWord(w, true); renderCards(); });
-  document.getElementById('btnReview').addEventListener('click', () => { known.delete(w.slug); gradeWord(w, false); renderCards(); });
-  document.getElementById('btnPrev').addEventListener('click', () => go(-1));
-  document.getElementById('btnNext').addEventListener('click', () => go(1));
+  document.getElementById('speakBtn').addEventListener('click', () => speak(w.char));
+  document.getElementById('btnReveal').addEventListener('click', revealCard);
+}
+
+function revealCard() {
+  if (mode !== 'cards' || revealed || view !== 'session') return;
+  const w = deck[idx];
+  revealed = true;
+  const box = document.getElementById('flashReveal');
+  box.classList.add('shown');
+  box.innerHTML = `
+    <div class="flash-hanzi">${esc(w.char)}</div>
+    <div class="flash-pinyin">${esc(w.pinyin)}</div>
+    <div class="flash-meaning">${esc(lang === 'fr' ? w.fr : w.en)}</div>`;
+  setDock(`<div class="dock-row">
+      <button class="btn again" id="btnReview" type="button"><i class="fa-solid fa-rotate-left"></i> ${t().review} <span class="kbd-hint">1</span></button>
+      <button class="btn know" id="btnKnew" type="button"><i class="fa-solid fa-check"></i> ${t().knew} <span class="kbd-hint">2</span></button>
+    </div>`);
+  document.getElementById('btnReview').addEventListener('click', () => rateCard(false));
+  document.getElementById('btnKnew').addEventListener('click', () => rateCard(true));
+  speak(w.char);
+}
+
+function rateCard(ok) {
+  if (!revealed) return;
+  const w = deck[idx];
+  if (ok) known.add(w.slug); else known.delete(w.slug);
+  gradeWord(w, ok);
+  noteActivity();
+  recordResult(w, ok);
+  answered = true;
+  updateProgress();
+  go(1);
+}
+
+/** Compte le score à la première tentative ; remet un mot raté en fin de session (une fois). */
+function recordResult(w, ok) {
+  if (!attempted.has(w.slug)) {
+    attempted.add(w.slug);
+    if (ok) score++; else missed.push(w);
+  }
+  if (!ok && !requeued.has(w.slug)) {
+    requeued.add(w.slug);
+    deck.push(w);
+  }
+}
+
+// -------------------------------------------------------------------------
+// QUIZ À CHOIX — image → mot, mot → image
+// -------------------------------------------------------------------------
+function choiceKey(i) {
+  return `<span class="choice-key" aria-hidden="true">${i + 1}</span>`;
 }
 
 function renderImg2Word() {
   const w = deck[idx];
   const choices = shuffle([w, ...pickDistractors(w, 3)]);
   stage.innerHTML = `
-    <p class="q-prompt">${t().pickWord}</p>
+    <h2 class="q-prompt">${t().pickWord}</h2>
     <div class="q-card quiz-card">
       <div class="flash-image-wrap big">
         <img src="assets/img/hsk${w.level}/${esc(w.image)}" alt="" class="q-image">
-        ${speakButton(w)}
+        ${speakButton()}
       </div>
-      <div class="choices choices-text" id="choices"></div>
-    </div>`;
+    </div>
+    <div class="choices choices-text" id="choices"></div>`;
+  setDock('');
 
   const box = document.getElementById('choices');
-  choices.forEach(c => {
+  choices.forEach((c, i) => {
     const b = document.createElement('button');
+    b.type = 'button';
     b.className = 'choice';
-    b.innerHTML = `<span class="choice-hanzi">${esc(c.char)}</span><span class="choice-pinyin">${esc(c.pinyin)}</span>`;
+    b.dataset.slug = c.slug;
+    b.innerHTML = `${choiceKey(i)}<span class="choice-body"><span class="choice-hanzi">${esc(c.char)}</span><span class="choice-pinyin">${esc(c.pinyin)}</span></span>`;
     b.addEventListener('click', () => answer(b, c.slug === w.slug, w, box));
     box.appendChild(b);
   });
@@ -444,20 +597,24 @@ function renderWord2Img() {
   const w = deck[idx];
   const choices = shuffle([w, ...pickDistractors(w, 3)]);
   stage.innerHTML = `
-    <p class="q-prompt">${t().pickImage}</p>
+    <h2 class="q-prompt">${t().pickImage}</h2>
     <div class="q-card quiz-card">
       <div class="word-head">
         <div class="flash-hanzi">${esc(w.char)}</div>
         <div class="flash-pinyin">${esc(w.pinyin)}</div>
-        ${speakButton(w)}
+        ${speakButton()}
       </div>
-      <div class="choices choices-image" id="choices"></div>
-    </div>`;
+    </div>
+    <div class="choices choices-image" id="choices"></div>`;
+  setDock('');
 
   const box = document.getElementById('choices');
-  choices.forEach(c => {
+  choices.forEach((c, i) => {
     const b = document.createElement('button');
+    b.type = 'button';
     b.className = 'choice choice-img';
+    b.dataset.slug = c.slug;
+    b.setAttribute('aria-label', String(i + 1));
     b.innerHTML = `<img src="assets/img/hsk${c.level}/${esc(c.image)}" alt="">`;
     b.addEventListener('click', () => answer(b, c.slug === w.slug, w, box));
     box.appendChild(b);
@@ -471,60 +628,84 @@ function answer(btn, ok, word, box) {
   if (answered) return;
   answered = true;
   gradeWord(word, ok);
-  if (ok) {
-    score++;
-    btn.classList.add('right');
-  } else {
-    btn.classList.add('wrong');
-    box.querySelectorAll('.choice').forEach(c => {
-      if (c.querySelector('.choice-hanzi')?.textContent === word.char) c.classList.add('right');
-    });
-  }
+  noteActivity();
+  recordResult(word, ok);
+  box.classList.add('locked');
+  box.querySelectorAll('.choice').forEach(c => { c.disabled = true; });
+  btn.classList.add(ok ? 'right' : 'wrong');
+  const right = box.querySelector(`.choice[data-slug="${word.slug}"]`);
+  if (!ok && right) right.classList.add('right');
+  if (right && right.scrollIntoView) right.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   updateProgress();
 
-  const fb = document.createElement('div');
-  fb.className = 'feedback ' + (ok ? 'ok' : 'ko');
-  fb.innerHTML = `
-    <div class="fb-title"><i class="fa-solid ${ok ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
-      ${ok ? t().correct : t().wrong}</div>
-    <div class="fb-meaning">${esc(lang === 'fr' ? word.fr : word.en)}</div>
-    <button class="q-btn primary" id="btnCont">${t().next} <i class="fa-solid fa-arrow-right"></i></button>`;
-  stage.appendChild(fb);
-  fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  setDock(`
+    <div class="fb" role="status">
+      <i class="fa-solid ${ok ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+      <div class="fb-text">
+        <span class="fb-title">${ok ? t().correct : t().wrong}</span>
+        <span class="fb-answer"><span class="hz">${esc(word.char)}</span> · ${esc(word.pinyin)} — ${esc(lang === 'fr' ? word.fr : word.en)}</span>
+      </div>
+    </div>
+    <button class="btn primary big" id="btnCont" type="button">${t().next} <span class="kbd-hint">↵</span></button>`,
+    ok ? 'ok' : 'ko');
   document.getElementById('btnCont').addEventListener('click', () => go(1));
+  document.getElementById('btnCont').focus();
 }
 
+// -------------------------------------------------------------------------
+// FIN DE SESSION
+// -------------------------------------------------------------------------
 function renderSummary() {
-  const total = deck.length;
+  const total = sessionTotal || deck.length;
   const ratio = total ? score / total : 0;
   const msg = ratio >= 0.8 ? t().summaryGood : ratio >= 0.5 ? t().summaryMid : t().summaryLow;
+  const st = typeof Progress !== 'undefined' ? Progress.load() : { goal: 10, days: {} };
+  const streak = typeof Progress !== 'undefined' ? Progress.streak(st) : 0;
+  const today = typeof Progress !== 'undefined' ? Progress.today(st) : 0;
+  const goal = st.goal || 10;
+
+  const chips = [];
+  if (streak > 0) chips.push(`<span class="sum-chip"><i class="fa-solid fa-fire"></i> ${t().streakDays(streak)}</span>`);
+  chips.push(`<span class="sum-chip"><i class="fa-solid ${today >= goal ? 'fa-circle-check' : 'fa-bullseye'}" style="color:var(--good)"></i> ${t().goalSub(Math.min(today, goal), goal)}</span>`);
+
+  const missedHtml = missed.length ? `
+    <div class="missed">
+      <h3 class="missed-h">${t().missedTitle}</h3>
+      <div class="missed-list">${missed.map(w => `
+        <div class="missed-item">
+          <span class="hz">${esc(w.char)}</span><span class="py">${esc(w.pinyin)}</span>
+          <span class="mn">${esc(lang === 'fr' ? w.fr : w.en)}</span>
+        </div>`).join('')}</div>
+    </div>` : '';
+
   stage.innerHTML = `
     <div class="q-card summary-card">
-      <div class="summary-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+      <div class="summary-icon"><i class="fa-solid fa-trophy"></i></div>
       <h2>${t().summaryTitle}</h2>
       <div class="summary-score">${t().summaryScore(score, total)}</div>
       <p class="summary-msg">${msg}</p>
-      <div class="summary-actions">
-        <button class="q-btn primary" id="btnAgain"><i class="fa-solid fa-rotate-right"></i> ${t().again}</button>
-        <button class="q-btn" id="btnCards">${t().backToCards}</button>
-      </div>
+      <div class="summary-chips">${chips.join('')}</div>
+      ${missedHtml}
     </div>`;
+  setDock(`<div class="dock-row">
+      <button class="btn" id="btnFinish" type="button">${t().finish}</button>
+      <button class="btn primary" id="btnAgain" type="button"><i class="fa-solid fa-rotate-right"></i> ${t().newSession}</button>
+    </div>`);
   progFill.style.width = '100%';
+  progTrack.setAttribute('aria-valuenow', '100');
   progText.textContent = t().done;
-  scoreText.textContent = `${t().score} ${score} / ${total}`;
-  document.getElementById('btnAgain').addEventListener('click', restart);
-  document.getElementById('btnCards').addEventListener('click', () => setMode('cards'));
+  scoreText.textContent = '';
+  document.getElementById('btnFinish').addEventListener('click', showHub);
+  document.getElementById('btnAgain').addEventListener('click', () => startSession(sessionDue));
 }
 
 function render() {
-  if (!deck.length) {
-    stage.innerHTML = `<div class="q-card summary-card"><p class="summary-msg">${onlyDue ? t().noDue : t().noWords}</p></div>`;
-    return;
-  }
+  if (view !== 'session') return;
+  if (!deck.length) { showHub(); return; }
   if (idx >= deck.length) { renderSummary(); return; }
   answered = false;
   updateProgress();
-  if (mode === 'cards')       renderCards();
+  if (mode === 'cards')         renderCards();
   else if (mode === 'img2word') renderImg2Word();
   else                          renderWord2Img();
 }
@@ -539,11 +720,11 @@ function go(d) {
   render();
 }
 
-function restart() {
-  idx = 0;
-  score = 0;
-  buildDeck();
-  render();
+/** Ordre d'une session : mots échus, puis jamais vus, puis le reste. */
+function prioritize(words) {
+  const now = Date.now();
+  const rank = w => SRS.isDue(cards[w.slug], now) ? 0 : (cards[w.slug] ? 2 : 1);
+  return words.map((w, i) => [w, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(p => p[0]);
 }
 
 function buildDeck() {
@@ -557,26 +738,61 @@ function buildDeck() {
   deck = shuffle(words);
 }
 
-function setMode(m) {
-  mode = m;
+function startSession(due = false) {
+  stopSpeech();
+  sessionDue = due;
+  onlyDue = due;
+  buildDeck();
+  onlyDue = false;
+  if (!deck.length) {
+    hubNote.textContent = due ? t().noDue : t().noWords;
+    showHub();
+    return;
+  }
+  deck = prioritize(deck).slice(0, SESSION_SIZE);
+  sessionTotal = deck.length;
   idx = 0;
   score = 0;
-  document.querySelectorAll('.mode-tab').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
-  buildDeck();
+  attempted = new Set();
+  requeued = new Set();
+  missed = [];
+  view = 'session';
+  hubNote.textContent = '';
+  hubEl.hidden = true;
+  sessionEl.hidden = false;
+  document.body.classList.add('in-session');
+  window.scrollTo({ top: 0 });
   render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/** Change de niveau HSK : nouveau deck, nouveau score. */
+function showHub() {
+  stopSpeech();
+  view = 'hub';
+  setDock('');
+  sessionEl.hidden = true;
+  hubEl.hidden = false;
+  document.body.classList.remove('in-session');
+  updateHub();
+  window.scrollTo({ top: 0 });
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-tab').forEach(b => {
+    const on = b.dataset.mode === m;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+}
+
+/** Change de niveau HSK : nouveau deck au prochain démarrage. */
 function setLevel(level) {
   currentLevel = level;
-  idx = 0;
-  score = 0;
   document.querySelectorAll('.level-tab').forEach(b =>
     b.classList.toggle('active', Number(b.dataset.level) === level));
-  buildDeck();
-  render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  hubNote.textContent = '';
+  setVersion();
+  updateHub();
 }
 
 // -------------------------------------------------------------------------
@@ -585,12 +801,11 @@ function setLevel(level) {
 function applyI18n() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const k = el.dataset.i18n;
-    if (t()[k]) el.textContent = t()[k];
+    if (typeof t()[k] === 'string') el.textContent = t()[k];
   });
   document.documentElement.lang = lang;
   setVersion();
-  updateReviewToggle();
-  updateDueToggle();
+  updateHub();
   render();
 }
 
@@ -612,33 +827,36 @@ document.getElementById('levelTabs').addEventListener('click', e => {
   if (btn) setLevel(Number(btn.dataset.level));
 });
 
-/** Filtre « à revoir seulement » : restreint ledeck aux mots non maîtrisés. */
+/** « À revoir seulement » : restreint le deck aux mots non maîtrisés. */
 const reviewToggle = document.getElementById('reviewToggle');
 reviewToggle.addEventListener('click', () => {
   onlyReview = !onlyReview;
-  reviewToggle.classList.toggle('active', onlyReview);
-  restart();
+  hubNote.textContent = '';
+  updateHub();
 });
 
-const dueToggle = document.getElementById('dueToggle');
-dueToggle.addEventListener('click', () => {
-  onlyDue = !onlyDue;
-  restart();
-  updateDueToggle();
+document.getElementById('startBtn').addEventListener('click', () => startSession(false));
+document.getElementById('dueBtn').addEventListener('click', () => startSession(true));
+document.getElementById('sessionClose').addEventListener('click', showHub);
+
+// Clavier : espace = révéler, 1 / 2 = noter, 1–4 = choisir, entrée = continuer
+document.addEventListener('keydown', e => {
+  if (view !== 'session' || e.ctrlKey || e.metaKey || e.altKey) return;
+  const onButton = e.target && e.target.tagName === 'BUTTON';
+  if (e.key === 'Escape') { showHub(); return; }
+  if (mode === 'cards') {
+    if (!revealed && (e.key === ' ' || e.key === 'Enter') && !onButton) { e.preventDefault(); revealCard(); }
+    else if (revealed && (e.key === '1' || e.key === 'ArrowLeft')) rateCard(false);
+    else if (revealed && (e.key === '2' || e.key === 'ArrowRight')) rateCard(true);
+    return;
+  }
+  if (answered) {
+    if ((e.key === 'Enter' || e.key === ' ') && !onButton) { e.preventDefault(); document.getElementById('btnCont')?.click(); }
+    return;
+  }
+  const n = Number(e.key);
+  if (n >= 1 && n <= 4) document.querySelectorAll('#choices .choice')[n - 1]?.click();
 });
-
-function updateDueToggle() {
-  const lbl = document.getElementById('dueToggleLabel');
-  if (lbl) lbl.textContent = `${t().due} (${SRS.dueCount(cards)})`;
-  dueToggle.classList.toggle('active', onlyDue);
-  dueToggle.disabled = !onlyDue && SRS.dueCount(cards) === 0;
-}
-
-function updateReviewToggle() {
-  const lbl = document.getElementById('reviewToggleLabel');
-  if (lbl) lbl.textContent = t().onlyReview;
-  reviewToggle.classList.toggle('active', onlyReview);
-}
 
 // -------------------------------------------------------------------------
 // INIT
@@ -668,7 +886,7 @@ async function loadData() {
 function buildLevelTabs() {
   const box = document.getElementById('levelTabs');
   box.innerHTML = LEVELS.map(l => `
-    <button class="level-tab${l.id === currentLevel ? ' active' : ''}" data-level="${l.id}">
+    <button type="button" class="level-tab${l.id === currentLevel ? ' active' : ''}" data-level="${l.id}">
       HSK ${l.id}<span class="level-count">${(LEVEL_WORDS[l.id] || []).length}</span>
     </button>`).join('');
 }
@@ -678,10 +896,10 @@ function buildLevelTabs() {
     await loadData();
     buildLevelTabs();
     buildDeck();
-    applyI18n();          // langue + version + premier rendu
+    applyI18n();          // langue + version + hub
   } catch (err) {
     console.error(err);
-    stage.innerHTML = `<div class="loading">${t().error}</div>`;
+    hubNote.textContent = t().error;
     setVersion();
   }
 })();

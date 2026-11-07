@@ -21,6 +21,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#b8211f">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="lessons.css">
@@ -31,56 +32,61 @@
 
 <div class="app lessons-app">
 
-  <header>
-    <div class="header-text">
-      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
-      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
-    </div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="xuehanyu.org"><span class="zh">学汉语</span><span class="brand-name">xuehanyu</span></a>
+    <nav class="site-nav" aria-label="Navigation">
+      <a href="index.html"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Accueil</span></a>
+      <a href="app.html"><i class="fa-solid fa-book-open"></i><span data-i18n="navDict">Dictionnaire</span></a>
+      <a href="quiz.html"><i class="fa-solid fa-images"></i><span data-i18n="navQuiz">Quiz d'images</span></a>
+      <a href="lessons.html" aria-current="page"><i class="fa-solid fa-comments"></i><span data-i18n="navLessons">Leçons</span></a>
+    </nav>
     <div class="header-right">
-      <div class="lang-switch">
+      <div class="lang-switch" role="group" aria-label="Language">
         <button data-lang="fr" class="active">FR</button>
         <button data-lang="en">EN</button>
       </div>
     </div>
   </header>
 
-  <nav class="site-nav" aria-label="Navigation">
-    <a href="index.html" data-i18n="navHome">Accueil</a>
-    <a href="app.html" data-i18n="navDict">Dictionnaire</a>
-    <a href="quiz.html" data-i18n="navQuiz">Quiz d'images</a>
-    <a href="lessons.html" data-i18n="navLessons" aria-current="page">Leçons</a>
-  </nav>
-
-  <nav class="lesson-nav">
-    <span class="lesson-level">HSK 1</span>
-    <span class="lesson-nav-title" data-i18n="navTitle">Leçons de conversation</span>
-    <span class="lesson-nav-note" data-i18n="navNote">vocabulaire HSK 1 uniquement</span>
-  </nav>
-
   <main class="lessons-main">
 
-    <select class="lesson-select" id="lessonSelect" aria-label="Leçon"></select>
-
-    <aside class="lesson-list" id="lessonList"></aside>
+    <aside class="lesson-side">
+      <div class="path-head">
+        <div class="path-title">
+          <span class="lesson-level">HSK 1</span>
+          <b data-i18n="navTitle">Leçons de conversation</b>
+        </div>
+        <div class="mastery">
+          <div class="mastery-bar" role="presentation"><i id="pathFill"></i></div>
+          <span id="pathCount"></span>
+        </div>
+      </div>
+      <select class="lesson-select" id="lessonSelect" aria-label="Leçon"></select>
+      <nav class="lesson-list" id="lessonList" aria-label="Leçons"></nav>
+    </aside>
 
     <section class="lesson-panel">
 
       <div class="lesson-head">
-        <div>
-          <h2 class="lesson-title" id="lessonTitle">—</h2>
+        <div class="lesson-head-text">
+          <h1 class="lesson-title" id="lessonTitle">—</h1>
           <p class="lesson-sub" id="lessonSub">—</p>
         </div>
-        <div class="lesson-tools">
-          <button class="tool-btn active" id="btnPinyin" aria-pressed="true"><i class="fa-solid fa-language"></i><span data-i18n="pinyin">Pinyin</span></button>
-          <button class="tool-btn active" id="btnTrans" aria-pressed="true"><i class="fa-solid fa-eye-slash"></i><span data-i18n="trans">Traduction</span></button>
-          <button class="tool-btn" id="btnPlay"><i class="fa-solid fa-play"></i><span data-i18n="playAll">Écouter</span></button>
-          <button class="tool-btn" id="btnReview"><i class="fa-solid fa-check"></i><span data-i18n="markReviewed">Marquer comme revu</span></button>
+        <div class="lesson-tools" role="group" aria-label="Affichage">
+          <button class="tool-btn active" id="btnPinyin" type="button" aria-pressed="true"><span class="switch"><i></i></span><span data-i18n="pinyin">Pinyin</span></button>
+          <button class="tool-btn active" id="btnTrans" type="button" aria-pressed="true"><span class="switch"><i></i></span><span data-i18n="trans">Traduction</span></button>
         </div>
       </div>
 
       <div class="lesson-dialogue" id="dialogue"></div>
 
       <div class="lesson-vocab" id="vocab"></div>
+
+      <div class="lesson-dock">
+        <button class="btn" id="btnPlay" type="button"><i class="fa-solid fa-play"></i><span data-i18n="playAll">Écouter</span></button>
+        <button class="btn primary" id="btnReview" type="button"><i class="fa-solid fa-check"></i><span data-i18n="markReviewed">Marquer comme revu</span></button>
+        <button class="btn" id="btnNext" type="button" hidden><span data-i18n="nextLesson">Leçon suivante</span><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
 
     </section>
 
@@ -93,6 +99,7 @@
 </div>
 
 <script src="lessons-pinyin.js"></script>
+<script src="progress.js"></script>
 <script src="lessons.js"></script>
 <script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js'));</script>
 </body>

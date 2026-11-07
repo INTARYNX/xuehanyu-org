@@ -109,21 +109,86 @@ for (const [pageName, active] of [['app.html', 'Dictionnaire'], ['quiz.html', "Q
   }
 }
 
-test('quiz (phone): the two filter buttons share one row', { skip }, async () => {
+test('quiz (phone): the hub puts the exercise choice and the start button above the fold', { skip }, async () => {
   const { p, ctx } = await open('quiz.html', 'phone');
   try {
-    const tops = await p.$$eval('#reviewToggle, #dueToggle', els => els.map(e => Math.round(e.getBoundingClientRect().top)));
-    assert.equal(tops.length, 2);
-    assert.equal(tops[0], tops[1], 'filters are on different rows');
+    assert.equal(await p.isVisible('#hub'), true);
+    assert.equal(await p.isVisible('#session'), false);
+    assert.equal(await p.$$eval('#modeTabs .mode-tab', b => b.length), 3);
+    const start = await p.$eval('#startBtn', e => e.getBoundingClientRect().bottom);
+    const bar = await p.$eval('.site-nav', e => e.getBoundingClientRect().top);
+    assert.ok(start <= bar, `start button (${start}) hides behind the tab bar (${bar})`);
   } finally { await ctx.close(); }
 });
 
-test('quiz (phone): the listen button is below the picture, not over it', { skip }, async () => {
+test('quiz (phone): the tab bar is fixed at the bottom and a session hides it', { skip }, async () => {
   const { p, ctx } = await open('quiz.html', 'phone');
   try {
+    const box = await p.$eval('.site-nav', e => { const r = e.getBoundingClientRect(); return [r.bottom, innerHeight]; });
+    assert.equal(Math.round(box[0]), box[1], 'tab bar is not at the bottom edge');
+    await p.click('#startBtn');
+    await p.waitForTimeout(200);
+    assert.equal(await p.isVisible('.site-nav'), false, 'tab bar stays visible during a session');
+  } finally { await ctx.close(); }
+});
+
+test('quiz (phone): in a card session the listen button is below the picture, not over it', { skip }, async () => {
+  const { p, ctx } = await open('quiz.html', 'phone');
+  try {
+    await p.click('#startBtn');
+    await p.waitForSelector('.q-image');
     const img = await p.$eval('.q-image', e => e.getBoundingClientRect().bottom);
     const btn = await p.$eval('.speak-btn', e => e.getBoundingClientRect().top);
     assert.ok(btn >= img - 1, `button (${btn}) overlaps the picture (${img})`);
+  } finally { await ctx.close(); }
+});
+
+test('quiz: a card session hides the answer until revealed, then grades and advances', { skip }, async () => {
+  const { p, ctx, errors } = await open('quiz.html', 'desktop');
+  try {
+    await p.click('#startBtn');
+    await p.waitForSelector('#btnReveal');
+    assert.equal(await p.$('.flash-hanzi'), null, 'the answer is visible before reveal');
+    assert.match(await p.textContent('#progressText'), /^1 \/ 10$/);
+    await p.click('#btnReveal');
+    assert.ok(await p.$('.flash-hanzi'), 'no answer after reveal');
+    await p.click('#btnKnew');
+    await p.waitForSelector('#btnReveal');
+    assert.match(await p.textContent('#progressText'), /^2 \/ 10$/);
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+test('quiz: a multiple-choice session marks the answer and offers to continue', { skip }, async () => {
+  const { p, ctx, errors } = await open('quiz.html', 'desktop');
+  try {
+    await p.click('.mode-tab[data-mode="img2word"]');
+    await p.click('#startBtn');
+    await p.waitForSelector('#choices .choice');
+    assert.equal(await p.$$eval('#choices .choice', c => c.length), 4);
+    await p.click('#choices .choice');
+    await p.waitForSelector('#btnCont');
+    assert.equal(await p.$$eval('#choices .choice.right', c => c.length), 1, 'exactly one right answer is shown');
+    await p.click('#btnCont');
+    await p.waitForSelector('#choices .choice:not(:disabled)');
+    assert.deepEqual(errors, []);
+  } finally { await ctx.close(); }
+});
+
+test('quiz: a finished session shows the summary and counts toward the daily goal', { skip }, async () => {
+  const { p, ctx } = await open('quiz.html', 'desktop');
+  try {
+    await p.click('#startBtn');
+    for (let i = 0; i < 10; i++) {
+      await p.click('#btnReveal');
+      await p.click('#btnKnew');
+    }
+    await p.waitForSelector('.summary-card');
+    assert.match(await p.textContent('.summary-score'), /^10 \/ 10$/);
+    await p.click('#btnFinish');
+    assert.equal(await p.isVisible('#hub'), true);
+    assert.equal(await p.textContent('#statStreak'), '1');
+    assert.equal(await p.getAttribute('#goalRing', 'class'), 'ring done');
   } finally { await ctx.close(); }
 });
 
@@ -170,5 +235,38 @@ test('lessons: pinyin and translation buttons reflect their state', { skip }, as
       assert.equal(await p.getAttribute(id, 'aria-pressed'), 'false');
       assert.equal(await p.$eval(id, e => e.classList.contains('active')), false);
     }
+  } finally { await ctx.close(); }
+});
+
+test('lessons (phone): the action bar sits above the tab bar', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'phone');
+  try {
+    const dock = await p.$eval('.lesson-dock', e => e.getBoundingClientRect().bottom);
+    const bar = await p.$eval('.site-nav', e => e.getBoundingClientRect().top);
+    assert.ok(dock <= bar, `action bar (${dock}) is hidden by the tab bar (${bar})`);
+  } finally { await ctx.close(); }
+});
+
+test('lessons: reviewing a lesson updates the path and offers the next lesson', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop');
+  try {
+    assert.equal(await p.isVisible('#btnNext'), false);
+    assert.match(await p.textContent('#pathCount'), /^0 \/ 25/);
+    await p.click('#btnReview');
+    assert.equal(await p.isVisible('#btnNext'), true);
+    assert.match(await p.textContent('#pathCount'), /^1 \/ 25/);
+    assert.equal(await p.$$eval('.lesson-item.done', e => e.length), 1);
+    await p.click('#btnNext');
+    assert.match(await p.textContent('#lessonTitle'), /restaurant/i);
+    assert.equal(await p.isVisible('#btnNext'), false, 'the next lesson is not reviewed yet');
+  } finally { await ctx.close(); }
+});
+
+test('pinyin is never italic (italic broke the tone marks)', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop');
+  try {
+    const styles = await p.$$eval('.exchange-pinyin', els => els.map(e => getComputedStyle(e).fontStyle));
+    assert.ok(styles.length > 0);
+    assert.ok(styles.every(s => s === 'normal'), 'italic pinyin found');
   } finally { await ctx.close(); }
 });

@@ -92,7 +92,7 @@
   --bg: #2a1f14;
 }
 html, body {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
@@ -134,13 +134,14 @@ html, body {
   background: rgba(240, 228, 197, 0.88);
   border: 1px solid rgba(60,35,15,0.18);
   border-radius: 16px;
-  padding: 1.5rem 2.5rem 1.25rem;
+  padding: 1.5rem 2.5rem 1.5rem;
   backdrop-filter: blur(8px);
-  max-width: 600px;
+  width: min(92vw, 460px);
   display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
   text-align: center;
 }
 .brand-title {
+  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -158,36 +159,41 @@ html, body {
   font-size: 0.8rem;
 }
 .lang-toggle button {
-  border: 0; background: transparent;
-  padding: 0.25rem 0.75rem; border-radius: 999px;
+  border: 0; background: transparent; font-weight: 600;
+  min-height: 32px; padding: 0.25rem 0.85rem; border-radius: 999px;
   cursor: pointer; font-family: inherit;
   color: var(--ink-soft); transition: all 0.2s;
 }
 .lang-toggle button.active { background: var(--ink); color: var(--paper-light); }
 .tagline {
-  font-style: italic; color: var(--ink-soft);
+  color: var(--ink-soft);
   font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   line-height: 1.5;
 }
 .cta-btn {
-  display: inline-block;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; min-height: 52px;
   background: var(--accent); color: #fff;
-  border: none; border-radius: 10px;
-  padding: 0.75rem 2rem;
-  font-family: inherit; font-size: 1rem;
+  border: none; border-radius: 12px;
+  padding: 0 2rem;
+  font-family: inherit; font-size: 1.05rem; font-weight: 700;
   cursor: pointer; text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-  letter-spacing: 0.02em;
+  box-shadow: 0 4px 0 #96191a;
+  transition: background 0.2s, transform 0.08s, box-shadow 0.08s;
 }
-.cta-btn:hover { background: #9a1c1a; transform: translateY(-1px); }
+.cta-btn:hover { background: #a61e1c; }
+.cta-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #96191a; }
+.cta-btn:focus-visible, .cta-secondary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; width: 100%; }
 .cta-secondary {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  margin-left: 0.6rem;
+  background: rgba(255, 251, 242, 0.9);
+  color: var(--ink);
+  border: 1px solid rgba(60,35,15,0.28);
+  box-shadow: none;
+  min-height: 46px; font-size: 0.95rem; font-weight: 650;
 }
-.cta-secondary:hover { background: var(--accent-soft); color: var(--accent); }
-@media (max-width: 420px) { .cta-secondary { margin-left: 0; margin-top: 0.6rem; display: block; } }
+.cta-secondary:hover { background: #fff; color: var(--accent); }
+.cta-secondary:active { transform: translateY(1px); box-shadow: none; }
 .scroll-hint {
   position: absolute;
   bottom: calc(1.75rem + env(safe-area-inset-bottom));
@@ -313,9 +319,11 @@ footer a:hover { color: var(--accent); }
       </div>
       <h1 class="brand-title"><span class="zh">学汉语</span>xuehanyu.org</h1>
       <p class="tagline" data-t="tagline">Apprendre le chinois mandarin,<br>un caractère à la fois.</p>
-      <a href="app.html" class="cta-btn" data-t="cta">Commencer →</a>
-      <a href="quiz.html" class="cta-btn cta-secondary" data-t="ctaQuiz">Quiz d'images →</a>
-      <a href="lessons.html" class="cta-btn cta-secondary" data-t="ctaLessons">Leçons →</a>
+      <a href="quiz.html" class="cta-btn" data-t="cta">Commencer à pratiquer</a>
+      <div class="cta-row">
+        <a href="lessons.html" class="cta-btn cta-secondary" data-t="ctaLessons">Leçons</a>
+        <a href="app.html" class="cta-btn cta-secondary" data-t="ctaDict">Dictionnaire</a>
+      </div>
     </div>
   </div>
 
@@ -426,9 +434,9 @@ footer a:hover { color: var(--accent); }
 const COPY = {
   fr: {
     tagline:  'Apprendre le chinois mandarin,<br>un caractère à la fois.',
-    cta:      'Commencer →',
-    ctaQuiz:  "Quiz d'images →",
-    ctaLessons: "Leçons →",
+    cta:      'Commencer à pratiquer',
+    ctaLessons: 'Leçons',
+    ctaDict:  'Dictionnaire',
     scroll:   'Découvrir',
     label1:   'Le projet',
     h1:       'Un outil libre pour apprendre les caractères chinois',
@@ -460,9 +468,9 @@ const COPY = {
   },
   en: {
     tagline:  'Learn Mandarin Chinese,<br>one character at a time.',
-    cta:      'Get started →',
-    ctaQuiz:  'Image quiz →',
-    ctaLessons: 'Lessons →',
+    cta:      'Start practising',
+    ctaLessons: 'Lessons',
+    ctaDict:  'Dictionary',
     scroll:   'Discover',
     label1:   'The project',
     h1:       'A free tool to learn Chinese characters',

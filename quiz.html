@@ -21,6 +21,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#b8211f">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="quiz.css">
@@ -31,59 +32,100 @@
 
 <div class="app quiz-app">
 
-  <header>
-    <div class="header-text">
-      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
-      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
-    </div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="xuehanyu.org"><span class="zh">学汉语</span><span class="brand-name">xuehanyu</span></a>
+    <nav class="site-nav" aria-label="Navigation">
+      <a href="index.html"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Accueil</span></a>
+      <a href="app.html"><i class="fa-solid fa-book-open"></i><span data-i18n="navDict">Dictionnaire</span></a>
+      <a href="quiz.html" aria-current="page"><i class="fa-solid fa-images"></i><span data-i18n="navQuiz">Quiz d'images</span></a>
+      <a href="lessons.html"><i class="fa-solid fa-comments"></i><span data-i18n="navLessons">Leçons</span></a>
+    </nav>
     <div class="header-right">
-      <div class="lang-switch">
+      <div class="lang-switch" role="group" aria-label="Language">
         <button data-lang="fr" class="active">FR</button>
         <button data-lang="en">EN</button>
       </div>
     </div>
   </header>
 
-  <nav class="site-nav" aria-label="Navigation">
-    <a href="index.html" data-i18n="navHome">Accueil</a>
-    <a href="app.html" data-i18n="navDict">Dictionnaire</a>
-    <a href="quiz.html" data-i18n="navQuiz" aria-current="page">Quiz d'images</a>
-    <a href="lessons.html" data-i18n="navLessons">Leçons</a>
-  </nav>
-
-  <nav class="level-tabs" id="levelTabs"></nav>
-
-  <nav class="mode-tabs" id="modeTabs">
-    <button class="mode-tab active" data-mode="cards"   data-i18n="modeCards">Cartes</button>
-    <button class="mode-tab"        data-mode="img2word" data-i18n="modeImg2Word">Image → Mot</button>
-    <button class="mode-tab"        data-mode="word2img" data-i18n="modeWord2Img">Mot → Image</button>
-  </nav>
-
   <main class="quiz-main">
 
-    <div class="quiz-topbar">
-      <div class="progress">
-        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <!-- ============ HUB: stats, level, exercise ============ -->
+    <section class="hub" id="hub">
+
+      <h1 class="hub-title" data-i18n="hubTitle">Pratique du jour</h1>
+
+      <div class="stats">
+        <div class="stat card">
+          <span class="stat-icon flame"><i class="fa-solid fa-fire"></i></span>
+          <div class="stat-body"><b id="statStreak">0</b><span data-i18n="statStreak">jours de suite</span></div>
+        </div>
+        <div class="stat card">
+          <div class="ring" id="goalRing" style="--p:0"><span id="goalText">0</span></div>
+          <div class="stat-body"><b id="goalSub">0 / 10</b><span data-i18n="statGoal">Objectif du jour</span></div>
+        </div>
+        <div class="stat card">
+          <span class="stat-icon due"><i class="fa-solid fa-calendar-check"></i></span>
+          <div class="stat-body"><b id="statDue">0</b><span data-i18n="statDue">mots à réviser</span></div>
+        </div>
       </div>
-      <div class="quiz-meta">
-        <span id="progressText">—</span>
-        <span id="scoreText" class="score-text"></span>
-      </div>
-      <div class="quiz-filters">
-        <button class="filter-toggle" id="reviewToggle">
-          <i class="fa-solid fa-rotate-left"></i>
+
+      <button class="due-cta" id="dueBtn" hidden>
+        <span class="due-cta-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="due-cta-text"><b id="dueBtnTitle">Réviser maintenant</b><span id="dueBtnSub"></span></span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="card setup">
+        <h2 class="setup-h" data-i18n="setupLevel">Niveau</h2>
+        <nav class="seg level-tabs" id="levelTabs" aria-label="Niveau"></nav>
+        <div class="mastery">
+          <div class="mastery-bar" role="presentation"><i id="masteryFill"></i></div>
+          <span id="masteryText"></span>
+        </div>
+
+        <h2 class="setup-h" data-i18n="setupMode">Exercice</h2>
+        <div class="mode-grid" id="modeTabs" role="group" aria-label="Exercice">
+          <button class="mode-tab active" data-mode="cards" aria-pressed="true">
+            <i class="fa-regular fa-clone"></i>
+            <b data-i18n="modeCards">Cartes</b>
+            <span data-i18n="modeCardsHint">Retrouve le mot, puis note-toi</span>
+          </button>
+          <button class="mode-tab" data-mode="img2word" aria-pressed="false">
+            <i class="fa-solid fa-image"></i>
+            <b data-i18n="modeImg2Word">Image → Mot</b>
+            <span data-i18n="modeImg2WordHint">Quel mot va avec l'image&nbsp;?</span>
+          </button>
+          <button class="mode-tab" data-mode="word2img" aria-pressed="false">
+            <i class="fa-solid fa-language"></i>
+            <b data-i18n="modeWord2Img">Mot → Image</b>
+            <span data-i18n="modeWord2ImgHint">Quelle image va avec le mot&nbsp;?</span>
+          </button>
+        </div>
+
+        <button class="switch-row" id="reviewToggle" role="switch" aria-checked="false">
+          <span class="switch"><i></i></span>
           <span id="reviewToggleLabel">À revoir seulement</span>
         </button>
-        <button class="filter-toggle" id="dueToggle">
-          <i class="fa-solid fa-calendar-check"></i>
-          <span id="dueToggleLabel">Révisions</span>
-        </button>
-      </div>
-    </div>
 
-    <div id="quizStage" class="quiz-stage">
-      <div class="loading" id="loading">Chargement…</div>
-    </div>
+        <button class="btn primary big" id="startBtn"><span id="startBtnLabel">Commencer</span><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+
+      <p class="hub-note" id="hubNote" role="status"></p>
+    </section>
+
+    <!-- ============ SESSION: one question at a time ============ -->
+    <section class="session" id="session" hidden>
+      <div class="session-top">
+        <button class="btn icon" id="sessionClose" aria-label="Quitter"><i class="fa-solid fa-xmark"></i></button>
+        <div class="progress-track" id="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="quiz-meta"><span id="progressText">—</span><span id="scoreText" class="score-text"></span></div>
+      </div>
+      <div id="quizStage" class="quiz-stage" aria-live="polite"></div>
+      <div class="dock" id="dock"></div>
+    </section>
 
   </main>
 
@@ -97,6 +139,7 @@
 </div>
 
 <script src="srs.js"></script>
+<script src="progress.js"></script>
 <script src="quiz.js"></script>
 <script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js'));</script>
 </body>

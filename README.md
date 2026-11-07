@@ -40,7 +40,7 @@ node tests/tone-dsp.bench.mjs       # tone detection benchmark (generated audio)
 
 `tests/ui.test.mjs` opens the pages in a real browser (Playwright, skipped when it is not installed) to check the layout at phone and desktop width.
 
-CI runs the same on every push. The suites cover the tone classifier (including a corpus of realistic tone-3 contours), the lessons (every line must segment into HSK 1 words only), the image quiz (manifest integrity, distractor selection), the spaced-repetition scheduler and the HTML escaping helper.
+CI runs the same on every push. The suites cover the tone classifier (including a corpus of realistic tone-3 contours), the lessons (every line must segment into HSK 1 words only), the image quiz (manifest integrity, distractor selection), the spaced-repetition scheduler, the daily progress and streak, and the HTML escaping helper.
 
 ## How it works
 
@@ -53,6 +53,8 @@ python3 scripts/generate_images.py        # needs the mcode-tools CLI; skips ima
 python3 scripts/build_images.py manifest  # rebuilds manifests and index.json
 python3 scripts/build_images.py check
 ```
+
+**Practice sessions and streak** (`quiz.js`, `progress.js`). A session is 10 cards, due words first, then new ones; a missed word comes back once before the summary. `progress.js` counts one activity per answered card or reviewed lesson per local day (daily goal 10) and derives the streak; it is pure logic with `localStorage` as a thin wrapper.
 
 **Spaced repetition** (`srs.js`). A simplified SM-2 with right/wrong grades: a correct answer is due again in 1 day, then 3, then the interval grows by the ease factor; a miss brings the word back in 10 minutes. A correct answer on a word that is not yet due changes nothing. The *Due* button builds a deck from every word that is due. State is kept in `localStorage`.
 

@@ -36,6 +36,9 @@ const I18N = {
     lessons: 'leçons',
     words: 'mots',
     reviewed: 'revu',
+    nextLesson: 'Leçon suivante',
+    upNext: 'À suivre',
+    pathCount: (n, total) => `${n} / ${total} revues`,
   },
   en: {
     navHome:      'Home',
@@ -59,6 +62,9 @@ const I18N = {
     lessons: 'lessons',
     words: 'words',
     reviewed: 'reviewed',
+    nextLesson: 'Next lesson',
+    upNext: 'Up next',
+    pathCount: (n, total) => `${n} / ${total} reviewed`,
   },
 };
 
@@ -194,14 +200,24 @@ const vocabBox   = document.getElementById('vocab');
 const lessonSelect = document.getElementById('lessonSelect');
 lessonSelect.addEventListener('change', () => selectLesson(Number(lessonSelect.value)));
 
+/** First lesson not yet reviewed — the one to do next (-1 when all are done). */
+function nextLessonIndex() {
+  return LESSONS.findIndex(l => !reviewed.has(l.id));
+}
+
 function renderList() {
+  const next = nextLessonIndex();
+  const doneCount = LESSONS.filter(l => reviewed.has(l.id)).length;
+  document.getElementById('pathCount').textContent = t('pathCount')(doneCount, LESSONS.length);
+  document.getElementById('pathFill').style.width = (LESSONS.length ? (doneCount / LESSONS.length) * 100 : 0) + '%';
+
   lessonList.innerHTML = LESSONS.map((l, i) => {
     const done = reviewed.has(l.id);
-    return `<button class="lesson-item${i === currentLesson ? ' active' : ''}" data-i="${i}">
-      <span class="lesson-item-num">${String(i + 1).padStart(2, '0')}</span>
+    const cls = [i === currentLesson ? 'active' : '', done ? 'done' : '', i === next ? 'next' : ''].filter(Boolean).join(' ');
+    return `<button type="button" class="lesson-item ${cls}" data-i="${i}"${i === currentLesson ? ' aria-current="true"' : ''}>
+      <span class="lesson-node">${done ? '<i class="fa-solid fa-check"></i>' : i + 1}</span>
       <span class="lesson-item-title">${esc(l.title[lang])}</span>
-      <span class="lesson-item-meta">${l.exchanges.length} ${t('lines')}</span>
-      ${done ? `<span class="lesson-item-done">✓</span>` : ''}
+      <span class="lesson-item-meta">${l.exchanges.length} ${t('lines')}${i === next ? `<span class="lesson-item-tag">${t('upNext')}</span>` : ''}</span>
     </button>`;
   }).join('');
   lessonSelect.innerHTML = LESSONS.map((l, i) =>
@@ -219,17 +235,19 @@ function renderDialogue() {
 
   dialogue.innerHTML = l.exchanges.map((e, i) => `
     <div class="exchange ${e.who === 'B' ? 'b' : 'a'}" data-i="${i}">
-      <div class="exchange-who">${esc(e.who)}</div>
-      <div class="exchange-body">
-        <div class="exchange-hanzi">${esc(e.hanzi)}</div>
-        <div class="exchange-pinyin${showPinyin ? '' : ' hidden'}">${phrasePinyin(e.pinyin)}</div>
-        <div class="exchange-tr${showTrans ? '' : ' hidden'}">${esc(e[lang])}</div>
-        <div class="exchange-chips">${e.words.map(w =>
-          `<span class="chip" data-w="${esc(w)}">${esc(w)}</span>`).join('')}</div>
+      <div class="exchange-who" aria-hidden="true">${esc(e.who)}</div>
+      <div class="exchange-bubble">
+        <div class="exchange-body">
+          <div class="exchange-hanzi" lang="zh">${esc(e.hanzi)}</div>
+          <div class="exchange-pinyin${showPinyin ? '' : ' hidden'}">${esc(phrasePinyin(e.pinyin))}</div>
+          <div class="exchange-tr${showTrans ? '' : ' hidden'}">${esc(e[lang])}</div>
+          <div class="exchange-chips">${e.words.map(w =>
+            `<button type="button" class="chip" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div>
+        </div>
+        <button type="button" class="speak-btn" data-speak="${i}" title="${t('playAll')}" aria-label="${t('playAll')}">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
       </div>
-      <button class="speak-btn" data-speak="${i}" title="${t('playAll')}">
-        <i class="fa-solid fa-volume-high"></i>
-      </button>
     </div>`).join('');
 
   dialogue.querySelectorAll('[data-speak]').forEach(b =>
@@ -299,6 +317,7 @@ function selectLesson(i) {
   renderList();
   renderDialogue();
   renderVocab();
+  updateReviewButton();
 }
 
 function updatePlayButton() {
@@ -317,7 +336,10 @@ async function playConversation() {
     if (token !== playToken) return;
     dialogue.querySelectorAll('.exchange').forEach(el => el.classList.remove('speaking'));
     const row = dialogue.querySelector(`.exchange[data-i="${i}"]`);
-    if (row) row.classList.add('speaking');
+    if (row) {
+      row.classList.add('speaking');
+      row.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
     speak(lines[i].hanzi);
     await new Promise(r => setTimeout(r, 1900));
   }
@@ -337,7 +359,11 @@ function stopPlayback() {
 
 function toggleReviewed() {
   const id = LESSONS[currentLesson].id;
-  if (reviewed.has(id)) reviewed.delete(id); else reviewed.add(id);
+  if (reviewed.has(id)) reviewed.delete(id);
+  else {
+    reviewed.add(id);
+    if (typeof Progress !== 'undefined') Progress.add(1);   // counts toward today's goal and the streak
+  }
   saveReviewed();
   renderList();
   updateReviewButton();
@@ -345,9 +371,14 @@ function toggleReviewed() {
 function updateReviewButton() {
   const btn = document.getElementById('btnReview');
   const done = reviewed.has(LESSONS[currentLesson].id);
-  btn.querySelector('span').textContent = done ? t('markUnreviewed') : t('markReviewed');
+  btn.querySelector('span').textContent = done ? t('reviewed') : t('markReviewed');
   btn.classList.toggle('active', done);
-  btn.querySelector('i').className = done ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check';
+  btn.classList.toggle('done', done);
+  btn.setAttribute('aria-pressed', String(done));
+  btn.querySelector('i').className = done ? 'fa-solid fa-circle-check' : 'fa-solid fa-check';
+  // offer the way forward once this lesson is done
+  const next = document.getElementById('btnNext');
+  next.hidden = !(done && currentLesson < LESSONS.length - 1);
 }
 
 // -------------------------------------------------------------------------
@@ -387,12 +418,19 @@ async function init() {
     dialogue.innerHTML = `<div class="loading">${lang === 'fr' ? 'Chargement impossible.' : 'Could not load.'}</div>`;
     return;
   }
+  // resume where the learner left off: the first lesson not reviewed yet
+  const start = nextLessonIndex();
+  if (start > 0) currentLesson = start;
   renderList();
   renderDialogue();
   renderVocab();
   updateReviewButton();
 }
 
+document.getElementById('btnNext').addEventListener('click', () => {
+  selectLesson(currentLesson + 1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 document.getElementById('btnPinyin').addEventListener('click', e => {
   showPinyin = !showPinyin;
   e.currentTarget.classList.toggle('active', showPinyin);

@@ -26,6 +26,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#b8211f">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -34,38 +35,37 @@
 <canvas id="paper-bg"></canvas>
 
 <div class="app">
-  <header>
-    <div class="header-text">
-      <div class="brand"><span class="zh">学汉语</span> xuehanyu.org</div>
-      <div class="tagline" data-i18n="tagline">apprendre le chinois, un caractère à la fois</div>
-    </div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="xuehanyu.org"><span class="zh">学汉语</span><span class="brand-name">xuehanyu</span></a>
+    <nav class="site-nav" aria-label="Navigation">
+      <a href="index.html"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Accueil</span></a>
+      <a href="app.html" aria-current="page"><i class="fa-solid fa-book-open"></i><span data-i18n="navDict">Dictionnaire</span></a>
+      <a href="quiz.html"><i class="fa-solid fa-images"></i><span data-i18n="navQuiz">Quiz d'images</span></a>
+      <a href="lessons.html"><i class="fa-solid fa-comments"></i><span data-i18n="navLessons">Leçons</span></a>
+    </nav>
     <div class="header-right">
-      <div class="lang-switch">
+      <div class="lang-switch" role="group" aria-label="Language">
         <button data-lang="fr" class="active">FR</button>
         <button data-lang="en">EN</button>
       </div>
     </div>
   </header>
 
-  <nav class="site-nav" aria-label="Navigation">
-    <a href="index.html" data-i18n="navHome">Accueil</a>
-    <a href="app.html" data-i18n="navDict" aria-current="page">Dictionnaire</a>
-    <a href="quiz.html" data-i18n="navQuiz">Quiz d'images</a>
-    <a href="lessons.html" data-i18n="navLessons">Leçons</a>
-  </nav>
-
   <main>
     <aside class="sidebar">
-      <div class="levels" id="levels"></div>
+      <div class="levels" id="levels" role="group" aria-label="HSK"></div>
       <div class="search">
-        <input type="text" id="search" placeholder="Rechercher…" autocomplete="off">
+        <div class="search-field">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" id="search" placeholder="Rechercher…" aria-label="Rechercher" autocomplete="off" autocapitalize="off" spellcheck="false">
+        </div>
         <div class="filters" id="filters">
           <button class="filter-chip active" data-filter="all">tout</button>
           <button class="filter-chip" data-filter="char">caractère</button>
           <button class="filter-chip" data-filter="pinyin">pinyin</button>
           <button class="filter-chip" data-filter="meaning">sens</button>
         </div>
-        <div class="results-count" id="resultsCount"></div>
+        <div class="results-count" id="resultsCount" aria-live="polite"></div>
       </div>
       <div class="char-list" id="charList"></div>
     </aside>
@@ -79,10 +79,10 @@
 
   <!-- POPUP (mobile) -->
   <div class="popup-overlay" id="popupOverlay">
-    <div class="popup" id="popup">
+    <div class="popup" id="popup" role="dialog" aria-modal="true">
       <div class="popup-header">
         <span class="popup-title" id="popupTitle"></span>
-        <button class="btn" id="popupClose"><i class="fa-solid fa-xmark"></i></button>
+        <button class="btn icon" id="popupClose" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="popup-body" id="popupBody"></div>
     </div>

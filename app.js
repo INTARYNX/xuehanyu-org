@@ -383,13 +383,21 @@ function getChars() { return currentChar ? [...currentChar.char] : []; }
 
 function buildControls(container) {
   const t = I18N[currentLang];
+  const t0 = I18N[currentLang];
+  const heroBadges = [`<span class="level-badge">HSK ${currentLevel}</span>`]
+    .concat((currentChar.pos || []).map(p => `<span class="pos-badge">${esc(POS_LABELS[p] || p)}</span>`)).join('');
   container.innerHTML = `
+    <div class="word-hero">
+      <div class="word-pinyin"><span class="pinyin">${esc(currentChar.pinyin)}</span></div>
+      <div class="word-meaning">${esc(currentLang === 'fr' ? currentChar.fr : (currentChar.en || '—'))}</div>
+      <div class="word-badges">${heroBadges}</div>
+    </div>
     <div class="char-display">
-      <div id="writer-host"></div>
+      <div id="writer-host" role="img" aria-label="${esc(currentChar.char)}"></div>
       <div class="char-nav" id="charNav">
-        <button class="btn" id="charNavPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="btn icon" id="charNavPrev" aria-label="‹"><i class="fa-solid fa-chevron-left"></i></button>
         <div class="char-nav-dots" id="charNavDots"></div>
-        <button class="btn" id="charNavNext"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="btn icon" id="charNavNext" aria-label="›"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
       <div class="controls">
         <button class="ctrl-btn primary" id="btnReplay">
@@ -412,23 +420,21 @@ function buildControls(container) {
       <div class="tone-section" id="toneSection"></div>
     </div>`;
 
-  const t2 = I18N[currentLang];
-  const posBadges = (currentChar.pos || [])
-    .map(p => `<span class="pos-badge">${esc(POS_LABELS[p] || p)}</span>`).join('');
-  const classifiers = currentChar.classifiers?.length ? currentChar.classifiers.map(esc).join(', ') : '—';
-  const trad = currentChar.traditional !== currentChar.char ? esc(currentChar.traditional) : '—';
-
-  container.innerHTML += `
-    <div class="info">
-      <div class="info-row"><span class="info-label">${t2.pinyin}</span><span class="info-value pinyin">${esc(currentChar.pinyin)}</span></div>
-      <div class="info-row"><span class="info-label">${t2.meaning}</span><span class="info-value">${esc(currentLang === 'fr' ? currentChar.fr : currentChar.en || '—')}</span></div>
-      <div class="info-row"><span class="info-label">${t2.traditional}</span><span class="info-value">${trad}</span></div>
-      <div class="info-row"><span class="info-label">${t2.radical}</span><span class="info-value">${esc(currentChar.radical || '—')}</span></div>
-      <div class="info-row"><span class="info-label">${t2.pos}</span><span class="info-value">${posBadges || '—'}</span></div>
-      <div class="info-row"><span class="info-label">${t2.classifiers}</span><span class="info-value">${classifiers}</span></div>
-      <div class="info-row"><span class="info-label">${t2.frequency}</span><span class="info-value">${esc(currentChar.frequency ?? '—')}</span></div>
-      <div class="info-row"><span class="info-label">${t2.level}</span><span class="info-value"><span class="level-badge">HSK ${currentLevel}</span></span></div>
-    </div>`;
+  // Only the facts that exist: no more rows full of dashes.
+  const facts = [];
+  if (currentChar.traditional && currentChar.traditional !== currentChar.char) {
+    facts.push(`<div class="fact"><span class="fact-label">${t0.traditional}</span><span class="fact-value hz">${esc(currentChar.traditional)}</span></div>`);
+  }
+  if (currentChar.radical) {
+    facts.push(`<div class="fact"><span class="fact-label">${t0.radical}</span><span class="fact-value hz">${esc(currentChar.radical)}</span></div>`);
+  }
+  if (currentChar.classifiers?.length) {
+    facts.push(`<div class="fact"><span class="fact-label">${t0.classifiers}</span><span class="fact-value hz">${currentChar.classifiers.map(esc).join(' ')}</span></div>`);
+  }
+  if (currentChar.frequency != null) {
+    facts.push(`<div class="fact"><span class="fact-label">${t0.frequency}</span><span class="fact-value">#${esc(currentChar.frequency)}</span></div>`);
+  }
+  if (facts.length) container.insertAdjacentHTML('beforeend', `<div class="info">${facts.join('')}</div>`);
 
   document.getElementById('btnReplay').addEventListener('click', animateChar);
   document.getElementById('btnQuiz').addEventListener('click', quizChar);
@@ -458,15 +464,9 @@ function buildCharNav() {
   document.getElementById('charNavNext').disabled = currentCharIndex === chars.length - 1;
 
   dots.innerHTML = chars.map((c, i) => `
-    <span data-idx="${i}" style="
-      display:inline-flex;align-items:center;justify-content:center;
-      width:1.8rem;height:1.8rem;border-radius:50%;cursor:pointer;
-      font-family:'STKaiti','Kaiti SC',serif;font-size:0.9rem;
-      background:${i === currentCharIndex ? 'var(--ink)' : 'rgba(60,35,15,0.1)'};
-      color:${i === currentCharIndex ? 'var(--paper-light)' : 'var(--ink-soft)'};
-      transition:all 0.15s;">${esc(c)}</span>`).join('');
+    <button type="button" class="char-dot${i === currentCharIndex ? ' active' : ''}" data-idx="${i}">${esc(c)}</button>`).join('');
 
-  dots.querySelectorAll('span').forEach(s =>
+  dots.querySelectorAll('.char-dot').forEach(s =>
     s.addEventListener('click', () => { currentCharIndex = +s.dataset.idx; buildCharNav(); animateChar(); })
   );
 }
