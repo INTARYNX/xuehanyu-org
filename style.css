@@ -33,7 +33,7 @@
   --shadow: rgba(60, 35, 15, 0.18);
 
   /* type */
-  --ui: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ui: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --hanzi: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", "Noto Serif CJK SC", serif;
   --kai: "STKaiti", "Kaiti SC", "KaiTi", "Noto Serif CJK SC", serif;
 
@@ -117,9 +117,9 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 }
 
 .topbar, header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   min-height: var(--topbar-h);
   padding: 0.5rem 0;
@@ -134,11 +134,10 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
-  justify-self: start;
 }
 .brand .zh { font-size: 1.5rem; color: var(--accent); font-weight: 400; }
 .brand-name { color: var(--ink); }
-.header-right { justify-self: end; display: flex; align-items: center; gap: 0.75rem; }
+.header-right { display: flex; align-items: center; gap: 0.75rem; }
 
 .lang-switch {
   display: inline-flex;
@@ -162,9 +161,10 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 }
 .lang-switch button.active { background: var(--ink); color: var(--surface); }
 
-/* tabs */
+/* tabs — desktop : une rangée de pastilles sous l'en-tête */
 .site-nav {
   display: flex;
+  align-self: center;
   gap: 0.25rem;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -190,31 +190,47 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 .site-nav a:hover { background: var(--surface-2); color: var(--ink); }
 .site-nav a[aria-current="page"] { background: var(--accent); color: #fff; }
 
+/* tabs — mobile : barre BASSE, copie de `.app-nav` d'Enlistia (routes/u/+layout.svelte).
+   Ancrée au VIEWPORT (`fixed; bottom: 0`), sans JS, hors du flux ; le document défile
+   normalement. `top: auto` est OBLIGATOIRE (sinon la barre s'étire sur tout l'écran). La zone
+   sûre iOS est DANS le padding de la barre : son fond couvre le bandeau du home indicator. */
 @media (max-width: 800px) {
-  .topbar, header { grid-template-columns: 1fr auto; }
-  .app { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 1.25rem); }
+  .app {
+    /* hauteur réelle de la barre (63px) + respiration + zone sûre */
+    padding-bottom: calc(71px + env(safe-area-inset-bottom));
+  }
   .site-nav {
     position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 50;
-    border-radius: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    z-index: 10000;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    box-shadow: 0 -10px 30px rgb(15 23 42 / 0.09);
     border: 0;
-    border-top: 1px solid var(--line-strong);
-    padding: 6px max(6px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px));
-    gap: 2px;
-    background: var(--surface);
-    box-shadow: 0 -6px 24px -12px var(--shadow);
+    border-top: 1px solid color-mix(in srgb, var(--line-strong) 80%, transparent);
+    border-radius: 0;
   }
   .site-nav a {
-    flex: 1 1 0;
     flex-direction: column;
     justify-content: center;
     gap: 2px;
-    min-height: 50px;
-    padding: 4px 2px;
+    flex: 1;
+    max-width: none;
+    min-height: 43px;
+    padding: 0 2px;
     border-radius: var(--r-md);
     font-size: 0.68rem;
     letter-spacing: 0.01em;
+    text-align: center;
   }
   .site-nav a i { font-size: 1.15rem; }
   .site-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
