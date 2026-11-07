@@ -40,7 +40,9 @@
       peakFactor: 0.25,  // pic × peakFactor
       minRms: 0.008,     // plancher de bruit minimal
       minFrames: 4,      // durée minimale du segment (trames)
-      maxGap: 2          // trous de non-voix tolérés à l'intérieur du segment (trames)
+      maxGap: 2,         // trous de non-voix tolérés à l'intérieur du segment (trames)
+      maxInternalGapMs: 100, // durée max d'une coupure de voix franchie (ms)
+      gapRatio: 0.5      // la coupure ne doit pas dépasser ce rapport du segment le plus court
     },
     octave: {
       semitones: 12,     // amplitude d'une octave
@@ -129,22 +131,32 @@
    * @returns {number[]} Nouveau tableau (même longueur).
    */
   function smoothSeries(values, size) {
+    const n = values.length;
     const w = Math.max(1, size | 0);
-    if (w < 2 || values.length < 2) return values.slice();
-    const half = w >> 1;
-    const out = new Array(values.length);
-    for (let i = 0; i < values.length; i++) {
+    if (w < 2 || n < 2) return values.slice();
+
+    // Fenêtre effective : 2 × half + 1. On la BORNE à la longueur de la
+    // série : une fenêtre plus large que la série irait lire des indices
+    // inexistants (`undefined`) et la médiane d'un tableau troué
+    // rendrait NaN — ce qui contaminerait tout le contour.
+    let half = w >> 1;
+    if (2 * half + 1 > n) half = (n - 1) >> 1;
+    if (half < 1) return values.slice();
+    const win = 2 * half + 1;
+
+    const out = new Array(n);
+    for (let i = 0; i < n; i++) {
       // Fenêtre de taille CONSTANTE : aux bords, elle est décalée vers
       // l'intérieur plutôt que tronquée. Une fenêtre tronquée n'aurait
       // qu'un ou deux échantillons — et sa médiane laisserait passer un pic
       // isolé (typiquement la trame d'attaque, très parasite).
       let lo = i - half;
       let hi = i + half;
-      if (lo < 0) { lo = 0; hi = w - 1; }
-      if (hi > values.length - 1) { lo = values.length - w; hi = values.length - 1; }
-      const win = [];
-      for (let j = lo; j <= hi; j++) win.push(values[j]);
-      out[i] = median(win);
+      if (lo < 0) { lo = 0; hi = win - 1; }
+      if (hi > n - 1) { lo = n - win; hi = n - 1; }
+      const samples = [];
+      for (let j = lo; j <= hi; j++) samples.push(values[j]);
+      out[i] = median(samples);
     }
     return out;
   }
@@ -429,7 +441,10 @@
    *   - son RMS dépasse max(minRms, noiseFactor × plancher de bruit), et
    *   - sa périodicité (clarity) dépasse minClarity.
    *
-   * Les trous de non-voix courts (≤ maxGap trames) sont recollés.
+   * Les trous de non-voix courts (≤ maxGap trames) sont recollés. Les
+   * coupures de voix plus longues (voix rauque, souffle au milieu d'une
+   * syllabe) sont également franchies si elles restent courtes et
+   * relatives au segment qu'elles traversent (voir `maxInternalGapMs`).
    *
    * @param {Array} frames Trames `{ t, freq, clarity, rms }`.
    * @param {object} [opts] Surcharge de DEFAULTS.segment.
@@ -473,23 +488,66 @@
       i = j - 1;
     }
 
-    // Plus long segment continu
-    let best = null;
-    let start = -1;
+    // Segments vocaux maximaux (runs consécutifs de trames voix)
+    const runs = [];
+    let runStart = -1;
     for (let i = 0; i <= merged.length; i++) {
       if (i < merged.length && merged[i]) {
-        if (start < 0) start = i;
+        if (runStart < 0) runStart = i;
         continue;
       }
-      if (start >= 0) {
-        const len = i - start;
-        if (!best || len > best.end - best.start + 1) best = { start, end: i - 1 };
-        start = -1;
+      if (runStart >= 0) {
+        runs.push({ start: runStart, end: i - 1 });
+        runStart = -1;
       }
     }
 
+    // Franchissement des coupures INTERNES plus longues qu'un trou court.
+    //
+    // Une coupure de périodicité au milieu d'une syllabe (voix rauque,
+    // souffle, perte de suivi de F0) peut durer plusieurs dizaines de ms.
+    // Sans ce franchissement, la syllabe était scindée en deux : seul le
+    // plus long morceau était analysé, et le ton était le plus souvent
+    // retrouvé « ambigu ».
+    //
+    // On ne franchit la coupure que si elle est à la fois :
+    //   - courte en absolu (≤ maxInternalGapMs) ;
+    //   - courte par rapport au plus court des deux segments qu'elle
+    //     sépare (≤ gapRatio de sa durée) : deux syllabes distinctes,
+    //     séparées par un vrai silence, ne sont ainsi jamais confondues.
+    const timeAt = i => {
+      const t = frames[i] && frames[i].t;
+      return (typeof t === 'number' && isFinite(t)) ? t : null;
+    };
+    for (const r of runs) {
+      r.tStart = timeAt(r.start);
+      r.tEnd = timeAt(r.end);
+    }
+    for (let i = 0; i < runs.length - 1;) {
+      const a = runs[i];
+      const b = runs[i + 1];
+      let fused = false;
+      if (a.tStart !== null && a.tEnd !== null && b.tStart !== null && b.tEnd !== null) {
+        const hole = b.tStart - a.tEnd;              // durée du trou de couverture
+        const shortest = Math.min(a.tEnd - a.tStart, b.tEnd - b.tStart);
+        if (hole > 0 && hole <= o.maxInternalGapMs && hole <= o.gapRatio * shortest) {
+          a.end = b.end;
+          a.tEnd = b.tEnd;
+          runs.splice(i + 1, 1);
+          fused = true;
+        }
+      }
+      if (!fused) i++;
+    }
+
+    // Plus long segment continu
+    let best = null;
+    for (const r of runs) {
+      if (!best || (r.end - r.start + 1) > (best.end - best.start + 1)) best = r;
+    }
+
     if (!best || (best.end - best.start + 1) < o.minFrames) return null;
-    return best;
+    return { start: best.start, end: best.end };
   }
 
   // =========================================================================
@@ -746,10 +804,33 @@
   // 7. PIPELINE COMPLET
   // =========================================================================
   /**
+   * Pas de temps effectif des trames (ms), mesuré sur leurs horodatages.
+   *
+   * La capture de l'application se fait en `requestAnimationFrame` : le pas
+   * réel dépend de la fréquence de l'écran (≈ 16,7 ms à 60 Hz, ≈ 8,3 ms à
+   * 120 Hz). Une valeur nominale serait donc fausse sur un écran rapide,
+   * et fausserait la durée de syllabe — donc la décision « ton neutre ».
+   *
+   * @param {Array} frames  Trames horodatées.
+   * @returns {number} pas médian en ms (0 si les horodatages sont inexploitables).
+   */
+  function measureHopMs(frames) {
+    const deltas = [];
+    for (let i = 1; i < frames.length; i++) {
+      const d = frames[i].t - frames[i - 1].t;
+      if (isFinite(d) && d > 0) deltas.push(d);
+    }
+    if (!deltas.length) return 0;
+    deltas.sort((a, b) => a - b);
+    return deltas[deltas.length >> 1];
+  }
+
+  /**
    * Analyse une série de trames et renvoie le ton détecté.
    *
    * @param {Array} frames  Trames `{ t, freq, clarity, rms }`.
-   * @param {object} [opts] `{ hopMs, expectedTone, ... }`.
+   * @param {object} [opts] `{ hopMs, expectedTone, ... }`. `hopMs` n'est qu'un
+   *        repli : le pas réel est mesuré sur les horodatages des trames.
    * @returns {{tone:number|null, confidence:number, reason:string, features:object|null, segment:object|null, frames:Array}}
    */
   function analyze(frames, opts) {
@@ -767,7 +848,11 @@
     const repaired = repairOctaves(sliced, o.octave);
     const smoothed = smoothMedian(repaired, o.smooth);
 
-    const features = extractFeatures(smoothed, Object.assign({ hopMs: o.hopMs }, o.shape));
+    // Pas de temps : mesuré sur les horodatages réels (le pas fourni par
+    // l'appelant n'est qu'un repli, la capture n'est pas à pas fixe).
+    const hopMs = measureHopMs(frames) || o.hopMs || 0;
+
+    const features = extractFeatures(smoothed, Object.assign({ hopMs }, o.shape));
     if (!features) {
       return { tone: null, confidence: 0, reason: 'too-short', features: null, segment, frames: smoothed };
     }

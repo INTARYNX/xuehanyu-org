@@ -141,7 +141,28 @@ test('repairOctaves : une portion entière à l’octave supérieur est ramenée
 });
 
 // ===========================================================================
-// 3. SEGMENTATION
+// 3. LISSAGE MÉDIAN
+// ===========================================================================
+
+test('smoothSeries : une fenêtre plus large que la série ne produit pas de NaN', () => {
+  // Régression : la fenêtre débordait sur des indices inexistants (`undefined`)
+  // et la médiane d'un tableau troué rendait NaN — tout le contour était perdu.
+  for (const [n, w] of [[3, 4], [3, 6], [4, 6], [4, 8], [5, 7], [3, 3], [6, 3], [2, 5]]) {
+    const series = Array.from({ length: n }, (_, i) => i + 1);
+    const out = ToneDSP.smoothSeries(series, w);
+    assert.equal(out.length, n, `longueur incorrecte pour n=${n}, w=${w}`);
+    assert.ok(out.every(v => Number.isFinite(v)), `NaN dans le résultat (n=${n}, w=${w}) : ${out}`);
+  }
+});
+
+test('smoothSeries : un pic isolé est éliminé, la forme est conservée', () => {
+  const out = ToneDSP.smoothSeries([1, 1, 5, 1, 1], 3);
+  assert.equal(out[2], 1, `le pic isolé n’a pas été lissé (${out[2]})`);
+  assert.ok(out.every(v => Number.isFinite(v)));
+});
+
+// ===========================================================================
+// 4. SEGMENTATION
 // ===========================================================================
 
 test('segmentVoiced : isole le segment vocal entre deux silences', () => {
@@ -177,8 +198,42 @@ test('segmentVoiced : une trame peu périodique est rejetée', () => {
   assert.ok(seg.start !== 5 && seg.end !== 5, 'la trame non périodique n’a pas été exclue');
 });
 
+test('segmentVoiced : une coupure de voix interne ne scinde plus la syllabe', () => {
+  // Régression : une perte de périodicité au milieu de la syllabe (voix
+  // rauque, souffle) sectionnait le segment — seul le plus long morceau
+  // était analysé et le ton ressortait « ambigu ».
+  const frames = [];
+  for (let i = 0; i < 24; i++) {
+    const hole = i >= 10 && i < 13;          // 3 trames de trou (~64 ms)
+    frames.push({
+      t: i * 16,
+      freq: hole ? null : 150,
+      clarity: hole ? 0 : 0.9,
+      rms: hole ? 0.001 : 0.05
+    });
+  }
+  const seg = ToneDSP.segmentVoiced(frames);
+  assert.ok(seg);
+  assert.equal(seg.start, 0);
+  assert.equal(seg.end, 23);
+});
+
+test('segmentVoiced : deux syllabes séparées par un vrai silence ne sont pas fusionnées', () => {
+  const frames = [];
+  const push = (t, voiced) => frames.push({
+    t, freq: voiced ? 150 : null, clarity: voiced ? 0.9 : 0, rms: voiced ? 0.05 : 0.001
+  });
+  for (let i = 0; i < 12; i++) push(i * 16, true);       // syllabe 1
+  for (let i = 12; i < 31; i++) push(i * 16, false);     // silence de ~300 ms
+  for (let i = 31; i < 43; i++) push(i * 16, true);      // syllabe 2
+  const seg = ToneDSP.segmentVoiced(frames);
+  assert.ok(seg);
+  assert.equal(seg.start, 0);
+  assert.equal(seg.end, 11, 'les deux syllabes ont été fusionnées');
+});
+
 // ===========================================================================
-// 4. CLASSIFICATION
+// 5. CLASSIFICATION
 // ===========================================================================
 
 test('classifyTone : contour plat → ton 1', () => {
@@ -302,7 +357,7 @@ test('classifyTone : un demi-ton 3 trop peu creusé reste un ton 1', () => {
 });
 
 // ===========================================================================
-// 5. BOUCLE COMPLÈTE (capture → YIN → VAD → classification)
+// 6. BOUCLE COMPLÈTE (capture → YIN → VAD → classification)
 // ===========================================================================
 
 test('bout en bout : ton 1 détecté sur une syllabe synthétisée', () => {
@@ -353,4 +408,35 @@ test('bout en bout : le bruit de fond seul ne produit aucun ton', () => {
   const c = makeCase({ tone: 1, f0: 150, noiseRms: 0.0005, level: 0.0002, seed: 18 });
   const res = ToneDSP.analyze(c.frames, { hopMs: 16 });
   assert.equal(res.tone, null, `un ton a été détecté dans le bruit (${res.reason})`);
+});
+
+test('bout en bout : une syllabe coupée par une perte de voix reste détectée', () => {
+  // Régression : un trou de 3 trames (~50 ms) au milieu de la syllabe
+  // scindait le segment et le ton ressortait « ambigu ».
+  const c = makeCase({ tone: 3 });
+  const frames = c.frames.map(f => ({ ...f }));
+  const mid = Math.floor(frames.length / 2);
+  for (let i = mid; i < mid + 3; i++) { frames[i].freq = null; frames[i].clarity = 0; }
+  const res = ToneDSP.analyze(frames, { hopMs: 16 });
+  assert.equal(res.tone, 3, `obtenu ${res.tone} (${res.reason})`);
+});
+
+test('analyze : la durée de syllabe suit le pas réel des horodatages', () => {
+  // La capture de l'app est en rAF : 16,7 ms à 60 Hz, 8,3 ms à 120 Hz.
+  // La durée (qui décide du ton neutre) doit suivre les horodatages, pas la
+  // valeur nominale passée par l'appelant.
+  const hop120 = 1000 / 120;
+  const frames120 = contourFrames([[0, 0], [1, 0]], { n: 24, hopMs: hop120 });
+  const res120 = ToneDSP.analyze(frames120, { hopMs: 17 });
+  assert.ok(Math.abs(res120.features.durationMs - 24 * hop120) < 1,
+    `durationMs = ${res120.features.durationMs} (attendu ${(24 * hop120).toFixed(1)})`);
+
+  const frames60 = contourFrames([[0, 0], [1, 0]], { n: 24, hopMs: 16 });
+  const res60 = ToneDSP.analyze(frames60, { hopMs: 16 });
+  assert.ok(Math.abs(res60.features.durationMs - 384) < 1,
+    `durationMs = ${res60.features.durationMs} (attendu 384)`);
+
+  // Même contour, durées différentes : 200 ms → ton neutre, 384 ms → ton plat.
+  assert.equal(res120.tone, 5, `obtenu ${res120.tone} (${res120.reason})`);
+  assert.equal(res60.tone, 1, `obtenu ${res60.tone} (${res60.reason})`);
 });

@@ -1004,7 +1004,12 @@ function drawLiveCurve(frames, tone) {
   drawExpectedCurve(tone, rel);
 }
 
-/** Pas de temps nominal entre deux trames (boucle rAF ≈ 60 Hz). */
+/**
+ * Pas de temps NOMINAL entre deux trames. La capture est en `requestAnimationFrame` :
+ * le pas réel dépend de l'écran (≈ 16,7 ms à 60 Hz, ≈ 8,3 ms à 120 Hz). Cette
+ * valeur ne sert donc que de repli — `ToneDSP.analyze` mesure le pas réel sur
+ * les horodatages des trames.
+ */
 const TONE_HOP_MS = 17;
 
 /** Durée maximale d'un essai (ms). */
@@ -1171,6 +1176,8 @@ async function recordCurrentSyllable() {
     if (wasAborted) return;                  // rien à écrire : session remplacée
     session.isRecording = false;
 
+    // `hopMs` n'est qu'un repli : `analyze` mesure le pas réel sur les
+    // horodatages (la capture est en rAF : 60 Hz ou 120 Hz selon l'écran).
     const result = ToneDSP.analyze(frames, { hopMs: TONE_HOP_MS });
     const detected = result.tone;
     const grade = gradeTone(detected, cur.tone, result.confidence);
