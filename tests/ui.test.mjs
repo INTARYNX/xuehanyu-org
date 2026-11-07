@@ -737,7 +737,7 @@ test('lessons (phone): grammar cards fit the screen without sideways scroll', { 
   } finally { await ctx.close(); }
 });
 
-// ------------------------------------------------------------------ fiche d'un mot du vocabulaire (tracé)
+// ------------------------------------------------------------------ fiche d'un mot : LA MÊME que dans le dictionnaire
 const FAKE_WRITER = `
   window.__writer = [];
   window.HanziWriter = { create(host, ch, opts) {
@@ -747,52 +747,80 @@ const FAKE_WRITER = `
     return { animateCharacter() { rec.animated++; }, quiz() { rec.quiz++; } };
   } };
 `;
+const openFamilyWord = async (p, word) => {            // 爸爸 est dans la leçon 6, et dans le dictionnaire de test
+  if (await p.isVisible('#lessonList')) await p.click('#lessonList > :nth-child(6)');
+  else await p.selectOption('#lessonSelect', '5');          // phone: a select replaces the list
+  await p.click(`#vocab .vocab-item[data-word="${word}"]`);
+  await p.waitForSelector('#wordBody .word-hero');
+};
 
-test('lessons: clicking a vocabulary word opens its stroke sheet with the animation running', { skip }, async () => {
+test('lessons: a vocabulary word opens the full dictionary card (hero, badges, strokes, 4 actions, facts)', { skip }, async () => {
   const { p, ctx, errors } = await open('lessons.html', 'desktop', FAKE_WRITER);
   try {
     assert.ok(await p.$$eval('#vocab button.vocab-item', a => a.length) > 5, 'vocabulary items are not buttons');
-    await p.click('#vocab .vocab-item[data-word="老师"]');
-    await p.waitForTimeout(300);
-    assert.equal(await p.isVisible('#wordSheet'), true);
-    assert.equal(await p.textContent('#wordTitle'), '老师');
-    assert.match(await p.textContent('#wordBody .pinyin'), /lǎo shī|lao shi|lǎo shi/i);
+    await openFamilyWord(p, '爸爸');
+    assert.equal(await p.textContent('#wordTitle'), '爸爸');
+    assert.equal((await p.textContent('#wordBody .word-pinyin .pinyin')).trim(), 'bà ba');
+    assert.match(await p.textContent('#wordBody .word-meaning'), /father/);
+    const badges = await p.$$eval('#wordBody .word-badges span', a => a.map(b => b.textContent.trim()));
+    assert.deepEqual(badges, ['HSK 1', 'nom']);
+    assert.deepEqual(await p.$$eval('#wordBody .controls .ctrl-btn', a => a.map(b => b.id)), ['btnReplay', 'btnQuiz', 'btnSpeak', 'btnTone'], 'the four dictionary actions');
+    assert.ok((await p.$$eval('#wordBody .info .fact', a => a.length)) >= 1, 'the facts of the word (radical…) are missing');
     const w = await p.evaluate(() => window.__writer);
-    assert.equal(w.length, 1);
-    assert.equal(w[0].ch, '老', 'first character first');
+    assert.equal(w[0].ch, '爸');
     assert.equal(w[0].animated, 1, 'the stroke animation did not start');
     assert.ok(w[0].size > 100, `the drawing area was sized before it was visible (${w[0].size}px)`);
-    assert.equal(await p.getAttribute('#wordBody .word-dict-link a', 'href'), 'app.html?w=%E8%80%81%E5%B8%88&l=1');
     assert.deepEqual(errors, []);
   } finally { await ctx.close(); }
 });
 
-test('lessons: a two-character word has a character selector; practice mode lets the learner trace', { skip }, async () => {
+test('lessons: the card is byte-for-byte the dictionary\'s (one implementation, not a copy)', { skip }, async () => {
+  const strip = html => html.replace(/(<div id="writer-host"[^>]*>)[\s\S]*?(<\/div>\s*<div class="char-nav")/, '$1$2');
+  const dict = await open('app.html?w=%E7%88%B8%E7%88%B8&l=1', 'desktop', FAKE_WRITER);
+  const les = await open('lessons.html', 'desktop', FAKE_WRITER);
+  try {
+    await dict.p.waitForSelector('#detail .word-hero');
+    await openFamilyWord(les.p, '爸爸');
+    const a = strip(await dict.p.innerHTML('#detail'));
+    const b = strip(await les.p.innerHTML('#wordBody'));
+    assert.ok(a.length > 500, 'the dictionary card is unexpectedly small');
+    assert.equal(b, a, 'the lessons card differs from the dictionary card');
+  } finally { await dict.ctx.close(); await les.ctx.close(); }
+});
+
+test('lessons: character selector, trace-it-yourself and replay work on the shared card', { skip }, async () => {
   const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER);
   try {
-    await p.click('#vocab .vocab-item[data-word="老师"]');
-    await p.waitForTimeout(300);
-    assert.equal(await p.$$eval('#wordDots .char-dot', a => a.map(b => b.textContent)).then(x => x.join('')), '老师');
-    await p.click('#wordNext');
-    assert.equal((await p.evaluate(() => window.__writer)).at(-1).ch, '师');
-    assert.equal(await p.isDisabled('#wordNext'), true);
-    await p.click('#wordDots .char-dot[data-idx="0"]');
-    assert.equal((await p.evaluate(() => window.__writer)).at(-1).ch, '老');
-    await p.click('#wordPractice');
-    const last = (await p.evaluate(() => window.__writer)).at(-1);
-    assert.equal(last.quiz, 1, 'practice mode did not start the trace quiz');
-    await p.click('#wordReplay');
+    await openFamilyWord(p, '爸爸');
+    assert.equal((await p.$$eval('#charNavDots .char-dot', a => a.map(b => b.textContent))).join(''), '爸爸');
+    await p.click('#charNavNext');
+    assert.equal((await p.evaluate(() => window.__writer)).at(-1).ch, '爸');
+    assert.equal(await p.isDisabled('#charNavNext'), true);
+    await p.click('#btnQuiz');
+    assert.equal((await p.evaluate(() => window.__writer)).at(-1).quiz, 1, 'the trace quiz did not start');
+    await p.click('#btnReplay');
     assert.equal((await p.evaluate(() => window.__writer)).at(-1).animated, 1);
   } finally { await ctx.close(); }
 });
 
-test('lessons: the sheet closes with Escape, the close button or a click outside, and gives the focus back', { skip }, async () => {
+test('lessons: the tone practice section of the card opens from the Ton button', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER);
+  try {
+    await openFamilyWord(p, '爸爸');
+    assert.equal((await p.innerHTML('#toneSection')).trim(), '');
+    await p.click('#btnTone');
+    await p.waitForTimeout(300);
+    assert.ok((await p.innerHTML('#toneSection')).length > 50, 'the tone practice did not open');
+  } finally { await ctx.close(); }
+});
+
+test('lessons: the card closes with Escape, the close button or a click outside, and gives the focus back', { skip }, async () => {
   const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER);
   try {
     for (const how of ['escape', 'button', 'outside']) {
       await p.focus('#vocab .vocab-item[data-word="你"]');
       await p.keyboard.press('Enter');
-      await p.waitForTimeout(250);
+      await p.waitForTimeout(300);
       assert.equal(await p.isVisible('#wordSheet'), true, `${how}: did not open from the keyboard`);
       if (how === 'escape') await p.keyboard.press('Escape');
       if (how === 'button') await p.click('#wordClose');
@@ -805,63 +833,51 @@ test('lessons: the sheet closes with Escape, the close button or a click outside
   } finally { await ctx.close(); }
 });
 
-test('lessons: the sheet plays the word and re-renders in the other language while open', { skip }, async () => {
-  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER + STUB_SPEECH([{ name: 'Huihui', lang: 'zh-CN' }]));
+test('lessons: a word missing from the dictionary still opens a card (what the lesson knows of it)', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER);
   try {
-    await p.click('#vocab .vocab-item[data-word="你"]');
-    await p.waitForTimeout(300);
-    assert.match(await p.textContent('#wordReplay'), /Rejouer/);
-    await p.click('#wordSpeak');
-    await p.waitForTimeout(300);
-    assert.deepEqual((await p.evaluate(() => window.__spoken)).map(s => s.text), ['你']);
-    await p.evaluate(() => setLang('en'));                     // the header switch is behind the overlay
-    await p.waitForTimeout(200);
-    assert.match(await p.textContent('#wordReplay'), /Replay the strokes/);
-    assert.match(await p.textContent('#wordBody .word-dict-link'), /See in the dictionary/);
-    assert.equal(await p.isVisible('#wordSheet'), true, 'the language change closed the sheet');
+    await p.click('#vocab .vocab-item[data-word="你"]');          // 你 is not in the 5-word test dictionary
+    await p.waitForSelector('#wordBody .word-hero');
+    assert.match(await p.textContent('#wordBody .pinyin'), /nǐ/);
   } finally { await ctx.close(); }
 });
 
-test('lessons (phone): the stroke sheet covers the bottom bar and its last line is reachable', { skip }, async () => {
+test('lessons: the open card plays the word and follows the language switch', { skip }, async () => {
+  const { p, ctx } = await open('lessons.html', 'desktop', FAKE_WRITER + STUB_SPEECH([{ name: 'Huihui', lang: 'zh-CN' }]));
+  try {
+    await openFamilyWord(p, '爸爸');
+    assert.match(await p.textContent('#btnReplay'), /Rejouer/);
+    await p.click('#btnSpeak');
+    await p.waitForTimeout(300);
+    assert.deepEqual((await p.evaluate(() => window.__spoken)).map(s => s.text), ['爸爸']);
+    await p.evaluate(() => setLang('en'));                     // the header switch is behind the overlay
+    await p.waitForTimeout(300);
+    assert.match(await p.textContent('#btnReplay'), /Replay/);
+    assert.equal(await p.isVisible('#wordSheet'), true, 'the language change closed the card');
+  } finally { await ctx.close(); }
+});
+
+test('lessons (phone): the card covers the bottom bar and its end is reachable', { skip }, async () => {
   const { p, ctx } = await open('lessons.html', 'phone', FAKE_WRITER);
   try {
-    await p.click('#vocab .vocab-item[data-word="老师"]');
-    await p.waitForTimeout(300);
+    await openFamilyWord(p, '爸爸');
     const m = await p.evaluate(() => {
       const sheet = document.getElementById('wordSheet');
       sheet.scrollTop = sheet.scrollHeight;
-      const link = document.querySelector('#wordBody .word-dict-link').getBoundingClientRect();
+      const last = [...document.querySelectorAll('#wordBody > *')].pop().getBoundingClientRect();
       const at = document.elementFromPoint(innerWidth / 2, innerHeight - 6);
-      return { linkBottom: link.bottom, h: innerHeight, overBar: !!(at && at.closest('#wordSheet')), overflow: document.documentElement.scrollWidth > innerWidth };
+      return { lastBottom: last.bottom, h: innerHeight, overBar: !!(at && at.closest('#wordSheet')), overflow: document.documentElement.scrollWidth > innerWidth };
     });
-    assert.equal(m.overBar, true, 'the bottom bar is drawn over the sheet');
-    assert.ok(m.linkBottom <= m.h, `the last link is cut off (${m.linkBottom} > ${m.h})`);
+    assert.equal(m.overBar, true, 'the bottom bar is drawn over the card');
+    assert.ok(m.lastBottom <= m.h, `the end of the card is cut off (${m.lastBottom} > ${m.h})`);
     assert.equal(m.overflow, false);
   } finally { await ctx.close(); }
 });
 
-test('lessons: without Hanzi Writer (offline, CDN blocked) the sheet still shows the character', { skip }, async () => {
+test('lessons: without Hanzi Writer (offline, CDN blocked) the card still shows the character', { skip }, async () => {
   const { p, ctx } = await open('lessons.html', 'desktop');          // external scripts are blocked in these tests
   try {
-    await p.click('#vocab .vocab-item[data-word="你"]');
-    await p.waitForTimeout(300);
-    assert.equal(await p.textContent('#writer-host .writer-fallback'), '你');
+    await openFamilyWord(p, '爸爸');
+    assert.match(await p.textContent('#writer-host'), /爸/);
   } finally { await ctx.close(); }
-});
-
-test('lessons: the three buttons of the stroke sheet fill the row, nothing is left empty on one side', { skip }, async () => {
-  for (const size of ['phone', 'desktop']) {
-    const { p, ctx } = await open('lessons.html', size, FAKE_WRITER);
-    try {
-      await p.click('#vocab .vocab-item[data-word="老师"]');
-      await p.waitForTimeout(300);
-      const g = await p.evaluate(() => {
-        const row = document.querySelector('#wordBody .controls').getBoundingClientRect();
-        const btns = [...document.querySelectorAll('#wordBody .ctrl-btn')].map(b => b.getBoundingClientRect());
-        return { left: btns[0].left - row.left, right: row.right - btns.at(-1).right, n: btns.length };
-      });
-      assert.equal(g.n, 3);
-      assert.ok(Math.abs(g.left - g.right) <= 1, `${size}: buttons are off-centre (left gap ${g.left}px, right gap ${g.right}px)`);
-    } finally { await ctx.close(); }
-  }
 });

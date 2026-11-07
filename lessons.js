@@ -7,12 +7,6 @@
 // -------------------------------------------------------------------------
 // I18N
 // -------------------------------------------------------------------------
-// Escapes a value before it is interpolated into an HTML template.
-function esc(v) {
-  return String(v ?? '').replace(/[&<>"']/g, c =>
-    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
 const I18N = {
   fr: {
     navHome:      'Accueil',
@@ -35,9 +29,6 @@ const I18N = {
     tagReuse: 'Nouvel emploi',
     tagReuseHint: 'Ce mot est déjà apparu dans une leçon précédente, avec un autre emploi.',
     listenExample: 'Écouter l’exemple',
-    redraw: 'Rejouer le tracé',
-    practice: 'S’entraîner',
-    openDict: 'Voir dans le dictionnaire',
     close: 'Fermer',
     openWordHint: 'Voir le tracé',
     home: 'Accueil',
@@ -71,9 +62,6 @@ const I18N = {
     tagReuse: 'New use',
     tagReuseHint: 'This word appeared in an earlier lesson, with a different use.',
     listenExample: 'Listen to the example',
-    redraw: 'Replay the strokes',
-    practice: 'Practise',
-    openDict: 'See in the dictionary',
     close: 'Close',
     openWordHint: 'See the strokes',
     home: 'Home',
@@ -317,116 +305,50 @@ function hideWordPop() {
 }
 
 // -------------------------------------------------------------------------
-// FICHE D'UN MOT — clic sur un mot du vocabulaire : tracé animé, tracé à refaire, écoute
-// (même Hanzi Writer que le dictionnaire ; le lien mène à la fiche complète)
+// FICHE D'UN MOT — clic sur un mot du vocabulaire : LA MÊME fiche que dans le dictionnaire
+// (word-detail.js : tracé animé, tracé à refaire, écoute, entraînement aux tons, infos du mot)
 // -------------------------------------------------------------------------
+const DICT_URL    = 'data/hsk1.json';
 const wordOverlay = document.getElementById('wordOverlay');
 const wordBody    = document.getElementById('wordBody');
-let wordState = null;          // { w, idx, writer } tant que la fiche est ouverte
+let wordOpen = null;           // le mot dont la fiche est ouverte
 let wordReturnFocus = null;
+let DICT = null;               // data/hsk1.json indexé par mot, chargé au premier clic
 
-const wordChars = () => (wordState ? [...wordState.w] : []);
-
-function renderWordSheet() {
-  const w = wordState.w;
-  const v = VOCAB[w] || {};
-  const meaning = ((lang === 'fr' ? v.fr : v.en) || v.fr || v.en || '').split(';').slice(0, 2).join(' ; ').trim();
-  document.getElementById('wordTitle').textContent = w;
-  document.getElementById('wordClose').setAttribute('aria-label', t('close'));
-  wordBody.innerHTML = `
-    <div class="word-hero">
-      <div class="word-pinyin"><span class="pinyin">${esc(v.p)}</span></div>
-      <div class="word-meaning">${esc(meaning || '—')}</div>
-      <div class="word-badges"><span class="level-badge">HSK 1</span></div>
-    </div>
-    <div class="char-display">
-      <div id="writer-host" role="img" aria-label="${esc(w)}"></div>
-      <div class="char-nav" id="wordNav">
-        <button class="btn icon" id="wordPrev" type="button" aria-label="‹"><i class="fa-solid fa-chevron-left"></i></button>
-        <div class="char-nav-dots" id="wordDots"></div>
-        <button class="btn icon" id="wordNext" type="button" aria-label="›"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
-      <div class="controls">
-        <button class="ctrl-btn primary" id="wordReplay" type="button"><i class="fa-solid fa-rotate-right"></i><span class="ctrl-label">${esc(t('redraw'))}</span></button>
-        <button class="ctrl-btn" id="wordPractice" type="button"><i class="fa-solid fa-pen"></i><span class="ctrl-label">${esc(t('practice'))}</span></button>
-        <button class="ctrl-btn" id="wordSpeak" type="button"><i class="fa-solid fa-volume-high"></i><span class="ctrl-label">${esc(t('playAll'))}</span></button>
-      </div>
-    </div>
-    <p class="word-dict-link"><a href="app.html?w=${encodeURIComponent(w)}&l=1">${esc(t('openDict'))} →</a></p>`;
-
-  document.getElementById('wordReplay').addEventListener('click', () => drawWord(false));
-  document.getElementById('wordPractice').addEventListener('click', () => drawWord(true));
-  document.getElementById('wordSpeak').addEventListener('click', () => speak(w));
-  document.getElementById('wordPrev').addEventListener('click', () => stepWord(-1));
-  document.getElementById('wordNext').addEventListener('click', () => stepWord(1));
-  renderWordNav();
-  drawWord(false);
-}
-
-function renderWordNav() {
-  const chars = wordChars();
-  const nav = document.getElementById('wordNav');
-  if (!nav) return;
-  nav.classList.toggle('visible', chars.length > 1);
-  if (chars.length <= 1) return;
-  document.getElementById('wordPrev').disabled = wordState.idx === 0;
-  document.getElementById('wordNext').disabled = wordState.idx === chars.length - 1;
-  const dots = document.getElementById('wordDots');
-  dots.innerHTML = chars.map((c, i) =>
-    `<button type="button" class="char-dot${i === wordState.idx ? ' active' : ''}" data-idx="${i}">${esc(c)}</button>`).join('');
-  dots.querySelectorAll('.char-dot').forEach(b => b.addEventListener('click', () => {
-    wordState.idx = Number(b.dataset.idx); renderWordNav(); drawWord(false);
-  }));
-}
-
-function stepWord(d) {
-  const next = wordState.idx + d;
-  if (next < 0 || next >= wordChars().length) return;
-  wordState.idx = next;
-  renderWordNav();
-  drawWord(false);
-}
-
-/** Anime le caractère courant (practice = false) ou laisse l'élève le tracer lui-même (practice = true). */
-function drawWord(practice) {
-  const host = document.getElementById('writer-host');
-  if (!host || !wordState) return;
-  host.innerHTML = '';
-  const ch = wordChars()[wordState.idx];
-  const size = host.clientWidth || 260;
-  try {
-    wordState.writer = HanziWriter.create(host, ch, {
-      width: size, height: size, padding: 8,
-      strokeColor: '#1a1310', radicalColor: '#b8211f',
-      strokeAnimationSpeed: 1.0, delayBetweenStrokes: 200,
-      showOutline: true, outlineColor: practice ? 'rgba(60,35,15,0.2)' : 'rgba(60,35,15,0.15)',
-      showCharacter: false, drawingColor: '#b8211f', highlightColor: '#b8211f'
-    });
-    if (practice) wordState.writer.quiz({ onMistake() {}, onCorrectStroke() {}, onComplete() {} });
-    else wordState.writer.animateCharacter();
-  } catch {
-    // Hanzi Writer indisponible (hors ligne, CDN bloqué) : au moins le caractère en grand
-    host.innerHTML = `<div class="writer-fallback" style="font-size:${Math.round(size * 0.65)}px;line-height:${size}px">${esc(ch)}</div>`;
+async function dictionaryEntry(w) {
+  if (!DICT) {
+    try {
+      const raw = await fetch(DICT_URL).then(r => r.json());
+      DICT = new Map(raw.map(e => [e.simplified, toWordItem(e)]));
+    } catch { DICT = new Map(); }
   }
+  if (DICT.has(w)) return DICT.get(w);
+  const v = VOCAB[w] || {};    // repli (dictionnaire injoignable) : ce que la leçon sait du mot
+  return { char: w, pinyin: v.p || '', fr: v.fr || '', en: v.en || '', pos: [], classifiers: [] };
 }
 
-function openWord(w) {
-  wordState = { w, idx: 0, writer: null };
+async function openWord(w) {
   wordReturnFocus = document.activeElement;
+  wordOpen = w;
+  document.getElementById('wordTitle').textContent = w;
   wordOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  const item = await dictionaryEntry(w);
+  if (wordOpen !== w) return;                       // refermée pendant le chargement
   // après l'affichage : le tracé se dimensionne sur la largeur réelle du cadre
   requestAnimationFrame(() => {
-    renderWordSheet();
+    if (wordOpen !== w) return;
+    showWordDetail(wordBody, item, { lang, level: 1 });
     document.getElementById('wordClose').focus();
   });
 }
 
 function closeWord() {
-  if (!wordState) return;
+  if (!wordOpen) return;
+  wordOpen = null;
   wordOverlay.classList.remove('open');
   document.body.style.overflow = '';
-  wordState = null;
+  hideWordDetail();
   stopSpeech();
   if (wordReturnFocus && wordReturnFocus.focus) wordReturnFocus.focus();
 }
@@ -438,7 +360,6 @@ vocabBox.addEventListener('click', e => {
   const item = e.target.closest('.vocab-item');
   if (item) openWord(item.dataset.word);
 });
-
 
 // -------------------------------------------------------------------------
 // NAVIGATION / ACTIONS
@@ -542,7 +463,7 @@ function setLang(l) {
   renderGrammar();
   renderVocab();
   updateReviewButton();
-  if (wordState) renderWordSheet();
+  if (wordOpen && currentChar) showWordDetail(wordBody, currentChar, { lang: l, level: 1 });   // la fiche ouverte suit la langue
 }
 
 // -------------------------------------------------------------------------

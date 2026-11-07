@@ -15,6 +15,9 @@
 - Daily reminder (Web Push): choose a time on the practice page; a notification is sent only if nothing was practised that day, and stops after 14 idle days. Small backend in `server/` (Python + SQLite, no account: the push subscription is the only identifier). See `server/push_server.py`; deployed with `scripts/deploy-push.ps1`.
 - SEO: `scripts/build-seo.mjs` generates one static page per word (5,000+, content in the HTML, JSON-LD) and a list page per HSK level, plus `sitemap-mots.xml`; `deploy.ps1` runs it. Dictionary deep links (`app.html?w=学&l=1`). 301 (not 302) from the bare domain to `www`.
 - Bottom tab bar: fixed height (no safe-area in the padding), the safe area is filled under it; the word sheet opens above it; tests check that nothing is hidden under the bar.
+- Word card (`word-detail.js`): the dictionary's card (strokes, trace-it-yourself, listen, tone practice, facts) is now one shared module. Clicking a word of a lesson's vocabulary opens exactly that card; `app.js` and `lessons.js` no longer carry their own copy.
+- Lessons: grammar points per lesson (`lessons/hsk1-grammar.json`, tags "New" / "New use" computed from the earlier lessons), recorded audio for every line (voice A female, B male, checked against the dialogue: titles of address, agreements), and speaker/voice consistency tests.
+- Pronunciation plays recorded files first (`audio/`, Kokoro, Apache-2.0) and falls back to the system voice, with a message when the device has no Chinese voice. Anonymous visit counts with Umami.
 
 ## 1.0.0 — 2026-11-06
 

@@ -117,7 +117,9 @@ sandbox.window.document = document;
 sandbox.globalThis = sandbox;
 
 // Expose les symboles internes pour les assertions.
-const source = readFileSync(new URL('../app.js', import.meta.url), 'utf8');
+// la fiche (word-detail.js) est chargée avant le dictionnaire (app.js), dans la même page
+const source = readFileSync(new URL('../word-detail.js', import.meta.url), 'utf8') + '\n' +
+  readFileSync(new URL('../app.js', import.meta.url), 'utf8');
 const exposed = `
 globalThis.__app = {
   startToneDetection, renderTonePractice, renderToneActions, showResultFeedback,
