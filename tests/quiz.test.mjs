@@ -306,12 +306,16 @@ test('les distracteurs peuvent venir d’un niveau antérieur', () => {
   quiz.setCurrentLevel(2);
 
   const target = levelWords(2)[0];
-  const d = quiz.pickDistractors(target, 3);
-  assert.equal(d.length, 3, 'pas assez de distracteurs au niveau 2');
   const hsk1 = new Set(levelWords(1).map(w => w.slug));
-  const fromL1 = d.filter(w => hsk1.has(w.slug));
-  assert.ok(fromL1.length > 0,
-    'aucun distracteur du niveau 1 alors que le niveau 2 est court');
+  // Le tirage est aléatoire : une seule série de 3 peut très bien n'en contenir aucun du niveau 1
+  // (test intermittent en CI). Sur 60 tirages, n'en voir JAMAIS un est impossible en pratique.
+  let fromL1 = 0;
+  for (let i = 0; i < 60; i++) {
+    const d = quiz.pickDistractors(target, 3);
+    assert.equal(d.length, 3, 'pas assez de distracteurs au niveau 2');
+    fromL1 += d.filter(w => hsk1.has(w.slug)).length;
+  }
+  assert.ok(fromL1 > 0, 'aucun distracteur du niveau 1 alors que le niveau 2 est court');
 
   // le deck, lui, ne contient que les mots du niveau courant
   quiz.setOnlyReview(false);

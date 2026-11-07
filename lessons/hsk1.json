@@ -1933,15 +1933,15 @@
     },
     {
      "who": "A",
-     "hanzi": "你哥哥有女朋友吗？",
-     "pinyin": "nǐ gē ge yǒu nǚ péng you ma?",
-     "fr": "Ton frère a une copine ?",
-     "en": "Does your brother have a girlfriend?",
+     "hanzi": "你姐姐有男朋友吗？",
+     "pinyin": "nǐ jiě jie yǒu nán péng you ma?",
+     "fr": "Ta sœur a un copain ?",
+     "en": "Does your older sister have a boyfriend?",
      "words": [
       "你",
-      "哥哥",
+      "姐姐",
       "有",
-      "女朋友",
+      "男朋友",
       "吗"
      ]
     },

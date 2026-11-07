@@ -18,6 +18,7 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { createServer } from 'node:http';
 import { readFile, readdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -459,7 +460,9 @@ test('generated SEO page: content is in the HTML, with title, canonical, JSON-LD
 
 // ------------------------------------------------------------------ rien sous la barre du bas
 for (const page of ['quiz.html', 'app.html', 'lessons.html', 'mot/a1-554a.html', 'vocabulaire-hsk-1.html']) {
-  test(`${page} (phone): scrolled to the end, no content is hidden under the bottom bar`, { skip }, async () => {
+  // mot/ and vocabulaire-hsk-N.html are generated from data/ (git-ignored): absent on a fresh clone and in CI
+  const missing = !existsSync(path.join(ROOT, page)) && 'generated page: run scripts/build-seo.mjs first';
+  test(`${page} (phone): scrolled to the end, no content is hidden under the bottom bar`, { skip: skip || missing }, async () => {
     const { p, ctx } = await open(page, 'phone');
     try {
       for (const lang of ['fr', 'en']) {
