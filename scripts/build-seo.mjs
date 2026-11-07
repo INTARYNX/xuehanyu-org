@@ -104,6 +104,7 @@ ${extraHead}<link rel="stylesheet" href="/fonts/manrope.css?v=${V}">
 <link rel="stylesheet" href="/style.css?v=${V}">
 <link rel="stylesheet" href="/seo.css?v=${V}">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+<script defer src="https://analytics.mintaka.cc/script.js" data-website-id="c0e37aec-f56b-4e80-b592-3365e058f635" data-domains="www.xuehanyu.org" data-do-not-track="true"></script>
 </head>
 <body class="seo-body">
 <div id="paper-bg" aria-hidden="true"></div>

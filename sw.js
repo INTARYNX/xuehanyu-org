@@ -2,7 +2,7 @@
 // - same-origin pages, scripts, styles and data: network first, cache as fallback
 // - images and pinned CDN assets: cache first (they never change in place)
 // Bump VERSION to drop every cached file.
-const VERSION = 'v15';
+const VERSION = 'v16';
 const CACHE = 'xuehanyu-' + VERSION;
 const SHELL = [
   './', 'app.html', 'quiz.html', 'lessons.html',
@@ -33,6 +33,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   const sameOrigin = url.origin === self.location.origin;
   if (sameOrigin && url.pathname.startsWith('/api/')) return;   // backend des rappels : jamais en cache
+  if (url.hostname === 'analytics.mintaka.cc') return;          // mesure d'audience : toujours la version du serveur
 
   const audioFile = sameOrigin && /^\/audio\/[lw]\//.test(url.pathname);
   if (!sameOrigin || req.destination === 'image' || audioFile) {

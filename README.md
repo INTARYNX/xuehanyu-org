@@ -37,6 +37,10 @@ python3 -m http.server 8080
 node scripts/build-seo.mjs     # mot/*.html, vocabulaire-hsk-N.html, sitemap-mots.xml (git-ignored, rebuilt by deploy.ps1)
 ```
 
+## Visit statistics
+
+Anonymous page-view counts with a self-hosted [Umami](https://umami.is) (`analytics.mintaka.cc`): no cookies, Do Not Track respected, only on `www.xuehanyu.org` (`data-domains`). The tag is in the `<head>` of every page and in `scripts/build-seo.mjs`.
+
 ## Audio
 
 Pronunciation plays pre-recorded files first (`audio/l/` lesson lines, `audio/w/` HSK 1–2 words) and falls back to the system's Chinese voice, which many Windows and Linux PCs lack. The files are generated locally, without any account or key, by `scripts/build_audio.py` with [Kokoro v1.1-zh](https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh) (Apache-2.0 weights, Chinese data granted permissively by LongMaoData). See `audio/NOTICE.txt`.
