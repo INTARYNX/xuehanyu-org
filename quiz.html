@@ -26,18 +26,18 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="xuehanyu">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="fonts/manrope.css?v=20261107g">
-<link rel="stylesheet" href="style.css?v=20261107g">
-<link rel="stylesheet" href="quiz.css?v=20261107g">
+<link rel="stylesheet" href="fonts/manrope.css?v=20261107i">
+<link rel="stylesheet" href="style.css?v=20261107i">
+<link rel="stylesheet" href="quiz.css?v=20261107i">
 </head>
 <body class="quiz-body">
 
-<canvas id="paper-bg"></canvas>
+<div id="paper-bg" aria-hidden="true"></div>
 
 <div class="app quiz-app">
 
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="xuehanyu.org"><span class="zh">学汉语</span><span class="brand-name">xuehanyu</span></a>
+    <a class="brand" href="index.html" aria-label="xuehanyu.org"><span class="zh">学汉语</span><span class="brand-name sr-only">xuehanyu.org</span></a>
     <div class="header-right">
       <div class="lang-switch" role="group" aria-label="Language">
         <button data-lang="fr" class="active">FR</button>
@@ -145,9 +145,9 @@
 
 </div>
 
-<script src="srs.js?v=20261107g"></script>
-<script src="progress.js?v=20261107g"></script>
-<script src="quiz.js?v=20261107g"></script>
-<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js?v=20261107g'));</script>
+<script src="srs.js?v=20261107i"></script>
+<script src="progress.js?v=20261107i"></script>
+<script src="quiz.js?v=20261107i"></script>
+<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js?v=20261107i'));</script>
 </body>
 </html>

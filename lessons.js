@@ -71,54 +71,7 @@ const I18N = {
 let lang = 'fr';
 const t = (k) => (I18N[lang] && I18N[lang][k]) || k;
 
-// -------------------------------------------------------------------------
-// PAPER BACKGROUND — identique à app.js / quiz.js (texture papier)
-// -------------------------------------------------------------------------
-const paperCanvas = document.getElementById('paper-bg');
-const pctx = paperCanvas.getContext('2d');
 
-function buildPaper() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const W = window.innerWidth, H = window.innerHeight;
-  paperCanvas.width  = W * dpr;
-  paperCanvas.height = H * dpr;
-  paperCanvas.style.width  = W + 'px';
-  paperCanvas.style.height = H + 'px';
-  pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  const grad = pctx.createRadialGradient(W*.45, H*.4, W*.1, W/2, H/2, Math.max(W,H)*.85);
-  grad.addColorStop(0,   '#f0e4c5');
-  grad.addColorStop(0.6, '#e3d2a8');
-  grad.addColorStop(1,   '#c9b582');
-  pctx.fillStyle = grad;
-  pctx.fillRect(0, 0, W, H);
-
-  const img = pctx.getImageData(0, 0, W*dpr, H*dpr);
-  const d = img.data;
-  for (let i = 0; i < d.length; i += 4) {
-    const n = (Math.random()-.5)*8;
-    d[i]   = Math.max(0, Math.min(255, d[i]   + n));
-    d[i+1] = Math.max(0, Math.min(255, d[i+1] + n));
-    d[i+2] = Math.max(0, Math.min(255, d[i+2] + n*.85));
-  }
-  pctx.putImageData(img, 0, 0);
-
-  const diag = Math.sqrt(W*W + H*H);
-  for (const angle of [Math.PI/4, -Math.PI/4]) {
-    const sy = angle > 0 ? -diag : diag;
-    for (let dd = -diag; dd < diag; dd += 4) {
-      const j = (Math.random()-.5)*1.8;
-      pctx.strokeStyle = `rgba(140,110,70,${0.03+Math.random()*0.05})`;
-      pctx.lineWidth = 1;
-      pctx.beginPath();
-      pctx.moveTo(dd, sy);
-      pctx.lineTo(dd + diag * Math.tan(angle), sy + diag);
-      pctx.stroke();
-    }
-  }
-}
-window.addEventListener('resize', buildPaper);
-buildPaper();
 
 // -------------------------------------------------------------------------
 // TON — sandhi : la logique vit dans lessons-pinyin.js (partagé avec les tests)

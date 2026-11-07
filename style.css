@@ -44,7 +44,10 @@
   --r-pill: 999px;
   --gap: 1rem;
   --tap: 44px;
-  --tabbar-h: 64px;
+  --tabbar-h: 54px;
+  /* Zone sûre du bas (home indicator, barre système Android), PLAFONNÉE : en PWA elle peut valoir
+     30–50px, ce qui doublait la hauteur de la barre et laissait une bande vide dessous. */
+  --sab: min(env(safe-area-inset-bottom, 0px), 14px);
   --topbar-h: 60px;
   --lift: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 1px 2px rgba(60, 35, 15, 0.1), 0 6px 18px -8px rgba(60, 35, 15, 0.25);
 }
@@ -91,11 +94,16 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 }
 .zh { font-family: var(--kai); }
 
-/* The paper is painted once at the size the window had; the browser toolbars and the
-   iOS safe area then change the visible height. Stretching the bitmap to the layout
-   viewport (instead of the px size set by the scripts) means no band of bare page
-   background can ever show under it. */
-#paper-bg { position: fixed; inset: 0; width: 100% !important; height: 100% !important; z-index: 0; pointer-events: none; }
+/* Fond papier : dégradé + grain (paper.webp, tuile) + vignette, en CSS pur. Avant, un canvas était
+   redessiné pixel par pixel en JavaScript à chaque `resize` — sur téléphone, à chaque fois que la barre
+   d'adresse se replie — ce qui bloquait le fil principal (≈ 170 ms à 4× de CPU) et faisait ramer le défilement. */
+#paper-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(60, 35, 15, 0.22) 100%),
+    url(paper.webp) 0 0 / 256px 256px repeat,
+    radial-gradient(ellipse at 45% 40%, #f0e4c5 0%, #e3d2a8 60%, #c9b582 100%);
+}
 
 /* =========================================================================
    APP SHELL
@@ -135,7 +143,15 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
   text-decoration: none;
   white-space: nowrap;
 }
-.brand .zh { font-size: 1.5rem; color: var(--accent); font-weight: 400; }
+/* Les caractères seuls, en graisse forte : le serif/kaiti par défaut était trop fin à cette taille. */
+.brand .zh {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--accent);
+}
 .brand-name { color: var(--ink); }
 .header-right { display: flex; align-items: center; gap: 0.75rem; }
 
@@ -197,7 +213,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
 @media (max-width: 800px) {
   .app {
     /* hauteur réelle de la barre (63px) + respiration + zone sûre */
-    padding-bottom: calc(71px + env(safe-area-inset-bottom));
+    padding-bottom: calc(var(--tabbar-h) + var(--sab) + 1.25rem);
   }
   .site-nav {
     position: fixed;
@@ -209,7 +225,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     justify-content: space-between;
     align-items: center;
     gap: 0;
-    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    padding: 8px 12px calc(8px + var(--sab));
     z-index: 10000;
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: saturate(140%) blur(14px);
@@ -225,14 +241,15 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline-offset: 2p
     gap: 2px;
     flex: 1;
     max-width: none;
-    min-height: 43px;
+    min-height: 0;
     padding: 0 2px;
+    line-height: 1.3;
     border-radius: var(--r-md);
     font-size: 0.68rem;
     letter-spacing: 0.01em;
     text-align: center;
   }
-  .site-nav a i { font-size: 1.15rem; }
+  .site-nav a i { font-size: 1.1rem; line-height: 1; }
   .site-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
 }
 
