@@ -18,3 +18,5 @@ mot/
 vocabulaire-hsk-*.html
 sitemap-mots.xml
 .deploy_stage.tgz
+
+.venv-tts/

@@ -71,13 +71,35 @@ def load_lines():
     return [(f"l/{l['id']}-{i}.mp3", e["hanzi"], e["who"]) for l in lessons for i, e in enumerate(l["exchanges"])]
 
 
-def trim(wav, pad_ms=60, floor=0.01):
-    """Retire le silence de tête et de queue, garde un souffle de 60 ms."""
+def trim(wav, pad_ms=120, tail_ms=250, floor=0.003):
+    """Retire le silence de tête et de queue. Seuil bas et marges larges : un mot d'un seul caractère
+    s'éteint doucement (ton descendant) et le seuil précédent (0,01) en rognait la fin et l'attaque."""
     loud = np.flatnonzero(np.abs(wav) > floor)
     if not len(loud):
         return wav
     pad = int(SAMPLE_RATE * pad_ms / 1000)
-    return wav[max(0, loud[0] - pad): loud[-1] + pad]
+    tail = int(SAMPLE_RATE * tail_ms / 1000)
+    out = wav[max(0, loud[0] - pad): loud[-1] + tail]
+    fade = min(len(out), int(SAMPLE_RATE * 0.06))     # fondu de sortie : jamais de coupure sèche
+    out = out.copy()
+    out[-fade:] *= np.linspace(1, 0, fade)
+    return out
+
+
+def end_level(wav, floor=0.003):
+    """Amplitude des derniers 50 ms du son : forte = le moteur a coupé le mot en plein milieu."""
+    loud = np.flatnonzero(np.abs(wav) > floor)
+    return float(np.abs(wav[:loud[-1] + 1][-int(SAMPLE_RATE * 0.05):]).max()) if len(loud) else 0.0
+
+
+def synth(pipe, text, voice):
+    """Kokoro tronque souvent la fin d'un mot d'un seul caractère : on essaie avec « ， » / « 。 » en
+    plus et on garde la version dont la fin est la plus douce."""
+    def run(t):
+        chunks = [r.audio for r in pipe(t, voice=voice, speed=speed)]
+        return np.concatenate([c.numpy() if hasattr(c, "numpy") else c for c in chunks])
+    variants = [text] if len(text) > 1 else [text, text + "，", text + "。"]
+    return min((run(t) for t in variants), key=end_level)
 
 
 def write_mp3(path, wav):
@@ -114,8 +136,7 @@ def main():
         if os.path.exists(path) and not args.force:
             skipped += 1
             continue
-        chunks = [r.audio for r in pipe(text, voice=voice, speed=speed)]
-        wav = trim(np.concatenate([c.numpy() if hasattr(c, "numpy") else c for c in chunks]))
+        wav = trim(synth(pipe, text, voice))
         write_mp3(path, wav)
         done += 1
         if done % 25 == 0:
