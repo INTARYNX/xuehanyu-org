@@ -92,17 +92,37 @@ def end_level(wav, floor=0.003):
     return float(np.abs(wav[:loud[-1] + 1][-int(SAMPLE_RATE * 0.05):]).max()) if len(loud) else 0.0
 
 
-SINGLE_CHAR_SPEED = 0.55    # moitié de la vitesse normale (1.1) : un caractère isolé était trop rapide à l'oreille
+# Un caractère isolé était trop rapide à l'oreille : on le ralentit de moitié. PAS via la vitesse de Kokoro :
+# dès qu'elle passe sous ~0.9, le moteur ajoute une syllabe parasite AVANT le mot (« do yu » pour yǔ). On génère
+# donc à vitesse normale puis on étire le son, hauteur conservée.
+SINGLE_CHAR_STRETCH = 0.45  # rate de librosa : durée x2,2 (mesuré : le son utile ne gagne que ~x1,75 pour un rate de 0.5)
+
+
+def syllables(wav):
+    """Nombre de bosses d'énergie séparées par un creux marqué : > 1 sur un caractère seul = syllabe parasite."""
+    n = int(SAMPLE_RATE * 0.03)
+    e = np.array([np.abs(wav[i:i + n]).max() for i in range(0, len(wav), n)])
+    s = np.convolve(e, np.ones(3) / 3, "same")
+    peaks = [j for j in range(1, len(s) - 1) if s[j] >= s[j - 1] and s[j] > s[j + 1] and s[j] > 0.35 * s.max()]
+    return 1 + sum(1 for a, c in zip(peaks, peaks[1:]) if s[a:c + 1].min() < 0.65 * min(s[a], s[c]))
 
 
 def synth(pipe, text, voice):
     """Kokoro tronque souvent la fin d'un mot d'un seul caractère : on essaie avec « ， » / « 。 » en
     plus et on garde la version dont la fin est la plus douce."""
     def run(t):
-        chunks = [r.audio for r in pipe(t, voice=voice, speed=SINGLE_CHAR_SPEED if len(text) == 1 else speed)]
+        chunks = [r.audio for r in pipe(t, voice=voice, speed=speed)]
         return np.concatenate([c.numpy() if hasattr(c, "numpy") else c for c in chunks])
     variants = [text] if len(text) > 1 else [text, text + "，", text + "。"]
-    return min((run(t) for t in variants), key=end_level)
+    outs = []
+    for t in variants:
+        wav = run(t)
+        if len(text) == 1:
+            import librosa
+            wav = librosa.effects.time_stretch(wav.astype(np.float32), rate=SINGLE_CHAR_STRETCH)
+        outs.append(wav)
+    # une seule syllabe d'abord (le moteur en ajoute parfois une avant le mot), puis la fin la plus douce
+    return min(outs, key=lambda w: (syllables(w) > 1, end_level(w)))
 
 
 def write_mp3(path, wav):
