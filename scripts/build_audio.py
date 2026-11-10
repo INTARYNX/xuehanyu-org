@@ -95,7 +95,7 @@ def end_level(wav, floor=0.003):
 # Un caractère isolé était trop rapide à l'oreille : on le ralentit de moitié. PAS via la vitesse de Kokoro :
 # dès qu'elle passe sous ~0.9, le moteur ajoute une syllabe parasite AVANT le mot (« do yu » pour yǔ). On génère
 # donc à vitesse normale puis on étire le son, hauteur conservée.
-SINGLE_CHAR_STRETCH = 0.45  # rate de librosa : durée x2,2 (mesuré : le son utile ne gagne que ~x1,75 pour un rate de 0.5)
+SINGLE_CHAR_STRETCH = 0.65  # rate de librosa, réglé pour que le son utile soit ~x1,3 plus long que l'original (mesuré)
 
 
 def syllables(wav):
