@@ -37,6 +37,9 @@ LEVELS = (1, 2)             # niveaux dont chaque mot a son fichier
 # Mots que le moteur lit mal ISOLÉS : plusieurs lectures possibles et il prend la mauvaise pour le sens HSK
 # (长 : cháng « long », pas zhǎng « grandir »). Pas de fichier : le site retombe sur la voix du système.
 SKIP_WORDS = {"长"}
+# Kokoro ne sait pas dire un caractère isolé (fin coupée, ou syllabe parasite devant : « do yu » pour yǔ ; essayé :
+# variantes avec ponctuation, vitesse réduite, étirement après coup). Aucun fichier : voix du système.
+SKIP_SINGLE_CHAR = True
 
 
 def word_file(text):
@@ -59,7 +62,7 @@ def load_words():
         with open(os.path.join(ROOT, "data", f"hsk{level}.json"), encoding="utf-8-sig") as f:
             for e in json.load(f):
                 w = e["simplified"]
-                if w not in seen and w not in SKIP_WORDS:
+                if w not in seen and w not in SKIP_WORDS and not (SKIP_SINGLE_CHAR and len(w) == 1):
                     seen.add(w)
                     words.append(w)
     return words
@@ -86,43 +89,9 @@ def trim(wav, pad_ms=120, tail_ms=250, floor=0.003):
     return out
 
 
-def end_level(wav, floor=0.003):
-    """Amplitude des derniers 50 ms du son : forte = le moteur a coupé le mot en plein milieu."""
-    loud = np.flatnonzero(np.abs(wav) > floor)
-    return float(np.abs(wav[:loud[-1] + 1][-int(SAMPLE_RATE * 0.05):]).max()) if len(loud) else 0.0
-
-
-# Un caractère isolé était trop rapide à l'oreille : on le ralentit de moitié. PAS via la vitesse de Kokoro :
-# dès qu'elle passe sous ~0.9, le moteur ajoute une syllabe parasite AVANT le mot (« do yu » pour yǔ). On génère
-# donc à vitesse normale puis on étire le son, hauteur conservée.
-SINGLE_CHAR_STRETCH = 0.65  # rate de librosa, réglé pour que le son utile soit ~x1,3 plus long que l'original (mesuré)
-
-
-def syllables(wav):
-    """Nombre de bosses d'énergie séparées par un creux marqué : > 1 sur un caractère seul = syllabe parasite."""
-    n = int(SAMPLE_RATE * 0.03)
-    e = np.array([np.abs(wav[i:i + n]).max() for i in range(0, len(wav), n)])
-    s = np.convolve(e, np.ones(3) / 3, "same")
-    peaks = [j for j in range(1, len(s) - 1) if s[j] >= s[j - 1] and s[j] > s[j + 1] and s[j] > 0.35 * s.max()]
-    return 1 + sum(1 for a, c in zip(peaks, peaks[1:]) if s[a:c + 1].min() < 0.65 * min(s[a], s[c]))
-
-
 def synth(pipe, text, voice):
-    """Kokoro tronque souvent la fin d'un mot d'un seul caractère : on essaie avec « ， » / « 。 » en
-    plus et on garde la version dont la fin est la plus douce."""
-    def run(t):
-        chunks = [r.audio for r in pipe(t, voice=voice, speed=speed)]
-        return np.concatenate([c.numpy() if hasattr(c, "numpy") else c for c in chunks])
-    variants = [text] if len(text) > 1 else [text, text + "，", text + "。"]
-    outs = []
-    for t in variants:
-        wav = run(t)
-        if len(text) == 1:
-            import librosa
-            wav = librosa.effects.time_stretch(wav.astype(np.float32), rate=SINGLE_CHAR_STRETCH)
-        outs.append(wav)
-    # une seule syllabe d'abord (le moteur en ajoute parfois une avant le mot), puis la fin la plus douce
-    return min(outs, key=lambda w: (syllables(w) > 1, end_level(w)))
+    chunks = [r.audio for r in pipe(text, voice=voice, speed=speed)]
+    return np.concatenate([c.numpy() if hasattr(c, "numpy") else c for c in chunks])
 
 
 def write_mp3(path, wav):
