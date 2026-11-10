@@ -2,6 +2,8 @@
 # Excludes ONLY patterns defined in .webignore (ignores .gitignore for deployment)
 # Also commits + pushes to Git before deploy
 
+param([switch]$Full)   # -Full : renvoie tout (par défaut, seuls les fichiers modifiés sont envoyés)
+
 # ── Load local config ─────────────────────────────────────────────────────────
 
 $configFile = Join-Path $PSScriptRoot 'deploy.config.ps1'
@@ -98,7 +100,7 @@ try {
 
     $webIgnoreFile = Join-Path $base '.webignore'
     # On protège les outils de déploiement et les dossiers temporaires d'office
-    $ignoredPatterns = @('deploy.ps1', 'deploy.config.ps1', '.webignore', '.gitignore', '.git', '.deploy_stage', '.deploy_stage.tgz')
+    $ignoredPatterns = @('deploy.ps1', 'deploy.config.ps1', '.webignore', '.gitignore', '.git', '.deploy_stage', '.deploy_stage.tgz', '.deploy_removed.txt')
 
     if (Test-Path $webIgnoreFile) {
         Write-Host "Applying .webignore filters..." -ForegroundColor Yellow
@@ -135,21 +137,62 @@ try {
         throw "No files left to deploy after filtering."
     }
 
-    # ── Build staging directory ───────────────────────────────────────────────
+    # ── Compare with what is already online (SHA-256, file by file) ───────────
+
+    $REMOTE_NEW = "$REMOTE_DIR.new"
+    $REMOTE_OLD = "$REMOTE_DIR.old"
+    $sshArgs = @('-i', $SSH_KEY, '-o', 'StrictHostKeyChecking=accept-new', "$SSH_USER@$SSH_HOST")
+
+    function Get-FileSha256([string]$path) {
+        $sha = [System.Security.Cryptography.SHA256]::Create()
+        $fs  = [System.IO.File]::OpenRead($path)
+        try { return ([BitConverter]::ToString($sha.ComputeHash($fs)) -replace '-', '').ToLower() }
+        finally { $fs.Dispose(); $sha.Dispose() }
+    }
+
+    Write-Host ""
+    Write-Host "Comparing with the live site..." -ForegroundColor Cyan
+
+    $remoteHashes = @{}
+    if (-not $Full) {
+        [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+        $listing = & ssh @sshArgs "cd '$REMOTE_DIR' 2>/dev/null && sudo find . -type f -exec sha256sum {} +"
+        foreach ($line in $listing) {
+            if ($line -match '^([0-9a-f]{64})  \./(.+)$') { $remoteHashes[$Matches[2]] = $Matches[1] }
+        }
+    }
+
+    $changed = @()
+    $localSet = @{}
+    foreach ($file in $filesToDeploy) {
+        $src = Join-Path $base $file
+        if (-not (Test-Path $src)) { continue }
+        $localSet[$file] = $true
+        if ($remoteHashes[$file] -ne (Get-FileSha256 $src)) { $changed += $file }
+    }
+    $removed = @($remoteHashes.Keys | Where-Object { -not $localSet.ContainsKey($_) })
+
+    $total = $localSet.Count
+    Write-Host "$($changed.Count) file(s) to send, $($removed.Count) to delete, $($total - $changed.Count) unchanged (of $total)." -ForegroundColor White
+
+    if ($changed.Count -eq 0 -and $removed.Count -eq 0 -and -not $Full) {
+        Write-Host ""
+        Write-Host "Nothing to deploy: the live site is already up to date." -ForegroundColor Green
+        return
+    }
+
+    # ── Build staging directory (changed files only) ──────────────────────────
 
     $stage = Join-Path $base '.deploy_stage'
     Remove-Item $stage -Recurse -Force -ErrorAction SilentlyContinue
     New-Item -ItemType Directory -Path $stage | Out-Null
 
-    foreach ($file in $filesToDeploy) {
-        $src = Join-Path $base $file
-        if (-not (Test-Path $src)) { continue }
-
+    foreach ($file in $changed) {
         $dest    = Join-Path $stage $file
         $destDir = Split-Path $dest -Parent
 
         New-Item -ItemType Directory -Force -Path $destDir | Out-Null
-        Copy-Item $src $dest -Force
+        Copy-Item (Join-Path $base $file) $dest -Force
     }
 
     # ── Deploy to remote root ─────────────────────────────────────────────────
@@ -157,52 +200,45 @@ try {
     Write-Host ""
     Write-Host "Deploying root site to $SSH_USER@$SSH_HOST..." -ForegroundColor Cyan
 
-    # Deploiement ATOMIQUE : on envoie tout dans un dossier voisin, puis on l'echange avec le
-    # dossier en ligne. L'ancienne version videlait $REMOTE_DIR avant de recopier : pendant ces
-    # secondes le site etait incomplet, et une requete arrivee a ce moment recevait un 404 ou un
-    # fichier tronque que Cloudflare gardait ensuite en cache (jusqu'a 4 h).
-    $REMOTE_NEW = "$REMOTE_DIR.new"
-    $REMOTE_OLD = "$REMOTE_DIR.old"
+    # Deploiement ATOMIQUE : on prepare un dossier voisin (copie locale du site en ligne + fichiers
+    # modifies), puis on l'echange avec le dossier en ligne. L'ancienne version videlait $REMOTE_DIR
+    # avant de recopier : pendant ces secondes le site etait incomplet, et une requete arrivee a ce
+    # moment recevait un 404 ou un fichier tronque que Cloudflare gardait ensuite en cache (jusqu'a 4 h).
+    # La copie du site en ligne se fait sur le serveur (cp -a) : rien ne transite par le reseau.
+    $prepare = if ($Full) { "sudo mkdir -p '$REMOTE_DIR' && sudo rm -rf '$REMOTE_NEW' '$REMOTE_OLD' && sudo mkdir -p '$REMOTE_NEW'" }
+               else       { "sudo mkdir -p '$REMOTE_DIR' && sudo rm -rf '$REMOTE_NEW' '$REMOTE_OLD' && sudo cp -a '$REMOTE_DIR' '$REMOTE_NEW'" }
+    & ssh @sshArgs $prepare
+    if ($LASTEXITCODE -ne 0) { throw "SSH connection or remote copy failed." }
 
-    & ssh `
-        -i $SSH_KEY `
-        -o StrictHostKeyChecking=accept-new `
-        "$SSH_USER@$SSH_HOST" `
-        "sudo mkdir -p '$REMOTE_DIR' && sudo rm -rf '$REMOTE_NEW' '$REMOTE_OLD' && sudo mkdir -p '$REMOTE_NEW'"
+    if ($changed.Count -gt 0) {
+        Write-Host "Uploading $($changed.Count) file(s) to $REMOTE_NEW (the live site is untouched)..." -ForegroundColor White
 
-    if ($LASTEXITCODE -ne 0) { throw "SSH connection failed." }
+        # One compressed archive instead of thousands of individual scp transfers (the SEO pages are small files).
+        $archive = Join-Path $base '.deploy_stage.tgz'
+        & tar -czf $archive -C $stage .
+        if ($LASTEXITCODE -ne 0) { throw "Archive creation failed." }
 
-    Write-Host "Uploading files to $REMOTE_NEW (the live site is untouched)..." -ForegroundColor White
+        & scp -i $SSH_KEY -o StrictHostKeyChecking=accept-new $archive "${SSH_USER}@${SSH_HOST}:/tmp/xuehanyu_deploy.tgz"
+        if ($LASTEXITCODE -ne 0) { throw "SCP failed." }
 
-    # One compressed archive instead of ~5,000 individual scp transfers (the SEO pages are small files).
-    $archive = Join-Path $base '.deploy_stage.tgz'
-    & tar -czf $archive -C $stage .
-    if ($LASTEXITCODE -ne 0) { throw "Archive creation failed." }
+        & ssh @sshArgs "sudo tar -xzf /tmp/xuehanyu_deploy.tgz -C '$REMOTE_NEW' && rm -f /tmp/xuehanyu_deploy.tgz"
+        if ($LASTEXITCODE -ne 0) { throw "Remote extraction failed." }
+    }
 
-    & scp `
-        -i $SSH_KEY `
-        -o StrictHostKeyChecking=accept-new `
-        $archive `
-        "${SSH_USER}@${SSH_HOST}:/tmp/xuehanyu_deploy.tgz"
-
-    if ($LASTEXITCODE -ne 0) { throw "SCP failed." }
-
-    & ssh `
-        -i $SSH_KEY `
-        -o StrictHostKeyChecking=accept-new `
-        "$SSH_USER@$SSH_HOST" `
-        "sudo tar -xzf /tmp/xuehanyu_deploy.tgz -C '$REMOTE_NEW' && rm -f /tmp/xuehanyu_deploy.tgz"
-
-    if ($LASTEXITCODE -ne 0) { throw "Remote extraction failed." }
+    if ($removed.Count -gt 0) {
+        Write-Host "Deleting $($removed.Count) file(s) that no longer exist locally..." -ForegroundColor White
+        # Liste ecrite en LF / UTF-8 sans BOM (PowerShell 5.1 ajouterait un BOM et du CRLF, qui casseraient les noms).
+        $listFile = Join-Path $base '.deploy_removed.txt'
+        [System.IO.File]::WriteAllText($listFile, (($removed -join "`n") + "`n"), (New-Object System.Text.UTF8Encoding($false)))
+        & scp -i $SSH_KEY -o StrictHostKeyChecking=accept-new $listFile "${SSH_USER}@${SSH_HOST}:/tmp/xuehanyu_removed.txt"
+        if ($LASTEXITCODE -ne 0) { throw "SCP of the deletion list failed." }
+        & ssh @sshArgs "cd '$REMOTE_NEW' && sudo xargs -d '\n' rm -f < /tmp/xuehanyu_removed.txt && sudo find . -mindepth 1 -type d -empty -delete; rm -f /tmp/xuehanyu_removed.txt"
+        if ($LASTEXITCODE -ne 0) { throw "Remote deletion failed." }
+    }
 
     Write-Host "Fixing permissions, swapping the new version in and reloading Nginx..." -ForegroundColor White
     # chown/chcon --reference : le nouveau dossier prend le proprietaire et le contexte SELinux du dossier en ligne.
-    & ssh `
-        -i $SSH_KEY `
-        -o StrictHostKeyChecking=accept-new `
-        "$SSH_USER@$SSH_HOST" `
-        "sudo chmod 755 '$REMOTE_NEW' && sudo find '$REMOTE_NEW' -type d -exec chmod 755 {} + && sudo find '$REMOTE_NEW' -type f -exec chmod 644 {} + && sudo chown --reference='$REMOTE_DIR' '$REMOTE_NEW' && (sudo chcon -R --reference='$REMOTE_DIR' '$REMOTE_NEW' || true) && sudo mv '$REMOTE_DIR' '$REMOTE_OLD' && sudo mv '$REMOTE_NEW' '$REMOTE_DIR' && sudo rm -rf '$REMOTE_OLD' && sudo nginx -s reload"
-
+    & ssh @sshArgs "sudo chmod 755 '$REMOTE_NEW' && sudo find '$REMOTE_NEW' -type d -exec chmod 755 {} + && sudo find '$REMOTE_NEW' -type f -exec chmod 644 {} + && sudo chown --reference='$REMOTE_DIR' '$REMOTE_NEW' && (sudo chcon -R --reference='$REMOTE_DIR' '$REMOTE_NEW' || true) && sudo mv '$REMOTE_DIR' '$REMOTE_OLD' && sudo mv '$REMOTE_NEW' '$REMOTE_DIR' && sudo rm -rf '$REMOTE_OLD' && sudo nginx -s reload"
     if ($LASTEXITCODE -ne 0) { throw "Permission fix, swap or nginx reload failed." }
 
     Write-Host ""
@@ -218,6 +254,7 @@ finally {
         -Force `
         -ErrorAction SilentlyContinue
     Remove-Item (Join-Path $base '.deploy_stage.tgz') -Force -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $base '.deploy_removed.txt') -Force -ErrorAction SilentlyContinue
 
     Pop-Location
 }

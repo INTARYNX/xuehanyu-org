@@ -70,7 +70,10 @@ const Speech = (() => {
   /** Nom de fichier d'un mot : ses codepoints en hexadécimal, séparés par « - » (爱 -> 7231). Même règle que scripts/build_audio.py. */
   const audioKey = text => [...String(text)].map(c => c.codePointAt(0).toString(16)).join('-');
 
-  return { isChinese, pickVoice, verdict, platformOf, audioKey, T };
+  /** Téléphone : la voix native (Android, iPhone) est bonne et ne coûte aucun téléchargement : on la prend pour les mots, le fichier MP3 ne sert qu'en secours. */
+  const nativeFirst = os => os === 'ios' || os === 'android';
+
+  return { isChinese, pickVoice, verdict, platformOf, nativeFirst, audioKey, T };
 })();
 
 if (typeof module !== 'undefined' && module.exports) module.exports = Speech;
@@ -156,19 +159,35 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') (() => {
    * Prononce `text`. Le fichier audio d'abord (`src`, ou celui du mot s'il existe), puis la voix du système.
    * La promesse se résout à la fin de la lecture : 'spoken' | 'stopped' | 'no-voice' | 'error'.
    */
+  let seq = 0;                            // une lecture plus récente annule les secours de la précédente
+
   async function speak(text, { rate = 0.8, src = null } = {}) {
     stop();
-    if (!src) { await Promise.race([indexReady, new Promise(r => setTimeout(r, 600))]); src = wordSrc(text); }
+    const mine = ++seq;
+    const isWord = !src;                  // sans `src` : un mot isolé ; les répliques de dialogue portent le leur
+    if (isWord) { await Promise.race([indexReady, new Promise(r => setTimeout(r, 600))]); src = wordSrc(text); }
+
+    // Mot sur téléphone : voix native d'abord, silencieusement ; le MP3 seulement si elle manque ou échoue.
+    if (isWord && Speech.nativeFirst(Speech.platformOf(navigator.userAgent, navigator.platform, navigator.maxTouchPoints))) {
+      const r = await speakWithSystemVoice(text, rate, false);
+      if (mine !== seq) return 'stopped';           // une autre lecture a pris le relais pendant l'attente
+      if (r === 'spoken') return r;
+      if (src) { try { return await playFile(src); } catch { /* fichier absent ou illisible */ } }
+      if (r === 'no-voice') showNotice();
+      return r;
+    }
+
     if (src) { try { return await playFile(src); } catch { /* fichier absent ou illisible : voix du système */ } }
     return speakWithSystemVoice(text, rate);
   }
 
-  /** La voix chinoise du système ; un message explique quand il n'y en a pas. */
-  async function speakWithSystemVoice(text, rate) {
-    if (!synth) { showNotice(); return 'no-voice'; }
+  /** La voix chinoise du système ; un message explique quand il n'y en a pas (sauf `notify = false`). */
+  async function speakWithSystemVoice(text, rate, notify = true) {
+    const warn = () => { if (notify) showNotice(); };
+    if (!synth) { warn(); return 'no-voice'; }
     const list = await voices();
     const v = Speech.verdict(list);
-    if (v === 'none') { showNotice(); return 'no-voice'; }
+    if (v === 'none') { warn(); return 'no-voice'; }
     return new Promise(resolve => {
       let finished = false;
       let safety;
@@ -181,7 +200,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') (() => {
       if (voice) u.voice = voice;
       u.onend = () => finish('spoken');
       u.onerror = e => {
-        if (e && e.error === 'language-unavailable') { showNotice(); finish('no-voice'); } else finish('error');
+        if (e && e.error === 'language-unavailable') { warn(); finish('no-voice'); } else finish('error');
       };
       try { synth.speak(u); } catch { finish('error'); }
     });

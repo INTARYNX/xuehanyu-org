@@ -48,6 +48,12 @@ test('the help text matches the system', () => {
   assert.equal(Speech.platformOf('Mozilla/5.0 (X11; Linux x86_64) Firefox/126', 'Linux x86_64'), 'linux');
 });
 
+test('words use the native voice first on phones only (MP3 is the fallback)', () => {
+  assert.equal(Speech.nativeFirst('ios'), true);
+  assert.equal(Speech.nativeFirst('android'), true);
+  for (const os of ['windows', 'mac', 'linux', 'other']) assert.equal(Speech.nativeFirst(os), false, os);
+});
+
 test('every French message has an English counterpart', () => {
   assert.deepEqual(Object.keys(Speech.T.fr).sort(), Object.keys(Speech.T.en).sort());
 });
