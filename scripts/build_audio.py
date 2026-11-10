@@ -92,11 +92,14 @@ def end_level(wav, floor=0.003):
     return float(np.abs(wav[:loud[-1] + 1][-int(SAMPLE_RATE * 0.05):]).max()) if len(loud) else 0.0
 
 
+SINGLE_CHAR_SPEED = 0.55    # moitié de la vitesse normale (1.1) : un caractère isolé était trop rapide à l'oreille
+
+
 def synth(pipe, text, voice):
     """Kokoro tronque souvent la fin d'un mot d'un seul caractère : on essaie avec « ， » / « 。 » en
     plus et on garde la version dont la fin est la plus douce."""
     def run(t):
-        chunks = [r.audio for r in pipe(t, voice=voice, speed=speed)]
+        chunks = [r.audio for r in pipe(t, voice=voice, speed=SINGLE_CHAR_SPEED if len(text) == 1 else speed)]
         return np.concatenate([c.numpy() if hasattr(c, "numpy") else c for c in chunks])
     variants = [text] if len(text) > 1 else [text, text + "，", text + "。"]
     return min((run(t) for t in variants), key=end_level)
